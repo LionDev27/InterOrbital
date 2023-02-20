@@ -61,44 +61,28 @@ Para ello utilizar Propiedades, o también, variables privadas usando la etiquet
  6. Métodos Públicos
 
 >`public class MyClass : MonoBehaviour`
->{` 
->private static int SomeStaticVariable;
- 
- private bool _someBoolVariable;
- 
- public float rotateSpeed;
- 
- private void Awake()
- {
-  //code here
- }
- 
- private void Start()
- {
-  //code here
- }
- 
- private void Update()
- {
-  //code here
- }
- 
- private void FixedUpdate()
- {
-  //code here
- }
- 
- private void MethodPrivate()
- {
-  //code here
- }
- 
- public void FixedUpdate()
- {
-  //code here
- }
- 
-}`
+><br>
+>`{` 
+><br><br>
+>`private static int SomeStaticVariable;`
+> <br><br>
+>`private bool _someBoolVariable;`
+> <br><br>
+>`public float rotateSpeed;`
+> <br><br>
+>`private void Awake()`
+> <br><br>
+>`private void Start()`
+> <br><br>
+>`private void Update()`
+> <br><br>
+>`private void FixedUpdate()`
+> <br><br>
+>`private void MethodPrivate()`
+> <br><br>
+>`public void FixedUpdate()`
+> <br><br>
+>`}`
  
  
 ## 7. Cada llave está en un sola línea
