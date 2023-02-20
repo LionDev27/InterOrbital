@@ -17,8 +17,10 @@
 
 ## No omitir la visibilidad de cada elemento. 
 
-MAL
-> int speed;
-
-BIEN
-> private int speed;
+>MAL
+>
+>`int speed;`
+>
+>BIEN
+>
+>`private int speed;`
