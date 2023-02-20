@@ -60,9 +60,9 @@ Para ello utilizar Propiedades, o también, variables privadas usando la etiquet
  5. Métodos Privados
  6. Métodos Públicos
 
-`public class MyClass : MonoBehaviour
-{ 
- private static int SomeStaticVariable;
+>`public class MyClass : MonoBehaviour`
+>{` 
+>private static int SomeStaticVariable;
  
  private bool _someBoolVariable;
  
@@ -105,16 +105,21 @@ Para ello utilizar Propiedades, o también, variables privadas usando la etiquet
 
 >MAL
 >
->`public void CreateSomething(){
->    // code
->}`
+>`public void CreateSomething(){`
+><br>
+>    `// code`
+><br>
+>`}`
 >
 >BIEN
 >
->`public void CreateSomething()
->{
->    //code
->}`
+>`public void CreateSomething()`
+><br>
+>`{`
+><br>
+>    `//code`
+><br>
+>`}`
 > 
 
 ## 8. Usar Singleton para todos los Managers (GameManager, AudioManager,...)
