@@ -44,6 +44,7 @@
 >BIEN
 >
 >`private int _speed;`
+><br>
 > `private int _rotateSpeed;`
 
 ## 5. Usar lo mínimo posible variables publicas
