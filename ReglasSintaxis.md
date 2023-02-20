@@ -1,6 +1,8 @@
 # Reglas Sintaxis Scripts
 
-### PascalCase
+## Forma de escribir diferentes campos
+
+* ### PascalCase
 
   * Namespaces
   * Clases
@@ -8,6 +10,15 @@
   * Propiedades
 
 
-### camelCase
+* ### camelCase
 
   * Parámetros
+
+
+## No omitir la visibilidad de cada elemento. 
+
+MAL
+> int speed;
+
+BIEN
+> private int speed;
