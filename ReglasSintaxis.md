@@ -44,12 +44,78 @@
 >BIEN
 >
 >`private int _speed;`
->`private int _rotateSpeed;`
+> `private int _rotateSpeed;`
 
-## 5. Usar Singleton para todos los Managers (GameManager, AudioManager,...)
-
-## 6. Usar lo mínimo posible variables publicas
+## 5. Usar lo mínimo posible variables publicas
 
 Para ello utilizar Propiedades, o también, variables privadas usando la etiqueta [SerializedField]
 
-## 7. Meter todo el código en Namespaces para evitar posibles choques problemas de librerias 
+## 6. Seguir el siguiente orden en cada clase Monobehaviour 
+
+ 1. Variables Estáticas
+ 2. Variables Privadas
+ 3. Variables Publicas
+ 4. Métodos de MonoBehaviour -> Awake -> Start -> Update -> FixedUpdate -> Todos los demás
+ 5. Métodos Privados
+ 6. Métodos Públicos
+
+`public class MyClass : MonoBehaviour
+{ 
+ private static int SomeStaticVariable;
+ 
+ private bool _someBoolVariable;
+ 
+ public float rotateSpeed;
+ 
+ private void Awake()
+ {
+  //code here
+ }
+ 
+ private void Start()
+ {
+  //code here
+ }
+ 
+ private void Update()
+ {
+  //code here
+ }
+ 
+ private void FixedUpdate()
+ {
+  //code here
+ }
+ 
+ private void MethodPrivate()
+ {
+  //code here
+ }
+ 
+ public void FixedUpdate()
+ {
+  //code here
+ }
+ 
+}`
+ 
+ 
+## 7. Cada llave está en un sola línea
+
+>MAL
+>
+>`public void CreateSomething(){
+    // code
+}`
+>
+>BIEN
+>
+>`public void CreateSomething()
+{
+    //code
+}`
+> 
+
+## 8. Usar Singleton para todos los Managers (GameManager, AudioManager,...)
+
+## 9. Meter todo el código en Namespaces para evitar posibles choques problemas de librerias 
