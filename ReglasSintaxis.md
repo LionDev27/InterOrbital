@@ -105,15 +105,15 @@ Para ello utilizar Propiedades, o también, variables privadas usando la etiquet
 >MAL
 >
 >`public void CreateSomething(){
-    // code
-}`
+>    // code
+>}`
 >
 >BIEN
 >
 >`public void CreateSomething()
-{
-    //code
-}`
+>{
+>    //code
+>}`
 > 
 
 ## 8. Usar Singleton para todos los Managers (GameManager, AudioManager,...)
