@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,8 @@ namespace InterOrbital.Player
     {
         public Vector2 MoveDirection { get; private set; }
         public Vector2 AimPosition { get; private set; }
-        public bool Fire { get; private set; }
+        //Para los botones, ejecutaremos un Action que asignaremos en otro script.
+        public Action OnAttack;
 
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
@@ -21,9 +23,9 @@ namespace InterOrbital.Player
             AimPosition = value.Get<Vector2>();
         }
 
-        private void OnFire(InputValue value)
+        private void OnFire()
         {
-            Fire = value.isPressed;
+            OnAttack();
         }
     }
 }
