@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace InterOrbital.Player
 {
-    public class PlayerInputHandler : MonoBehaviour
+    public class PlayerInputHandler : PlayerComponents
     {
         public Vector2 MoveDirection { get; private set; }
         public Vector2 AimPosition { get; private set; }
@@ -26,6 +26,12 @@ namespace InterOrbital.Player
         private void OnFire()
         {
             OnAttack();
+        }
+
+        public void DeactivateControls()
+        {
+            enabled = false;
+            Rigidbody.velocity = Vector2.zero;
         }
     }
 }
