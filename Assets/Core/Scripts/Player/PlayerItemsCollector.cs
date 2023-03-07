@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.Scripts.Items;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -18,9 +19,9 @@ namespace InterOrbital.Player
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attractionRange);
             foreach (Collider2D collider in colliders) {
-                if (collider.gameObject.CompareTag("Pickup")) {
-                    Vector2 direction = (transform.position - collider.transform.position).normalized;
-                    collider.attachedRigidbody.AddForce(direction * 10f);
+                if (collider.gameObject.CompareTag("Pickup"))
+                {
+                    collider.gameObject.GetComponent<Pickups>().playerT = transform;
                 }
             }
         }
