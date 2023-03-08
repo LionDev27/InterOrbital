@@ -1,4 +1,4 @@
-using InterOrbital.Combat;
+using System;
 using InterOrbital.Combat.Bullets;
 using UnityEngine;
 
@@ -8,9 +8,11 @@ namespace InterOrbital.Player
     {
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private float _attackRange;
 
         [Header("Weapon Upgrades")]
         [SerializeField] private int _attackDamage;
+        [Range(1f, 20f)]
         [SerializeField] private float _attackRangeMultiplier;
         [SerializeField] private float _attackCooldown;
         private float _timer;
@@ -36,7 +38,7 @@ namespace InterOrbital.Player
             var tempBullet = Instantiate(_bulletPrefab, _attackPoint.position, Quaternion.identity);
             var bulletController = tempBullet.GetComponent<BaseBulletController>();
             var bulletMoveDir = _attackPoint.position - transform.position;
-            bulletController.SetupBullet(_attackDamage, _attackRangeMultiplier, gameObject.tag, bulletMoveDir);
+            bulletController.SetupBullet(_attackDamage, _attackRange * _attackRangeMultiplier, gameObject.tag, bulletMoveDir, transform.position);
         }
 
         private bool CooldownEnded()
@@ -47,6 +49,12 @@ namespace InterOrbital.Player
         private void OnDestroy()
         {
             InputHandler.OnAttack -= Attack;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _attackRange * _attackRangeMultiplier);
         }
     }
 }

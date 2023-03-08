@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  _range: 3
 --- !u!114 &5260576457902844088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,5 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf502ab408ad0e340964956e71e73e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
-  selfTag: 
+  damage: 0
+  attackerTag: 
