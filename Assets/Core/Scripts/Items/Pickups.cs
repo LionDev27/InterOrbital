@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Scripts.Items
@@ -13,6 +14,11 @@ namespace Core.Scripts.Items
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
+        private void Update()
+        {
+            PlayerReached();
+        }
+
         private void FixedUpdate()
         {
             if (playerT)
@@ -22,12 +28,14 @@ namespace Core.Scripts.Items
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void PlayerReached()
         {
-            if (col.CompareTag("Player"))
+            if (playerT)
             {
-                //Añadir aqui los eventos de actualizar UI/Inventario
-                Destroy(gameObject);
+                if (Vector3.Distance(playerT.position, transform.position) < 0.1f)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
