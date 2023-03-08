@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Core.Scripts.Items;
+using InterOrbital.Items;
 using UnityEngine;
 
 namespace InterOrbital.Player
