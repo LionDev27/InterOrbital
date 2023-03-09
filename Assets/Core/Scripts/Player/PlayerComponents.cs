@@ -10,11 +10,15 @@ namespace InterOrbital.Player
     {
         protected PlayerInputHandler InputHandler { get; private set; }
         protected Rigidbody2D Rigidbody { get; private set; }
+        protected Animator Animator { get; private set; }
+        protected SpriteRenderer PlayerSprite { get; private set; }
 
         protected virtual void Awake()
         {
             InputHandler = GetComponent<PlayerInputHandler>();
             Rigidbody = GetComponent<Rigidbody2D>();
+            Animator = GetComponentInChildren<Animator>();
+            PlayerSprite = GetComponentInChildren<SpriteRenderer>();
         }
     }
 }
