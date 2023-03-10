@@ -8,6 +8,7 @@ namespace InterOrbital.Player
     {
         public Vector2 MoveDirection { get; private set; }
         public Vector2 AimPosition { get; private set; }
+        public Vector2 AimDirection { get; private set; }
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
 
@@ -18,9 +19,14 @@ namespace InterOrbital.Player
             MoveDirection = value.Get<Vector2>();
         }
 
-        private void OnAim(InputValue value)
+        private void OnAimPosition(InputValue value)
         {
             AimPosition = value.Get<Vector2>();
+        }
+
+        private void OnAimDirection(InputValue value)
+        {
+            AimDirection = value.Get<Vector2>();
         }
 
         private void OnFire()

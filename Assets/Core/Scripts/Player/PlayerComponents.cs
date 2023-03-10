@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace InterOrbital.Player
 {
@@ -9,11 +10,15 @@ namespace InterOrbital.Player
     public class PlayerComponents : MonoBehaviour
     {
         protected Rigidbody2D Rigidbody { get; private set; }
+        protected PlayerInput PlayerInput { get; private set; }
+        protected PlayerAttack PlayerAttack { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
 
         protected virtual void Awake()
         {
             InputHandler = GetComponent<PlayerInputHandler>();
+            PlayerInput = GetComponent<PlayerInput>();
+            PlayerAttack = GetComponent<PlayerAttack>();
             Rigidbody = GetComponent<Rigidbody2D>();
         }
     }
