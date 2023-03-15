@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ namespace InterOrbital.Player
         public Vector2 AimPosition { get; private set; }
         public bool Fire { get; private set; }
 
+        public Action OnOpenInventory;
+            
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
         private void OnMove(InputValue value)
@@ -25,5 +28,11 @@ namespace InterOrbital.Player
         {
             Fire = value.isPressed;
         }
+
+        private void OnInventory()
+        {
+            OnOpenInventory();
+        }
     }
+    
 }
