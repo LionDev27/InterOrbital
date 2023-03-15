@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
-using InterOrbital.Player;
 using InterOrbital.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace InterOrbital.Player.Inventory
+namespace InterOrbital.Player
 {
     public class Inventory : PlayerComponents
     {
@@ -16,6 +15,7 @@ namespace InterOrbital.Player.Inventory
         public ItemScriptableObject[] _items;
         private Image[] _itemsSlot;
         private int _level;
+        private int sizeInventory;
         
         public GameObject gridMain;
         public GameObject gridLeftPocket;
@@ -23,12 +23,12 @@ namespace InterOrbital.Player.Inventory
         
         public GameObject bagUI;
         public ItemScriptableObject itemVoid;
-        
+        public ItemScriptableObject itemTest;
+
         protected override void Awake()
         {
             base.Awake();
             InputHandler.OnOpenInventory += UpdateInventory;
-            
         }
 
         private void Start()
@@ -40,6 +40,7 @@ namespace InterOrbital.Player.Inventory
             {
                 _items[i] = itemVoid;
             }
+            sizeInventory = gridMain.transform.childCount;
         }
 
         private void InitSlots()
@@ -71,13 +72,23 @@ namespace InterOrbital.Player.Inventory
             {
                 UpdateLevel();
             }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                AddItem(itemTest);
+            }
         }
 
         private void UpdateInventory()
         {
             UIManager.Instance.ActivateOrDesactivateUI(bagUI);
+            UpdateImages();
+        }
+
+        private void UpdateImages()
+        {
             for (int i = 0; i < _items.Length; i++)
             {
+                Debug.Log(_items[i].name);
                 _itemsSlot[i].sprite = _items[i].itemSprite;
             }
         }
@@ -87,8 +98,41 @@ namespace InterOrbital.Player.Inventory
             if (_level < 3)
             {
                 _level++;
-                UIManager.Instance.ActivateOrDesactivateUI(_level==2 ? gridLeftPocket : gridRightPocket); 
+                UIManager.Instance.ActivateOrDesactivateUI(_level==2 ? gridLeftPocket : gridRightPocket);
+                if (_level == 2)
+                    sizeInventory += gridLeftPocket.transform.childCount;
+                else
+                {
+                    sizeInventory += gridRightPocket.transform.childCount;
+                }
             }
+        }
+
+
+        public void AddItem(ItemScriptableObject item)
+        {
+            
+            for(int i=0; i< sizeInventory; i++)
+            {
+                if (_items[i] == itemVoid)
+                {
+                    _items[i] = item;
+                    break;
+                }
+            }
+
+            if(bagUI.activeSelf)
+            {
+                UpdateImages();
+            }
+        }
+
+        public void SwitchItems(int indexA, int indexB)
+        {
+           ItemScriptableObject auxItem= _items[indexB];
+           _items[indexB] = _items[indexA];
+           _items[indexA] = auxItem;
+           //Debug.Log("Intercambiamos "+indexA+", "+indexB);
         }
         
     }

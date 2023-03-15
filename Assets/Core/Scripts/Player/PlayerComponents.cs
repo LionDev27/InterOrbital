@@ -1,3 +1,4 @@
+using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -11,10 +12,23 @@ namespace InterOrbital.Player
         protected PlayerInputHandler InputHandler { get; private set; }
         protected Rigidbody2D Rigidbody { get; private set; }
 
+        public Inventory Inventory { get; private set; }
+
+        public static PlayerComponents Instance = null;
+
+       
+
         protected virtual void Awake()
         {
+            if (Instance == null)
+                Instance = this;
+           
+
             InputHandler = GetComponent<PlayerInputHandler>();
             Rigidbody = GetComponent<Rigidbody2D>();
+            Inventory = GetComponent<Inventory>();
+          
+
         }
     }
 }

@@ -9,7 +9,6 @@ namespace InterOrbital.Item
         public string itemName;
         public string itemDescription;
         public Sprite itemSprite;
-        
-        
+  
     }
 }
