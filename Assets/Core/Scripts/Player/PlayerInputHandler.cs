@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace InterOrbital.Player
 {
-    public class PlayerInputHandler : MonoBehaviour
+    public class PlayerInputHandler : PlayerComponents
     {
         public Vector2 MoveDirection { get; private set; }
         public Vector2 AimPosition { get; private set; }
-        public bool Fire { get; private set; }
+        public Vector2 AimDirection { get; private set; }
+        //Para los botones, ejecutaremos un Action que asignaremos en otro script.
+        public Action OnAttack;
 
         public Action OnOpenInventory;
             
@@ -19,14 +21,25 @@ namespace InterOrbital.Player
             MoveDirection = value.Get<Vector2>();
         }
 
-        private void OnAim(InputValue value)
+        private void OnAimPosition(InputValue value)
         {
             AimPosition = value.Get<Vector2>();
         }
 
-        private void OnFire(InputValue value)
+        private void OnAimDirection(InputValue value)
         {
-            Fire = value.isPressed;
+            AimDirection = value.Get<Vector2>();
+        }
+
+        private void OnFire()
+        {
+            OnAttack();
+        }
+
+        public void DeactivateControls()
+        {
+            enabled = false;
+            Rigidbody.velocity = Vector2.zero;
         }
 
         private void OnInventory()

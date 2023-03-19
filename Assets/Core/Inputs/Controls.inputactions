@@ -15,11 +15,20 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
+                    "name": "AimPosition",
                     "type": "Value",
                     "id": "65e4db49-b976-4543-9955-610ffe5fcb02",
                     "expectedControlType": "Vector2",
                     "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AimDirection",
+                    "type": "Value",
+                    "id": "5dc70b45-0092-4594-8402-a7c82a259cff",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -111,23 +120,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Look",
+                    "action": "AimPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -155,12 +153,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4d4cca28-eb60-47ab-9abe-cdedf841bf14",
-                    "path": "<Keyboard>/e",
+                    "id": "d8531e24-572a-43d7-b86e-bf22985faf34",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Inventory",
+                    "groups": "Gamepad",
+                    "action": "AimDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
