@@ -1,3 +1,4 @@
+using InterOrbital.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,12 +15,25 @@ namespace InterOrbital.Player
         protected PlayerAttack PlayerAttack { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
 
+        public Inventory Inventory { get; private set; }
+
+        public static PlayerComponents Instance = null;
+
+       
+
         protected virtual void Awake()
         {
+            if (Instance == null)
+                Instance = this;
+           
+
             InputHandler = GetComponent<PlayerInputHandler>();
             PlayerInput = GetComponent<PlayerInput>();
             PlayerAttack = GetComponent<PlayerAttack>();
             Rigidbody = GetComponent<Rigidbody2D>();
+            Inventory = GetComponent<Inventory>();
+          
+
         }
     }
 }

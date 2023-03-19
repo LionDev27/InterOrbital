@@ -12,6 +12,8 @@ namespace InterOrbital.Player
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
 
+        public Action OnOpenInventory;
+            
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
         private void OnMove(InputValue value)
@@ -39,5 +41,11 @@ namespace InterOrbital.Player
             enabled = false;
             Rigidbody.velocity = Vector2.zero;
         }
+
+        private void OnInventory()
+        {
+            OnOpenInventory();
+        }
     }
+    
 }
