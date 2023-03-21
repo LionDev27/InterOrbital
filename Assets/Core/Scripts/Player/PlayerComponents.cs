@@ -1,4 +1,3 @@
-using InterOrbital.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +18,7 @@ namespace InterOrbital.Player
         public PlayerInputHandler InputHandler { get; private set; }
         public Inventory Inventory { get; private set; }
 
-        public static PlayerComponents Instance = null;
+        public static PlayerComponents Instance;
 
         protected virtual void Awake()
         {

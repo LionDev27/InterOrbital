@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3227855541346394482}
   - component: {fileID: 3227855541346394483}
+  - component: {fileID: 2091602762}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -189,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 1266666162, guid: 46ee79a5a5427804f9104da31305eaec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -200,6 +201,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2091602762
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227855541346394493}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 615587a52d6750741984538090a567ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3227855542068895825
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +238,7 @@ GameObject:
   - component: {fileID: 730551272}
   - component: {fileID: 730551273}
   - component: {fileID: 265110465}
+  - component: {fileID: 5682655210009874773}
   - component: {fileID: 3227855542068895818}
   - component: {fileID: 3227855542068895828}
   m_Layer: 0
@@ -348,7 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18687a2269ddbce4cbe5fa4c956a65a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeed: 3
+  _timeForHelmetAnimation: 10
   canMove: 1
 --- !u!114 &730551272
 MonoBehaviour:
@@ -395,6 +418,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorT: {fileID: 2070631634}
+--- !u!114 &5682655210009874773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227855542068895825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a7b66758f68af4cb10ae2b32e1e931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractionRange: 2
 --- !u!114 &3227855542068895818
 MonoBehaviour:
   m_ObjectHideFlags: 0

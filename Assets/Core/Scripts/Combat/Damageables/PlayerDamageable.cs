@@ -12,6 +12,12 @@ namespace InterOrbital.Combat
             _playerComponents = GetComponent<PlayerComponents>();
         }
 
+        //TODO: TIEMPO DE INVENCIBILIDAD DESPUES DE RECIBIR DAÑO
+        public override void GetDamage(int damage)
+        {
+            base.GetDamage(damage);
+        }
+
         protected override void Death()
         {
             Debug.Log("Player Dead");
