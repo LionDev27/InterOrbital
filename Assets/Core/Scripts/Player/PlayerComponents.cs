@@ -11,29 +11,28 @@ namespace InterOrbital.Player
     public class PlayerComponents : MonoBehaviour
     {
         protected Rigidbody2D Rigidbody { get; private set; }
+        protected Animator Animator { get; private set; }
+        protected SpriteRenderer PlayerSprite { get; private set; }
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerAttack PlayerAttack { get; private set; }
+        
         public PlayerInputHandler InputHandler { get; private set; }
-
         public Inventory Inventory { get; private set; }
 
         public static PlayerComponents Instance = null;
-
-       
 
         protected virtual void Awake()
         {
             if (Instance == null)
                 Instance = this;
-           
 
             InputHandler = GetComponent<PlayerInputHandler>();
             PlayerInput = GetComponent<PlayerInput>();
             PlayerAttack = GetComponent<PlayerAttack>();
             Rigidbody = GetComponent<Rigidbody2D>();
+            Animator = GetComponentInChildren<Animator>();
+            PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<Inventory>();
-          
-
         }
     }
 }
