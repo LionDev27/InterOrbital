@@ -4,10 +4,18 @@ namespace InterOrbital.Player
 {
     public class PlayerAim : PlayerComponents
     {
+        [SerializeField] private Transform _gunSpriteT;
+        private SpriteRenderer _gunSprite;
         private Camera _camera;
         private Vector2 _aimDir;
         
         public Transform cursorT;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _gunSprite = _gunSpriteT.GetComponent<SpriteRenderer>();
+        }
 
         private void Start()
         {
@@ -25,7 +33,22 @@ namespace InterOrbital.Player
             cursorT.position = _camera.ScreenToWorldPoint(InputHandler.AimPosition);
             if (_aimDir == Vector2.zero) return;
             PlayerAttack.attackPoint.localPosition = _aimDir;
+            HandleSprites();
             //TODO: COMPROBAR EL RANGO DEL ATAQUE PARA PONER EL CURSOR CON MENOS OPACIDAD.
+        }
+
+        private void HandleSprites()
+        {
+            //Rotacion del sprite del jugador.
+            if (cursorT.position.x > 0)
+                PlayerSprite.flipX = false;
+            else if(cursorT.position.x < 0)
+                PlayerSprite.flipX = true;
+            //Rotacion de la pistola.
+            Quaternion gunRot = _gunSpriteT.rotation;
+            Quaternion lookRot = Quaternion.LookRotation(_aimDir);
+            _gunSpriteT.rotation = new Quaternion(gunRot.x, gunRot.y, lookRot.z, lookRot.w);
+            _gunSprite.flipX = _aimDir.x < 0;
         }
         
         private void CheckInput()

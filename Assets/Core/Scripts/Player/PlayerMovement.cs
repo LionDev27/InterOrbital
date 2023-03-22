@@ -29,7 +29,6 @@ namespace InterOrbital.Player
         {
             //Multiplicamos por 100 porque, al mover usando velocidad, tenemos que usar numeros muy grandes.
             Rigidbody.velocity = _moveSpeed * 100 * Time.deltaTime * InputHandler.MoveDirection;
-            
         }
 
         private void HandleAnimations()
@@ -38,7 +37,7 @@ namespace InterOrbital.Player
             {
                 Animator.SetBool("PlayerRunning", false);
                 _helmetAnimationTimer += Time.deltaTime;
-                //Cuando lleva un tiempo parado se lanza la animación del brillo en el casco
+                //Cuando lleva un tiempo parado se lanza la animaciï¿½n del brillo en el casco
                 if (_helmetAnimationTimer >= _timeForHelmetAnimation) 
                 {
                     Animator.SetTrigger("HelmetShine");
@@ -49,8 +48,8 @@ namespace InterOrbital.Player
             {
                 Animator.SetBool("PlayerRunning", true);
                 _helmetAnimationTimer = 0;
-                //Giramos el sprite según la dirección de movimiento
-                PlayerSprite.flipX = InputHandler.MoveDirection.x < 0;
+                //Giramos el sprite segï¿½n la direcciï¿½n de movimiento
+                // PlayerSprite.flipX = InputHandler.MoveDirection.x < 0;
             }
         }
     }
