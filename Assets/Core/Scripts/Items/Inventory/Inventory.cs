@@ -97,8 +97,8 @@ namespace InterOrbital.Player
 
         private void UpdateInventory()
         {
+            InputHandler.ChangeActionMap();
             UIManager.Instance.ActivateOrDesactivateUI(bagUI);
-            
         }
         
         private void UpdateLevel()

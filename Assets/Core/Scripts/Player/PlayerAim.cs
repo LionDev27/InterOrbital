@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -40,9 +41,9 @@ namespace InterOrbital.Player
         private void HandleSprites()
         {
             //Rotacion del sprite del jugador.
-            if (cursorT.position.x > 0)
+            if (cursorT.localPosition.x > 0)
                 PlayerSprite.flipX = false;
-            else if(cursorT.position.x < 0)
+            else if(cursorT.localPosition.x < 0)
                 PlayerSprite.flipX = true;
             //Rotacion de la pistola.
             Quaternion gunRot = _gunSpriteT.rotation;
@@ -53,16 +54,17 @@ namespace InterOrbital.Player
         
         private void CheckInput()
         {
-            if (PlayerInput.currentControlScheme == "Gamepad")
+            switch (InputHandler.CurrentInput())
             {
-                cursorT.gameObject.SetActive(false);
-                _aimDir = InputHandler.AimDirection;
-            }
-            else
-            {
-                cursorT.gameObject.SetActive(true);
-                _aimDir = cursorT.position - transform.position;
-                _aimDir.Normalize();
+                case PlayerInputHandler.InputType.Keyboard:
+                    cursorT.gameObject.SetActive(true);
+                    _aimDir = cursorT.position - transform.position;
+                    _aimDir.Normalize();
+                    break;
+                case PlayerInputHandler.InputType.Gamepad:
+                    cursorT.gameObject.SetActive(false);
+                    _aimDir = InputHandler.AimDirection;
+                    break;
             }
         }
     }

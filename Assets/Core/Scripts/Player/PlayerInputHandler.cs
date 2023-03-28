@@ -6,12 +6,13 @@ namespace InterOrbital.Player
 {
     public class PlayerInputHandler : PlayerComponents
     {
+        public enum InputType {Keyboard, Gamepad}
+        
         public Vector2 MoveDirection { get; private set; }
         public Vector2 AimPosition { get; private set; }
         public Vector2 AimDirection { get; private set; }
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
-
         public Action OnOpenInventory;
             
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
@@ -45,6 +46,17 @@ namespace InterOrbital.Player
         private void OnInventory()
         {
             OnOpenInventory();
+        }
+
+        public InputType CurrentInput()
+        {
+            return PlayerInput.currentControlScheme == "Gamepad" ? InputType.Gamepad : InputType.Keyboard;
+        }
+
+        public void ChangeActionMap ()
+        {
+            string actionMap = PlayerInput.currentActionMap.name == "Player" ? "UI" : "Player";
+            PlayerInput.SwitchCurrentActionMap(actionMap);
         }
     }
     
