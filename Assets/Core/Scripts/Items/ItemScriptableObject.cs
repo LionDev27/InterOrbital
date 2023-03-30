@@ -9,6 +9,7 @@ namespace InterOrbital.Item
         public string itemName;
         public string itemDescription;
         public Sprite itemSprite;
-  
+        public bool isStackable;
+        public int maxAmount;
     }
 }

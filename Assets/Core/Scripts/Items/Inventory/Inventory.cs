@@ -1,22 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using InterOrbital.Item;
 using InterOrbital.UI;
-using Unity.VisualScripting;
+using InterOrbital.Player;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
+using TMPro;
 
 namespace InterOrbital.Player
 {
     public class Inventory : PlayerComponents
     {
+    
         private int _totalNumberOfSlots;
-        private ItemScriptableObject[] _items;
+        private ItemObject [] _items;
         private Image[] _itemsSlot;
         private Image[] _itemsFastInventory;
+        private TextMeshProUGUI[] _textAmount;
         private int _level;
         private int _sizeInventory;
         private int _numSlotsFastInventory;
@@ -33,8 +32,10 @@ namespace InterOrbital.Player
         public GameObject bagUI;
         public ItemScriptableObject itemVoid;
         public ItemScriptableObject itemTest;
+        public ItemScriptableObject itemTest2;
 
-        
+        public GameObject dropItemPrefab;
+        public float dropForce;
 
         protected override void Awake()
         {
@@ -47,10 +48,15 @@ namespace InterOrbital.Player
             _level = 1;
             _numSlotsFastInventory = gridFastInventory.transform.childCount;
             InitSlots();
-            _items = new ItemScriptableObject[_totalNumberOfSlots];
+            _items = new ItemObject[_totalNumberOfSlots];
             for (int i = 0; i < _items.Length; i++)
             {
-                _items[i] = itemVoid;
+                GameObject obj = new GameObject();
+                ItemObject item = obj.AddComponent<ItemObject>();
+                Destroy(obj);
+                _items[i] = item;
+                
+                _items[i].itemSo = itemVoid;
             }
             _sizeInventory = gridMain.transform.childCount;
         }
@@ -64,21 +70,26 @@ namespace InterOrbital.Player
             _totalNumberOfSlots = sizeMain + sizeLeft  +  sizeRight;
             _itemsSlot = new Image[_totalNumberOfSlots];
             _itemsFastInventory = new Image[_numSlotsFastInventory];
-            
-            
-            RelateSlots(gridMain, 0,sizeMain, _itemsSlot);
-            RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot );
-            RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot);
-            RelateSlots(gridFastInventory, 0, 5, _itemsFastInventory);
+            _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
+
+            RelateSlots(gridMain, 0,sizeMain, _itemsSlot, true);
+            RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot, true );
+            RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot, true);
+            RelateSlots(gridFastInventory, 0, 5, _itemsFastInventory,false);
             
           
         }
 
-        private void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot)
+        private void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot, bool relateAmounts)
         {
             for (var i = 0; i < size; i++)
             { 
                 imagesSlot[i + startSize] = grid.transform.GetChild(i).GetChild(0).GetComponent<Image>();
+                if (relateAmounts)
+                {
+                    grid.transform.GetChild(i).GetChild(0).GetComponent<DraggableItem>().inventoryIndex = i + startSize;
+                    _textAmount[i+ startSize] = grid.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                }
             }
         }
         
@@ -91,9 +102,18 @@ namespace InterOrbital.Player
             }
             if (Input.GetKeyDown(KeyCode.P))
             {
-                AddItem(itemTest);
+                DropItem(-1,itemTest);
             }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                DropItem(-1, itemTest2);
+            }
+
+            Vector3 direction = PlayerAttack.attackPoint.position - transform.position;
+            Vector3 pointToDraw = (direction.normalized * dropForce) + PlayerAttack.attackPoint.position;
+            Debug.DrawRay(transform.position,pointToDraw, Color.yellow);
         }
+        
 
         private void UpdateInventory()
         {
@@ -120,32 +140,61 @@ namespace InterOrbital.Player
         {
             for (int i = 0; i < _numSlotsFastInventory; i++)
             {
-                _itemsFastInventory[i].sprite = _items[i].itemSprite;
+                _itemsFastInventory[i].sprite = _items[i].itemSo.itemSprite;
             }
         }
-
-
-        public void AddItem(ItemScriptableObject item)
+        
+        private void SetAmount(int index, int num)
         {
+            _items[index].amount = num;
+            _textAmount[index].text = _items[index].amount.ToString();
+        }
+        public void AddItem(ItemObject item)
+        {
+            var rest = 0;
+
+            for(int i=0; i < _sizeInventory; i++)
+            {
+                 if (_items[i].itemSo == item.itemSo && _items[i].itemSo.isStackable && _items[i].amount <= _items[i].itemSo.maxAmount)
+                 {
+                   
+                    int sum = _items[i].amount + item.amount;
+                    if(sum <= _items[i].itemSo.maxAmount)
+                    {
+                        SetAmount(i, sum);       
+                        return;
+                    }
+                    else
+                    {
+                        rest = sum - _items[i].itemSo.maxAmount;
+                        SetAmount(i, _items[i].itemSo.maxAmount);
+                        item.amount = rest;
+                    }
+                 }
+            }
             
             for(int i=0; i< _sizeInventory; i++)
             {
-                if (_items[i] == itemVoid)
+                if (_items[i].itemSo == itemVoid)
                 {
                     _items[i] = item;
-                    _itemsSlot[i].sprite = _items[i].itemSprite;
-
+                    SetAmount(i, item.amount);
+                    _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
+                    
                     if (i < _numSlotsFastInventory)
                     {
-                        _itemsFastInventory[i].sprite = _items[i].itemSprite;
+                        _itemsFastInventory[i].sprite = _items[i].itemSo.itemSprite;
                     }
                     break;
                 }
             }
         }
 
+
         public void SwitchItems(int indexA, int indexB)
         {
+          
+            (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
             (_itemsSlot[indexB], _itemsSlot[indexA]) = (_itemsSlot[indexA], _itemsSlot[indexB]);
             (_items[indexB], _items[indexA]) = (_items[indexA], _items[indexB]);
             if (indexA < _numSlotsFastInventory || indexB < _numSlotsFastInventory)
@@ -154,8 +203,37 @@ namespace InterOrbital.Player
             }
         }
 
-        
-        
+        public void DropItem(int index=-1, ItemScriptableObject item=null)
+        {   
+            GameObject p = Instantiate(dropItemPrefab, PlayerAttack.attackPoint.position, Quaternion.identity);
+            ItemObject auxItem = p.GetComponent<ItemObject>();
+            auxItem.ObtainComponents();
+            if (index >= 0)
+            {
+                auxItem.SetItem(_items[index].itemSo);
+                auxItem.amount = _items[index].amount;
+            }
+            else if(item != null)
+            {
+                auxItem.SetItem(item);
+                
+            }
+            
+            Vector3 direction = PlayerAttack.attackPoint.position - transform.position;
+            auxItem.DropItem((direction.normalized * dropForce) + PlayerAttack.attackPoint.position);
+          
+            if(index >= 0)
+            {
+                _items[index].itemSo = itemVoid;
+                _itemsSlot[index].sprite = itemVoid.itemSprite;
+                _textAmount[index].text = "";
+                if(index < _numSlotsFastInventory)
+                {
+                    UpdateFastInventory();
+                }
+            }
+        }
+      
     }
 }
 

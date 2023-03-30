@@ -16,3 +16,6 @@ MonoBehaviour:
   itemName: Botiquin
   itemDescription: Cura vida
   itemSprite: {fileID: 21300000, guid: 2590f02f79f2dfd4daa67e1a3b5757c9, type: 3}
+  isStackable: 1
+  amount: 1
+  maxAmount: 3

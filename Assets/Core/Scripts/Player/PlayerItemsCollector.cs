@@ -1,4 +1,4 @@
-using InterOrbital.Items;
+using InterOrbital.Item;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -14,7 +14,10 @@ namespace InterOrbital.Player
             foreach (Collider2D collider in colliders) {
                 if (collider.gameObject.CompareTag("Pickup"))
                 {
-                    collider.gameObject.GetComponent<Pickups>().playerT = transform;
+                    
+                    ItemObject item =collider.gameObject.GetComponent<ItemObject>();
+                    if(!item.DropingItem)
+                        item.playerT = transform;
                 }
             }
         }

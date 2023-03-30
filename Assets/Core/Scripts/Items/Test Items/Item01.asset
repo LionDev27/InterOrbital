@@ -16,3 +16,6 @@ MonoBehaviour:
   itemName: Madera
   itemDescription: Madera de arbol
   itemSprite: {fileID: 21300000, guid: 2f67146e2bae22b4bbfe6459dc6273d0, type: 3}
+  isStackable: 1
+  amount: 1
+  maxAmount: 64
