@@ -1,85 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
-public class PlayerEnergy : MonoBehaviour
+namespace InterOrbital.Player
 {
-    public bool energyEmpty;
-
-    [SerializeField]
-    private int _currentEnergy;
-    [SerializeField]
-    private int _maxEnergy;
-    [SerializeField] private float _loseEnergyTimerDefaultValue;
-    private float _loseEnergyTimer;
-
-    public Image img;
-    private void Start()
+    public class PlayerEnergy : MonoBehaviour
     {
-        _currentEnergy = _maxEnergy;
-        energyEmpty = false;
-        ResetTimer();
-    }
+        public bool EnergyEmpty { get; private set; }
 
-    private void Update()
-    {
-        LoseEnergyByTime();
-        img.fillAmount = (float)_currentEnergy / _maxEnergy;
+        [SerializeField] private int _currentEnergy;
+        [SerializeField] private int _maxEnergy;
+        [SerializeField] private float _loseEnergyTimerDefaultValue;
+        private float _loseEnergyTimer;
 
-        if (Input.GetKeyDown(KeyCode.R))
-            RestoreEnergy(5);
-
-        if (Input.GetKeyDown(KeyCode.L))
-            LoseEnergy(3);
-    }
-
-    private void LoseEnergyByTime() {
-        if (!energyEmpty)
+        public Image img;
+        private void Start()
         {
-            if (_loseEnergyTimer > 0)
-            {
-                _loseEnergyTimer -= Time.deltaTime;
-            }
-            else
-            {
-                _currentEnergy = (int)Mathf.Clamp(_currentEnergy - 1, 0, _maxEnergy);
-                ResetTimer();
-                CheckEnergy();
-            }
-        }
-    }
-
-
-    public void RestoreEnergy(float energy)
-    {
-        _currentEnergy = (int)Mathf.Clamp(_currentEnergy + energy,0,_maxEnergy);
-        ResetTimer();
-        CheckEnergy();
-    }
-
-    public void LoseEnergy(float energy)
-    {
-        _currentEnergy = (int)Mathf.Clamp(_currentEnergy - energy, 0, _maxEnergy);
-        ResetTimer();
-        CheckEnergy();
-    }
-
-    private void CheckEnergy()
-    {
-        if (_currentEnergy <= 0)
-        {
-            energyEmpty = true;
+            _currentEnergy = _maxEnergy;
+            EnergyEmpty = false;
             ResetTimer();
         }
-        else
-            energyEmpty = false;
-    }
 
-    private void ResetTimer() {
-        _loseEnergyTimer = _loseEnergyTimerDefaultValue;
-    }
+        private void Update()
+        {
+            LoseEnergyOverTime();
+            img.fillAmount = (float)_currentEnergy / _maxEnergy;
 
-    
+            if (Input.GetKeyDown(KeyCode.R))
+                RestoreEnergy(5);
+
+            if (Input.GetKeyDown(KeyCode.L))
+                LoseEnergy(3);
+        }
+
+        private void LoseEnergyOverTime()
+        {
+            if (!EnergyEmpty)
+            {
+                if (_loseEnergyTimer > 0)
+                {
+                    _loseEnergyTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    _currentEnergy = Mathf.Clamp(_currentEnergy - 1, 0, _maxEnergy);
+                    ResetTimer();
+                    CheckEnergy();
+                }
+            }
+        }
+
+
+        public void RestoreEnergy(int energyAmount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy + energyAmount, 0, _maxEnergy);
+            ResetTimer();
+            CheckEnergy();
+        }
+
+        public void LoseEnergy(int energyAmount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy - energyAmount, 0, _maxEnergy);
+            ResetTimer();
+            CheckEnergy();
+        }
+
+        public void UpgradeEnergy(int energyAmount)
+        {
+            _maxEnergy += energyAmount;
+        }
+
+        private void CheckEnergy()
+        {
+            if (_currentEnergy <= 0)
+            {
+                EnergyEmpty = true;
+                ResetTimer();
+            }
+            else
+                EnergyEmpty = false;
+        }
+
+        private void ResetTimer()
+        {
+            _loseEnergyTimer = _loseEnergyTimerDefaultValue;
+        }
+    }
 }

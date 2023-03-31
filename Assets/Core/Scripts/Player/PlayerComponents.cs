@@ -17,6 +17,9 @@ namespace InterOrbital.Player
         
         public PlayerInputHandler InputHandler { get; private set; }
         public Inventory Inventory { get; private set; }
+        public PlayerEnergy PlayerEnergy { get; private set; }
+
+        public PlayerHealth PlayerHealth { get; private set; }
 
         public static PlayerComponents Instance;
 
@@ -32,6 +35,8 @@ namespace InterOrbital.Player
             Animator = GetComponentInChildren<Animator>();
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<Inventory>();
+            PlayerEnergy = GetComponent<PlayerEnergy>();
+            PlayerHealth = GetComponent<PlayerHealth>();
         }
     }
 }
