@@ -1,3 +1,4 @@
+using InterOrbital.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,7 @@ namespace InterOrbital.Player
         public Inventory Inventory { get; private set; }
         public PlayerEnergy PlayerEnergy { get; private set; }
 
-        public PlayerHealth PlayerHealth { get; private set; }
+        public PlayerDamageable PlayerDamageable { get; private set; }
 
         public static PlayerComponents Instance;
 
@@ -36,7 +37,7 @@ namespace InterOrbital.Player
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<Inventory>();
             PlayerEnergy = GetComponent<PlayerEnergy>();
-            PlayerHealth = GetComponent<PlayerHealth>();
+            PlayerDamageable = GetComponent<PlayerDamageable>();
         }
     }
 }

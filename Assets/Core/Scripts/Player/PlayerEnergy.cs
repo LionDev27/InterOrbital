@@ -6,13 +6,13 @@ namespace InterOrbital.Player
     public class PlayerEnergy : MonoBehaviour
     {
         public bool EnergyEmpty { get; private set; }
+        public Image img;
 
         [SerializeField] private int _currentEnergy;
         [SerializeField] private int _maxEnergy;
         [SerializeField] private float _loseEnergyTimerDefaultValue;
         private float _loseEnergyTimer;
 
-        public Image img;
         private void Start()
         {
             _currentEnergy = _maxEnergy;
@@ -23,30 +23,7 @@ namespace InterOrbital.Player
         private void Update()
         {
             LoseEnergyOverTime();
-            img.fillAmount = (float)_currentEnergy / _maxEnergy;
-
-            if (Input.GetKeyDown(KeyCode.R))
-                RestoreEnergy(5);
-
-            if (Input.GetKeyDown(KeyCode.L))
-                LoseEnergy(3);
-        }
-
-        private void LoseEnergyOverTime()
-        {
-            if (!EnergyEmpty)
-            {
-                if (_loseEnergyTimer > 0)
-                {
-                    _loseEnergyTimer -= Time.deltaTime;
-                }
-                else
-                {
-                    _currentEnergy = Mathf.Clamp(_currentEnergy - 1, 0, _maxEnergy);
-                    ResetTimer();
-                    CheckEnergy();
-                }
-            }
+            //TODO: EVENTOS DE ACTUALIZACION DE HUD
         }
 
 
@@ -67,6 +44,23 @@ namespace InterOrbital.Player
         public void UpgradeEnergy(int energyAmount)
         {
             _maxEnergy += energyAmount;
+        }
+
+        private void LoseEnergyOverTime()
+        {
+            if (!EnergyEmpty)
+            {
+                if (_loseEnergyTimer > 0)
+                {
+                    _loseEnergyTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    _currentEnergy = Mathf.Clamp(_currentEnergy - 1, 0, _maxEnergy);
+                    ResetTimer();
+                    CheckEnergy();
+                }
+            }
         }
 
         private void CheckEnergy()
