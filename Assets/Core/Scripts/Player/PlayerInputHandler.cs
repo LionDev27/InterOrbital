@@ -14,6 +14,7 @@ namespace InterOrbital.Player
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
         public Action OnOpenInventory;
+        public Action OnDashPerformed;
             
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
@@ -36,16 +37,22 @@ namespace InterOrbital.Player
         {
             OnAttack();
         }
-
-        public void DeactivateControls()
-        {
-            enabled = false;
-            Rigidbody.velocity = Vector2.zero;
-        }
-
+        
         private void OnInventory()
         {
             OnOpenInventory();
+        }
+
+        private void OnDash()
+        {
+            OnDashPerformed();
+        }
+        
+        public void DeactivateControls()
+        {
+            PlayerInput.enabled = false;
+            enabled = false;
+            Rigidbody.velocity = Vector2.zero;
         }
 
         public InputType CurrentInput()

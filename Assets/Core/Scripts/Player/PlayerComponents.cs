@@ -15,11 +15,11 @@ namespace InterOrbital.Player
         protected SpriteRenderer PlayerSprite { get; private set; }
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerAttack PlayerAttack { get; private set; }
-        
+        protected PlayerMovement PlayerMovement { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
         public Inventory Inventory { get; private set; }
         public PlayerEnergy PlayerEnergy { get; private set; }
-
+        public PlayerDash PlayerDash { get; private set; }
         public PlayerDamageable PlayerDamageable { get; private set; }
 
         public static PlayerComponents Instance;
@@ -32,11 +32,13 @@ namespace InterOrbital.Player
             InputHandler = GetComponent<PlayerInputHandler>();
             PlayerInput = GetComponent<PlayerInput>();
             PlayerAttack = GetComponent<PlayerAttack>();
+            PlayerMovement = GetComponent<PlayerMovement>();
             Rigidbody = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<Inventory>();
             PlayerEnergy = GetComponent<PlayerEnergy>();
+            PlayerDash = GetComponent<PlayerDash>();
             PlayerDamageable = GetComponent<PlayerDamageable>();
         }
     }

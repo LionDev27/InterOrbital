@@ -5,7 +5,7 @@ namespace InterOrbital.Combat
     public class Damageable : MonoBehaviour
     {
         [SerializeField] protected int _maxHealth;
-        [SerializeField] protected int _currentHealth;
+        protected int _currentHealth;
 
         protected virtual void Start()
         {
