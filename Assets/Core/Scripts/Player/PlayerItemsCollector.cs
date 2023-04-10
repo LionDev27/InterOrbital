@@ -14,9 +14,8 @@ namespace InterOrbital.Player
             foreach (Collider2D collider in colliders) {
                 if (collider.gameObject.CompareTag("Pickup"))
                 {
-                    
                     ItemObject item =collider.gameObject.GetComponent<ItemObject>();
-                    if(!item.DropingItem)
+                    if(!item.DropingItem && !PlayerComponents.Instance.Inventory.IsInventoryFull())
                         item.playerT = transform;
                 }
             }

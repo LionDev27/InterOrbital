@@ -62,8 +62,11 @@ namespace InterOrbital.Item
             {
                 if (Vector3.Distance(playerT.position, transform.position) < distanceToBeCollected)
                 {
-                    PlayerComponents.Instance.Inventory.AddItem(this);
-                    Destroy(gameObject);
+                    if (!PlayerComponents.Instance.Inventory.IsInventoryFull())
+                    {
+                        PlayerComponents.Instance.Inventory.AddItem(this);
+                        Destroy(gameObject);
+                    }
                 }
             }
         }

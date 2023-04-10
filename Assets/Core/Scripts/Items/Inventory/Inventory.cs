@@ -14,7 +14,6 @@ namespace InterOrbital.Player
         private int _totalNumberOfSlots;
         private ItemObject [] _items;
         private Image[] _itemsSlot;
-        private Image[] _itemsFastInventory;
         private TextMeshProUGUI[] _textAmount;
         private int _level;
         private int _sizeInventory;
@@ -27,7 +26,6 @@ namespace InterOrbital.Player
         public GameObject gridMain;
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
-        public GameObject gridFastInventory;
             
         public GameObject bagUI;
         public ItemScriptableObject itemVoid;
@@ -46,7 +44,6 @@ namespace InterOrbital.Player
         private void Start()
         {
             _level = 1;
-            _numSlotsFastInventory = gridFastInventory.transform.childCount;
             InitSlots();
             _items = new ItemObject[_totalNumberOfSlots];
             for (int i = 0; i < _items.Length; i++)
@@ -69,13 +66,11 @@ namespace InterOrbital.Player
            
             _totalNumberOfSlots = sizeMain + sizeLeft  +  sizeRight;
             _itemsSlot = new Image[_totalNumberOfSlots];
-            _itemsFastInventory = new Image[_numSlotsFastInventory];
             _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
 
             RelateSlots(gridMain, 0,sizeMain, _itemsSlot, true);
             RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot, true );
             RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot, true);
-            RelateSlots(gridFastInventory, 0, 5, _itemsFastInventory,false);
             
           
         }
@@ -136,19 +131,30 @@ namespace InterOrbital.Player
             }
         }
         
-        private void UpdateFastInventory()
-        {
-            for (int i = 0; i < _numSlotsFastInventory; i++)
-            {
-                _itemsFastInventory[i].sprite = _items[i].itemSo.itemSprite;
-            }
-        }
         
         private void SetAmount(int index, int num)
         {
             _items[index].amount = num;
             _textAmount[index].text = _items[index].amount.ToString();
         }
+
+        public bool IsInventoryFull()
+        {
+            for(int i=0; i<_sizeInventory; i++)
+            {
+                if (_items[i].itemSo.isStackable && _items[i].amount == _items[i].itemSo.maxAmount)
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public void AddItem(ItemObject item)
         {
             var rest = 0;
@@ -181,15 +187,14 @@ namespace InterOrbital.Player
                     SetAmount(i, item.amount);
                     _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
                     
-                    if (i < _numSlotsFastInventory)
-                    {
-                        _itemsFastInventory[i].sprite = _items[i].itemSo.itemSprite;
-                    }
-                    break;
+                    return;
                 }
             }
-        }
 
+            //Si llegamos aqui, es porque falta espacio para meter el resto de un item.
+            DropItem(-1, item.itemSo);
+           
+        }
 
         public void SwitchItems(int indexA, int indexB)
         {
@@ -197,10 +202,7 @@ namespace InterOrbital.Player
             (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
             (_itemsSlot[indexB], _itemsSlot[indexA]) = (_itemsSlot[indexA], _itemsSlot[indexB]);
             (_items[indexB], _items[indexA]) = (_items[indexA], _items[indexB]);
-            if (indexA < _numSlotsFastInventory || indexB < _numSlotsFastInventory)
-            {
-                UpdateFastInventory();
-            }
+            
         }
 
         public void DropItem(int index=-1, ItemScriptableObject item=null)
@@ -227,10 +229,6 @@ namespace InterOrbital.Player
                 _items[index].itemSo = itemVoid;
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
-                if(index < _numSlotsFastInventory)
-                {
-                    UpdateFastInventory();
-                }
             }
         }
       
