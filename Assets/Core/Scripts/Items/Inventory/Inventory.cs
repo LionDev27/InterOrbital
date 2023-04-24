@@ -26,8 +26,7 @@ namespace InterOrbital.Player
         public GameObject gridMain;
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
-            
-        public GameObject bagUI;
+    
         public ItemScriptableObject itemVoid;
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
@@ -112,7 +111,7 @@ namespace InterOrbital.Player
 
         private void UpdateInventory()
         {
-            UIManager.Instance.ActivateOrDesactivateUI(bagUI);
+            UIManager.Instance.OpenInventory();
             
         }
         

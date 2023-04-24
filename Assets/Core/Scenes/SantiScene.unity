@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a38664129e4c8f46afd2f8167ca23b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bagUI: {fileID: 2112002635}
 --- !u!1001 &370621470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -781,7 +782,6 @@ MonoBehaviour:
   gridMain: {fileID: 1322147062}
   gridLeftPocket: {fileID: 717209404}
   gridRightPocket: {fileID: 69098295}
-  bagUI: {fileID: 2112002635}
   itemVoid: {fileID: 11400000, guid: d5d7cfcecbad46a449eeffd6de2c8b29, type: 2}
   itemTest: {fileID: 11400000, guid: 724edb049e9abda44a0366d325e341cb, type: 2}
   itemTest2: {fileID: 11400000, guid: 51f26e58c4445214c9b80f08c39685c3, type: 2}
@@ -4260,8 +4260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -755}
+  m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112002637
 MonoBehaviour:
