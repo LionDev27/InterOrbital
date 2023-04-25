@@ -14,7 +14,9 @@ namespace InterOrbital.Player
         protected SpriteRenderer PlayerSprite { get; private set; }
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerAttack PlayerAttack { get; private set; }
-        
+        protected PlayerCraft PlayerCraft { get; private set; }
+
+
         public PlayerInputHandler InputHandler { get; private set; }
         public Inventory Inventory { get; private set; }
 
@@ -32,6 +34,7 @@ namespace InterOrbital.Player
             Animator = GetComponentInChildren<Animator>();
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<Inventory>();
+            PlayerCraft = GetComponent<PlayerCraft>();
         }
     }
 }

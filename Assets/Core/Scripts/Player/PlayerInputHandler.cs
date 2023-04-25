@@ -13,7 +13,9 @@ namespace InterOrbital.Player
         public Action OnAttack;
 
         public Action OnOpenInventory;
-            
+
+        public Action OnOpenCraft;
+
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
         private void OnMove(InputValue value)
@@ -46,6 +48,12 @@ namespace InterOrbital.Player
         {
             OnOpenInventory();
         }
+
+        private void OnCraft()
+        {
+            OnOpenCraft();
+        }
+
     }
     
 }

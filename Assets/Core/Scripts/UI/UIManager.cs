@@ -28,7 +28,19 @@ namespace InterOrbital.UI
 
         public void ActivateOrDesactivateUI(GameObject ui)
         {
-            ui.SetActive(!ui.activeSelf);
+            if (ui.activeSelf)
+            {
+                ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
+                {
+                    ui.SetActive(false);
+                });  
+            }
+            else
+            {
+                ui.SetActive(true);
+                ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
+            }
+           
         }
 
         public void OpenInventory()

@@ -1,7 +1,6 @@
 
 using InterOrbital.Item;
 using InterOrbital.UI;
-using InterOrbital.Player;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -112,7 +111,6 @@ namespace InterOrbital.Player
         private void UpdateInventory()
         {
             UIManager.Instance.OpenInventory();
-            
         }
         
         private void UpdateLevel()
