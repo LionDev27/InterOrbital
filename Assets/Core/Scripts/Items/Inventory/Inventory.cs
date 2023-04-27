@@ -29,6 +29,7 @@ namespace InterOrbital.Player
         public ItemScriptableObject itemVoid;
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
+        public ItemScriptableObject itemTest3;
 
         public GameObject dropItemPrefab;
         public float dropForce;
@@ -100,6 +101,10 @@ namespace InterOrbital.Player
             if (Input.GetKeyDown(KeyCode.O))
             {
                 DropItem(-1, itemTest2);
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                DropItem(-1, itemTest3);
             }
 
             Vector3 direction = PlayerAttack.attackPoint.position - transform.position;

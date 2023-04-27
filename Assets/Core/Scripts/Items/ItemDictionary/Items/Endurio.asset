@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
-  m_Name: ItemCraft1
+  m_Script: {fileID: 11500000, guid: aa4fb330c53c2d141815cf2b1af83e52, type: 3}
+  m_Name: Endurio
   m_EditorClassIdentifier: 
-  id: 5
-  itemName: Botiquin
-  itemDescription: Botiquin que cura
-  itemSprite: {fileID: 21300000, guid: 2590f02f79f2dfd4daa67e1a3b5757c9, type: 3}
+  id: 2
+  itemName: Endurio
+  itemDescription: Lingote refinado de Endurita
+  itemSprite: {fileID: 1186872721, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   isStackable: 1
-  maxAmount: 3
-  idItems: 0000000001000000
-  typeCraft: 0
+  maxAmount: 20
