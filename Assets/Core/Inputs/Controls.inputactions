@@ -51,9 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+<<<<<<< HEAD
                     "name": "Craft",
                     "type": "Button",
                     "id": "627c7014-ccec-4ba2-9dd7-cb12fa5e95d0",
+=======
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "bbc8458d-e9e4-47d0-81ef-a82bbe02acba",
+>>>>>>> origin/Leon
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -184,12 +190,21 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "1bf72f96-c762-4051-bee8-c8d36c990cf5",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Craft",
+=======
+                    "id": "c3aa1db0-f837-4beb-8723-0ce3bd43bae4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+>>>>>>> origin/Leon
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -266,6 +281,15 @@
                     "name": "RightClick",
                     "type": "PassThrough",
                     "id": "36894477-9c8b-4dca-9ec4-0a50dda80bbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "4680f588-76c0-4adc-bcde-9e2d7d96e669",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -556,6 +580,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "968d0311-2cef-4c03-b4f6-287b99ab7410",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

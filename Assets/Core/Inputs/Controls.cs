@@ -73,9 +73,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+<<<<<<< HEAD
                     ""name"": ""Craft"",
                     ""type"": ""Button"",
                     ""id"": ""627c7014-ccec-4ba2-9dd7-cb12fa5e95d0"",
+=======
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbc8458d-e9e4-47d0-81ef-a82bbe02acba"",
+>>>>>>> origin/Leon
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -206,12 +212,21 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+<<<<<<< HEAD
                     ""id"": ""1bf72f96-c762-4051-bee8-c8d36c990cf5"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Craft"",
+=======
+                    ""id"": ""c3aa1db0-f837-4beb-8723-0ce3bd43bae4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+>>>>>>> origin/Leon
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -288,6 +303,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""RightClick"",
                     ""type"": ""PassThrough"",
                     ""id"": ""36894477-9c8b-4dca-9ec4-0a50dda80bbf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""4680f588-76c0-4adc-bcde-9e2d7d96e669"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -580,6 +604,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""968d0311-2cef-4c03-b4f6-287b99ab7410"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -621,7 +656,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_AimDirection = m_Player.FindAction("AimDirection", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+<<<<<<< HEAD
         m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
+=======
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+>>>>>>> origin/Leon
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -632,6 +671,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+        m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -698,7 +738,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AimDirection;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Inventory;
+<<<<<<< HEAD
     private readonly InputAction m_Player_Craft;
+=======
+    private readonly InputAction m_Player_Dash;
+>>>>>>> origin/Leon
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -708,7 +752,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @AimDirection => m_Wrapper.m_Player_AimDirection;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+<<<<<<< HEAD
         public InputAction @Craft => m_Wrapper.m_Player_Craft;
+=======
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+>>>>>>> origin/Leon
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -733,9 +781,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+<<<<<<< HEAD
             @Craft.started += instance.OnCraft;
             @Craft.performed += instance.OnCraft;
             @Craft.canceled += instance.OnCraft;
+=======
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
+>>>>>>> origin/Leon
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -755,9 +809,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+<<<<<<< HEAD
             @Craft.started -= instance.OnCraft;
             @Craft.performed -= instance.OnCraft;
             @Craft.canceled -= instance.OnCraft;
+=======
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
+>>>>>>> origin/Leon
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -787,6 +847,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
+    private readonly InputAction m_UI_Inventory;
     public struct UIActions
     {
         private @Controls m_Wrapper;
@@ -799,6 +860,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+        public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -832,6 +894,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RightClick.started += instance.OnRightClick;
             @RightClick.performed += instance.OnRightClick;
             @RightClick.canceled += instance.OnRightClick;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -860,6 +925,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RightClick.started -= instance.OnRightClick;
             @RightClick.performed -= instance.OnRightClick;
             @RightClick.canceled -= instance.OnRightClick;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -902,7 +970,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAimDirection(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+<<<<<<< HEAD
         void OnCraft(InputAction.CallbackContext context);
+=======
+        void OnDash(InputAction.CallbackContext context);
+>>>>>>> origin/Leon
     }
     public interface IUIActions
     {
@@ -914,5 +986,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

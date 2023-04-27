@@ -115,6 +115,7 @@ namespace InterOrbital.Player
 
         private void UpdateInventory()
         {
+            InputHandler.ChangeActionMap();
             UIManager.Instance.OpenInventory();
         }
         
