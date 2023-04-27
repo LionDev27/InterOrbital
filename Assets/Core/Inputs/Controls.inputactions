@@ -51,15 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-<<<<<<< HEAD
-                    "name": "Craft",
-                    "type": "Button",
-                    "id": "627c7014-ccec-4ba2-9dd7-cb12fa5e95d0",
-=======
                     "name": "Dash",
                     "type": "Button",
                     "id": "bbc8458d-e9e4-47d0-81ef-a82bbe02acba",
->>>>>>> origin/Leon
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -190,21 +184,12 @@
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
-                    "id": "1bf72f96-c762-4051-bee8-c8d36c990cf5",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Craft",
-=======
                     "id": "c3aa1db0-f837-4beb-8723-0ce3bd43bae4",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
->>>>>>> origin/Leon
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

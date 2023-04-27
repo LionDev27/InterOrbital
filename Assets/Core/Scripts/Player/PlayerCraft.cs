@@ -11,12 +11,19 @@ namespace InterOrbital.Player
         protected override void Awake()
         {
             base.Awake();
-            InputHandler.OnOpenCraft += UpdateCraft;
         }
-       
+
+        private void Update()
+        {
+            UpdateCraft();
+        }
+
         private void UpdateCraft()
         {
-            UIManager.Instance.ActivateOrDesactivateUI(craftUI);
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                UIManager.Instance.ActivateOrDesactivateUI(craftUI);
+            }
         }
     }
 }
