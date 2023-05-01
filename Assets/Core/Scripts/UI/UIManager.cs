@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using InterOrbital.Player;
 
 namespace InterOrbital.UI
 {
@@ -47,10 +48,12 @@ namespace InterOrbital.UI
         {
             if(bagUI.transform.position == _inventoryInitPosition)
             {
+                PlayerComponents.Instance.Inventory.isHide = false;
                 bagUI.transform.DOMoveY(Screen.height/2, 0.5f).Play();
             }
             else
             {
+                PlayerComponents.Instance.Inventory.isHide = true;
                 bagUI.transform.DOMoveY(_inventoryInitPosition.y, 0.5f).Play();
             }
         }

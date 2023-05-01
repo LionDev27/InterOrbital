@@ -34,10 +34,13 @@ namespace InterOrbital.Player
         public GameObject dropItemPrefab;
         public float dropForce;
 
+        public bool isHide;
+
         protected override void Awake()
         {
             base.Awake();
             InputHandler.OnOpenInventory += UpdateInventory;
+            
         }
 
         private void Start()
@@ -55,6 +58,7 @@ namespace InterOrbital.Player
                 _items[i].itemSo = itemVoid;
             }
             _sizeInventory = gridMain.transform.childCount;
+            isHide = true;
         }
 
         private void InitSlots()
