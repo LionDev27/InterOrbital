@@ -27,7 +27,7 @@ namespace InterOrbital.Item
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            craftCreator.SelectCraft(_item);
+            craftCreator.SetItemCraft(_item);
         }
     }
 }

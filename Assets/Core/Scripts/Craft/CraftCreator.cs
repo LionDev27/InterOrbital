@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
@@ -7,15 +8,41 @@ using UnityEngine.UI;
 
 public class CraftCreator : MonoBehaviour
 {
-    public List<Image> requireImages;
+    private ItemCraftScriptableObject _itemCraft;
+
+    private Image[] _requireImages;
     public List<TextMeshProUGUI> requireTexts;
-    
-    public void SelectCraft(ItemCraftScriptableObject itemCraft)
+
+    public GameObject gridRequires;
+
+
+    private void Start()
     {
-        for(int i=0; i< itemCraft.itemsRequired.Count; i++)
+        InitImages();
+    }
+
+    private void InitImages()
+    {
+        _requireImages =new Image[4];
+        for(int i=0; i< _requireImages.Length; i++)
         {
-            requireImages[i].sprite = itemCraft.itemsRequired[i].item.itemSprite;
+            _requireImages[i] = gridRequires.transform.GetChild(i).GetChild
         }
+    }
+
+    private void SetCraft()
+    {
+        for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
+        {
+            _requireImages[i].sprite = _itemCraft.itemsRequired[i].item.itemSprite;
+            _requireImages[i].color = Color.red;
+        }
+    }
+
+
+    public void SetItemCraft(ItemCraftScriptableObject itemCraft)
+    {
+        _itemCraft = itemCraft;
     }
 
     
