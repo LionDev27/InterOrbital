@@ -12,11 +12,14 @@ namespace InterOrbital.Item
         private Image _image;
         private ItemCraftScriptableObject _item;
 
-        public CraftCreator craftCreator;
+        private CraftCreator _craftCreator;
+
         
+
         private void Awake()
         {
             _image = transform.GetChild(0).GetComponent<Image>();
+            _craftCreator = GameObject.FindObjectOfType<CraftCreator>();
         }
    
         public void SetItemCraft(ItemCraftScriptableObject item)
@@ -27,7 +30,7 @@ namespace InterOrbital.Item
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            craftCreator.SetItemCraft(_item);
+            _craftCreator.SetItemCraft(_item);
         }
     }
 }
