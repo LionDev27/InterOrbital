@@ -862,16 +862,19 @@ MonoBehaviour:
   cellSize: {x: 1, y: 1, z: 0}
   biomes:
   - Neutral
-  - Rocoso
   tilemapLayers:
   - name: Background
     tilemap: {fileID: 1679819150}
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
-    - biome: Rocoso
-      tiles: {fileID: 11400000, guid: 0953dfaeb05390d47bb32c9f4a828e4d, type: 2}
     fillMode: 1
+  - name: Grass
+    tilemap: {fileID: 1260196998}
+    biomesTiles:
+    - biome: Neutral
+      tiles: {fileID: 11400000, guid: 0953dfaeb05390d47bb32c9f4a828e4d, type: 2}
+    fillMode: 3
 --- !u!1 &1121487757
 GameObject:
   m_ObjectHideFlags: 0
