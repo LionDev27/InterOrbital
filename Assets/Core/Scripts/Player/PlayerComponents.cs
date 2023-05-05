@@ -16,6 +16,9 @@ namespace InterOrbital.Player
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerAttack PlayerAttack { get; private set; }
         protected PlayerMovement PlayerMovement { get; private set; }
+        protected PlayerCraft PlayerCraft { get; private set; }
+
+
         public PlayerInputHandler InputHandler { get; private set; }
         public Inventory Inventory { get; private set; }
         public PlayerEnergy PlayerEnergy { get; private set; }
@@ -40,6 +43,7 @@ namespace InterOrbital.Player
             PlayerEnergy = GetComponent<PlayerEnergy>();
             PlayerDash = GetComponent<PlayerDash>();
             PlayerDamageable = GetComponent<PlayerDamageable>();
+            PlayerCraft = GetComponent<PlayerCraft>();
         }
     }
 }

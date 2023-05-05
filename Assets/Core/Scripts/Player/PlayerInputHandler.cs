@@ -14,6 +14,9 @@ namespace InterOrbital.Player
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
         public Action OnOpenInventory;
+
+        public Action OnOpenCraft;
+
         public Action OnDashPerformed;
             
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
@@ -65,6 +68,12 @@ namespace InterOrbital.Player
             string actionMap = PlayerInput.currentActionMap.name == "Player" ? "UI" : "Player";
             PlayerInput.SwitchCurrentActionMap(actionMap);
         }
+
+        private void OnCraft()
+        {
+            OnOpenCraft();
+        }
+
     }
     
 }
