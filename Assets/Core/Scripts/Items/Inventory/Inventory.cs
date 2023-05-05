@@ -238,6 +238,21 @@ namespace InterOrbital.Player
                 _textAmount[index].text = "";
             }
         }
+
+        public int GetItemAmount(ItemScriptableObject item)
+        {
+            int amountOnInventory = 0 ;
+            for(int i=0; i<_items.Length; i++)
+            {
+                if(item == _items[i].itemSo)
+                {
+                    amountOnInventory += _items[i].amount;
+                   
+                }
+            }
+
+            return amountOnInventory;
+        }
       
     }
 }
