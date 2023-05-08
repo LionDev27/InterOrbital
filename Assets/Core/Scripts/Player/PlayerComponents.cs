@@ -39,5 +39,10 @@ namespace InterOrbital.Player
             PlayerEnergy = GetComponent<PlayerEnergy>();
             PlayerDamageable = GetComponent<PlayerDamageable>();
         }
+
+        public Vector3 GetPlayerPosition()
+        {
+            return transform.position;
+        }
     }
 }
