@@ -9,18 +9,22 @@ namespace InterOrbital.Player
         private SpriteRenderer _gunSprite;
         private Camera _camera;
         private Vector2 _aimDir;
-        
+        private float _aimOffset;
+        private float _gunSpriteOffset;
+
         public Transform cursorT;
 
         protected override void Awake()
         {
             base.Awake();
-            _gunSprite = _gunSpriteT.GetComponent<SpriteRenderer>();
+            _gunSprite = _gunSpriteT.GetComponentInChildren<SpriteRenderer>();
         }
 
         private void Start()
         {
             _camera = Camera.main;
+            _aimOffset = PlayerAttack.attackPoint.localPosition.x;
+            _gunSpriteOffset = _gunSpriteT.transform.localPosition.x;
         }
 
         private void Update()
@@ -31,9 +35,9 @@ namespace InterOrbital.Player
 
         private void Aim()
         {
-            cursorT.position = _camera.ScreenToWorldPoint(InputHandler.AimPosition);
+            Debug.Log(_aimDir);
             if (_aimDir == Vector2.zero) return;
-            PlayerAttack.attackPoint.localPosition = _aimDir;
+            PlayerAttack.attackPoint.localPosition = _aimDir * _aimOffset;
             HandleSprites();
             //TODO: COMPROBAR EL RANGO DEL ATAQUE PARA PONER EL CURSOR CON MENOS OPACIDAD.
         }
@@ -41,31 +45,30 @@ namespace InterOrbital.Player
         private void HandleSprites()
         {
             //Rotacion del sprite del jugador.
-            if (cursorT.localPosition.x > 0)
+            if (_aimDir.x > 0)
                 PlayerSprite.flipX = false;
-            else if(cursorT.localPosition.x < 0)
+            else
                 PlayerSprite.flipX = true;
             //Rotacion de la pistola.
-            Quaternion gunRot = _gunSpriteT.rotation;
-            Quaternion lookRot = Quaternion.LookRotation(_aimDir);
-            _gunSpriteT.rotation = new Quaternion(gunRot.x, gunRot.y, lookRot.z, lookRot.w);
-            _gunSprite.flipX = _aimDir.x < 0;
+            _gunSpriteT.transform.localPosition = _aimDir * _gunSpriteOffset;
+            var lookAtPos = PlayerAttack.attackPoint.localPosition;
+            if (_aimDir.x > 0f)
+            {
+                _gunSprite.flipX = false;
+                _gunSpriteT.right = lookAtPos - _gunSpriteT.position;
+            }
+            else if (_aimDir.x < 0f)
+            {
+                _gunSprite.flipX = true;
+                _gunSpriteT.right = -lookAtPos - _gunSpriteT.position;
+            }
         }
-        
+
         private void CheckInput()
         {
-            switch (InputHandler.CurrentInput())
-            {
-                case PlayerInputHandler.InputType.Keyboard:
-                    cursorT.gameObject.SetActive(true);
-                    _aimDir = cursorT.position - transform.position;
-                    _aimDir.Normalize();
-                    break;
-                case PlayerInputHandler.InputType.Gamepad:
-                    cursorT.gameObject.SetActive(false);
-                    _aimDir = InputHandler.AimDirection;
-                    break;
-            }
+            var cursorPos = _camera.ScreenToWorldPoint(InputHandler.AimPosition);
+            _aimDir = cursorPos - transform.position;
+            _aimDir.Normalize();
         }
     }
 }

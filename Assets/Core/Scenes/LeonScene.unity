@@ -630,6 +630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerT: {fileID: 0}
+  itemSo: {fileID: 0}
+  amount: 0
 --- !u!50 &815363412
 Rigidbody2D:
   serializedVersion: 4
@@ -1183,10 +1185,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 730551273, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: _invencibilityTime
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1237,39 +1235,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
---- !u!1 &3227855540391739931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-  m_PrefabInstance: {fileID: 3227855540391739930}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3227855540391739932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3227855540391739931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe62e2aca061e540aa74067b825e5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dashForce: 800
-  _dashTime: 0.3
-  _dashInvulnerabilityExtraTime: 0.15
---- !u!114 &3227855540391739933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3227855540391739931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef48bd5cb3e61ed4591484750b5a9582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  img: {fileID: 0}
-  _currentEnergy: 0
-  _maxEnergy: 100
-  _loseEnergyTimerDefaultValue: 3
