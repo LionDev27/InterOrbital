@@ -628,7 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
-  _currentHealth: 0
 --- !u!1 &554657457
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerT: {fileID: 0}
+  itemSo: {fileID: 0}
+  amount: 0
 --- !u!50 &815363412
 Rigidbody2D:
   serializedVersion: 4
@@ -893,8 +894,7 @@ MonoBehaviour:
   height: 50
   buildLayer: {fileID: 1589543968}
   highlightBuildLayer: {fileID: 1517762702}
-  TileToBuild: {fileID: 11400000, guid: b56f6af8d4a327542b7af209378ae3f5, type: 2}
-  highlightTile: {fileID: 11400000, guid: b56f6af8d4a327542b7af209378ae3f5, type: 2}
+  itemToBuild: {fileID: 11400000, guid: 1a9d5dfe1da42374095b86cf166480a1, type: 2}
 --- !u!1 &1121487757
 GameObject:
   m_ObjectHideFlags: 0
