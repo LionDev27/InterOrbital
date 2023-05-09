@@ -1,3 +1,4 @@
+using InterOrbital.Player;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,11 +42,18 @@ namespace InterOrbital.WorldSystem
 
         public TilemapLayer[] tilemapLayers;
 
+        public static GridLogic Instance;
+
         private Cell[,] _gridCells;
         private Grid _grid;
 
-        private void Awake()
+        #region Unity Methods
+
+        protected virtual void Awake()
         {
+            if (Instance == null)
+                Instance = this;
+
             _grid = GetComponent<Grid>();
             _grid.cellSize = cellSize;
         }
@@ -55,12 +63,12 @@ namespace InterOrbital.WorldSystem
             for (int i = 0; i < biomes.Count; i++)
             {
                 // Verificar si el bioma ya existe en la lista de biomas con tiles de reglas
-                foreach (var tl in tilemapLayers)
+                foreach (var tilemapLayer in tilemapLayers)
                 {
                     bool existe = false;
-                    for (int j = 0; j < tl.biomesTiles.Count; j++)
+                    for (int j = 0; j < tilemapLayer.biomesTiles.Count; j++)
                     {
-                        if (tl.biomesTiles[j].biome == biomes[i])
+                        if (tilemapLayer.biomesTiles[j].biome == biomes[i])
                         {
                             existe = true;
                             break;
@@ -72,7 +80,7 @@ namespace InterOrbital.WorldSystem
                     {
                         BiomeRuleTile newBiome = new BiomeRuleTile();
                         newBiome.biome = biomes[i];
-                        tl.biomesTiles.Add(newBiome);
+                        tilemapLayer.biomesTiles.Add(newBiome);
                     }
                 }
             }
@@ -101,6 +109,8 @@ namespace InterOrbital.WorldSystem
                 FillTilemap(tl.tilemap, tl.biomesTiles, tl.fillMode);
             }
         }
+
+        #endregion
 
         public void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
         {

@@ -1,7 +1,6 @@
 using InterOrbital.Player;
 using InterOrbital.WorldSystem;
-using System.Collections;
-using System.Collections.Generic;
+using InterOrbital.Item;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -12,10 +11,7 @@ public class BuildGrid : MonoBehaviour
     public Tilemap buildLayer;
     public Tilemap highlightBuildLayer;
 
-    public TileBase TileToBuild;
-    public TileBase highlightTile;
-
-    private Cell[,] _gridCells;
+    public ItemScriptableObject itemToBuild;
 
     private int buildRange = 5;
 
@@ -23,26 +19,20 @@ public class BuildGrid : MonoBehaviour
     private Vector3Int highlightedTilePos;
     private bool buildMode;
 
-    private void Awake()
-    {
-        _gridCells = new Cell[width, height];
-    }
-
     private void Update()
     {
-        
         TestBuild();
         if (buildMode)
         {
             playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
 
-            if (highlightTile != null)
+            if (itemToBuild != null)
             {
-                HighlightTile(highlightTile);
+                HighlightTile();
             }
 
             if (Input.GetKeyDown(KeyCode.R))
-                Build(highlightedTilePos, TileToBuild);
+                Build(highlightedTilePos);
         }
     }
 
@@ -72,7 +62,7 @@ public class BuildGrid : MonoBehaviour
         return mouseCellPos;
     }
 
-    private void HighlightTile(TileBase t)
+    private void HighlightTile()
     {
         Vector3Int mouseGridPos = GetMouseOnGridPos();
 
@@ -82,8 +72,20 @@ public class BuildGrid : MonoBehaviour
 
             if (InRangeToBuild(playerPos, mouseGridPos, buildRange))
             {
+                Tile newTile = ScriptableObject.CreateInstance<Tile>();
+                newTile.sprite = itemToBuild.itemSprite;
 
-                highlightBuildLayer.SetTile(mouseGridPos, t);
+                if (buildLayer.GetTile(mouseGridPos) == null)//Grid ocupado en un futuro
+                {
+                    newTile.color = Color.green;
+                }
+                else
+                {
+                    newTile.color = Color.red;
+                }
+
+
+                highlightBuildLayer.SetTile(mouseGridPos, newTile);
                 highlightedTilePos = mouseGridPos;
             }   
         }
@@ -102,12 +104,14 @@ public class BuildGrid : MonoBehaviour
         return true;
     }
 
-    public void Build(Vector3 worldCoords, TileBase item)
+    public void Build(Vector3 worldCoords)
     {
         Vector3Int coords = buildLayer.WorldToCell(worldCoords);
-        if (item != null)
+        if (itemToBuild != null)
         {
-            buildLayer.SetTile(coords, item);
+            Tile newTile = ScriptableObject.CreateInstance<Tile>();
+            newTile.sprite = itemToBuild.itemSprite;
+            buildLayer.SetTile(coords, newTile);
         }
     }
 
