@@ -145,6 +145,7 @@ namespace InterOrbital.Player
             _textAmount[index].text = _items[index].amount.ToString();
         }
 
+
         public bool IsInventoryFull()
         {
             for(int i=0; i<_sizeInventory; i++)
@@ -242,18 +243,60 @@ namespace InterOrbital.Player
         public int GetItemAmount(ItemScriptableObject item)
         {
             int amountOnInventory = 0 ;
+            
             for(int i=0; i<_items.Length; i++)
             {
                 if(item == _items[i].itemSo)
                 {
                     amountOnInventory += _items[i].amount;
-                   
                 }
             }
 
             return amountOnInventory;
         }
-      
+
+        public bool CanCraft(ItemCraftScriptableObject itemCraft, int amount)
+        {
+            for (int i = 0; i < itemCraft.itemsRequired.Count; i++)
+            {
+                var actualAmountItem = GetItemAmount(itemCraft.itemsRequired[i].item);
+                if (actualAmountItem < itemCraft.itemsRequired[i].amountRequired * amount)
+                    return false;
+            }
+
+            return true;
+        }
+
+
+        public void RestItems(ItemScriptableObject item, int amount)
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (item == _items[i].itemSo)
+                {
+                    var auxRest =_items[i].amount - amount;
+                    
+                    if(auxRest <= 0)
+                    {
+                        _items[i].itemSo = itemVoid;
+                        _itemsSlot[i].sprite = itemVoid.itemSprite;
+                        _items[i].amount = 0;
+                        _textAmount[i].text = "";
+                        amount = auxRest * -1;
+                    }
+                    else
+                    {
+                        _items[i].amount -= amount;
+                        _textAmount[i].text = _items[i].amount.ToString();
+                        break;
+                    }
+                }
+            }
+
+          
+        }
+
+        
     }
 }
 

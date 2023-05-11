@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using InterOrbital.Item;
 using UnityEngine.EventSystems;
+using InterOrbital.Player;
+using InterOrbital.Utils;
 
 namespace InterOrbital.Item
 {
@@ -30,7 +32,25 @@ namespace InterOrbital.Item
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            _craftCreator.SetItemCraft(_item);
+            SelectCraft();
+        }
+
+        public void SelectCraft()
+        {
+            _craftCreator.SetItemCraftCreator(_item);
+            PlayerComponents.Instance.PlayerCraft.SetActualTableCraftSelected(_item);
+        }
+
+        public void CheckCanCraft()
+        {
+            if (!PlayerComponents.Instance.Inventory.CanCraft(_item,1))
+            {
+                _image.ChangueAlphaColor(0.5f);
+            }
+            else
+            {
+                _image.ChangueAlphaColor(1f);
+            }
         }
     }
 }
