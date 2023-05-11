@@ -4,6 +4,8 @@ using InterOrbital.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using System;
 
 namespace InterOrbital.Player
 {
@@ -40,7 +42,6 @@ namespace InterOrbital.Player
         {
             base.Awake();
             InputHandler.OnOpenInventory += UpdateInventory;
-            
         }
 
         private void Start()
@@ -60,6 +61,8 @@ namespace InterOrbital.Player
             _sizeInventory = gridMain.transform.childCount;
             isHide = true;
         }
+
+        
 
         private void InitSlots()
         {
@@ -114,8 +117,14 @@ namespace InterOrbital.Player
             Vector3 direction = PlayerAttack.attackPoint.position - transform.position;
             Vector3 pointToDraw = (direction.normalized * dropForce) + PlayerAttack.attackPoint.position;
             Debug.DrawRay(transform.position,pointToDraw, Color.yellow);
+
+            ScrollFastInventory();
         }
-        
+
+        private void ScrollFastInventory()
+        {
+            Debug.Log("Valor de scroll es: " +InputHandler.ScrollFastInventoryValue);
+        }
 
         private void UpdateInventory()
         {

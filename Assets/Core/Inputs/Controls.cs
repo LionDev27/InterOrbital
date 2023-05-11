@@ -80,6 +80,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollY"",
+                    ""type"": ""Value"",
+                    ""id"": ""12dd3ab2-4fb8-4094-9933-f679b4d8ec9b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SelectNumeric"",
+                    ""type"": ""Button"",
+                    ""id"": ""77eba117-d72e-4943-9b36-b4d8a0263ed1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +230,72 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13c9c5d2-dbfa-4fe1-be30-1089a344216f"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ScrollY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0fbc2b5-f4f9-497b-969b-2ebd4088a1eb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectNumeric"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""323ca095-464e-4aa2-9e67-1ddd859c3fc2"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectNumeric"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9ebf47c-90ff-41ec-910d-5192324b828f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectNumeric"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86738a84-f253-414d-9657-9c2fdaedc2c7"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectNumeric"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69be2087-7c22-4d2f-82bc-7ce3904a367b"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectNumeric"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -642,6 +726,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_ScrollY = m_Player.FindAction("ScrollY", throwIfNotFound: true);
+        m_Player_SelectNumeric = m_Player.FindAction("SelectNumeric", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -720,6 +806,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_ScrollY;
+    private readonly InputAction m_Player_SelectNumeric;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -730,6 +818,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @ScrollY => m_Wrapper.m_Player_ScrollY;
+        public InputAction @SelectNumeric => m_Wrapper.m_Player_SelectNumeric;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -757,6 +847,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @ScrollY.started += instance.OnScrollY;
+            @ScrollY.performed += instance.OnScrollY;
+            @ScrollY.canceled += instance.OnScrollY;
+            @SelectNumeric.started += instance.OnSelectNumeric;
+            @SelectNumeric.performed += instance.OnSelectNumeric;
+            @SelectNumeric.canceled += instance.OnSelectNumeric;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -779,6 +875,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @ScrollY.started -= instance.OnScrollY;
+            @ScrollY.performed -= instance.OnScrollY;
+            @ScrollY.canceled -= instance.OnScrollY;
+            @SelectNumeric.started -= instance.OnSelectNumeric;
+            @SelectNumeric.performed -= instance.OnSelectNumeric;
+            @SelectNumeric.canceled -= instance.OnSelectNumeric;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -932,6 +1034,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnScrollY(InputAction.CallbackContext context);
+        void OnSelectNumeric(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
