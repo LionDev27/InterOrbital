@@ -35,7 +35,6 @@ namespace InterOrbital.Player
 
         private void Aim()
         {
-            Debug.Log(_aimDir);
             if (_aimDir == Vector2.zero) return;
             PlayerAttack.attackPoint.localPosition = _aimDir * _aimOffset;
             HandleSprites();
@@ -55,12 +54,12 @@ namespace InterOrbital.Player
             if (_aimDir.x > 0f)
             {
                 _gunSprite.flipX = false;
-                _gunSpriteT.right = lookAtPos - _gunSpriteT.position;
+                _gunSpriteT.right = lookAtPos - _gunSpriteT.localPosition;
             }
             else if (_aimDir.x < 0f)
             {
                 _gunSprite.flipX = true;
-                _gunSpriteT.right = -lookAtPos - _gunSpriteT.position;
+                _gunSpriteT.right = -lookAtPos - _gunSpriteT.localPosition;
             }
         }
 
