@@ -2881,17 +2881,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1322147063}
     m_Modifications:
-    - target: {fileID: 905996965292113856, guid: 87315e2b4db7f0f48b4d6c62641198d5, type: 3}
-      propertyPath: m_Color.a
-      value: 0.21960784
-      objectReference: {fileID: 0}
     - target: {fileID: 1922739784515244146, guid: 87315e2b4db7f0f48b4d6c62641198d5, type: 3}
       propertyPath: m_Name
       value: InventorySlot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4045108172385950365, guid: 87315e2b4db7f0f48b4d6c62641198d5, type: 3}
-      propertyPath: inventoryIndex
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7295291206481979417, guid: 87315e2b4db7f0f48b4d6c62641198d5, type: 3}
       propertyPath: m_AnchorMax.y
