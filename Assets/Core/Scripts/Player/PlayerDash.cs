@@ -36,6 +36,7 @@ namespace InterOrbital.Player
         private void Dash()
         {
             //TODO: animación del dash.
+            if (IsDashing()) return;
             PlayerMovement.canMove = false;
             _dashTimer = _dashTime;
             _dashInvulnerabilityTimer = _dashTime + _dashInvulnerabilityExtraTime;
