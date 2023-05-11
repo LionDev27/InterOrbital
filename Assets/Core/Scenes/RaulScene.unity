@@ -628,7 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
-  _currentHealth: 0
 --- !u!1 &554657457
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerT: {fileID: 0}
+  itemSo: {fileID: 0}
+  amount: 0
 --- !u!50 &815363412
 Rigidbody2D:
   serializedVersion: 4
@@ -893,8 +894,7 @@ MonoBehaviour:
   height: 50
   buildLayer: {fileID: 1589543968}
   highlightBuildLayer: {fileID: 1517762702}
-  TileToBuild: {fileID: 11400000, guid: b56f6af8d4a327542b7af209378ae3f5, type: 2}
-  highlightTile: {fileID: 11400000, guid: b56f6af8d4a327542b7af209378ae3f5, type: 2}
+  itemToBuild: {fileID: 0}
 --- !u!1 &1121487757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,10 +2312,6 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: 1719882973}
-    - target: {fileID: 730551272, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: _attackCooldown
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player

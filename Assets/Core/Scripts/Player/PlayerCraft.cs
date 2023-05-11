@@ -25,8 +25,9 @@ namespace InterOrbital.Player
 
         private void UpdateCraft()
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.C))
             {
+                InputHandler.ChangeActionMap();
                 UIManager.Instance.ActivateOrDesactivateUI(craftUI);
                 if (craftUI.activeSelf)
                 {
