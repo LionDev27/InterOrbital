@@ -19,6 +19,11 @@ namespace InterOrbital.Combat.Bullets
             _damageDealer = GetComponent<DamageDealer>();
         }
 
+        protected void Start()
+        {
+            Rotate();
+        }
+
         protected void Update()
         {
             CheckDistanceToParent();
@@ -32,6 +37,11 @@ namespace InterOrbital.Combat.Bullets
         private void Move()
         {
             _rigidbody2D.velocity = _speed * 100f * Time.deltaTime * _moveDir;
+        }
+
+        private void Rotate()
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, _moveDir);
         }
 
         private void CheckDistanceToParent()
