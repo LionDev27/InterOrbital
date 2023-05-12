@@ -1,3 +1,4 @@
+using System;
 using InterOrbital.UI;
 using InterOrbital.Utils;
 using UnityEngine;
@@ -6,30 +7,37 @@ namespace InterOrbital.Item
 {
     public class CraftingItem : MonoBehaviour, IInteractable
     {
+        [HideInInspector]
         public ItemCraftScriptableObject currentCraftSelected;
-        public GameObject craftUI;
-        public CraftGrid craftGrid;
-        
+        private GameObject _craftUI;
+        private CraftGrid _craftGrid;
+
+        private void Start()
+        {
+            _craftUI = UIManager.Instance.craftUI;
+            _craftGrid = _craftUI.GetComponentInChildren<CraftGrid>();
+        }
+
         public void Interact()
         {
             Debug.Log("Interacting");
-            UIManager.Instance.ActivateOrDesactivateUI(craftUI);
-            if (craftUI.activeSelf)
+            UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
+            if (_craftUI.activeSelf)
             {
-                craftGrid.currentCraftingItem = this;
-                craftGrid.UpdateFeedback();
-                craftGrid.SelectLast();
+                _craftGrid.currentCraftingItem = this;
+                _craftGrid.UpdateFeedback();
+                _craftGrid.SelectLast();
             }
         }
 
         public void EndInteraction()
         {
-            UIManager.Instance.ActivateOrDesactivateUI(craftUI);
-            if (craftUI.activeSelf)
+            UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
+            if (_craftUI.activeSelf)
             {
-                craftGrid.UpdateFeedback();
-                craftGrid.SelectLast();
-                craftGrid.currentCraftingItem = null;
+                _craftGrid.UpdateFeedback();
+                _craftGrid.SelectLast();
+                _craftGrid.currentCraftingItem = null;
             }
         }
     }
