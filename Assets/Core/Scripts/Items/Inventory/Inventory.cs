@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using InterOrbital.Utils;
 
 namespace InterOrbital.Player
 {
@@ -14,15 +15,14 @@ namespace InterOrbital.Player
     
         private int _totalNumberOfSlots;
         private ItemObject [] _items;
+        private Image[] _itemsSlotBackGround;
         private Image[] _itemsSlot;
         private TextMeshProUGUI[] _textAmount;
         private int _level;
         private int _sizeInventory;
-        private int _numSlotsFastInventory;
-        
-        //Como el vector items esta ordenado, solo basta con usar un numero del 0 al _numSlotsFastInventory para saber que items usar
-        //Me ahorro crear asi otros arrays para la gestion del inventario rapido. Solo me hace falta el de las imagenes a mostrar
-        private int _actualItemEquiped; 
+        private int _actualItemEquiped;
+        private Sprite _backgroundDefaultImage;
+        [SerializeField] private Sprite _backgroundSelectedImage;
         
         public GameObject gridMain;
         public GameObject gridLeftPocket;
@@ -47,6 +47,7 @@ namespace InterOrbital.Player
         private void Start()
         {
             _level = 1;
+            _actualItemEquiped = 2;
             InitSlots();
             _items = new ItemObject[_totalNumberOfSlots];
             for (int i = 0; i < _items.Length; i++)
@@ -55,8 +56,8 @@ namespace InterOrbital.Player
                 ItemObject item = obj.AddComponent<ItemObject>();
                 Destroy(obj);
                 _items[i] = item;
-                
                 _items[i].itemSo = itemVoid;
+                _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
             }
             _sizeInventory = gridMain.transform.childCount;
             isHide = true;
@@ -72,12 +73,14 @@ namespace InterOrbital.Player
            
             _totalNumberOfSlots = sizeMain + sizeLeft  +  sizeRight;
             _itemsSlot = new Image[_totalNumberOfSlots];
+            _itemsSlotBackGround = new Image[_totalNumberOfSlots];
             _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
 
             RelateSlots(gridMain, 0,sizeMain, _itemsSlot, true);
             RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot, true );
             RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot, true);
-            
+
+            _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
           
         }
 
@@ -86,6 +89,7 @@ namespace InterOrbital.Player
             for (var i = 0; i < size; i++)
             { 
                 imagesSlot[i + startSize] = grid.transform.GetChild(i).GetChild(0).GetComponent<Image>();
+                _itemsSlotBackGround[i + startSize] = grid.transform.GetChild(i).GetComponent<Image>();
                 if (relateAmounts)
                 {
                     grid.transform.GetChild(i).GetChild(0).GetComponent<DraggableItem>().inventoryIndex = i + startSize;
@@ -123,7 +127,14 @@ namespace InterOrbital.Player
 
         private void ScrollFastInventory()
         {
-            Debug.Log("Valor de scroll es: " +InputHandler.ScrollFastInventoryValue);
+
+            Debug.Log(InputHandler.ScrollFastInventoryValue + "." + _actualItemEquiped);
+            if (isHide && InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
+            {
+                _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundDefaultImage;
+                _actualItemEquiped = InputHandler.ScrollFastInventoryValue;
+                _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundSelectedImage;
+            }
         }
 
         private void UpdateInventory()

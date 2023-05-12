@@ -70,12 +70,12 @@
                 },
                 {
                     "name": "SelectNumeric",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "77eba117-d72e-4943-9b36-b4d8a0263ed1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interact",
@@ -236,8 +236,8 @@
                     "id": "f0fbc2b5-f4f9-497b-969b-2ebd4088a1eb",
                     "path": "<Keyboard>/1",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Scale",
+                    "groups": "Keyboard&Mouse",
                     "action": "SelectNumeric",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -247,8 +247,8 @@
                     "id": "323ca095-464e-4aa2-9e67-1ddd859c3fc2",
                     "path": "<Keyboard>/2",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "Keyboard&Mouse",
                     "action": "SelectNumeric",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -258,8 +258,8 @@
                     "id": "e9ebf47c-90ff-41ec-910d-5192324b828f",
                     "path": "<Keyboard>/3",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "Keyboard&Mouse",
                     "action": "SelectNumeric",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -269,8 +269,8 @@
                     "id": "86738a84-f253-414d-9657-9c2fdaedc2c7",
                     "path": "<Keyboard>/4",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Scale(factor=4)",
+                    "groups": "Keyboard&Mouse",
                     "action": "SelectNumeric",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -280,8 +280,8 @@
                     "id": "69be2087-7c22-4d2f-82bc-7ce3904a367b",
                     "path": "<Keyboard>/5",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Scale(factor=5)",
+                    "groups": "Keyboard&Mouse",
                     "action": "SelectNumeric",
                     "isComposite": false,
                     "isPartOfComposite": false
