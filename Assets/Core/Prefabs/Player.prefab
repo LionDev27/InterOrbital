@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 296994115}
   - component: {fileID: 3227855540391739932}
   - component: {fileID: 446727633}
-  - component: {fileID: 446727634}
+  - component: {fileID: 1346188536}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -601,7 +601,7 @@ MonoBehaviour:
   dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
   dropForce: 3
   isHide: 0
---- !u!114 &446727634
+--- !u!114 &1346188536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -610,8 +610,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3227855542068895825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ce76e514b784648ae4978acfb3ecbe, type: 3}
+  m_Script: {fileID: 11500000, guid: f1b55d5790ecbbb46b32b7eaa115d85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftUI: {fileID: 0}
-  craftGrid: {fileID: 0}
+  _interactionRange: 2.5
