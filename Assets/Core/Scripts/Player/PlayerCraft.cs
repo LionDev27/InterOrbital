@@ -17,25 +17,6 @@ namespace InterOrbital.Player
         {
             base.Awake();
         }
-
-        private void Update()
-        {
-            UpdateCraft();
-        }
-
-        private void UpdateCraft()
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                InputHandler.ChangeActionMap();
-                UIManager.Instance.ActivateOrDesactivateUI(craftUI);
-                if (craftUI.activeSelf)
-                {
-                    craftGrid.UpdateFeedback();
-                    craftGrid.SelectLast();
-                }
-            }
-        }  
         
         public void SetActualTableCraftSelected(ItemCraftScriptableObject item)
         {
