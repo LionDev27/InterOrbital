@@ -327,7 +327,8 @@ GameObject:
   - component: {fileID: 3227855542068895828}
   - component: {fileID: 296994115}
   - component: {fileID: 3227855540391739932}
-  - component: {fileID: 3227855540391739933}
+  - component: {fileID: 446727633}
+  - component: {fileID: 446727634}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -479,7 +480,7 @@ MonoBehaviour:
   _attackRange: 7
   _attackDamage: 1
   _attackRangeMultiplier: 6.7
-  _attackCooldown: 2
+  _attackCooldown: 0.1
   canAttack: 1
 --- !u!114 &730551273
 MonoBehaviour:
@@ -575,10 +576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe62e2aca061e540aa74067b825e5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashForce: 800
+  _dashForce: 600
   _dashTime: 0.3
   _dashInvulnerabilityExtraTime: 0.15
---- !u!114 &3227855540391739933
+--- !u!114 &446727633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -587,10 +588,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 3227855542068895825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef48bd5cb3e61ed4591484750b5a9582, type: 3}
+  m_Script: {fileID: 11500000, guid: c8f542f0b7414644a905a4c102bcc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 0}
-  _currentEnergy: 0
-  _maxEnergy: 100
-  _loseEnergyTimerDefaultValue: 3
+  gridMain: {fileID: 0}
+  gridLeftPocket: {fileID: 0}
+  gridRightPocket: {fileID: 0}
+  itemVoid: {fileID: 11400000, guid: 198173a60874433458efda4c32115a0e, type: 2}
+  itemTest: {fileID: 11400000, guid: 1afdce13d0e74f045b079f8f52ed23ad, type: 2}
+  itemTest2: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
+  itemTest3: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+  dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
+  dropForce: 3
+  isHide: 0
+--- !u!114 &446727634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227855542068895825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ce76e514b784648ae4978acfb3ecbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftUI: {fileID: 0}
+  craftGrid: {fileID: 0}
