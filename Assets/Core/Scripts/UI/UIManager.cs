@@ -12,6 +12,9 @@ namespace InterOrbital.UI
         private Vector3 _inventoryInitPosition;
 
         public GameObject bagUI;
+        public GameObject craftUI;
+        public GameObject storageUI;
+        
         private void Awake()
         {
             if(Instance == null) 

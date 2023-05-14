@@ -13,15 +13,13 @@ namespace InterOrbital.Item
     {
         private Image _image;
         private ItemCraftScriptableObject _item;
-
+        private CraftingItem _currentCraftingItem;
         private CraftCreator _craftCreator;
-
-        
 
         private void Awake()
         {
             _image = transform.GetChild(0).GetComponent<Image>();
-            _craftCreator = GameObject.FindObjectOfType<CraftCreator>();
+            _craftCreator = FindObjectOfType<CraftCreator>();
         }
    
         public void SetItemCraft(ItemCraftScriptableObject item)
@@ -35,10 +33,16 @@ namespace InterOrbital.Item
             SelectCraft();
         }
 
+        public void SetCurrentCraftingItem(CraftingItem item)
+        {
+            _currentCraftingItem = item;
+        }
+        
         public void SelectCraft()
         {
             _craftCreator.SetItemCraftCreator(_item);
-            PlayerComponents.Instance.PlayerCraft.SetActualTableCraftSelected(_item);
+            if (_currentCraftingItem == null) return;
+            _currentCraftingItem.currentCraftSelected = _item;
         }
 
         public void CheckCanCraft()

@@ -21,6 +21,7 @@ namespace InterOrbital.Player
         public Action OnOpenCraft;
 
         public Action OnDashPerformed;
+        public Action OnInteractPerformed;
 
 
         private void Start()
@@ -86,7 +87,10 @@ namespace InterOrbital.Player
             OnDashPerformed();
         }
 
-
+        private void OnInteract()
+        {
+            OnInteractPerformed();
+        }
         
         public void DeactivateControls()
         {

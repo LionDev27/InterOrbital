@@ -10,6 +10,7 @@ public class CraftGrid : MonoBehaviour
     [SerializeField] private GameObject _craftUI;
     public GameObject gridPrefab;
     public List<ItemCraftScriptableObject> itemsCraft;
+    public CraftingItem currentCraftingItem;
 
 
     private void Awake()
@@ -35,13 +36,14 @@ public class CraftGrid : MonoBehaviour
     {
         for(int i=0; i<_craftSlots.Count; i++)
         {
+            _craftSlots[i].SetCurrentCraftingItem(currentCraftingItem);
             _craftSlots[i].CheckCanCraft();
         }
     }
 
     public void SelectLast()
     {
-        int index = itemsCraft.IndexOf(PlayerComponents.Instance.PlayerCraft.GetActualTableCraftSelectd());
+        int index = itemsCraft.IndexOf(currentCraftingItem.currentCraftSelected);
 
         if(index == -1)
         {
