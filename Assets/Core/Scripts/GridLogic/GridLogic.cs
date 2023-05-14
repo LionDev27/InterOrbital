@@ -1,4 +1,5 @@
 using InterOrbital.Player;
+using InterOrbital.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,35 +12,7 @@ namespace InterOrbital.WorldSystem
         public int width;
         public int height;
         public Vector3 cellSize = new Vector3(1, 1, 0);
-        public enum FillMode
-        {
-            None,
-            Single_All,
-            Multiple_All,
-            Single_Random,
-            Multiple_Random
-        }
-
-        [Serializable]
-
-        public struct BiomeRuleTile
-        {
-            public string biome;
-            public RuleTile tiles;
-        }
-
-
-        [Serializable]
-        public struct TilemapLayer
-        {
-            public string name;
-            public Tilemap tilemap;
-            public List<BiomeRuleTile> biomesTiles;
-            public FillMode fillMode;
-        }
-
         public List<string> biomes;
-
         public TilemapLayer[] tilemapLayers;
 
         public static GridLogic Instance;
@@ -86,13 +59,13 @@ namespace InterOrbital.WorldSystem
             }
 
 
-            foreach (var tl in tilemapLayers)
+            foreach (var tilemapLayer in tilemapLayers)
             {
-                for (int i = tl.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
+                for (int i = tilemapLayer.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
                 {
-                    if (!biomes.Contains(tl.biomesTiles[i].biome)) // Verificar si el bioma ya no está en la lista de biomas
+                    if (!biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no está en la lista de biomas
                     {
-                        tl.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
+                        tilemapLayer.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
                     }
                 }
             }
@@ -104,15 +77,23 @@ namespace InterOrbital.WorldSystem
             InitializeGrid();
             CreateRegions();
 
-            foreach (var tl in tilemapLayers)
+            foreach (var tilemapLayer in tilemapLayers)
             {
-                FillTilemap(tl.tilemap, tl.biomesTiles, tl.fillMode);
+                FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
+            }
+
+            for (int i = 5; i < 15 ; i++)
+            {
+                for (int j = 5; j < 15; j++)
+                    _gridCells[i, j].MakeSpaceshipArea();
             }
         }
 
         #endregion
 
-        public void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
+        #region Private Methods
+
+        private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
         {
             switch (fillMode)
             {
@@ -131,7 +112,7 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-        public void FillTilemapSingleAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        private void FillTilemapSingleAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
             for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
             {
@@ -148,7 +129,7 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-        public void FillTilemapSingleRandom(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        private void FillTilemapSingleRandom(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
             int detailZones = width + height / 2;
 
@@ -166,7 +147,7 @@ namespace InterOrbital.WorldSystem
             {
                 for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
                 {
-                    if (!_gridCells[x, y].haveDetail)
+                    if (!_gridCells[x, y].HaveDetail())
                     {
                         continue;
                     }
@@ -289,6 +270,32 @@ namespace InterOrbital.WorldSystem
                 }
             }
         }
+
+        #endregion
+
+        #region Public Methods
+
+        public void LockCell(int x, int y)
+        {
+            if(x >= 0 && x < width && y >= 0 && y < height)
+                _gridCells[x, y].LockCell();
+        }
+
+        public bool IsCellLocked(int x, int y)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+                return _gridCells[x,y].IsLocked();
+            else return false;
+        }
+
+        public bool IsCellSpaceshipArea(int x, int y)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+                return _gridCells[x, y].IsSpaceShipArea();
+            else return false;
+        }
+
+        #endregion
 
     }
 }
