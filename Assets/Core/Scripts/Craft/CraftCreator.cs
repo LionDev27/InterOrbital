@@ -21,7 +21,6 @@ public class CraftCreator : MonoBehaviour
     public GameObject gridRequires;
 
     public TextMeshProUGUI amountToCraftText;
-    
 
     private void SetCraft()
     {
