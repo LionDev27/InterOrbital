@@ -23,8 +23,11 @@ namespace InterOrbital.Player
         public Action OnDashPerformed;
         public Action OnInteractPerformed;
 
-        
-            
+
+        private void Start()
+        {
+            ScrollFastInventoryValue = 1;
+        }
         //Haremos un metodo nuevo que se llame igual que el nuevo input introducido en los Input Settings.
         //A su vez, haremos una propiedad para obtener el valor del input en otro script.
         private void OnMove(InputValue value)
@@ -44,19 +47,30 @@ namespace InterOrbital.Player
 
         private void OnScrollY(InputValue value)
         {
+            
             if (value.Get<float>() > 0)
             {
-                ScrollFastInventoryValue = 1;
+                ScrollFastInventoryValue += 1;
+                if (ScrollFastInventoryValue > 5)
+                    ScrollFastInventoryValue = 5;
             }
             else if(value.Get<float>() < 0)
             {
-                ScrollFastInventoryValue = -1;
+                ScrollFastInventoryValue -= 1;
+                if (ScrollFastInventoryValue < 1)
+                    ScrollFastInventoryValue = 1;
             }
-            else
+           
+        }
+        private void OnSelectNumeric(InputValue value)
+        {
+            if (value.isPressed)
             {
-                ScrollFastInventoryValue = 0;
+                Debug.Log(value.Get<float>());
+               ScrollFastInventoryValue = (int) value.Get<float>();
             }
         }
+
 
         private void OnFire()
         {

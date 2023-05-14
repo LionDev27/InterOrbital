@@ -13,7 +13,7 @@ public class BuildGrid : MonoBehaviour
 
     public ItemScriptableObject itemToBuild;
 
-    private int buildRange = 5;
+    private int buildRange = 10;
 
     private Vector3Int playerPos;
     private Vector3Int highlightedTilePos;
@@ -75,7 +75,7 @@ public class BuildGrid : MonoBehaviour
                 Tile newTile = ScriptableObject.CreateInstance<Tile>();
                 newTile.sprite = itemToBuild.itemSprite;
 
-                if (buildLayer.GetTile(mouseGridPos) == null)//Grid ocupado en un futuro
+                if (CanBuild(mouseGridPos.x,mouseGridPos.y))
                 {
                     newTile.color = Color.green;
                 }
@@ -89,6 +89,11 @@ public class BuildGrid : MonoBehaviour
                 highlightedTilePos = mouseGridPos;
             }   
         }
+    }
+
+    private bool CanBuild(int x, int y)
+    {
+        return !GridLogic.Instance.IsCellLocked(x, y) && GridLogic.Instance.IsCellSpaceshipArea(x, y);
     }
 
     private bool InRangeToBuild(Vector3Int posA, Vector3Int posB, int range)
@@ -107,11 +112,13 @@ public class BuildGrid : MonoBehaviour
     public void Build(Vector3 worldCoords)
     {
         Vector3Int coords = buildLayer.WorldToCell(worldCoords);
-        if (itemToBuild != null)
+        if (itemToBuild != null && CanBuild(coords.x,coords.y))
         {
-            Tile newTile = ScriptableObject.CreateInstance<Tile>();
+            Tile newTile = ScriptableObject.CreateInstance<Tile>();//TODO INSTANCIAR GAMEOBJECTS
             newTile.sprite = itemToBuild.itemSprite;
             buildLayer.SetTile(coords, newTile);
+
+            GridLogic.Instance.LockCell(coords.x, coords.y);
         }
     }
 
