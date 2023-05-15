@@ -29,4 +29,11 @@ namespace InterOrbital.Utils
         public List<BiomeRuleTile> biomesTiles;
         public FillMode fillMode;
     }
+
+    [Serializable]
+    public struct SpriteAnimatedTile
+    {
+        public Sprite sprite;
+        public AnimatedTile animatedTile;
+    }
 }
