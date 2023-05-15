@@ -37,6 +37,7 @@ namespace InterOrbital.Player
         public float dropForce;
 
         public bool isHide;
+        [HideInInspector] public int actualNumInventoryIndex=0;
 
         protected override void Awake()
         {
@@ -128,7 +129,6 @@ namespace InterOrbital.Player
         private void ScrollFastInventory()
         {
 
-            Debug.Log(InputHandler.ScrollFastInventoryValue + "." + _actualItemEquiped);
             if (isHide && InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
             {
                 _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundDefaultImage;

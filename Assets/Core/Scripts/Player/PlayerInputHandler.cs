@@ -48,13 +48,13 @@ namespace InterOrbital.Player
         private void OnScrollY(InputValue value)
         {
             
-            if (value.Get<float>() > 0)
+            if (value.Get<float>() < 0)
             {
                 ScrollFastInventoryValue += 1;
                 if (ScrollFastInventoryValue > 5)
                     ScrollFastInventoryValue = 5;
             }
-            else if(value.Get<float>() < 0)
+            else if(value.Get<float>() > 0)
             {
                 ScrollFastInventoryValue -= 1;
                 if (ScrollFastInventoryValue < 1)

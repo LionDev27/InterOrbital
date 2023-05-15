@@ -6,6 +6,7 @@ using InterOrbital.Item;
 using UnityEngine.EventSystems;
 using InterOrbital.Player;
 using InterOrbital.Utils;
+using TMPro;
 
 namespace InterOrbital.Item
 {
@@ -14,6 +15,7 @@ namespace InterOrbital.Item
         private Image _image;
         private ItemCraftScriptableObject _item;
         private CraftingItem _currentCraftingItem;
+        [SerializeField] private TextMeshProUGUI _descriptionText;
         private CraftCreator _craftCreator;
 
         private void Awake()
@@ -26,6 +28,7 @@ namespace InterOrbital.Item
         {
             _item = item;
             _image.sprite = item.itemSprite;
+            _descriptionText.text = item.itemDescription;
         }
         
         public void OnPointerClick(PointerEventData eventData)
