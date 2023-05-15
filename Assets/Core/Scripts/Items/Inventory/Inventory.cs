@@ -64,8 +64,6 @@ namespace InterOrbital.Player
             isHide = true;
         }
 
-        
-
         private void InitSlots()
         {
             var sizeMain= gridMain.transform.childCount;
@@ -81,8 +79,7 @@ namespace InterOrbital.Player
             RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot, true );
             RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot, true);
 
-            _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
-          
+            _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;          
         }
 
         private void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot, bool relateAmounts)
@@ -98,8 +95,7 @@ namespace InterOrbital.Player
                 }
             }
         }
-        
-        
+                
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.U))
@@ -139,8 +135,6 @@ namespace InterOrbital.Player
 
         private void UpdateInventory()
         {
-            Debug.Log("Opening Inventory");
-            InputHandler.ChangeActionMap();
             UIManager.Instance.OpenInventory();
         }
         
