@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e788fa605a8bbe4d8e77f228f62ea1c
+guid: 8c9287ea12238ce40b576963bf9cc7ab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test-00_nw_corner
+      name: GrassSprites_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +113,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53fdc4ad4bbe89ec0800000000000000
-      internalID: -3559836343447265483
+      spriteID: 97b9210b633ffaf428b765ce938a7d03
+      internalID: -445172664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-01_n_edge
+      name: GrassSprites_1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,20 +134,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1b40126e7e77be880800000000000000
-      internalID: -8580632827142273871
+      spriteID: d037a64b3c3410d46aa9a93c29c8c310
+      internalID: 504806886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-02_ne_corner
+      name: GrassSprites_2
       rect:
         serializedVersion: 2
         x: 32
@@ -155,20 +155,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0dcd2593cd435b260800000000000000
-      internalID: 7112649306960747728
+      spriteID: 38bb29650627de94c9383406f75e6127
+      internalID: -1187629276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-03_nw_invcorner
+      name: GrassSprites_3
       rect:
         serializedVersion: 2
         x: 48
@@ -176,20 +176,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b6a9f0eb1f8a93c0800000000000000
-      internalID: -4352008739998816592
+      spriteID: 22d3602699336464596d524970e1a824
+      internalID: -706373203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-04_ne_invcorner
+      name: GrassSprites_4
       rect:
         serializedVersion: 2
         x: 64
@@ -197,20 +197,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d2609de069146d610800000000000000
-      internalID: 1645574826600498733
+      spriteID: 8205eac458861bf4fb0f24b290a5fc9c
+      internalID: -1415995369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-05_nw_elbow
+      name: GrassSprites_5
       rect:
         serializedVersion: 2
         x: 80
@@ -218,20 +218,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ea2ec18d7cbd270b0800000000000000
-      internalID: -5732277724318473554
+      spriteID: 4ef8f79904bc9d947bdb2f0c28812b51
+      internalID: 109316309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-06_ne_elbow
+      name: GrassSprites_6
       rect:
         serializedVersion: 2
         x: 96
@@ -239,20 +239,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97168d68cdf449470800000000000000
-      internalID: 8400427013526544761
+      spriteID: 6a07cc5e4d3e97446b8974b93efd30c8
+      internalID: -7010793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-00b_nw_corner
+      name: GrassSprites_7
       rect:
         serializedVersion: 2
         x: 112
@@ -260,20 +260,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 40e1f37216c4cf4a0800000000000000
-      internalID: -6558282977204298236
+      spriteID: 22d871fd082e9a84b992c0ac5db8bf74
+      internalID: -1134589952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-07_w_edge
+      name: GrassSprites_8
       rect:
         serializedVersion: 2
         x: 0
@@ -281,20 +281,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 37d9fd344a5acc330800000000000000
-      internalID: 3732540316115246451
+      spriteID: 2ffe7e163dd58444193889928b828d2d
+      internalID: 867893116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08_core
+      name: GrassSprites_9_core
       rect:
         serializedVersion: 2
         x: 16
@@ -302,20 +302,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0ccdc28fd6016420800000000000000
-      internalID: 2621384015148338190
+      spriteID: 8d5b06ebce3b7aa47a9b007567500a61
+      internalID: 88495025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-09_e_edge
+      name: GrassSprites_10
       rect:
         serializedVersion: 2
         x: 32
@@ -323,20 +323,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 866db4547aafa54c0800000000000000
-      internalID: -4297847298042636696
+      spriteID: 92256aa317a069045a1dce5901a172ee
+      internalID: 1848552173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-10_sw_invcorner
+      name: GrassSprites_11
       rect:
         serializedVersion: 2
         x: 48
@@ -344,20 +344,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c187712a00ac13840800000000000000
-      internalID: 5202161148657891356
+      spriteID: ffab68d7296ad2f408b13c79f60254b0
+      internalID: -293492378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-11_se_invcorner
+      name: GrassSprites_12
       rect:
         serializedVersion: 2
         x: 64
@@ -365,20 +365,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0998fd3cf25b1940800000000000000
-      internalID: 5267895432464865550
+      spriteID: 79c9e8f04e1fb3944bccbced51e72529
+      internalID: -1812744738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-12_sw_elbow
+      name: GrassSprites_13
       rect:
         serializedVersion: 2
         x: 80
@@ -386,20 +386,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15a0d4c13c0394fe0800000000000000
-      internalID: -1204377810793330095
+      spriteID: a8ab547a8ac3fb247a637791ee97ade6
+      internalID: 103987503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-13_se_elbow
+      name: GrassSprites_14
       rect:
         serializedVersion: 2
         x: 96
@@ -407,20 +407,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bc294420304748960800000000000000
-      internalID: 7603329627180012235
+      spriteID: 1dbbc1c8d6119e14a89107049756db69
+      internalID: 407218827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-07b_w_edge
+      name: GrassSprites_15
       rect:
         serializedVersion: 2
         x: 112
@@ -428,20 +428,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1c8acd6a4227f8d00800000000000000
-      internalID: 977125145906555073
+      spriteID: 74f3eef5d6ac39040b741e9a2fee35ce
+      internalID: -1419600892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-14_sw_corner
+      name: GrassSprites_16
       rect:
         serializedVersion: 2
         x: 0
@@ -449,20 +449,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4834da9e78eaf58c0800000000000000
-      internalID: -4008293244572187772
+      spriteID: 9532979399f5ffe46b8c10461be185ab
+      internalID: 238759971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-15_se_edge
+      name: GrassSprites_17
       rect:
         serializedVersion: 2
         x: 16
@@ -470,20 +470,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a13404b0f993fce0800000000000000
-      internalID: -1372584202326494813
+      spriteID: 105efe72c260644418a874195d955b6a
+      internalID: -1349253399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-16_se_corner
+      name: GrassSprites_18
       rect:
         serializedVersion: 2
         x: 32
@@ -491,20 +491,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a7e4af39938b5f320800000000000000
-      internalID: 2591179718056889978
+      spriteID: 0521967017c4a3e48aaed6ec5aef45a5
+      internalID: -200432348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-17_n_end
+      name: GrassSprites_19
       rect:
         serializedVersion: 2
         x: 48
@@ -512,20 +512,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5a5e77390d5676c30800000000000000
-      internalID: 4352559511378584997
+      spriteID: 197600817fd146c4e909e824be2761b1
+      internalID: -894450585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-18_island
+      name: GrassSprites_20
       rect:
         serializedVersion: 2
         x: 64
@@ -533,20 +533,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e9f7c13bea8db9be0800000000000000
-      internalID: -1469342608565436514
+      spriteID: 9ff4777e9271d8949a7c5b5c40bb709e
+      internalID: -807114187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-19_swne_diag
+      name: GrassSprites_21
       rect:
         serializedVersion: 2
         x: 80
@@ -554,20 +554,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9de92dd23b8eba510800000000000000
-      internalID: 1561597552079576793
+      spriteID: 887e28a3785f1a546ab71045c34c8e26
+      internalID: 459949437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-20_nwse_diag
+      name: GrassSprites_22
       rect:
         serializedVersion: 2
         x: 96
@@ -575,20 +575,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8234e995675543610800000000000000
-      internalID: 1599997734421414696
+      spriteID: 3d445da905ef01440aa12cdfd177dbd4
+      internalID: -1742345022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-14b_sw_corner
+      name: GrassSprites_23
       rect:
         serializedVersion: 2
         x: 112
@@ -596,20 +596,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d296c6fe3f5e7a720800000000000000
-      internalID: 2857505324446542125
+      spriteID: 0574c1e725229e54882e0908da8a5203
+      internalID: 1303944711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-21_et
+      name: GrassSprites_24
       rect:
         serializedVersion: 2
         x: 0
@@ -617,20 +617,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c97131a8425805410800000000000000
-      internalID: 1463816270877235100
+      spriteID: 9d2d68e05f3b76d4ea4c00b15eed9314
+      internalID: -1738882461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-22_st
+      name: GrassSprites_25
       rect:
         serializedVersion: 2
         x: 16
@@ -638,20 +638,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ce6acbb79582c5320800000000000000
-      internalID: 2547955853978019564
+      spriteID: 85f57061e62f8cb4d8236d4ea5ffdeba
+      internalID: 2036587437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-23_w_end
+      name: GrassSprites_26
       rect:
         serializedVersion: 2
         x: 32
@@ -659,20 +659,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d776a0d0f5890ddb0800000000000000
-      internalID: -4769144471377254531
+      spriteID: b99a768a25db4aa4582d8f48befea037
+      internalID: 2092195671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-24_intersection
+      name: GrassSprites_27
       rect:
         serializedVersion: 2
         x: 48
@@ -680,20 +680,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16f102070d5740da0800000000000000
-      internalID: -5979524867146375327
+      spriteID: 617f7f82c5564a44c834280435fb0fc0
+      internalID: 2082212749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-25_e_end
+      name: GrassSprites_28
       rect:
         serializedVersion: 2
         x: 64
@@ -701,20 +701,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bd3468480a6c38d00800000000000000
-      internalID: 973840337162617819
+      spriteID: f1d2f866b73b03a43acf15eca16e16ff
+      internalID: 656939381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-26_se_3inv
+      name: GrassSprites_29
       rect:
         serializedVersion: 2
         x: 80
@@ -722,20 +722,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 563641f00bd02f540800000000000000
-      internalID: 5040105982799405925
+      spriteID: 7dfcd989411da8e46ae7603aef810224
+      internalID: -1839792593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-27_sw_3inv
+      name: GrassSprites_30
       rect:
         serializedVersion: 2
         x: 96
@@ -743,20 +743,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a89d77a62a536d9b0800000000000000
-      internalID: -5055794559989589622
+      spriteID: 3d4a0164384309e489cddbab76f8b3f4
+      internalID: 1601380075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-01b_n_edge
+      name: GrassSprites_31
       rect:
         serializedVersion: 2
         x: 112
@@ -764,20 +764,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e6094a85c0b54c680800000000000000
-      internalID: -8735757268607004562
+      spriteID: 05166a3b27bbd9c4383f830f8c15d7b9
+      internalID: 1718031469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-28_nt
+      name: GrassSprites_32
       rect:
         serializedVersion: 2
         x: 0
@@ -785,20 +785,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a9575fcc9e1d40c0800000000000000
-      internalID: -4589978786378327648
+      spriteID: a0d5fe5d0d73e794d9c4e978d43b89c3
+      internalID: 1137308294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-29_wt
+      name: GrassSprites_33
       rect:
         serializedVersion: 2
         x: 16
@@ -806,20 +806,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55387cb20b682b4d0800000000000000
-      internalID: -3120283500607470763
+      spriteID: 409e721e5199c264885a9817952844c6
+      internalID: 1551173048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-30_ns_bridge
+      name: GrassSprites_34
       rect:
         serializedVersion: 2
         x: 32
@@ -827,20 +827,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f37ece3b43f31ffe0800000000000000
-      internalID: -1157074133668010177
+      spriteID: d2552dba5fba8a446afca609004039ff
+      internalID: -654841694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-31_s_end
+      name: GrassSprites_35
       rect:
         serializedVersion: 2
         x: 48
@@ -848,20 +848,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e7cbef61431fca10800000000000000
-      internalID: 1931783936936757225
+      spriteID: f5c6b87467cc161409294f8576cebd3d
+      internalID: 834474970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-32_we_bridge
+      name: GrassSprites_36
       rect:
         serializedVersion: 2
         x: 64
@@ -869,20 +869,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c7faf70ab72f577c0800000000000000
-      internalID: -4074083675099123844
+      spriteID: 8f22b8ef8dc91ad49972d1503248a7a5
+      internalID: -1734587738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-33_ne_3inv
+      name: GrassSprites_37
       rect:
         serializedVersion: 2
         x: 80
@@ -890,20 +890,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa7cdb24f7797ab70800000000000000
-      internalID: 8910256960612190122
+      spriteID: ea652f5ae8823b0439f4c3e12aa04c6c
+      internalID: -1934752051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-34_nw_3inv
+      name: GrassSprites_38
       rect:
         serializedVersion: 2
         x: 96
@@ -911,20 +911,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ac0d1e1ce344bb70800000000000000
-      internalID: 8913824243869617313
+      spriteID: 3183086a6db8ad940b8ff49c28909403
+      internalID: -1699795333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08b_core
+      name: GrassSprites_39
       rect:
         serializedVersion: 2
         x: 112
@@ -932,20 +932,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0bcf1ec1fafb04c00800000000000000
-      internalID: 882916285789371568
+      spriteID: 017ccaf1303fcf140978306a36f86c1a
+      internalID: 1701744024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-35_e_gun
+      name: GrassSprites_40
       rect:
         serializedVersion: 2
         x: 0
@@ -953,20 +953,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba165426bfde2b960800000000000000
-      internalID: 7616411583778218411
+      spriteID: 105f5b95f8f889c4790fcc6dc4d27628
+      internalID: -172147739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-36_s_gun
+      name: GrassSprites_41
       rect:
         serializedVersion: 2
         x: 16
@@ -974,20 +974,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6b849debdffb9cb70800000000000000
-      internalID: 8919871633533520054
+      spriteID: 47ecef696b411bc43874b4e3625e3f80
+      internalID: -736969677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-37_s_invgun
+      name: GrassSprites_42
       rect:
         serializedVersion: 2
         x: 32
@@ -995,20 +995,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d53500166b335ecc0800000000000000
-      internalID: -3682480261901036707
+      spriteID: ecc452a2b58d9bc4894a247d0fe92f97
+      internalID: 409172845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-38_w_invgun
+      name: GrassSprites_43
       rect:
         serializedVersion: 2
         x: 48
@@ -1016,20 +1016,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7fbe2c2d533d7ec40800000000000000
-      internalID: 5541630094625401847
+      spriteID: e653cd44f7704d44eb0dd0cc6ba7c819
+      internalID: -992929831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-39_e_thickt
+      name: GrassSprites_44
       rect:
         serializedVersion: 2
         x: 64
@@ -1037,20 +1037,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ab7cad6166811a6d0800000000000000
-      internalID: -2981074651593390150
+      spriteID: ddba062310d011e4c83f765b7af9bd5e
+      internalID: -1229366941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-40_s_thickt
+      name: GrassSprites_45
       rect:
         serializedVersion: 2
         x: 80
@@ -1058,20 +1058,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8596ead98b4f99a10800000000000000
-      internalID: 1916832190179469656
+      spriteID: e1d20af65d844d04da30bfa81de626a8
+      internalID: 1622505091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-02b_ne_corner
+      name: GrassSprites_46
       rect:
         serializedVersion: 2
         x: 96
@@ -1079,20 +1079,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6953108a5a73871d0800000000000000
-      internalID: -3352868737949551210
+      spriteID: 83d315cca6114444b907cab3bc26bfd2
+      internalID: 1304985622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-15b_s_edge
+      name: GrassSprites_47
       rect:
         serializedVersion: 2
         x: 112
@@ -1100,20 +1100,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 84ed18d2c8d0ba4d0800000000000000
-      internalID: -3122387020941238712
+      spriteID: 0259dbebce4f9294aac583386ecd78d9
+      internalID: -1743157992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-41_n_gun
+      name: GrassSprites_48
       rect:
         serializedVersion: 2
         x: 0
@@ -1121,20 +1121,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5b0f63ffe2b03480800000000000000
-      internalID: -8921434118169883811
+      spriteID: 7000f62985bb7374aaadf60a07a6bedd
+      internalID: 1846554329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-42_w_gun
+      name: GrassSprites_49
       rect:
         serializedVersion: 2
         x: 16
@@ -1142,20 +1142,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6ec00e407aaf05730800000000000000
-      internalID: 3985961265471163622
+      spriteID: 3e58f49c68a71ec4dbd4a82e5dfcea18
+      internalID: -1761477339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-43_e_invgun
+      name: GrassSprites_50
       rect:
         serializedVersion: 2
         x: 32
@@ -1163,20 +1163,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4883232b2e700b60800000000000000
-      internalID: 7710301285796513870
+      spriteID: bf1cc1e38cbb6d549bc0f04bb2cd7d5a
+      internalID: -1840426975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-44_n_invgun
+      name: GrassSprites_51
       rect:
         serializedVersion: 2
         x: 48
@@ -1184,20 +1184,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dca1e507ea11545d0800000000000000
-      internalID: -3079035329330668851
+      spriteID: 3d14483864ed35948866ba42e45963e8
+      internalID: 458938111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-45_n_thickt
+      name: GrassSprites_52
       rect:
         serializedVersion: 2
         x: 64
@@ -1205,20 +1205,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 11ab6e7e9f433b180800000000000000
-      internalID: -9100872174043481583
+      spriteID: 6c551a8df1153cb43af26a789e214044
+      internalID: -707039473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-46_w_thickt
+      name: GrassSprites_53
       rect:
         serializedVersion: 2
         x: 80
@@ -1226,20 +1226,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cbe2d6e9f21e9cda0800000000000000
-      internalID: -5923956240191508804
+      spriteID: 0a345219acb51c046864a2a0dca11219
+      internalID: 164891097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-09b_e_edge
+      name: GrassSprites_54
       rect:
         serializedVersion: 2
         x: 96
@@ -1247,20 +1247,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fcaa1264159be4220800000000000000
-      internalID: 2472117004193082063
+      spriteID: d77866b978f82bd48a1644eb12c95a7f
+      internalID: 1840145335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08c_core
+      name: GrassSprites_55
       rect:
         serializedVersion: 2
         x: 112
@@ -1268,20 +1268,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0141aa031540f6800800000000000000
-      internalID: 607709221473621008
+      spriteID: 27130a9eb912ee549847e9d848a80756
+      internalID: -964156800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-03b_nw_invcorner
+      name: GrassSprites_56
       rect:
         serializedVersion: 2
         x: 0
@@ -1289,20 +1289,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 87c4cf9b6ab8c33f0800000000000000
-      internalID: -919706675689272200
+      spriteID: b303dc44d55f91c4db20e7f255e4bd9c
+      internalID: 646958222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-04b_ne_invcorner
+      name: GrassSprites_57
       rect:
         serializedVersion: 2
         x: 16
@@ -1310,20 +1310,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98bb567331b457020800000000000000
-      internalID: 2338858127394716553
+      spriteID: 0bb12db031b00074abb65e1fa37ab40c
+      internalID: 1595219747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-10b_sw_invcorner
+      name: GrassSprites_58
       rect:
         serializedVersion: 2
         x: 32
@@ -1331,20 +1331,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7ed365b6d7e2eca90800000000000000
-      internalID: -7291839630459650585
+      spriteID: 2b97549efca0788459d1e568233ba512
+      internalID: 653443894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-11b_se_invcorner
+      name: GrassSprites_59
       rect:
         serializedVersion: 2
         x: 48
@@ -1352,20 +1352,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 030a6399c81c1b9b0800000000000000
-      internalID: -5066055296205021136
+      spriteID: e003a07f0994a63469234bdd003b6e62
+      internalID: 1734589720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08f_core
+      name: GrassSprites_60
       rect:
         serializedVersion: 2
         x: 64
@@ -1373,20 +1373,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 525c121c5315f9730800000000000000
-      internalID: 4008011484698363173
+      spriteID: 44b887e34ec298d4eb615180108ed6ec
+      internalID: 930728471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08e_core
+      name: GrassSprites_61
       rect:
         serializedVersion: 2
         x: 80
@@ -1394,20 +1394,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 88cd902af3c66cb00800000000000000
-      internalID: 848484600363211912
+      spriteID: fef993de61f636140a270fdef79cc70a
+      internalID: 1039616802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-16b_se_corner
+      name: GrassSprites_62
       rect:
         serializedVersion: 2
         x: 96
@@ -1415,20 +1415,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46732dfc57c53d1b0800000000000000
-      internalID: -5633057047842769052
+      spriteID: 9d341d438b579f14c827c3fb9799c60e
+      internalID: -558433304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test-08d_core
+      name: GrassSprites_63
       rect:
         serializedVersion: 2
         x: 112
@@ -1436,14 +1436,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f94fd802e5aaf4890800000000000000
-      internalID: -7471565935534541665
+      spriteID: 00943ccb4feef4044be2b7ad8a98de00
+      internalID: -1602747336
       vertices: []
       indices: 
       edges: []
@@ -1451,7 +1451,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -1459,70 +1459,70 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      test-00_nw_corner: -3559836343447265483
-      test-00b_nw_corner: -6558282977204298236
-      test-01_n_edge: -8580632827142273871
-      test-01b_n_edge: -8735757268607004562
-      test-02_ne_corner: 7112649306960747728
-      test-02b_ne_corner: -3352868737949551210
-      test-03_nw_invcorner: -4352008739998816592
-      test-03b_nw_invcorner: -919706675689272200
-      test-04_ne_invcorner: 1645574826600498733
-      test-04b_ne_invcorner: 2338858127394716553
-      test-05_nw_elbow: -5732277724318473554
-      test-06_ne_elbow: 8400427013526544761
-      test-07_w_edge: 3732540316115246451
-      test-07b_w_edge: 977125145906555073
-      test-08_core: 2621384015148338190
-      test-08b_core: 882916285789371568
-      test-08c_core: 607709221473621008
-      test-08d_core: -7471565935534541665
-      test-08e_core: 848484600363211912
-      test-08f_core: 4008011484698363173
-      test-09_e_edge: -4297847298042636696
-      test-09b_e_edge: 2472117004193082063
-      test-10_sw_invcorner: 5202161148657891356
-      test-10b_sw_invcorner: -7291839630459650585
-      test-11_se_invcorner: 5267895432464865550
-      test-11b_se_invcorner: -5066055296205021136
-      test-12_sw_elbow: -1204377810793330095
-      test-13_se_elbow: 7603329627180012235
-      test-14_sw_corner: -4008293244572187772
-      test-14b_sw_corner: 2857505324446542125
-      test-15_se_edge: -1372584202326494813
-      test-15b_s_edge: -3122387020941238712
-      test-16_se_corner: 2591179718056889978
-      test-16b_se_corner: -5633057047842769052
-      test-17_n_end: 4352559511378584997
-      test-18_island: -1469342608565436514
-      test-19_swne_diag: 1561597552079576793
-      test-20_nwse_diag: 1599997734421414696
-      test-21_et: 1463816270877235100
-      test-22_st: 2547955853978019564
-      test-23_w_end: -4769144471377254531
-      test-24_intersection: -5979524867146375327
-      test-25_e_end: 973840337162617819
-      test-26_se_3inv: 5040105982799405925
-      test-27_sw_3inv: -5055794559989589622
-      test-28_nt: -4589978786378327648
-      test-29_wt: -3120283500607470763
-      test-30_ns_bridge: -1157074133668010177
-      test-31_s_end: 1931783936936757225
-      test-32_we_bridge: -4074083675099123844
-      test-33_ne_3inv: 8910256960612190122
-      test-34_nw_3inv: 8913824243869617313
-      test-35_e_gun: 7616411583778218411
-      test-36_s_gun: 8919871633533520054
-      test-37_s_invgun: -3682480261901036707
-      test-38_w_invgun: 5541630094625401847
-      test-39_e_thickt: -2981074651593390150
-      test-40_s_thickt: 1916832190179469656
-      test-41_n_gun: -8921434118169883811
-      test-42_w_gun: 3985961265471163622
-      test-43_e_invgun: 7710301285796513870
-      test-44_n_invgun: -3079035329330668851
-      test-45_n_thickt: -9100872174043481583
-      test-46_w_thickt: -5923956240191508804
+      GrassSprites_0: -445172664
+      GrassSprites_1: 504806886
+      GrassSprites_10: 1848552173
+      GrassSprites_11: -293492378
+      GrassSprites_12: -1812744738
+      GrassSprites_13: 103987503
+      GrassSprites_14: 407218827
+      GrassSprites_15: -1419600892
+      GrassSprites_16: 238759971
+      GrassSprites_17: -1349253399
+      GrassSprites_18: -200432348
+      GrassSprites_19: -894450585
+      GrassSprites_2: -1187629276
+      GrassSprites_20: -807114187
+      GrassSprites_21: 459949437
+      GrassSprites_22: -1742345022
+      GrassSprites_23: 1303944711
+      GrassSprites_24: -1738882461
+      GrassSprites_25: 2036587437
+      GrassSprites_26: 2092195671
+      GrassSprites_27: 2082212749
+      GrassSprites_28: 656939381
+      GrassSprites_29: -1839792593
+      GrassSprites_3: -706373203
+      GrassSprites_30: 1601380075
+      GrassSprites_31: 1718031469
+      GrassSprites_32: 1137308294
+      GrassSprites_33: 1551173048
+      GrassSprites_34: -654841694
+      GrassSprites_35: 834474970
+      GrassSprites_36: -1734587738
+      GrassSprites_37: -1934752051
+      GrassSprites_38: -1699795333
+      GrassSprites_39: 1701744024
+      GrassSprites_4: -1415995369
+      GrassSprites_40: -172147739
+      GrassSprites_41: -736969677
+      GrassSprites_42: 409172845
+      GrassSprites_43: -992929831
+      GrassSprites_44: -1229366941
+      GrassSprites_45: 1622505091
+      GrassSprites_46: 1304985622
+      GrassSprites_47: -1743157992
+      GrassSprites_48: 1846554329
+      GrassSprites_49: -1761477339
+      GrassSprites_5: 109316309
+      GrassSprites_50: -1840426975
+      GrassSprites_51: 458938111
+      GrassSprites_52: -707039473
+      GrassSprites_53: 164891097
+      GrassSprites_54: 1840145335
+      GrassSprites_55: -964156800
+      GrassSprites_56: 646958222
+      GrassSprites_57: 1595219747
+      GrassSprites_58: 653443894
+      GrassSprites_59: 1734589720
+      GrassSprites_6: -7010793
+      GrassSprites_60: 930728471
+      GrassSprites_61: 1039616802
+      GrassSprites_62: -558433304
+      GrassSprites_63: -1602747336
+      GrassSprites_7: -1134589952
+      GrassSprites_8: 867893116
+      GrassSprites_9_core: 88495025
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
