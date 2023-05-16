@@ -45,11 +45,22 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
+    - {fileID: 2800000, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 1625660803, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: -1134613322, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: 700826115, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: 2134723516, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: 915311226, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: -2067908603, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: -1684324842, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: 659744717, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: -19055205, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+  - {fileID: 721851608, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
   - {fileID: 3224704697300712463, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   - {fileID: 5249066017326319457, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   - {fileID: -3224804527766319114, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
@@ -115,6 +126,16 @@ SpriteAtlas:
   - {fileID: 7554448661391436254, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   - {fileID: -6979864649369840017, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   m_PackedSpriteNamesToIndex:
+  - GrassCoreAnim2-0
+  - GrassCoreAnim2-1
+  - GrassCoreAnim3-1
+  - GrassCoreAnim3-0
+  - GrassCoreAnim4-0
+  - GrassCoreAnim4-1
+  - GrassCoreAnim0-0
+  - GrassCoreAnim0-1
+  - GrassCoreAnim1-1
+  - GrassCoreAnim1-0
   - GrassSpritesheet-27_sw_3inv
   - GrassSpritesheet-12_sw_elbow
   - GrassSpritesheet-08d_core
