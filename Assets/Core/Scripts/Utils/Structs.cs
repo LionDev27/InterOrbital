@@ -19,6 +19,7 @@ namespace InterOrbital.Utils
     {
         public string biome;
         public RuleTile tiles;
+        public TileAnimationSO animationTiles;
     }
 
     [Serializable]

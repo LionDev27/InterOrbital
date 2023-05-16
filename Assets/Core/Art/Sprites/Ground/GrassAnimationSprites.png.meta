@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_1
+      name: GrassCoreAnim1-0
       rect:
         serializedVersion: 2
         x: 16
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_2
+      name: GrassCoreAnim2-0
       rect:
         serializedVersion: 2
         x: 32
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_4
+      name: GrassCoreAnim1-1
       rect:
         serializedVersion: 2
         x: 64
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_5
+      name: GrassCoreAnim2-1
       rect:
         serializedVersion: 2
         x: 80
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_6
+      name: GrassCoreAnim3-0
       rect:
         serializedVersion: 2
         x: 0
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_7
+      name: GrassCoreAnim4-0
       rect:
         serializedVersion: 2
         x: 16
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_8
+      name: GrassCoreAnim3-1
       rect:
         serializedVersion: 2
         x: 48
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassAnimationSprites_9
+      name: GrassCoreAnim4-1
       rect:
         serializedVersion: 2
         x: 64
@@ -337,16 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GrassAnimationSprites_1: 721851608
-      GrassAnimationSprites_2: 1625660803
-      GrassAnimationSprites_4: -19055205
-      GrassAnimationSprites_5: -1134613322
-      GrassAnimationSprites_6: 2134723516
-      GrassAnimationSprites_7: 915311226
-      GrassAnimationSprites_8: 700826115
-      GrassAnimationSprites_9: -2067908603
       GrassCoreAnim0-0: -1684324842
       GrassCoreAnim0-1: 659744717
+      GrassCoreAnim1-0: 721851608
+      GrassCoreAnim1-1: -19055205
+      GrassCoreAnim2-0: 1625660803
+      GrassCoreAnim2-1: -1134613322
+      GrassCoreAnim3-0: 2134723516
+      GrassCoreAnim3-1: 700826115
+      GrassCoreAnim4-0: 915311226
+      GrassCoreAnim4-1: -2067908603
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -66,7 +66,6 @@ namespace InterOrbital.Player
         {
             if (value.isPressed)
             {
-                Debug.Log(value.Get<float>());
                ScrollFastInventoryValue = (int) value.Get<float>();
             }
         }

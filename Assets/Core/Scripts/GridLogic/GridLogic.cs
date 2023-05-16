@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 namespace InterOrbital.WorldSystem
 {
@@ -14,6 +15,7 @@ namespace InterOrbital.WorldSystem
         public Vector3 cellSize = new Vector3(1, 1, 0);
         public List<string> biomes;
         public TilemapLayer[] tilemapLayers;
+        public Texture2D texture;
 
         public static GridLogic Instance;
 
@@ -82,11 +84,11 @@ namespace InterOrbital.WorldSystem
                 FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
             }
 
-            for (int i = 5; i < 15 ; i++)
+            /*for (int i = 5; i < 15 ; i++)
             {
                 for (int j = 5; j < 15; j++)
                     _gridCells[i, j].MakeSpaceshipArea();
-            }
+            }*/
         }
 
         #endregion
@@ -106,6 +108,7 @@ namespace InterOrbital.WorldSystem
                     break;
                 case FillMode.Single_Random:
                     FillTilemapSingleRandom(tilemap, tiles);
+                    AddAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Multiple_Random:
                     break;
@@ -157,8 +160,84 @@ namespace InterOrbital.WorldSystem
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
 
-
                     tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                }
+            }
+        }
+
+        private Sprite[,] GetTilemapSprites(Tilemap tilemap)
+        {
+            Sprite[,] tilemapSprites = new Sprite[width,height];
+
+            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            {
+                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+
+                    tilemapSprites[x,y] = tilemap.GetSprite(position);
+                }
+            }
+
+            return tilemapSprites;
+
+        }
+
+        private List<Sprite> GenerateSpriteList(Texture2D texture)
+        {
+            List<Sprite> spriteList = new List<Sprite>();
+
+            // Obtiene todos los sprites generados por el Sprite Editor
+            UnityEngine.Object[] spriteObjects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(UnityEditor.AssetDatabase.GetAssetPath(texture));
+
+            // Filtra solo los objetos Sprite y agrega los sprites a la lista
+            foreach (UnityEngine.Object spriteObject in spriteObjects)
+            {
+                if (spriteObject is Sprite)
+                {
+                    spriteList.Add((Sprite)spriteObject);
+                }
+            }
+
+            return spriteList;
+        }
+
+        private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        {
+
+            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
+            List<Sprite> spriteList = GenerateSpriteList(texture);
+            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            {
+                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+
+                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
+
+
+                    if (tiles[biomeIndex].animationTiles != null)
+                    {
+                        SpriteAnimatedTile encounteredSprite = tiles[biomeIndex].animationTiles.spriteToAnimatedTiles.Find(spriteAnimado => spriteAnimado.sprite == tilemapSprites[x, y]);
+
+                        if (encounteredSprite.sprite != null)
+                        {
+                            tilemap.SetTile(position, encounteredSprite.animatedTile);
+                        }
+                    }
+
+
+
+                    Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
+                    if (s != null)
+                    {
+                        Tile tile = ScriptableObject.CreateInstance<Tile>();
+
+                        // Asigna el Sprite al Tile
+                        tile.sprite = s;
+                        tilemap.SetTile(position, tile);
+                    }
+
                 }
             }
         }
