@@ -15,7 +15,6 @@ namespace InterOrbital.WorldSystem
         public Vector3 cellSize = new Vector3(1, 1, 0);
         public List<string> biomes;
         public TilemapLayer[] tilemapLayers;
-        public Texture2D texture;
 
         public static GridLogic Instance;
 
@@ -81,7 +80,7 @@ namespace InterOrbital.WorldSystem
 
             foreach (var tilemapLayer in tilemapLayers)
             {
-                FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
+                FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
             }
 
             /*for (int i = 5; i < 15 ; i++)
@@ -95,7 +94,7 @@ namespace InterOrbital.WorldSystem
 
         #region Private Methods
 
-        private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
+        private void FillTilemap(Tilemap tilemap, Tilemap minimapTilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
         {
             switch (fillMode)
             {
@@ -103,11 +102,13 @@ namespace InterOrbital.WorldSystem
                     break;
                 case FillMode.Single_All:
                     FillTilemapSingleAll(tilemap, tiles);
+                    GenerateMinimapTilemap(tilemap, minimapTilemap);
                     break;
                 case FillMode.Multiple_All:
                     break;
                 case FillMode.Single_Random:
                     FillTilemapSingleRandom(tilemap, tiles);
+                    GenerateMinimapTilemap(tilemap, minimapTilemap);
                     AddAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Multiple_Random:
@@ -204,9 +205,10 @@ namespace InterOrbital.WorldSystem
 
         private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
-
             Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
-            List<Sprite> spriteList = GenerateSpriteList(texture);
+            List<Sprite> spriteList = new List<Sprite>();
+            int lastBiomeIndex = -1;
+
             for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
             {
                 for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
@@ -214,6 +216,11 @@ namespace InterOrbital.WorldSystem
                     Vector3Int position = new Vector3Int(x, y, 0);
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
+                    if(biomeIndex != lastBiomeIndex) 
+                    {
+                        spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
+                        lastBiomeIndex = biomeIndex;
+                    }
 
 
                     if (tiles[biomeIndex].animationTiles != null)
@@ -238,6 +245,18 @@ namespace InterOrbital.WorldSystem
                         tilemap.SetTile(position, tile);
                     }
 
+                }
+            }
+        }
+
+        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap)
+        {
+            foreach (var pos in origin.cellBounds.allPositionsWithin)
+            {
+                var sourceTile = origin.GetTile(pos);
+                if (sourceTile != null)
+                {
+                    minimap.SetTile(pos, sourceTile);
                 }
             }
         }

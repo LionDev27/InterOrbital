@@ -10,6 +10,7 @@ namespace InterOrbital.Item
 
     public class TileAnimationSO : ScriptableObject
     {
+        public Texture2D textureToChangeRuleTile;
         [SerializeField]
         public List<SpriteAnimatedTile> spriteToAnimatedTiles;
     }

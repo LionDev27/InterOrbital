@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a5727820020dc488300c078977ce05, type: 3}
   m_Name: GrassTileAnimationList
   m_EditorClassIdentifier: 
+  textureToChangeRuleTile: {fileID: 2800000, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   spriteToAnimatedTiles:
   - sprite: {fileID: -1684324842, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
     animatedTile: {fileID: 11400000, guid: 97f259a9874b4174e94d0f9215a4c9d0, type: 2}
