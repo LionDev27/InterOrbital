@@ -8,7 +8,7 @@ namespace InterOrbital.UI
 {
     public class UIManager : MonoBehaviour
     {
-        private Vector3 _inventoryInitPosition;
+        [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
         public static UIManager Instance = null;
 
@@ -25,12 +25,7 @@ namespace InterOrbital.UI
            // DontDestroyOnLoad(gameObject); 
         }
 
-        private void Start()
-        {
-            _inventoryInitPosition = new Vector3();
-            _inventoryInitPosition = bagUI.transform.position;
-            
-        }
+       
 
         public void ActivateOrDesactivateUI(GameObject ui)
         {
@@ -68,7 +63,7 @@ namespace InterOrbital.UI
                 if (!_openInventory.IsActive())
                 {
                     PlayerComponents.Instance.InputHandler.ChangeActionMap();
-                    _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.y, 0.5f).Play().OnComplete(() =>
+                    _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = true;
                     });
