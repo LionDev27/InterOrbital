@@ -24,8 +24,6 @@ namespace InterOrbital.Item
 
         public int amount;
 
-   
-
         private void Update()
         { 
              PlayerReached();
