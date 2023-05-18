@@ -1884,7 +1884,7 @@ GameObject:
   - component: {fileID: 7473110524834691364}
   - component: {fileID: 7473110524834691371}
   m_Layer: 5
-  m_Name: Description
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2129,7 +2129,7 @@ MonoBehaviour:
   - {fileID: 6486663177652289959}
   - {fileID: 8073944933324268882}
   craftResultImage: {fileID: 5364545033777155986}
-  itemCraftDescription: {fileID: 9206744273653840859}
+  itemCraftName: {fileID: 9206744273653840859}
   gridRequires: {fileID: 7473110526125325741}
   amountToCraftText: {fileID: 6503653980314409745}
 --- !u!1 &7473110525108964172
@@ -2641,7 +2641,7 @@ GameObject:
   - component: {fileID: 6596075429421073167}
   - component: {fileID: 9206744273653840859}
   m_Layer: 5
-  m_Name: Text Description
+  m_Name: Text Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2695,7 +2695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: aaaaaaaaaaaaaaaaaaa
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7face56f47a6b042bba6664d53d0dc9, type: 2}
   m_sharedMaterial: {fileID: -8996129405439366922, guid: c7face56f47a6b042bba6664d53d0dc9, type: 2}
