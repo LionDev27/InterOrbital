@@ -8,8 +8,9 @@ namespace InterOrbital.UI
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] private Transform _inventoryInitPosition;
+        private Tween _openInventory;
         public static UIManager Instance = null;
-        private Vector3 _inventoryInitPosition;
 
         public GameObject bagUI;
         public GameObject craftUI;
@@ -24,11 +25,7 @@ namespace InterOrbital.UI
            // DontDestroyOnLoad(gameObject); 
         }
 
-        private void Start()
-        {
-            _inventoryInitPosition = new Vector3();
-            _inventoryInitPosition = bagUI.transform.position;
-        }
+       
 
         public void ActivateOrDesactivateUI(GameObject ui)
         {
@@ -49,15 +46,28 @@ namespace InterOrbital.UI
 
         public void OpenInventory()
         {
-            if(bagUI.transform.position == _inventoryInitPosition)
+            if(PlayerComponents.Instance.Inventory.isHide)
             {
-                PlayerComponents.Instance.Inventory.isHide = false;
-                bagUI.transform.DOMoveY(Screen.height/2, 0.5f).Play();
+                if (!_openInventory.IsActive())
+                {
+                    PlayerComponents.Instance.InputHandler.ChangeActionMap();
+                    _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
+                    {
+                        PlayerComponents.Instance.Inventory.isHide = false;
+                    });
+                }
+                
             }
-            else
+            else if(!PlayerComponents.Instance.Inventory.isHide)
             {
-                PlayerComponents.Instance.Inventory.isHide = true;
-                bagUI.transform.DOMoveY(_inventoryInitPosition.y, 0.5f).Play();
+                if (!_openInventory.IsActive())
+                {
+                    PlayerComponents.Instance.InputHandler.ChangeActionMap();
+                    _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
+                    {
+                        PlayerComponents.Instance.Inventory.isHide = true;
+                    });
+                }
             }
         }
     }

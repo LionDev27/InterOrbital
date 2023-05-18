@@ -37,11 +37,13 @@ namespace InterOrbital.Player
         public float dropForce;
 
         public bool isHide;
+        [HideInInspector] public int actualNumInventoryIndex=0;
 
         protected override void Awake()
         {
             base.Awake();
             InputHandler.OnOpenInventory += UpdateInventory;
+            InputHandler.OnUseItems += UseItem;
         }
 
         private void Start()
@@ -63,8 +65,6 @@ namespace InterOrbital.Player
             isHide = true;
         }
 
-        
-
         private void InitSlots()
         {
             var sizeMain= gridMain.transform.childCount;
@@ -80,8 +80,7 @@ namespace InterOrbital.Player
             RelateSlots(gridLeftPocket, sizeMain,sizeLeft,_itemsSlot, true );
             RelateSlots(gridRightPocket, sizeMain + sizeLeft,sizeRight,_itemsSlot, true);
 
-            _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
-          
+            _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;          
         }
 
         private void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot, bool relateAmounts)
@@ -97,8 +96,7 @@ namespace InterOrbital.Player
                 }
             }
         }
-        
-        
+                
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.U))
@@ -127,8 +125,6 @@ namespace InterOrbital.Player
 
         private void ScrollFastInventory()
         {
-
-            //Debug.Log(InputHandler.ScrollFastInventoryValue + "." + _actualItemEquiped);
             if (isHide && InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
             {
                 _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundDefaultImage;
@@ -139,8 +135,6 @@ namespace InterOrbital.Player
 
         private void UpdateInventory()
         {
-            Debug.Log("Opening Inventory");
-            InputHandler.ChangeActionMap();
             UIManager.Instance.OpenInventory();
         }
         
@@ -166,6 +160,22 @@ namespace InterOrbital.Player
             _textAmount[index].text = _items[index].amount.ToString();
         }
 
+        private void UseItem()
+        {
+            switch (_items[actualNumInventoryIndex].itemSo.type)
+            {
+                case TypeCraft.Build:
+                    //_items[actualNumInventoryIndex] metodo de construir
+                    break;
+                case TypeCraft.Consumable:
+                    //_items[actualNumInventoryIndex] consumir item
+                    break;
+                case TypeCraft.None:
+                    //No se puede usar item
+                    break;
+            }
+            
+        }
 
         public bool IsInventoryFull()
         {

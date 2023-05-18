@@ -16,6 +16,7 @@ namespace InterOrbital.Player
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
         public Action OnOpenInventory;
+        public Action OnUseItems;
 
         public Action OnOpenCraft;
 
@@ -47,13 +48,13 @@ namespace InterOrbital.Player
         private void OnScrollY(InputValue value)
         {
             
-            if (value.Get<float>() > 0)
+            if (value.Get<float>() < 0)
             {
                 ScrollFastInventoryValue += 1;
                 if (ScrollFastInventoryValue > 5)
                     ScrollFastInventoryValue = 5;
             }
-            else if(value.Get<float>() < 0)
+            else if(value.Get<float>() > 0)
             {
                 ScrollFastInventoryValue -= 1;
                 if (ScrollFastInventoryValue < 1)
@@ -61,6 +62,7 @@ namespace InterOrbital.Player
             }
            
         }
+
         private void OnSelectNumeric(InputValue value)
         {
             if (value.isPressed)
@@ -78,6 +80,11 @@ namespace InterOrbital.Player
         private void OnInventory()
         {
             OnOpenInventory();
+        }
+
+        private void OnUseItem()
+        {
+            OnUseItems();
         }
 
         private void OnDash()

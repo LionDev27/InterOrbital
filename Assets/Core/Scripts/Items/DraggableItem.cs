@@ -10,10 +10,28 @@ using System;
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
+    private Transform _rootParent;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
-    public int inventoryIndex;
-    
+    [HideInInspector] public int inventoryIndex;
+
+    private void Awake()
+    {
+        StartCoroutine(WaitForInventoryInit());
+        _rootParent = GetRootParent();
+    }
+
+    private IEnumerator WaitForInventoryInit()
+    {
+        while (PlayerComponents.Instance == null || PlayerComponents.Instance.Inventory == null)
+        {
+            yield return null;
+        }
+
+        inventoryIndex = PlayerComponents.Instance.Inventory.actualNumInventoryIndex;
+        PlayerComponents.Instance.Inventory.actualNumInventoryIndex += 1;
+    }
+
     private Transform GetRootParent()
     {
         Transform root=transform.parent;
@@ -37,7 +55,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (!PlayerComponents.Instance.Inventory.isHide)
         {
             parentAfterDrag = transform.parent;
-            transform.SetParent(GetRootParent());
+            transform.SetParent(_rootParent);
             transform.SetAsLastSibling();
             image.raycastTarget = false;
         }

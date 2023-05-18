@@ -13,14 +13,20 @@ public class CraftCreator : MonoBehaviour
     private ItemCraftScriptableObject _itemCraft;
     private int _amountToCraft;
     [SerializeField] private Button _craftButton;
+    private CraftGrid _craftGrid;
 
     public List<Image> requireImages;
     public List<TextMeshProUGUI> requireTexts;
     public Image craftResultImage;
-    public TextMeshProUGUI itemCraftDescription;
+    public TextMeshProUGUI itemCraftName;
     public GameObject gridRequires;
 
     public TextMeshProUGUI amountToCraftText;
+
+    private void Awake()
+    {
+        _craftGrid = FindObjectOfType<CraftGrid>();
+    }
 
     private void SetCraft()
     {
@@ -33,7 +39,7 @@ public class CraftCreator : MonoBehaviour
 
         UpdateAmountRequired();
         craftResultImage.sprite =_itemCraft.itemSprite;
-        itemCraftDescription.text = _itemCraft.itemDescription;
+        itemCraftName.text = _itemCraft.itemName;
     }
 
     public void UpdateAmountRequired()
@@ -119,6 +125,7 @@ public class CraftCreator : MonoBehaviour
             PlayerComponents.Instance.Inventory.RestItems(_itemCraft.itemsRequired[i].item, _itemCraft.itemsRequired[i].amountRequired);       
         }
         UpdateAmountRequired();
+        _craftGrid.UpdateFeedback();
     }
     
 
