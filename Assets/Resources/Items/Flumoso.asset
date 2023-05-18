@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4fb330c53c2d141815cf2b1af83e52, type: 3}
   m_Name: Flumoso
   m_EditorClassIdentifier: 
+  itemSprite: {fileID: -657094698, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 3
   itemName: Flumoso
   itemDescription: Elemento viscoso y pegajoso
-  itemSprite: {fileID: -657094698, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  type: 2
   isStackable: 0
   maxAmount: 0

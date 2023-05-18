@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
   m_Name: "Contenedor de Almacenamiento Peque\xF1o"
   m_EditorClassIdentifier: 
+  itemSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 4
   itemName: "Contenedor de Almacenamiento Peque\xF1o"
   itemDescription: Permite almacenar x recursos
-  itemSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  type: 1
   isStackable: 0
   maxAmount: 0
   itemsRequired:
@@ -25,4 +26,3 @@ MonoBehaviour:
     amountRequired: 1
   - item: {fileID: 11400000, guid: 1afdce13d0e74f045b079f8f52ed23ad, type: 2}
     amountRequired: 3
-  craftType: 2

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4fb330c53c2d141815cf2b1af83e52, type: 3}
   m_Name: Cofre
   m_EditorClassIdentifier: 
+  itemSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 4
   itemName: Cofre
   itemDescription: fdsafsa
-  itemSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  type: 1
   isStackable: 0
   maxAmount: 0

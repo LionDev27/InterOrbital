@@ -43,6 +43,7 @@ namespace InterOrbital.Player
         {
             base.Awake();
             InputHandler.OnOpenInventory += UpdateInventory;
+            InputHandler.OnUseItems += UseItem;
         }
 
         private void Start()
@@ -160,6 +161,22 @@ namespace InterOrbital.Player
             _textAmount[index].text = _items[index].amount.ToString();
         }
 
+        private void UseItem()
+        {
+            switch (_items[actualNumInventoryIndex].itemSo.type)
+            {
+                case TypeCraft.Build:
+                    //_items[actualNumInventoryIndex] metodo de construir
+                    break;
+                case TypeCraft.Consumable:
+                    //_items[actualNumInventoryIndex] consumir item
+                    break;
+                case TypeCraft.None:
+                    //No se puede usar item
+                    break;
+            }
+            
+        }
 
         public bool IsInventoryFull()
         {
