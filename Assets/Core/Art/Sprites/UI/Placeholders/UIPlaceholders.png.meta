@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d341a08f3dda0244fa8dfa5743c3fcf8
+guid: 92955297a2ff04b44817a8533c246280
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,59 +101,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LifeEnergyContainerPlaceholder_0
+      name: UIPlaceholders_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 400
-        width: 280
-        height: 120
+        x: 10
+        y: 152
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 65, y: 0, z: 65, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bfcc25988a97515488860bf2c95fefde
-      internalID: -1384723621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LifeEnergyContainerPlaceholder_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 558
-        height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 459227d5eb590aa4583424e1317b1396
-      internalID: 1849994328
+      spriteID: c6c2da9996381e54aa0bba310d9e3b35
+      internalID: 120627887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIPlaceholders_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 182
+        width: 100
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7d069b6e019134fb6885bdedc3309b
+      internalID: -1781188787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIPlaceholders_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 157
+        width: 70
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2c14a3ba55c7c4f902913913ce6e39
+      internalID: -1026298873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIPlaceholders_3
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 78
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6b24ec3c2f5014081c2e3bd8c16ca4
+      internalID: 1642418155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIPlaceholders_4
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 78
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d01929a499209464489bd470f0bd8ce3
+      internalID: 357802731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIPlaceholders_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 10
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b729027e4eb344ea213508907e9f08
+      internalID: -225146703
       vertices: []
       indices: 
       edges: []
@@ -169,8 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LifeEnergyContainerPlaceholder_0: -1384723621
-      LifeEnergyContainerPlaceholder_1: 1849994328
+      UIPlaceholders_0: 120627887
+      UIPlaceholders_1: -1781188787
+      UIPlaceholders_2: -1026298873
+      UIPlaceholders_3: 1642418155
+      UIPlaceholders_4: 357802731
+      UIPlaceholders_5: -225146703
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

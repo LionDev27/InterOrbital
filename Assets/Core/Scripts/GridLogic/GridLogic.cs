@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
+using UnityEditor;
+
 namespace InterOrbital.WorldSystem
 {
     public class GridLogic : MonoBehaviour
@@ -83,11 +85,11 @@ namespace InterOrbital.WorldSystem
                 FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
             }
 
-            /*for (int i = 5; i < 15 ; i++)
+            for (int i = 5; i < 15 ; i++)
             {
                 for (int j = 5; j < 15; j++)
                     _gridCells[i, j].MakeSpaceshipArea();
-            }*/
+            }
         }
 
         #endregion
@@ -189,7 +191,7 @@ namespace InterOrbital.WorldSystem
             List<Sprite> spriteList = new List<Sprite>();
 
             // Obtiene todos los sprites generados por el Sprite Editor
-            UnityEngine.Object[] spriteObjects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(UnityEditor.AssetDatabase.GetAssetPath(texture));
+            UnityEngine.Object[] spriteObjects = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(texture));
 
             // Filtra solo los objetos Sprite y agrega los sprites a la lista
             foreach (UnityEngine.Object spriteObject in spriteObjects)
@@ -202,6 +204,7 @@ namespace InterOrbital.WorldSystem
 
             return spriteList;
         }
+
 
         private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
