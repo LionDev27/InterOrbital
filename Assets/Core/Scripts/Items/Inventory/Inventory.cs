@@ -127,8 +127,6 @@ namespace InterOrbital.Player
 
         private void ScrollFastInventory()
         {
-
-            Debug.Log(InputHandler.ScrollFastInventoryValue + "." + _actualItemEquiped);
             if (isHide && InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
             {
                 _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundDefaultImage;
