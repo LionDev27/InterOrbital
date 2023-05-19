@@ -20,6 +20,8 @@ namespace InterOrbital.WorldSystem
 
         public static GridLogic Instance;
 
+        private const string TEXTURES_PATH = "Textures/";
+
         private Cell[,] _gridCells;
         private Grid _grid;
 
@@ -190,17 +192,12 @@ namespace InterOrbital.WorldSystem
         {
             List<Sprite> spriteList = new List<Sprite>();
 
+            string texturePath = TEXTURES_PATH + texture.name;
             // Obtiene todos los sprites generados por el Sprite Editor
-            UnityEngine.Object[] spriteObjects = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(texture));
+            Sprite[] sprites = Resources.LoadAll<Sprite>(texturePath); // Asigna el nombre de la textura como nombre de la carpeta de recursos
 
-            // Filtra solo los objetos Sprite y agrega los sprites a la lista
-            foreach (UnityEngine.Object spriteObject in spriteObjects)
-            {
-                if (spriteObject is Sprite)
-                {
-                    spriteList.Add((Sprite)spriteObject);
-                }
-            }
+            // Agrega los sprites a la lista
+            spriteList.AddRange(sprites);
 
             return spriteList;
         }
