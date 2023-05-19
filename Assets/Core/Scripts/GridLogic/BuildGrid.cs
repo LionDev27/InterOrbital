@@ -125,6 +125,8 @@ public class BuildGrid : MonoBehaviour
             Instantiate(itemToBuild.buildPrefab, buildPos, Quaternion.identity);
 
             GridLogic.Instance.LockCell(coords.x, coords.y);
+            PlayerComponents.Instance.Inventory.SubstractUsedItem();
+            DesactivateBuildMode();
         }
     }
 

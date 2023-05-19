@@ -123,7 +123,7 @@ public class CraftCreator : MonoBehaviour
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
-            PlayerComponents.Instance.Inventory.RestItems(_itemCraft.itemsRequired[i].item, _itemCraft.itemsRequired[i].amountRequired * _amountToCraft);       
+            PlayerComponents.Instance.Inventory.SubstractItems(_itemCraft.itemsRequired[i].item, _itemCraft.itemsRequired[i].amountRequired * _amountToCraft);       
         }
         UpdateAmountRequired();
         _craftGrid.UpdateFeedback();

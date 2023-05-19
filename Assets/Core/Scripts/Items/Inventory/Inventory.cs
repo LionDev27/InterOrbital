@@ -162,17 +162,16 @@ namespace InterOrbital.Player
 
         private void UseItem()
         {
-            Debug.Log("HOLA");
-            Debug.Log(_items[actualNumInventoryIndex].itemSo.type);
-
-            switch (_items[actualNumInventoryIndex].itemSo.type)
+            int index = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue -1;
+            
+            switch (_items[index].itemSo.type)
             {
                 case TypeCraft.Build:
 
                     if(BuildGrid.Instance.IsBuilding())
                         BuildGrid.Instance.DesactivateBuildMode();
                     else
-                        BuildGrid.Instance.ActivateBuildMode(_items[actualNumInventoryIndex].itemSo);
+                        BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
 
 
                     break;
@@ -308,7 +307,7 @@ namespace InterOrbital.Player
         }
 
 
-        public void RestItems(ItemScriptableObject item, int amount)
+        public void SubstractItems(ItemScriptableObject item, int amount)
         {
             for (int i = 0; i < _items.Length; i++)
             {
@@ -332,11 +331,29 @@ namespace InterOrbital.Player
                     }
                 }
             }
-
-          
         }
 
-        
+        public void SubstractUsedItem()
+        {
+            int i = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue - 1;
+            var auxRest = _items[i].amount - 1;
+            if (auxRest <= 0)
+            {
+                _items[i].itemSo = itemVoid;
+                _itemsSlot[i].sprite = itemVoid.itemSprite;
+                _items[i].amount = 0;
+                _textAmount[i].text = "";
+            }
+            else
+            {
+                _items[i].amount -= 1;
+                _textAmount[i].text = _items[i].amount.ToString();
+            }
+
+        }
+
+
+
     }
 }
 
