@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InterorbitalFont
+  m_Name: InterorbitalGameFont
   m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 21370cdcb41f03c4eb701269194ff6a1, type: 3}
+        m_Texture: {fileID: 2800000, guid: d4296fc8f27feb641860e28faec64f00, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
