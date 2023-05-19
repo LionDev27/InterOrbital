@@ -162,10 +162,19 @@ namespace InterOrbital.Player
 
         private void UseItem()
         {
+            Debug.Log("HOLA");
+            Debug.Log(_items[actualNumInventoryIndex].itemSo.type);
+
             switch (_items[actualNumInventoryIndex].itemSo.type)
             {
                 case TypeCraft.Build:
-                    //_items[actualNumInventoryIndex] metodo de construir
+
+                    if(BuildGrid.Instance.IsBuilding())
+                        BuildGrid.Instance.DesactivateBuildMode();
+                    else
+                        BuildGrid.Instance.ActivateBuildMode(_items[actualNumInventoryIndex].itemSo);
+
+
                     break;
                 case TypeCraft.Consumable:
                     //_items[actualNumInventoryIndex] consumir item

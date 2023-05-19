@@ -19,6 +19,7 @@ MonoBehaviour:
   type: 1
   isStackable: 0
   maxAmount: 0
+  buildPrefab: {fileID: 2758888862094030041, guid: a28d56afb4ae0e84d9d5cd48307d28e3, type: 3}
   itemsRequired:
   - item: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
     amountRequired: 1

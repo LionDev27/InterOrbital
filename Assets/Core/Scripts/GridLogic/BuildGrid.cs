@@ -11,17 +11,24 @@ public class BuildGrid : MonoBehaviour
     public Tilemap buildLayer;
     public Tilemap highlightBuildLayer;
 
-    public ItemScriptableObject itemToBuild;
+    public static BuildGrid Instance;
+
 
     private int buildRange = 10;
-
+    private ItemScriptableObject itemToBuild;
     private Vector3Int playerPos;
     private Vector3Int highlightedTilePos;
     private bool buildMode;
 
+    protected virtual void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
     private void Update()
     {
-        TestBuild();
+        //TestBuild();
         if (buildMode)
         {
             playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
@@ -36,7 +43,7 @@ public class BuildGrid : MonoBehaviour
         }
     }
 
-    private void TestBuild()
+    /*private void TestBuild()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -51,7 +58,7 @@ public class BuildGrid : MonoBehaviour
 
 
         }
-    }
+    }*/
 
     private Vector3Int GetMouseOnGridPos()
     {
@@ -112,25 +119,30 @@ public class BuildGrid : MonoBehaviour
     public void Build(Vector3 worldCoords)
     {
         Vector3Int coords = buildLayer.WorldToCell(worldCoords);
-        if (itemToBuild != null && CanBuild(coords.x,coords.y))
+        Vector3 buildPos = new Vector3(coords.x + 0.5f, coords.y + 0.5f, 0);
+        if (itemToBuild != null && itemToBuild.buildPrefab != null && CanBuild(coords.x,coords.y))
         {
-            Tile newTile = ScriptableObject.CreateInstance<Tile>();//TODO INSTANCIAR GAMEOBJECTS
-            newTile.sprite = itemToBuild.itemSprite;
-            buildLayer.SetTile(coords, newTile);
+            Instantiate(itemToBuild.buildPrefab, buildPos, Quaternion.identity);
 
             GridLogic.Instance.LockCell(coords.x, coords.y);
         }
     }
 
-    public void ActivateBuildMode()
+    public void ActivateBuildMode(ItemScriptableObject item)
     {
+        itemToBuild = item;
         buildMode = true;
     }
 
     public void DesactivateBuildMode()
     {
+        itemToBuild = null;
         buildMode = false;
         highlightBuildLayer.SetTile(highlightedTilePos, null);
     }
 
+    public bool IsBuilding()
+    {
+        return buildMode;
+    }
 }
