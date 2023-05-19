@@ -10,6 +10,7 @@ namespace InterOrbital.Item
     public class ItemCraftScriptableObject : ItemScriptableObject
     {
         public List<ItemRequired> itemsRequired;
+        public float timeToCraft;
     }
 }
 

@@ -6,6 +6,7 @@ public class DropAreaInventory : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("entroooooooooooo");
         if (!PlayerComponents.Instance.Inventory.isHide)
         {
             GameObject dropped = eventData.pointerDrag;
