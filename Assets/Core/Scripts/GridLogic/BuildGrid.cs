@@ -6,8 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class BuildGrid : MonoBehaviour
 {
-    public int width;
-    public int height;
     public Tilemap buildLayer;
     public Tilemap highlightBuildLayer;
 

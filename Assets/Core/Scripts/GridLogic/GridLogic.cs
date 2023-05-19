@@ -106,12 +106,14 @@ namespace InterOrbital.WorldSystem
                     break;
                 case FillMode.Single_All:
                     FillTilemapSingleAll(tilemap, tiles);
+                    FillTilemapBorders(tilemap);
                     GenerateMinimapTilemap(tilemap, minimapTilemap);
                     break;
                 case FillMode.Multiple_All:
                     break;
                 case FillMode.Single_Random:
                     FillTilemapSingleRandom(tilemap, tiles);
+                    FillTilemapBorders(tilemap);
                     GenerateMinimapTilemap(tilemap, minimapTilemap);
                     AddAnimatedTiles(tilemap, tiles);
                     break;
@@ -133,6 +135,46 @@ namespace InterOrbital.WorldSystem
 
                     // Asignar el sprite al Tilemap en la posición correspondiente
                     tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                }
+            }
+        }
+
+        private void FillTilemapBorders(Tilemap tilemap)
+        {
+
+            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
+
+            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            {
+                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                {
+                    // Obtener la posición de la celda en el grid
+                    Vector3Int position = new Vector3Int(x, y, 0);
+                    Vector3Int rightSideMapPos = new Vector3Int(x + width, y, 0);
+                    Vector3Int leftSideMapPos = new Vector3Int(x - width, y, 0);
+                    Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
+                    Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
+                    Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
+                    Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
+                    Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
+                    Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
+                    
+
+                   
+                    Tile tile = ScriptableObject.CreateInstance<Tile>();
+
+                        // Asigna el Sprite al Tile
+                    tile.sprite = tilemap.GetSprite(position);                     
+
+                    // Asignar el sprite al Tilemap en la posición correspondiente
+                    tilemap.SetTile(rightSideMapPos, tile);
+                    tilemap.SetTile(leftSideMapPos, tile);
+                    tilemap.SetTile(topSideMapPos, tile);
+                    tilemap.SetTile(botSideMapPos, tile);
+                    tilemap.SetTile(botLeftSideMapPos, tile);
+                    tilemap.SetTile(botRightSideMapPos, tile);
+                    tilemap.SetTile(topLeftSideMapPos, tile);
+                    tilemap.SetTile(topRightSideMapPos, tile);
                 }
             }
         }
@@ -209,9 +251,9 @@ namespace InterOrbital.WorldSystem
             List<Sprite> spriteList = new List<Sprite>();
             int lastBiomeIndex = -1;
 
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            for (int x = -Mathf.RoundToInt(_grid.cellSize.x) * width; x < Mathf.RoundToInt(_grid.cellSize.x) * width*2; x++)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                for (int y = -Mathf.RoundToInt(_grid.cellSize.y) * height; y < Mathf.RoundToInt(_grid.cellSize.y) * height*2; y++)
                 {
                     Vector3Int position = new Vector3Int(x, y, 0);
 

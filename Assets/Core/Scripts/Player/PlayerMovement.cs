@@ -1,3 +1,4 @@
+using InterOrbital.WorldSystem;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -12,9 +13,15 @@ namespace InterOrbital.Player
         [HideInInspector]
         public bool canMove = true;
 
+        private void Start()
+        {
+            transform.position = new Vector3(GridLogic.Instance.width/2 + 0.5f, GridLogic.Instance.height/2 + 0.5f, 0f);
+        }
+
         private void Update()
         {
             HandleAnimations();
+            HandleMapBorders();
         }
 
         private void FixedUpdate()
@@ -50,6 +57,32 @@ namespace InterOrbital.Player
                 _helmetAnimationTimer = 0;
                 //Giramos el sprite seg�n la direcci�n de movimiento
                 // PlayerSprite.flipX = InputHandler.MoveDirection.x < 0;
+            }
+        }
+
+        private void HandleMapBorders()
+        {
+            float widthBorder = GridLogic.Instance.width;
+            float heightBorder = GridLogic.Instance.height;
+            Vector3 playerPos = transform.position;
+
+            if(playerPos.x >= widthBorder) 
+            {
+                transform.position = new Vector3(0, playerPos.y, 0);
+            }
+            if (playerPos.y >= heightBorder)
+            {
+                transform.position = new Vector3(playerPos.x, 0, 0);
+
+            }
+            if (playerPos.x <= 0)
+            {
+                transform.position = new Vector3(widthBorder, playerPos.y, 0);
+
+            }
+            if (playerPos.y <= 0)
+            {
+                transform.position = new Vector3(playerPos.x, heightBorder, 0);
             }
         }
     }
