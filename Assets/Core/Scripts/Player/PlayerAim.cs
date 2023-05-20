@@ -69,5 +69,10 @@ namespace InterOrbital.Player
             _aimDir = cursorPos - transform.position;
             _aimDir.Normalize();
         }
+
+        public Vector2 AimDir()
+        {
+            return (PlayerAttack.attackPoint.position - transform.position).normalized;
+        }
     }
 }

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    dropRates: 19000000190000001900000019000000
+    - {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+    - {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
+    itemSelectors:
+    - itemName: Saporo
+    - itemName: Flumoso
+    dropRates: 5000000014000000

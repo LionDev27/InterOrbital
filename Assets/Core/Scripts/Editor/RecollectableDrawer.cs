@@ -12,19 +12,25 @@ namespace InterOrbital.EditorTools
         {
             var itemsProperty = property.FindPropertyRelative("dropItems");
             var ratesProperty = property.FindPropertyRelative("dropRates");
+            var itemSelectors = property.FindPropertyRelative("itemSelectors");
 
             EditorGUI.BeginProperty(position, label, property);
-
-            //Añadir y eliminar items.
 
             if (GUILayout.Button("Add Drop Item"))
             {
                 itemsProperty.InsertArrayElementAtIndex(0);
                 ratesProperty.InsertArrayElementAtIndex(0);
-                //Poner todos los rates a 0.
-                //Hacer selector de items.
+                itemSelectors.InsertArrayElementAtIndex(0);
+                SetArrayPropertyValues(ratesProperty, 0);
             }
 
+            EditorGUILayout.BeginHorizontal();
+            
+            EditorGUILayout.LabelField("Drop Items");
+            EditorGUILayout.LabelField("Drop Rate");
+            
+            EditorGUILayout.EndHorizontal();
+            
             EditorGUILayout.BeginHorizontal();
 
             EditorGUILayout.BeginVertical();
@@ -33,8 +39,11 @@ namespace InterOrbital.EditorTools
 
             for (int i = 0; i < size; i++)
             {
-                var item = itemsProperty.GetArrayElementAtIndex(i);
-                EditorGUILayout.PropertyField(item);
+                SerializedProperty itemSelector = itemSelectors.GetArrayElementAtIndex(i);
+                EditorGUILayout.PropertyField(itemSelector);
+                string selectedItemName = itemSelector.FindPropertyRelative("itemName").stringValue;
+                var item = Resources.Load("DropItems/" + selectedItemName);
+                itemsProperty.GetArrayElementAtIndex(i).objectReferenceValue = item;
             }
 
             EditorGUILayout.EndVertical();
@@ -49,16 +58,15 @@ namespace InterOrbital.EditorTools
                 {
                     rate.intValue = newValue;
 
-                    int sum = CalculateRateSum(ratesProperty);
-                    while (sum > 100)
+                    int sum = CalculateArrayPropertySum(ratesProperty);
+                    if (sum > 100)
                     {
                         int equalValue = sum / ratesProperty.arraySize;
-                        foreach (SerializedProperty r in ratesProperty)
+                        while (equalValue * ratesProperty.arraySize > 100)
                         {
-                            r.intValue = equalValue;
+                            equalValue--;
                         }
-                        
-                        sum = CalculateRateSum(ratesProperty);
+                        SetArrayPropertyValues(ratesProperty, equalValue);
                     }
                 }
 
@@ -67,17 +75,6 @@ namespace InterOrbital.EditorTools
                     rate.intValue = 0;
                 }
             }
-
-
-            // if (sum > 100)
-            // {
-            //     int diffPerElement = diff / ratesProperty.arraySize;
-            //     for (int i = 0; i < ratesProperty.arraySize; i++)
-            //     {
-            //         var rate = ratesProperty.GetArrayElementAtIndex(i);
-            //         rate.intValue -= diffPerElement;
-            //     }
-            // }
 
             EditorGUILayout.EndVertical();
 
@@ -89,23 +86,34 @@ namespace InterOrbital.EditorTools
                 {
                     itemsProperty.DeleteArrayElementAtIndex(i);
                     ratesProperty.DeleteArrayElementAtIndex(i);
+                    itemSelectors.DeleteArrayElementAtIndex(i);
                 }
             }
 
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.HelpBox("Si el conjunto de DropRate supera 100, se igualará el valor de todos.", MessageType.Info);
 
             property.serializedObject.ApplyModifiedProperties();
 
             EditorGUI.EndProperty();
         }
 
-        private int CalculateRateSum(SerializedProperty ratesArray)
+        private void SetArrayPropertyValues(SerializedProperty array, int newValue)
+        {
+            foreach (SerializedProperty r in array)
+            {
+                r.intValue = newValue;
+            }
+        }
+        
+        private int CalculateArrayPropertySum(SerializedProperty array)
         {
             int sum = 0;
 
-            foreach (SerializedProperty rate in ratesArray)
+            foreach (SerializedProperty rate in array)
             {
                 sum += rate.intValue;
             }

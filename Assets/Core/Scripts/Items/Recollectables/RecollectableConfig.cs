@@ -9,6 +9,7 @@ namespace InterOrbital.Recollectables
     public class RecollectableConfig
     {
         public List<ItemScriptableObject> dropItems;
+        public List<ItemSelector> itemSelectors;
         public List<int> dropRates;
     }
 }
