@@ -1418,6 +1418,14 @@ PrefabInstance:
       propertyPath: gridRightPocket
       value: 
       objectReference: {fileID: 818229863}
+    - target: {fileID: 3227855540391739932, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: _dashTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227855540391739932, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: _dashInvulnerabilityExtraTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player

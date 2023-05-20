@@ -43,11 +43,6 @@ namespace InterOrbital.Player
 
         private void HandleSprites()
         {
-            //Rotacion del sprite del jugador.
-            if (_aimDir.x > 0)
-                PlayerSprite.flipX = false;
-            else
-                PlayerSprite.flipX = true;
             //Rotacion de la pistola.
             _gunSpriteT.transform.localPosition = _aimDir * _gunSpriteOffset;
             var lookAtPos = PlayerAttack.attackPoint.localPosition;
@@ -61,6 +56,12 @@ namespace InterOrbital.Player
                 _gunSprite.flipX = true;
                 _gunSpriteT.right = -lookAtPos - _gunSpriteT.localPosition;
             }
+            //Rotacion del sprite del jugador.
+            if (PlayerDash.IsDashing()) return;
+            if (_aimDir.x > 0)
+                PlayerSprite.flipX = false;
+            else
+                PlayerSprite.flipX = true;
         }
 
         private void CheckInput()
