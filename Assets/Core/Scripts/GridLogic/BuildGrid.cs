@@ -126,7 +126,8 @@ public class BuildGrid : MonoBehaviour
 
             GridLogic.Instance.LockCell(coords.x, coords.y);
             PlayerComponents.Instance.Inventory.SubstractUsedItem();
-            DesactivateBuildMode();
+            if(!PlayerComponents.Instance.Inventory.CanUseMore())
+                DesactivateBuildMode();
         }
     }
 

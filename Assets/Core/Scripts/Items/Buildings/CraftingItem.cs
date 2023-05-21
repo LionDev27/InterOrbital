@@ -4,6 +4,8 @@ using InterOrbital.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections;
+using InterOrbital.Player;
 
 namespace InterOrbital.Item
 {
@@ -12,11 +14,13 @@ namespace InterOrbital.Item
         private GameObject _craftUI;
         private CraftGrid _craftGrid;
         private CraftCreator _craftCreator;
-        [SerializeField] private Image itemCraftImage;
-        [SerializeField] private Image progressBar;
+        [SerializeField] private Image _itemCraftImage;
+        [SerializeField] private Image _progressBar;
+        [SerializeField] private GameObject _craftContent;
+        [SerializeField] private Transform dropPosition;
         [HideInInspector]
         public ItemCraftScriptableObject currentCraftSelected;
-
+        
 
         private void Start()
         {
@@ -48,11 +52,33 @@ namespace InterOrbital.Item
             }
         }
 
-        public void CreateItem(ItemCraftScriptableObject itemCraft, int amount)
+        public void Craft(ItemCraftScriptableObject itemCraft, int amount)
         {
-            itemCraftImage.sprite = itemCraft.itemSprite;
-            progressBar.fillAmount = 0;
-            progressBar.DOFillAmount(1f, itemCraft.timeToCraft).SetEase(Ease.Linear);
+            StartCoroutine(CreateItem(itemCraft, amount));
+        }
+
+        public IEnumerator CreateItem(ItemCraftScriptableObject itemCraft, int amount)
+        {
+            _itemCraftImage.sprite = itemCraft.itemSprite;
+            int i = 0;
+            _craftContent.SetActive(true);
+            while (i < amount)
+            {
+                _progressBar.fillAmount = 0;
+                _progressBar.DOFillAmount(1f, itemCraft.timeToCraft).SetEase(Ease.Linear).OnComplete(() =>
+                { 
+                    PlayerComponents.Instance.Inventory.DropItem(dropPosition.position,transform.position, -1, itemCraft);  
+                }); ;
+                
+                yield return new WaitUntil(() => _progressBar.fillAmount == 1);
+                i++;
+
+            }
+            
+            _craftContent.SetActive(false);
+
+           
+            
             
         }
     }

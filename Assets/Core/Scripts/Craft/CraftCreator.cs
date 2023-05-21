@@ -127,7 +127,7 @@ public class CraftCreator : MonoBehaviour
         }
         UpdateAmountRequired();
         _craftGrid.UpdateFeedback();
-        _craftingItem.CreateItem(_itemCraft, _amountToCraft);
+        _craftingItem.Craft(_itemCraft, _amountToCraft);
     }
 
     public void SetCraftingItem(CraftingItem craftingItem)

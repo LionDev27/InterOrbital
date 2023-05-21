@@ -105,15 +105,15 @@ namespace InterOrbital.Player
             }
             if (Input.GetKeyDown(KeyCode.P))
             {
-                DropItem(-1,itemTest);
+                DropItem(PlayerAttack.attackPoint.position, transform.position, -1,itemTest);
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                DropItem(-1, itemTest2);
+                DropItem(PlayerAttack.attackPoint.position, transform.position, -1, itemTest2);
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
-                DropItem(-1, itemTest3);
+                DropItem(PlayerAttack.attackPoint.position, transform.position, -1, itemTest3);
             }
 
             Vector3 direction = PlayerAttack.attackPoint.position - transform.position;
@@ -127,6 +127,9 @@ namespace InterOrbital.Player
         {
             if (isHide && InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
             {
+                if (BuildGrid.Instance.IsBuilding())
+                    BuildGrid.Instance.DesactivateBuildMode();
+
                 _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundDefaultImage;
                 _actualItemEquiped = InputHandler.ScrollFastInventoryValue;
                 _itemsSlotBackGround[_actualItemEquiped -1].sprite = _backgroundSelectedImage;
@@ -162,18 +165,15 @@ namespace InterOrbital.Player
 
         private void UseItem()
         {
-            int index = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue -1;
+            int index = Instance.InputHandler.ScrollFastInventoryValue -1;
             
             switch (_items[index].itemSo.type)
             {
                 case TypeCraft.Build:
-
                     if(BuildGrid.Instance.IsBuilding())
                         BuildGrid.Instance.DesactivateBuildMode();
                     else
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
-
-
                     break;
                 case TypeCraft.Consumable:
                     //_items[actualNumInventoryIndex] consumir item
@@ -183,6 +183,12 @@ namespace InterOrbital.Player
                     break;
             }
             
+        }
+
+
+        public bool CanUseMore()
+        {
+            return _items[Instance.InputHandler.ScrollFastInventoryValue - 1].amount >= 1;
         }
 
         public bool IsInventoryFull()
@@ -198,7 +204,6 @@ namespace InterOrbital.Player
                     return false;
                 }
             }
-
             return true;
         }
 
@@ -239,7 +244,7 @@ namespace InterOrbital.Player
             }
 
             //Si llegamos aqui, es porque falta espacio para meter el resto de un item.
-            DropItem(-1, item.itemSo);
+            DropItem(PlayerAttack.attackPoint.position, transform.position,- 1, item.itemSo);
            
         }
 
@@ -252,9 +257,9 @@ namespace InterOrbital.Player
             
         }
 
-        public void DropItem(int index=-1, ItemScriptableObject item=null)
+        public void DropItem(Vector3 spawnPosition, Vector3 droperPosition, int index=-1, ItemScriptableObject item=null)
         {   
-            GameObject p = Instantiate(dropItemPrefab, PlayerAttack.attackPoint.position, Quaternion.identity);
+            GameObject p = Instantiate(dropItemPrefab, spawnPosition, Quaternion.identity);
             ItemObject auxItem = p.GetComponent<ItemObject>();
             auxItem.ObtainComponents();
             if (index >= 0)
@@ -268,8 +273,8 @@ namespace InterOrbital.Player
                 
             }
             
-            Vector3 direction = PlayerAttack.attackPoint.position - transform.position;
-            auxItem.DropItem((direction.normalized * dropForce) + PlayerAttack.attackPoint.position);
+            Vector3 direction = spawnPosition - droperPosition;
+            auxItem.DropItem((direction.normalized * dropForce) + spawnPosition);
           
             if(index >= 0)
             {
@@ -335,7 +340,7 @@ namespace InterOrbital.Player
 
         public void SubstractUsedItem()
         {
-            int i = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue - 1;
+            int i = Instance.InputHandler.ScrollFastInventoryValue - 1;
             var auxRest = _items[i].amount - 1;
             if (auxRest <= 0)
             {
