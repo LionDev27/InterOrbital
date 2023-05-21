@@ -1,3 +1,4 @@
+using Cinemachine;
 using InterOrbital.WorldSystem;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace InterOrbital.Player
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _timeForHelmetAnimation;
         private float _helmetAnimationTimer;
+
+        [SerializeField] private CinemachineVirtualCamera followCamera;
+
 
         [HideInInspector]
         public bool canMove = true;
@@ -65,24 +69,36 @@ namespace InterOrbital.Player
             float widthBorder = GridLogic.Instance.width;
             float heightBorder = GridLogic.Instance.height;
             Vector3 playerPos = transform.position;
+            Vector3 originalOffset = followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset;
+            float originalGroupFramingSize =followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_GroupFramingSize;
 
-            if(playerPos.x >= widthBorder) 
+            if (playerPos.x >= widthBorder + 0.01f) 
             {
                 transform.position = new Vector3(0, playerPos.y, 0);
+                followCamera.OnTargetObjectWarped(transform, transform.position - followCamera.transform.position);
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = originalOffset;
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_GroupFramingSize = originalGroupFramingSize;
             }
-            if (playerPos.y >= heightBorder)
+            if (playerPos.y >= heightBorder + 0.01f)
             {
                 transform.position = new Vector3(playerPos.x, 0, 0);
-
+                followCamera.OnTargetObjectWarped(transform, transform.position - followCamera.transform.position);
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = originalOffset;
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_GroupFramingSize = originalGroupFramingSize;
             }
-            if (playerPos.x <= 0)
+            if (playerPos.x <= -0.01f)
             {
                 transform.position = new Vector3(widthBorder, playerPos.y, 0);
-
+                followCamera.OnTargetObjectWarped(transform, transform.position - followCamera.transform.position);
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = originalOffset;
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_GroupFramingSize = originalGroupFramingSize;
             }
-            if (playerPos.y <= 0)
+            if (playerPos.y <= -0.01f)
             {
                 transform.position = new Vector3(playerPos.x, heightBorder, 0);
+                followCamera.OnTargetObjectWarped(transform, transform.position - followCamera.transform.position);
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = originalOffset;
+                followCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_GroupFramingSize = originalGroupFramingSize;
             }
         }
     }

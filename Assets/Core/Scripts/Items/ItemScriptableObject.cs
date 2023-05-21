@@ -16,7 +16,7 @@ namespace InterOrbital.Item
         public int maxAmount;
         public GameObject buildPrefab;
     }
-
+#if UNITY_EDITOR
     [CustomEditor(typeof(ItemScriptableObject))]
     public class ItemScriptableObjectEditor : Editor
     {
@@ -33,8 +33,12 @@ namespace InterOrbital.Item
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("itemDescription"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("isStackable"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
 
+
+                if (scriptableObject.isStackable)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
+                }
 
                 if (scriptableObject.type == TypeCraft.Build)
                 {
@@ -45,4 +49,5 @@ namespace InterOrbital.Item
             }
         }
     }
+#endif
 }

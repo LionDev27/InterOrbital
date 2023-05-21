@@ -3663,8 +3663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd515524618c934bbc1926a823145df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
   buildLayer: {fileID: 1638911909}
   highlightBuildLayer: {fileID: 436389419}
 --- !u!114 &684009588
@@ -3688,6 +3686,7 @@ MonoBehaviour:
   - name: Background
     tilemap: {fileID: 519405588}
     minimapTilemap: {fileID: 961331178}
+    minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
@@ -3696,11 +3695,12 @@ MonoBehaviour:
   - name: Grass
     tilemap: {fileID: 1778616033}
     minimapTilemap: {fileID: 1391537720}
+    minimapSprite: {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: d08d286e8099b604ca3f1f1c66ca317c, type: 2}
       animationTiles: {fileID: 11400000, guid: 34d0c3191d1358f4eb24882470a62b83, type: 2}
-    fillMode: 3
+    fillMode: 2
 --- !u!156049354 &684009589
 Grid:
   m_ObjectHideFlags: 0
@@ -7292,6 +7292,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3227855542068895829, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1882052288}
+    - target: {fileID: 3227855542068895829, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: followCamera
+      value: 
+      objectReference: {fileID: 1882052288}
     - target: {fileID: 3227855542068895830, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -46,6 +46,7 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
     - {fileID: 2800000, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    - {fileID: 2800000, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -125,6 +126,8 @@ SpriteAtlas:
   - {fileID: -959484437008993402, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   - {fileID: 7554448661391436254, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
   - {fileID: -6979864649369840017, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
+  - {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+  - {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
   m_PackedSpriteNamesToIndex:
   - GrassCoreAnim2-0
   - GrassCoreAnim2-1
@@ -200,6 +203,8 @@ SpriteAtlas:
   - GrassSpritesheet-08_core_empty
   - GrassSpritesheet-24_intersection
   - GrassSpritesheet-13_se_elbow
+  - MinimapGrassSprite
+  - MinimapBackgroundSprite
   m_RenderDataMap: {}
   m_Tag: GrassAtlas
   m_IsVariant: 0

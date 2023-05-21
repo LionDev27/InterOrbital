@@ -28,6 +28,7 @@ namespace InterOrbital.Utils
         public string name;
         public Tilemap tilemap;
         public Tilemap minimapTilemap;
+        public Sprite minimapSprite;
         public List<BiomeRuleTile> biomesTiles;
         public FillMode fillMode;
     }

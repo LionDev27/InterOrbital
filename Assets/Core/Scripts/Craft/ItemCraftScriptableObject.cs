@@ -12,7 +12,7 @@ namespace InterOrbital.Item
     {
         public List<ItemRequired> itemsRequired;
     }
-
+#if UNITY_EDITOR
     [CustomEditor(typeof(ItemCraftScriptableObject))]
     public class ItemCraftScriptableObjectEditor : Editor
     {
@@ -29,8 +29,11 @@ namespace InterOrbital.Item
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("itemDescription"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("isStackable"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
 
+                if (scriptableObject.isStackable)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
+                }
 
                 if (scriptableObject.type == TypeCraft.Build)
                 {
@@ -41,6 +44,7 @@ namespace InterOrbital.Item
             }
         }
     }
+#endif
 }
 
 
