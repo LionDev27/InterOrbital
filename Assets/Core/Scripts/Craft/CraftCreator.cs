@@ -13,6 +13,7 @@ public class CraftCreator : MonoBehaviour
     private ItemCraftScriptableObject _itemCraft;
     private int _amountToCraft;
     [SerializeField] private Button _craftButton;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
     private CraftGrid _craftGrid;
     private CraftingItem _craftingItem;
 
@@ -29,6 +30,7 @@ public class CraftCreator : MonoBehaviour
         _craftGrid = FindObjectOfType<CraftGrid>();
     }
 
+
     private void SetCraft()
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
@@ -41,6 +43,7 @@ public class CraftCreator : MonoBehaviour
         UpdateAmountRequired();
         craftResultImage.sprite =_itemCraft.itemSprite;
         itemCraftName.text = _itemCraft.itemName;
+        _descriptionText.text = _itemCraft.itemDescription;
     }
 
     public void UpdateAmountRequired()

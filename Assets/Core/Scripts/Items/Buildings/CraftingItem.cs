@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
 using InterOrbital.Player;
+using TMPro;
+using System.Collections.Generic;
 
 namespace InterOrbital.Item
 {
@@ -14,12 +16,18 @@ namespace InterOrbital.Item
         private GameObject _craftUI;
         private CraftGrid _craftGrid;
         private CraftCreator _craftCreator;
+        private Queue<CraftAmountItem> _queueCraft;
+        private bool _isCrafting;
         [SerializeField] private Image _itemCraftImage;
         [SerializeField] private Image _progressBar;
+        [SerializeField] private TextMeshProUGUI _textAmount;
         [SerializeField] private GameObject _craftContent;
         [SerializeField] private Transform dropPosition;
+
         [HideInInspector]
         public ItemCraftScriptableObject currentCraftSelected;
+        
+
         
 
         private void Start()
@@ -27,6 +35,7 @@ namespace InterOrbital.Item
             _craftUI = UIManager.Instance.craftUI;
             _craftGrid = _craftUI.GetComponentInChildren<CraftGrid>();
             _craftCreator = _craftUI.GetComponentInChildren<CraftCreator>();
+            _queueCraft = new Queue<CraftAmountItem>();
         }
 
         public void Interact()
@@ -54,32 +63,40 @@ namespace InterOrbital.Item
 
         public void Craft(ItemCraftScriptableObject itemCraft, int amount)
         {
-            StartCoroutine(CreateItem(itemCraft, amount));
+            _queueCraft.Enqueue(new CraftAmountItem(itemCraft, amount));
+            if (!_isCrafting)
+            {
+                StartCoroutine(CreateItem());
+            }
         }
 
-        public IEnumerator CreateItem(ItemCraftScriptableObject itemCraft, int amount)
+        public IEnumerator CreateItem()
         {
-            _itemCraftImage.sprite = itemCraft.itemSprite;
-            int i = 0;
             _craftContent.SetActive(true);
-            while (i < amount)
-            {
-                _progressBar.fillAmount = 0;
-                _progressBar.DOFillAmount(1f, itemCraft.timeToCraft).SetEase(Ease.Linear).OnComplete(() =>
-                { 
-                    PlayerComponents.Instance.Inventory.DropItem(dropPosition.position,transform.position, -1, itemCraft);  
-                }); ;
-                
-                yield return new WaitUntil(() => _progressBar.fillAmount == 1);
-                i++;
+            _isCrafting = true;
 
+            while(_queueCraft.Count > 0)
+            {
+                CraftAmountItem craftItem = _queueCraft.Dequeue();
+                _itemCraftImage.sprite = craftItem.item.itemSprite;
+                int i = 0;
+                while (i < craftItem.amount)
+                {
+                    _textAmount.text = "x" + (craftItem.amount - i).ToString();
+                    _progressBar.fillAmount = 0;
+                    _progressBar.DOFillAmount(1f, craftItem.item.timeToCraft).SetEase(Ease.Linear).OnComplete(() =>
+                    {
+                        PlayerComponents.Instance.Inventory.DropItem(dropPosition.position, transform.position, -1, craftItem.item);
+                    }); ;
+
+                    yield return new WaitUntil(() => _progressBar.fillAmount == 1);
+                    i++;
+
+                }
             }
             
             _craftContent.SetActive(false);
-
-           
-            
-            
+            _isCrafting = false;
         }
     }
 }
