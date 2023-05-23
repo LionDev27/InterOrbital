@@ -17,7 +17,7 @@ namespace InterOrbital.Item
         public GameObject buildPrefab;
     }
 #if UNITY_EDITOR
-    [CustomEditor(typeof(ItemScriptableObject))]
+    [CustomEditor(typeof(ItemScriptableObject),true)]
     public class ItemScriptableObjectEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -25,26 +25,27 @@ namespace InterOrbital.Item
             if (serializedObject != null)
             {
                 serializedObject.Update();
-
                 ItemScriptableObject scriptableObject = (ItemScriptableObject)target;
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("itemSprite"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("id"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("itemName"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("itemDescription"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("isStackable"));
-
-
-                if (scriptableObject.isStackable)
+                if (scriptableObject != null)
                 {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
-                }
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("itemSprite"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("id"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("itemName"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("itemDescription"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("isStackable"));
 
-                if (scriptableObject.type == TypeCraft.Build)
-                {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("buildPrefab"));
-                }
 
+                    if (scriptableObject.isStackable)
+                    {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
+                    }
+
+                    if (scriptableObject.type == TypeCraft.Build)
+                    {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("buildPrefab"));
+                    }
+                }
                 serializedObject.ApplyModifiedProperties();
             }
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using InterOrbital.Player;
@@ -10,6 +8,8 @@ namespace InterOrbital.UI
     {
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
+        [SerializeField] private EnergyUIController _energyUIController;
+
         public static UIManager Instance = null;
 
         public GameObject bagUI;
@@ -70,6 +70,13 @@ namespace InterOrbital.UI
                 }
             }
         }
+
+        public void UpdateEnergyUI(int maxEnergy,int currentEnergy)
+        {
+            _energyUIController.UpdateEnergy(maxEnergy, currentEnergy);
+        }
+
+
     }
 }
 
