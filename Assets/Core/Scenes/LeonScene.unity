@@ -1406,6 +1406,14 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: 181875675}
+    - target: {fileID: 331055969, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: _recollectionRange
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 331055969, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: _recollectionWidth
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 446727633, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridMain
       value: 
