@@ -21,13 +21,30 @@ public class ChestInventory : Inventory
    
     public void SetChest(ChestInventory chestAux)
     {
-        _itemsSlot = chestAux._itemsSlot;
-        _itemsSlotBackGround = chestAux._itemsSlotBackGround;
-        _textAmount = chestAux._textAmount;
 
     }
 
-   
+    public void SetInventory()
+    {
+       
+        _itemsSlot = new Image[_totalNumberOfSlots];
+        _itemsSlotBackGround = new Image[_totalNumberOfSlots];
+        _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
+
+        for(int i=0; i < _totalNumberOfSlots; i++)
+        {
+            GameObject invSlot = Instantiate(_inventorySlot);
+            invSlot.transform.SetParent(_gridChest.transform);
+           
+            _itemsSlot[i] = invSlot.transform.GetChild(0).GetComponent<Image>();
+            _itemsSlotBackGround[i] = invSlot.transform.GetComponent<Image>();
+            invSlot.transform.GetChild(0).GetComponent<DraggableItem>().inventoryIndex = i;
+            _textAmount[i] = invSlot.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+            
+        }
+
+        _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
+    }
 
 
 
