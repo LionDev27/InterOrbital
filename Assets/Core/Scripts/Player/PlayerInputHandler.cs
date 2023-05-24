@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using InterOrbital.UI;
 
 namespace InterOrbital.Player
 {
@@ -15,7 +16,6 @@ namespace InterOrbital.Player
         public int ScrollFastInventoryValue { get; private set; }
         //Para los botones, ejecutaremos un Action que asignaremos en otro script.
         public Action OnAttack;
-        public Action OnOpenInventory;
         public Action OnUseItems;
 
         public Action OnOpenCraft;
@@ -79,12 +79,13 @@ namespace InterOrbital.Player
         
         private void OnInventory()
         {
-            OnOpenInventory();
+            if (!UIManager.Instance.isChestOpen)
+                UIManager.Instance.OpenInventory(false);
         }
 
         private void OnUseItem()
         {
-            OnUseItems();
+            PlayerComponents.Instance.Inventory.UseItem();
         }
 
         private void OnDash()

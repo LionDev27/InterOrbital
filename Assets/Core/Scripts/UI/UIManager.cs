@@ -12,6 +12,7 @@ namespace InterOrbital.UI
         private Tween _openInventory;
         private bool _somethingOpen;
         public static UIManager Instance = null;
+        [HideInInspector] public bool isChestOpen;
 
         public GameObject bagUI;
         public GameObject craftUI;
@@ -43,15 +44,26 @@ namespace InterOrbital.UI
                 _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
+            
            
         }
 
-        public void OpenInventory()
+        public void OpenInventory(bool openChest)
         {
             if(PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
             {
                 if (!_openInventory.IsActive())
                 {
+                    if (openChest)
+                    {
+                        storageUI.SetActive(true);
+                        isChestOpen = true;
+                    }
+                    else
+                    {
+                        storageUI.SetActive(false);
+                        isChestOpen = false;
+                    }
                     _somethingOpen = true;
                     PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
@@ -71,6 +83,11 @@ namespace InterOrbital.UI
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = true;
+                        if (openChest)
+                        {
+                            storageUI.SetActive(false);
+                            isChestOpen = false;
+                        }
                     });
                 }
             }

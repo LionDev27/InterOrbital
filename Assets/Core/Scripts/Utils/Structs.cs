@@ -52,4 +52,5 @@ namespace InterOrbital.Utils
             this.amount = amount;
         }
     }
+
 }
