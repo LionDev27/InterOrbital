@@ -73,7 +73,7 @@ namespace InterOrbital.UI
 
         public void UpdateEnergyUI(int maxEnergy,int currentEnergy)
         {
-            _energyUIController.UpdateEnergy(maxEnergy, currentEnergy);
+            _energyUIController.GetEnergyTierBarsUIController().UpdateEnergy(maxEnergy,currentEnergy);
         }
 
 

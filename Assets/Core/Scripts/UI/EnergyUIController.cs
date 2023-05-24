@@ -1,45 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnergyUIController : MonoBehaviour
 {
-    [SerializeField] private List<Image> energyBars = new List<Image>();
+    [SerializeField] List<GameObject> energyPrefabs;
+    private int energyTier = 0;
 
-    public void UpdateEnergy(int maxEnergy, int currentEnergy)
+    private void Start()
     {
-        int energyPerBar = maxEnergy / energyBars.Count;
-        int filledBars = currentEnergy / energyPerBar;
+        energyPrefabs[energyTier].SetActive(true);
+    }
 
-        for (int i = 0; i < energyBars.Count; i++)
-        {
-            Image energyBarImg = energyBars[i];
-
-            // Verifica si la barra actual debe estar llena o vacía
-            if (i < filledBars)
-            {
-                // La barra está llena
-                SetBarFillAmount(energyBarImg, 1f);
-            }
-            else if (i == filledBars)
-            {
-                // La barra actual está parcialmente llena
-                float fillAmount = (float)(currentEnergy % energyPerBar) / energyPerBar;
-                SetBarFillAmount(energyBarImg, fillAmount);
-            }
-            else
-            {
-                // La barra está vacía
-                SetBarFillAmount(energyBarImg, 0f);
-            }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.H)) {
+            UpgradeEnergyTier();
         }
     }
 
-    private void SetBarFillAmount(Image barImage, float fillAmount)
+    private void ActiveEnergyBarTier()
     {
-        barImage.fillAmount = fillAmount;
+        if(energyPrefabs[energyTier] != null)
+        {
+            energyPrefabs[energyTier].SetActive(true);
+        }
     }
 
+    private void DesactiveEnergyBarTier()
+    {
+        if (energyPrefabs[energyTier] != null)
+        {
+            energyPrefabs[energyTier].SetActive(false);
+        }
+    }
+
+    private void UpgradeEnergyTier()
+    {
+        if (energyTier + 1 < energyPrefabs.Count)
+        {
+            DesactiveEnergyBarTier();
+            energyTier = Mathf.Clamp(energyTier + 1, 0, energyPrefabs.Count);
+            ActiveEnergyBarTier();
+        }
+    }
+
+    public EnergyBarsUIController GetEnergyTierBarsUIController()
+    {
+        if (energyPrefabs[energyTier] != null)
+        {
+            return energyPrefabs[energyTier].GetComponent<EnergyBarsUIController>();
+        }
+        return null;
+    }
 }

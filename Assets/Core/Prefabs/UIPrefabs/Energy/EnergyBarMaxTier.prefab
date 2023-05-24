@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 8970466988644914707}
   - component: {fileID: -1472722382442385634}
   m_Layer: 5
-  m_Name: Energy
+  m_Name: EnergyBarMaxTier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,6 +631,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1f2dc45c49d18488a0b689ce9cef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyBars:
+  - {fileID: 8970466989222720741}
+  - {fileID: 8970466988668535745}
+  - {fileID: 8970466988253773323}
+  - {fileID: 8970466988038836343}
+  - {fileID: 8970466987970437990}
+  - {fileID: 8970466989174918971}
+  - {fileID: 8970466987421585665}
+  - {fileID: 8970466987972496304}
+  - {fileID: 8970466988527678500}
 --- !u!1 &8970466988668535747
 GameObject:
   m_ObjectHideFlags: 0
