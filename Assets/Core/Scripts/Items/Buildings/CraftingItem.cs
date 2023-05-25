@@ -20,7 +20,6 @@ namespace InterOrbital.Item
 
         public void Interact()
         {
-            Debug.Log("Interacting");
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
             if (_craftUI.activeSelf)
             {

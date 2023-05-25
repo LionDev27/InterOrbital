@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a5727820020dc488300c078977ce05, type: 3}
+  m_Name: GrassTileAnimationList
+  m_EditorClassIdentifier: 
+  textureToChangeRuleTile: {fileID: 2800000, guid: c6333b696ccddab4a8afdc94c3a20676, type: 3}
+  spriteToAnimatedTiles:
+  - sprite: {fileID: -1684324842, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    animatedTile: {fileID: 11400000, guid: 97f259a9874b4174e94d0f9215a4c9d0, type: 2}
+  - sprite: {fileID: 721851608, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    animatedTile: {fileID: 11400000, guid: 80168d5c80815ca4daa2de8f76a4f231, type: 2}
+  - sprite: {fileID: 1625660803, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    animatedTile: {fileID: 11400000, guid: e8996ed8e144e794ba6c71692664d8ea, type: 2}
+  - sprite: {fileID: 2134723516, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    animatedTile: {fileID: 11400000, guid: 02f234ddbbb5a864c844621bbab4700d, type: 2}
+  - sprite: {fileID: 915311226, guid: f36cf375673eaa54d9afc3733f3b2cb2, type: 3}
+    animatedTile: {fileID: 11400000, guid: 2abb86eadf629f24f9c2f31d539768f2, type: 2}

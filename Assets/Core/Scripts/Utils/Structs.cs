@@ -19,6 +19,7 @@ namespace InterOrbital.Utils
     {
         public string biome;
         public RuleTile tiles;
+        public TileAnimationSO animationTiles;
     }
 
     [Serializable]
@@ -26,7 +27,16 @@ namespace InterOrbital.Utils
     {
         public string name;
         public Tilemap tilemap;
+        public Tilemap minimapTilemap;
+        public Sprite minimapSprite;
         public List<BiomeRuleTile> biomesTiles;
         public FillMode fillMode;
+    }
+
+    [Serializable]
+    public struct SpriteAnimatedTile
+    {
+        public Sprite sprite;
+        public AnimatedTile animatedTile;
     }
 }
