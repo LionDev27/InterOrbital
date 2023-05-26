@@ -9,6 +9,7 @@ namespace InterOrbital.UI
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
         [SerializeField] private EnergyUIController _energyUIController;
+        [SerializeField] private LifeUIController _lifeUIController;
 
         public static UIManager Instance = null;
 
@@ -74,6 +75,11 @@ namespace InterOrbital.UI
         public void UpdateEnergyUI(int maxEnergy,int currentEnergy)
         {
             _energyUIController.GetEnergyTierBarsUIController().UpdateEnergy(maxEnergy,currentEnergy);
+        }
+        
+        public void UpdateLifeUI(int maxLife,int currentLife)
+        {
+            _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
         }
 
 
