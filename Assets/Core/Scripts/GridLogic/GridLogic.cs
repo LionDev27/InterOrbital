@@ -94,9 +94,17 @@ namespace InterOrbital.WorldSystem
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Vector3 center = new Vector3(width/2, height/2,0);
+            Vector3 size = new Vector3(width, height, 0);
+            Gizmos.DrawWireCube(center,size);
+        }
+
         #endregion
 
-        #region Private Methods
+        #region Fill Tilemap Methods
 
         private void FillTilemap(Tilemap tilemap, Tilemap minimapTilemap, List<BiomeRuleTile> tiles, Sprite minimapSprite, FillMode fillMode)
         {
@@ -108,6 +116,7 @@ namespace InterOrbital.WorldSystem
                     FillTilemapAll(tilemap, tiles);
                     FillTilemapBorders(tilemap);
                     GenerateMinimapTilemap(tilemap, minimapTilemap, minimapSprite);
+                    AddNoAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Random:
                     FillTilemapRandom(tilemap, tiles);
@@ -264,6 +273,40 @@ namespace InterOrbital.WorldSystem
         }
 
 
+        private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        {
+            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
+            List<Sprite> spriteList = new List<Sprite>();
+            int lastBiomeIndex = -1;
+
+            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            {
+                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+
+                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
+                    if (biomeIndex != lastBiomeIndex)
+                    {
+                        spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
+                        lastBiomeIndex = biomeIndex;
+                    }
+
+                    Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
+                    if (s != null)
+                    {
+                        Tile tile = ScriptableObject.CreateInstance<Tile>();
+
+                        // Asigna el Sprite al Tile
+                        tile.sprite = s;
+                        tilemap.SetTile(position, tile);
+                        FillTilemapBorders(tilemap, x, y, tile);
+                    }
+
+                }
+            }
+        }
+
         private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
             Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
@@ -300,7 +343,7 @@ namespace InterOrbital.WorldSystem
                     Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
                     if (s != null)
                     {
-                        UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
+                        Tile tile = ScriptableObject.CreateInstance<Tile>();
 
                         // Asigna el Sprite al Tile
                         tile.sprite = s;
