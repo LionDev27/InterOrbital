@@ -11,4 +11,10 @@ namespace InterOrbital.Utils
         All,
         Random
     }
+
+    public enum SizeChest
+    {
+        Small,
+        Big
+    }
 }

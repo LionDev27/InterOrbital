@@ -13,7 +13,9 @@ public class CraftCreator : MonoBehaviour
     private ItemCraftScriptableObject _itemCraft;
     private int _amountToCraft;
     [SerializeField] private Button _craftButton;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
     private CraftGrid _craftGrid;
+    private CraftingItem _craftingItem;
 
     public List<Image> requireImages;
     public List<TextMeshProUGUI> requireTexts;
@@ -28,6 +30,7 @@ public class CraftCreator : MonoBehaviour
         _craftGrid = FindObjectOfType<CraftGrid>();
     }
 
+
     private void SetCraft()
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
@@ -40,6 +43,7 @@ public class CraftCreator : MonoBehaviour
         UpdateAmountRequired();
         craftResultImage.sprite =_itemCraft.itemSprite;
         itemCraftName.text = _itemCraft.itemName;
+        _descriptionText.text = _itemCraft.itemDescription;
     }
 
     public void UpdateAmountRequired()
@@ -122,10 +126,16 @@ public class CraftCreator : MonoBehaviour
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
-            PlayerComponents.Instance.Inventory.RestItems(_itemCraft.itemsRequired[i].item, _itemCraft.itemsRequired[i].amountRequired);       
+            PlayerComponents.Instance.Inventory.SubstractItems(_itemCraft.itemsRequired[i].item, _itemCraft.itemsRequired[i].amountRequired * _amountToCraft);       
         }
         UpdateAmountRequired();
         _craftGrid.UpdateFeedback();
+        _craftingItem.Craft(_itemCraft, _amountToCraft);
+    }
+
+    public void SetCraftingItem(CraftingItem craftingItem)
+    {
+        _craftingItem = craftingItem;
     }
     
 
