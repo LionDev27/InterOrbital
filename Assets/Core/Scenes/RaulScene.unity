@@ -1491,7 +1491,7 @@ MonoBehaviour:
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
-      animationTiles: {fileID: 11400000, guid: 4673ede0961352d4c8d3d06699804476, type: 2}
+      animationTiles: {fileID: 0}
     fillMode: 1
   - name: Grass
     tilemap: {fileID: 1084358560}
