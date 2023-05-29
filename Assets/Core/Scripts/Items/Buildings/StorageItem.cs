@@ -30,10 +30,6 @@ namespace InterOrbital.Item
 
         public void Interact()
         {
-           for (int i = 0; i < _itemsChest.Length; i++)
-            {
-                Debug.Log("iTEM NAME " + _itemsChest[i].itemSo.itemName);
-            }
            UIManager.Instance.chestInventory.SetChest(_itemsChest);
            UIManager.Instance.OpenInventory(true);
            UIManager.Instance.chestInventory.isHide = false;

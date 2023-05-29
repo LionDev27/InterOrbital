@@ -20,14 +20,15 @@ namespace InterOrbital.Player
 
         private void Interact()
         {
+            
             if (PlayerDash.IsDashing()) return;
             var colliders = Physics2D.OverlapCircleAll(transform.position, _interactionRange);
             foreach (var collider in colliders)
             {
                 if (collider.TryGetComponent(out IInteractable interactable))
                 {
-                    InputHandler.ChangeActionMap();
-                    if (_isInteracting)
+                   InputHandler.ChangeActionMap();
+                   if (_isInteracting)
                         interactable.EndInteraction();
                     else
                         interactable.Interact();

@@ -53,12 +53,7 @@ namespace InterOrbital.Item
         public void EndInteraction()
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
-            if (_craftUI.activeSelf)
-            {
-                _craftGrid.UpdateFeedback();
-                _craftGrid.SelectLast();
-                _craftGrid.currentCraftingItem = null;
-            }
+            
         }
 
         public void Craft(ItemCraftScriptableObject itemCraft, int amount)

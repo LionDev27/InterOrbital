@@ -80,7 +80,9 @@ namespace InterOrbital.Player
         private void OnInventory()
         {
             if (!UIManager.Instance.isChestOpen)
+            {
                 UIManager.Instance.OpenInventory(false);
+            }
         }
 
         private void OnUseItem()

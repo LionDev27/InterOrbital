@@ -5561,7 +5561,6 @@ MonoBehaviour:
   dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
   dropForce: 5
   isHide: 0
-  actualNumChestIndex: 0
 --- !u!224 &1238684868 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 946286545321630497, guid: 8d265c26847c5224e8995c432f2d9939, type: 3}
@@ -5589,7 +5588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2758888862094030042, guid: a28d56afb4ae0e84d9d5cd48307d28e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.39
+      value: 15.07
       objectReference: {fileID: 0}
     - target: {fileID: 2758888862094030042, guid: a28d56afb4ae0e84d9d5cd48307d28e3, type: 3}
       propertyPath: m_LocalPosition.y
