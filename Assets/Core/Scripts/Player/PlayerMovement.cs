@@ -10,12 +10,19 @@ namespace InterOrbital.Player
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _timeForHelmetAnimation;
         private float _helmetAnimationTimer;
-
         [SerializeField] private CinemachineVirtualCamera followCamera;
-
 
         [HideInInspector]
         public bool canMove = true;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (!followCamera)
+            {
+                followCamera = GameObject.Find("Followcam").GetComponent<CinemachineVirtualCamera>();
+            }
+        }
 
         private void Start()
         {

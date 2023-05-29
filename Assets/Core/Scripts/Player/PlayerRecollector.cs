@@ -34,7 +34,6 @@ namespace InterOrbital.Player
                 if (CanRecollect())
                 {
                     Recollect();
-                    _timer = 0f;
                 }
                 ActivateLineRenderer();
             }
@@ -65,7 +64,7 @@ namespace InterOrbital.Player
         private void Recollect()
         {
             Vector2 dir = PlayerAim.AimDir();
-            Vector2 boxcastSize = new Vector2(_recollectionRange, _recollectionWidth);
+            Vector2 boxcastSize = new Vector2(0.05f, _recollectionWidth);
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxcastSize, 0f, dir, _recollectionRange);
             
             if(hits.Length <= 0) return;
@@ -76,6 +75,7 @@ namespace InterOrbital.Player
                 if (recollectable != null)
                 {
                     recollectable.Recollect();
+                    _timer = 0f;
                 }
             }
         }
