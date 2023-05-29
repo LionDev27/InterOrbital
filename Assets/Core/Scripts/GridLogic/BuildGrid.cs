@@ -60,10 +60,10 @@ public class BuildGrid : MonoBehaviour
             if (InRangeToBuild(playerPos, mouseGridPos, buildRange))
             {
                 Tile newTile = ScriptableObject.CreateInstance<Tile>();
-                if (IsMoreThanTileBigger(itemToBuild.itemSprite))
-                    newTile.sprite = ChangeSpritePivot(itemToBuild.itemSprite);
+                if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+                    newTile.sprite = ChangeSpritePivot(itemToBuild.buildHighlightSprite);
                 else 
-                    newTile.sprite = itemToBuild.itemSprite; 
+                    newTile.sprite = itemToBuild.buildHighlightSprite; 
 
                 if (CanBuild(mouseGridPos.x,mouseGridPos.y))
                 {
@@ -84,10 +84,10 @@ public class BuildGrid : MonoBehaviour
     private bool CanBuild(int x, int y)
     {
         bool canBuild = true;
-        if (IsMoreThanTileBigger(itemToBuild.itemSprite))
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
         {
-            int tileWidth = (int)itemToBuild.itemSprite.bounds.size.x;
-            int tileHeight = (int)itemToBuild.itemSprite.bounds.size.y;
+            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
 
             for (int j = 0; j < tileHeight; j++)
             {
@@ -107,6 +107,27 @@ public class BuildGrid : MonoBehaviour
         }
 
         return canBuild;
+    }
+
+    private void LockCellsOnBuild(Vector3Int coords)
+    {
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        {
+            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
+
+            for (int j = 0; j < tileHeight; j++)
+            {
+                for (int i = 0; i < tileWidth; i++)
+                {
+                    GridLogic.Instance.LockCell(coords.x + i, coords.y + j);
+                }
+            }
+        }
+        else
+        {
+            GridLogic.Instance.LockCell(coords.x, coords.y);
+        }
     }
 
     private bool InRangeToBuild(Vector3Int posA, Vector3Int posB, int range)
@@ -149,12 +170,12 @@ public class BuildGrid : MonoBehaviour
 
     private Vector3 BuildPosition(Vector3Int coords)
     {
-        if (IsMoreThanTileBigger(itemToBuild.itemSprite))
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
         {
-            float offsetX = itemToBuild.itemSprite.bounds.size.x / 2;
-            float offsetY = itemToBuild.itemSprite.bounds.size.y / 2;
+            float offsetX = itemToBuild.buildHighlightSprite.bounds.size.x / 2;
+            float offsetY = itemToBuild.buildHighlightSprite.bounds.size.y / 2;
 
-            return new Vector3(coords.x + offsetX + 0.5f, coords.y + offsetY + 0.5f, 0);
+            return new Vector3(coords.x + offsetX, coords.y + offsetY, 0);
         }
         else
         {
@@ -170,7 +191,8 @@ public class BuildGrid : MonoBehaviour
         {
             Instantiate(itemToBuild.buildPrefab, buildPos, Quaternion.identity);
 
-            GridLogic.Instance.LockCell(coords.x, coords.y);
+            LockCellsOnBuild(coords);
+
             PlayerComponents.Instance.Inventory.SubstractUsedItem();
             if(!PlayerComponents.Instance.Inventory.CanUseMore())
                 DesactivateBuildMode();

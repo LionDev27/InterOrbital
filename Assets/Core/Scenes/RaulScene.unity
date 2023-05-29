@@ -3780,6 +3780,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1130103311}
     - target: {fileID: 446727633, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: itemTest2
+      value: 
+      objectReference: {fileID: 11400000, guid: fb08277f5f25c0244945210d39f7fd19, type: 2}
+    - target: {fileID: 446727633, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridLeftPocket
       value: 
       objectReference: {fileID: 892062051}
@@ -5706,10 +5710,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 957800480}
     m_Modifications:
-    - target: {fileID: 1845576799490476761, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
-      propertyPath: m_Name
-      value: Visuals
-      objectReference: {fileID: 0}
     - target: {fileID: 1845576799697945156, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
       propertyPath: m_RootOrder
       value: 5
