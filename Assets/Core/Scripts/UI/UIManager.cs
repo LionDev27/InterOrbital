@@ -8,8 +8,12 @@ namespace InterOrbital.UI
     {
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
+
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
+
+
+        private bool _somethingOpen;
 
         public static UIManager Instance = null;
 
@@ -27,7 +31,6 @@ namespace InterOrbital.UI
         }
 
        
-
         public void ActivateOrDesactivateUI(GameObject ui)
         {
             if (ui.activeSelf)
@@ -35,11 +38,13 @@ namespace InterOrbital.UI
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     ui.SetActive(false);
+                    _somethingOpen = false;
                 });  
             }
-            else
+            else if(!_somethingOpen)
             {
                 ui.SetActive(true);
+                _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
            
@@ -47,15 +52,17 @@ namespace InterOrbital.UI
 
         public void OpenInventory()
         {
-            if(PlayerComponents.Instance.Inventory.isHide)
+            if(PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
             {
                 if (!_openInventory.IsActive())
                 {
+                    _somethingOpen = true;
                     PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = false;
                     });
+                    
                 }
                 
             }
@@ -63,6 +70,7 @@ namespace InterOrbital.UI
             {
                 if (!_openInventory.IsActive())
                 {
+                    _somethingOpen = false;
                     PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {

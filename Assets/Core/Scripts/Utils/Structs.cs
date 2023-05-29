@@ -39,4 +39,18 @@ namespace InterOrbital.Utils
         public Sprite sprite;
         public AnimatedTile animatedTile;
     }
+
+    [Serializable]
+
+    public struct CraftAmountItem
+    {
+        public ItemCraftScriptableObject item;
+        public int amount;
+
+        public CraftAmountItem(ItemCraftScriptableObject item, int amount)
+        {
+            this.item = item;
+            this.amount = amount;
+        }
+    }
 }
