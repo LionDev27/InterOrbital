@@ -21,7 +21,6 @@ namespace InterOrbital.Player
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
         public ItemScriptableObject itemTest3;
-        [HideInInspector] public int actualNumInventoryIndex = 0;
 
 
         // Start is called before the first frame update

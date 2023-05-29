@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using InterOrbital.Player;
 using InterOrbital.Utils;
 using System;
+using InterOrbital.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -13,23 +14,17 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Transform _rootParent;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public int inventoryIndex;
+    public int inventoryIndex;
 
     private void Awake()
-    {
-        StartCoroutine(WaitForInventoryInit());
+    {  
         _rootParent = GetRootParent();
     }
 
-    private IEnumerator WaitForInventoryInit()
-    {
-        while (PlayerComponents.Instance == null || PlayerComponents.Instance.Inventory == null)
-        {
-            yield return null;
-        }
 
-        inventoryIndex = PlayerComponents.Instance.Inventory.actualNumInventoryIndex;
-        PlayerComponents.Instance.Inventory.actualNumInventoryIndex += 1;
+    private void Start()
+    { 
+       inventoryIndex = Utils.ObtainNumName(gameObject.transform.parent.gameObject);
     }
 
     private Transform GetRootParent()
@@ -54,6 +49,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (!PlayerComponents.Instance.Inventory.isHide)
         {
+            Debug.Log(inventoryIndex);
             parentAfterDrag = transform.parent;
             transform.SetParent(_rootParent);
             transform.SetAsLastSibling();
@@ -77,7 +73,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
-            image.ChangueAlphaColor(1f);
+            image.ChangueAlphaColor(1f);    
         }
     }
 }

@@ -13,18 +13,19 @@ namespace InterOrbital.UI
         private bool _somethingOpen;
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
-
+        public ChestInventory chestInventory;
         public GameObject bagUI;
         public GameObject craftUI;
         public GameObject storageUI;
+        
         
         private void Awake()
         {
             if(Instance == null) 
                 Instance = this; 
             else if(Instance != this) 
-                Destroy(gameObject); 
-           // DontDestroyOnLoad(gameObject); 
+                Destroy(gameObject);
+
         }
 
        
@@ -65,7 +66,8 @@ namespace InterOrbital.UI
                         isChestOpen = false;
                     }
                     _somethingOpen = true;
-                    PlayerComponents.Instance.InputHandler.ChangeActionMap();
+                    if(!openChest)
+                        PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = false;
@@ -79,7 +81,8 @@ namespace InterOrbital.UI
                 if (!_openInventory.IsActive())
                 {
                     _somethingOpen = false;
-                    PlayerComponents.Instance.InputHandler.ChangeActionMap();
+                    if(!openChest)
+                        PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = true;
