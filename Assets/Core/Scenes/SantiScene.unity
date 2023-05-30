@@ -7881,6 +7881,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921018817}
     m_Modifications:
+    - target: {fileID: 1346188536, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: _interactionColdown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1624386565, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridMain
       value: 

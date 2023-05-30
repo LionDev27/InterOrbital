@@ -63,14 +63,11 @@ namespace InterOrbital.UI
                     }
                     else
                     {
+                        PlayerComponents.Instance.InputHandler.ChangeActionMap();
                         storageUI.SetActive(false);
                         isChestOpen = false;
                     }
                     _somethingOpen = true;
-                    if (!openChest)
-                    {
-                        PlayerComponents.Instance.InputHandler.ChangeActionMap();
-                    }
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = false;

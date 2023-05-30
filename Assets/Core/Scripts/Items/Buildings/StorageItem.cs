@@ -39,9 +39,7 @@ namespace InterOrbital.Item
         {
          
             UIManager.Instance.OpenInventory(true);
-           
             _itemsChest = UIManager.Instance.chestInventory.GetItems();
-
             UIManager.Instance.chestInventory.isHide = true;
         }
     }
