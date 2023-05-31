@@ -14,6 +14,7 @@ namespace InterOrbital.Item
         public TypeCraft type;
         public bool isStackable;
         public int maxAmount;
+        public Sprite buildHighlightSprite;
         public GameObject buildPrefab;
     }
 #if UNITY_EDITOR
@@ -43,6 +44,7 @@ namespace InterOrbital.Item
 
                     if (scriptableObject.type == TypeCraft.Build)
                     {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("buildHighlightSprite"));
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("buildPrefab"));
                     }
                 }

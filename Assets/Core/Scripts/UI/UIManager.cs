@@ -8,8 +8,11 @@ namespace InterOrbital.UI
     {
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
+
+
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
+
 
         private bool _somethingOpen;
         public static UIManager Instance = null;

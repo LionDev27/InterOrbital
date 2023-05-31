@@ -26,7 +26,6 @@ public class BuildGrid : MonoBehaviour
 
     private void Update()
     {
-        //TestBuild();
         if (buildMode)
         {
             playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
@@ -40,23 +39,6 @@ public class BuildGrid : MonoBehaviour
                 Build(highlightedTilePos);
         }
     }
-
-    /*private void TestBuild()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if(buildMode)
-            {
-                DesactivateBuildMode();
-            }
-            else
-            {
-                ActivateBuildMode();
-            }
-
-
-        }
-    }*/
 
     private Vector3Int GetMouseOnGridPos()
     {
@@ -78,7 +60,10 @@ public class BuildGrid : MonoBehaviour
             if (InRangeToBuild(playerPos, mouseGridPos, buildRange))
             {
                 Tile newTile = ScriptableObject.CreateInstance<Tile>();
-                newTile.sprite = itemToBuild.itemSprite;
+                if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+                    newTile.sprite = ChangeSpritePivot(itemToBuild.buildHighlightSprite);
+                else 
+                    newTile.sprite = itemToBuild.buildHighlightSprite; 
 
                 if (CanBuild(mouseGridPos.x,mouseGridPos.y))
                 {
@@ -98,7 +83,51 @@ public class BuildGrid : MonoBehaviour
 
     private bool CanBuild(int x, int y)
     {
-        return !GridLogic.Instance.IsCellLocked(x, y) && GridLogic.Instance.IsCellSpaceshipArea(x, y);
+        bool canBuild = true;
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        {
+            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
+
+            for (int j = 0; j < tileHeight; j++)
+            {
+                for (int i = 0; i < tileWidth; i++)
+                {
+                    if(GridLogic.Instance.IsCellLocked(x + i, y + j) || !GridLogic.Instance.IsCellSpaceshipArea(x + i, y + j))
+                    {
+                        canBuild = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(GridLogic.Instance.IsCellLocked(x, y) || !GridLogic.Instance.IsCellSpaceshipArea(x, y))
+                canBuild = false;
+        }
+
+        return canBuild;
+    }
+
+    private void LockCellsOnBuild(Vector3Int coords)
+    {
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        {
+            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
+
+            for (int j = 0; j < tileHeight; j++)
+            {
+                for (int i = 0; i < tileWidth; i++)
+                {
+                    GridLogic.Instance.LockCell(coords.x + i, coords.y + j);
+                }
+            }
+        }
+        else
+        {
+            GridLogic.Instance.LockCell(coords.x, coords.y);
+        }
     }
 
     private bool InRangeToBuild(Vector3Int posA, Vector3Int posB, int range)
@@ -114,15 +143,56 @@ public class BuildGrid : MonoBehaviour
         return true;
     }
 
+    private bool IsMoreThanTileBigger(Sprite sprite)
+    {
+        if(sprite.bounds.size.x > 1 || sprite.bounds.size.y > 1)
+            return true; 
+        else
+            return false;
+    }
+
+    private Sprite ChangeSpritePivot(Sprite sprite)
+    {
+        int spriteWidth = (int)sprite.bounds.size.x;
+        int spriteHeight = (int)sprite.bounds.size.y;
+        // Tamaño de cada tile individual
+        int tileWidth = 16;
+        int tileHeight = 16;
+
+        Vector2 pivot = new Vector2(0.5f * (tileWidth /(float) (tileWidth * spriteWidth)), 0.5f * (tileHeight / (float)(tileHeight * spriteHeight)));
+
+        // Calcular las coordenadas de recorte en la textura
+        Rect rect = new Rect(0, 0, tileWidth* spriteWidth, tileHeight* spriteHeight);
+
+        // Crear un nuevo sprite individual usando las coordenadas de recorte
+        return Sprite.Create(sprite.texture,rect, pivot,16);
+    }
+
+    private Vector3 BuildPosition(Vector3Int coords)
+    {
+        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        {
+            float offsetX = itemToBuild.buildHighlightSprite.bounds.size.x / 2;
+            float offsetY = itemToBuild.buildHighlightSprite.bounds.size.y / 2;
+
+            return new Vector3(coords.x + offsetX, coords.y + offsetY, 0);
+        }
+        else
+        {
+            return new Vector3(coords.x + 0.5f, coords.y + 0.5f, 0);
+        }
+    }
+
     public void Build(Vector3 worldCoords)
     {
         Vector3Int coords = buildLayer.WorldToCell(worldCoords);
-        Vector3 buildPos = new Vector3(coords.x + 0.5f, coords.y + 0.5f, 0);
+        Vector3 buildPos = BuildPosition(coords);
         if (itemToBuild != null && itemToBuild.buildPrefab != null && CanBuild(coords.x,coords.y))
         {
             Instantiate(itemToBuild.buildPrefab, buildPos, Quaternion.identity);
 
-            GridLogic.Instance.LockCell(coords.x, coords.y);
+            LockCellsOnBuild(coords);
+
             PlayerComponents.Instance.Inventory.SubstractUsedItem();
             if(!PlayerComponents.Instance.Inventory.CanUseMore())
                 DesactivateBuildMode();
