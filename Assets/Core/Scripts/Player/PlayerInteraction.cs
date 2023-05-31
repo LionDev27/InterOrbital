@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Player;
 using InterOrbital.Utils;
-using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -11,7 +10,9 @@ namespace InterOrbital.Player
     public class PlayerInteraction : PlayerComponents
     {
         [SerializeField] private float _interactionRange;
+        [SerializeField] private float _interactionColdown;
         private bool _isInteracting;
+        private float _timer;
 
         protected override void Awake()
         {
@@ -19,11 +20,14 @@ namespace InterOrbital.Player
             InputHandler.OnInteractPerformed += Interact;
         }
 
-       
+        private void Update()
+        {
+            _timer -= Time.deltaTime;
+        }
 
         private void Interact()
         {
-            if(UIManager.Instance.IsAnimating)
+            if(_timer >= 0)
             {
                 return;
             }
@@ -33,6 +37,7 @@ namespace InterOrbital.Player
             {
                 if (collider.TryGetComponent(out IInteractable interactable))
                 {
+                    _timer = _interactionColdown;
                    InputHandler.ChangeActionMap();
                    if (_isInteracting)
                         interactable.EndInteraction();

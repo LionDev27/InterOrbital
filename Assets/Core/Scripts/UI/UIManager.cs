@@ -21,7 +21,6 @@ namespace InterOrbital.UI
         public GameObject bagUI;
         public GameObject craftUI;
         public GameObject storageUI;
-        public bool IsAnimating { get; private set; }
         
         
         private void Awake()
@@ -38,10 +37,8 @@ namespace InterOrbital.UI
         {
             if (ui.activeSelf)
             {
-                IsAnimating = true;
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
-                    IsAnimating = false;
                     ui.SetActive(false);
                     _somethingOpen = false;
                 });  
@@ -50,11 +47,7 @@ namespace InterOrbital.UI
             {
                 ui.SetActive(true);
                 _somethingOpen = true;
-                IsAnimating = true;
-                ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play().OnComplete(() =>
-                {
-                    IsAnimating = false;
-                });
+                ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
             
            
@@ -79,11 +72,9 @@ namespace InterOrbital.UI
                         isChestOpen = false;
                     }
                     _somethingOpen = true;
-                    IsAnimating = true;
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = false;
-                        IsAnimating = false;
                     });
                     
                 }    
@@ -97,10 +88,8 @@ namespace InterOrbital.UI
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     }
-                    IsAnimating = true;
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
-                        IsAnimating = false;
                         PlayerComponents.Instance.Inventory.isHide = true;
                         if (openChest)
                         {
