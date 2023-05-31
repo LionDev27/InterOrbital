@@ -15,6 +15,9 @@ namespace InterOrbital.WorldSystem
         public int width;
         public int height;
         public Vector3 cellSize = new Vector3(1, 1, 0);
+        public GameObject spaceship;
+        public Sprite spaceshipAreaSprite;
+        public Tilemap spaceshipAreaTilemap;
         public List<string> biomes;
         public TilemapLayer[] tilemapLayers;
 
@@ -87,11 +90,7 @@ namespace InterOrbital.WorldSystem
                 FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles,tilemapLayer.minimapSprite, tilemapLayer.fillMode);
             }
 
-            for (int i = 5; i < 15 ; i++)
-            {
-                for (int j = 5; j < 15; j++)
-                    _gridCells[i, j].MakeSpaceshipArea();
-            }
+            SpawnSpaceship();
         }
 
         #endregion
@@ -341,6 +340,74 @@ namespace InterOrbital.WorldSystem
             }
         }
 
+        private void SpawnSpaceship()
+        {
+            Instantiate(spaceship,new Vector3(width/2, height/2, 0), Quaternion.identity);
+            int spaceshipTilesWidth = 6;
+            int spaceshipTilesHeight = 6;
+            int spaceshipWidth = width / 2 - spaceshipTilesWidth / 2;
+            int spaceshipHeight = height / 2;
+
+            Tile spaceshipAreaTile = ScriptableObject.CreateInstance<Tile>();
+            spaceshipAreaTile.sprite = spaceshipAreaSprite;
+
+            for (int y = 0; y < spaceshipTilesHeight; y++)
+            {
+                for (int x = 0; x < spaceshipTilesWidth; x++)
+                {
+                    if (y == 0)
+                    {
+                        Vector3Int position = new Vector3Int(x + spaceshipWidth, y + spaceshipHeight, 0);
+                        spaceshipAreaTilemap.SetTile(position, spaceshipAreaTile);
+                    }
+                    LockCell(x + spaceshipWidth, y + spaceshipHeight);
+                }
+            }
+
+            SpawnSpaceshipArea(2);
+        }
+
+        private void SpawnSpaceshipArea(int tier)
+        {
+            int widthArea = 0;
+            int heightArea = 0;
+
+            Tile spaceshipAreaTile = ScriptableObject.CreateInstance<Tile>();
+            spaceshipAreaTile.sprite = spaceshipAreaSprite;
+
+            switch (tier)
+            {
+                case 0:
+                    widthArea = 6;
+                    heightArea = 4;
+                    break;
+                case 1:
+                    widthArea = 6;
+                    heightArea = 6;
+                    break;
+                case 2:
+                    widthArea = 16;
+                    heightArea = 10;
+                    break;
+                default: break;
+            }
+
+            int startWidthArea = width / 2 - widthArea/2;
+            int startHeightArea = height / 2 - heightArea;
+
+            for (int y = 0; y < heightArea; y++)
+            {
+                for (int x = 0; x < widthArea; x++)
+                {
+
+                    Vector3Int position = new Vector3Int(x + startWidthArea, y + startHeightArea, 0);
+
+                    spaceshipAreaTilemap.SetTile(position,spaceshipAreaTile);
+                    MakeSpaceshipArea(x + startWidthArea,y + startHeightArea);
+                }
+            }
+        }
+
         private void CreateRegions()
         {
 
@@ -459,6 +526,13 @@ namespace InterOrbital.WorldSystem
             if (x >= 0 && x < width && y >= 0 && y < height)
                 return _gridCells[x, y].IsSpaceShipArea();
             else return false;
+        }
+
+        public void MakeSpaceshipArea(int x, int y)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+                _gridCells[x, y].MakeSpaceshipArea();
+            
         }
 
         #endregion

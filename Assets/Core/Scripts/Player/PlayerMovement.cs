@@ -19,7 +19,7 @@ namespace InterOrbital.Player
 
         private void Start()
         {
-            transform.position = new Vector3(GridLogic.Instance.width/2 + 0.5f, GridLogic.Instance.height/2 + 0.5f, 0f);
+            transform.position = new Vector3(GridLogic.Instance.width/2, GridLogic.Instance.height/2 - 1f, 0f);
         }
 
         private void Update()
