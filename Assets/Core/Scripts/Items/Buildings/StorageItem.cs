@@ -10,7 +10,7 @@ namespace InterOrbital.Item
     {
         private ItemObject[] _itemsChest;
         [SerializeField] private SizeChest _size;
-
+        [SerializeField] private ItemScriptableObject _itemVoid;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace InterOrbital.Item
                 ItemObject item = obj.AddComponent<ItemObject>();
                 Destroy(obj);
                 _itemsChest[i] = item;
-                _itemsChest[i].itemSo = PlayerComponents.Instance.Inventory.itemVoid;
+                _itemsChest[i].itemSo = _itemVoid;
             }
         }
 
