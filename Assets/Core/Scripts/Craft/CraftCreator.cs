@@ -122,7 +122,7 @@ public class CraftCreator : MonoBehaviour
         UpdateAmountRequired();
     }
 
-    public void CraftItem()
+    public void CraftItem(bool isFast)
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
@@ -130,8 +130,17 @@ public class CraftCreator : MonoBehaviour
         }
         UpdateAmountRequired();
         _craftGrid.UpdateFeedback();
-        _craftingItem.Craft(_itemCraft, _amountToCraft);
+        if (!isFast)
+        {
+            _craftingItem.Craft(_itemCraft, _amountToCraft);
+        }
+        else
+        {
+
+        }
     }
+
+   
 
     public void SetCraftingItem(CraftingItem craftingItem)
     {
