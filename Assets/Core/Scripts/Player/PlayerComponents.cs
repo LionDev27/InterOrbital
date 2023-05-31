@@ -15,6 +15,7 @@ namespace InterOrbital.Player
         protected SpriteRenderer PlayerSprite { get; private set; }
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerMovement PlayerMovement { get; private set; }
+        protected PlayerAim PlayerAim { get; private set; }
        
         public PlayerAttack PlayerAttack { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
@@ -34,6 +35,7 @@ namespace InterOrbital.Player
             PlayerInput = GetComponent<PlayerInput>();
             PlayerAttack = GetComponent<PlayerAttack>();
             PlayerMovement = GetComponent<PlayerMovement>();
+            PlayerAim = GetComponent<PlayerAim>();
             Rigidbody = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();

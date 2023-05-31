@@ -8,10 +8,8 @@ namespace InterOrbital.Utils
     public enum FillMode
     {
         None,
-        Single_All,
-        Multiple_All,
-        Single_Random,
-        Multiple_Random
+        All,
+        Random
     }
 
     public enum SizeChest

@@ -1,3 +1,4 @@
+using InterOrbital.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,10 +7,10 @@ namespace InterOrbital.Player
     public class PlayerEnergy : MonoBehaviour
     {
         public bool EnergyEmpty { get; private set; }
-        public Image img;
 
         [SerializeField] private int _currentEnergy;
         [SerializeField] private int _maxEnergy;
+        [SerializeField] private int _loseEnergyValue;
         [SerializeField] private float _loseEnergyTimerDefaultValue;
         private float _loseEnergyTimer;
 
@@ -23,7 +24,7 @@ namespace InterOrbital.Player
         private void Update()
         {
             LoseEnergyOverTime();
-            //TODO: EVENTOS DE ACTUALIZACION DE HUD
+            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
         }
 
 
@@ -56,9 +57,7 @@ namespace InterOrbital.Player
                 }
                 else
                 {
-                    _currentEnergy = Mathf.Clamp(_currentEnergy - 1, 0, _maxEnergy);
-                    ResetTimer();
-                    CheckEnergy();
+                    LoseEnergy(_loseEnergyValue);
                 }
             }
         }

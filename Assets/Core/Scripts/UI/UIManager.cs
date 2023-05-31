@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using InterOrbital.Player;
@@ -10,6 +8,9 @@ namespace InterOrbital.UI
     {
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
+        [SerializeField] private EnergyUIController _energyUIController;
+        [SerializeField] private LifeUIController _lifeUIController;
+
         private bool _somethingOpen;
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
@@ -107,6 +108,18 @@ namespace InterOrbital.UI
                 }
             }
         }
+
+        public void UpdateEnergyUI(int maxEnergy,int currentEnergy)
+        {
+            _energyUIController.GetEnergyTierBarsUIController().UpdateEnergy(maxEnergy,currentEnergy);
+        }
+        
+        public void UpdateLifeUI(int maxLife,int currentLife)
+        {
+            _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
+        }
+
+
     }
 }
 

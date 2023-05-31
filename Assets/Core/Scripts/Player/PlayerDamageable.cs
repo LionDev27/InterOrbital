@@ -1,5 +1,6 @@
 using System;
 using InterOrbital.Combat;
+using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -22,7 +23,6 @@ namespace InterOrbital.Player
         {
             LoseHealthOverTime();
             RunInvencibilityTimer();
-            //TODO: EVENTOS DE ACTUALIZACION DE HUD
         }
 
         private void LoseHealthOverTime()
@@ -37,6 +37,7 @@ namespace InterOrbital.Player
                 else
                 {
                     _currentHealth = Mathf.Clamp(_currentHealth - 1, 0, _maxHealth);
+                    UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                     ResetTimer();
                     CheckHealth();
                 }
