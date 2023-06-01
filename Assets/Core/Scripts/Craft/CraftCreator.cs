@@ -136,7 +136,12 @@ public class CraftCreator : MonoBehaviour
         }
         else
         {
-
+            GameObject obj = new GameObject();
+            ItemObject item = obj.AddComponent<ItemObject>();
+            Destroy(obj);
+            item.SetItem(_itemCraft);
+            item.amount = _amountToCraft;
+            PlayerComponents.Instance.Inventory.AddItem(item);
         }
     }
 
