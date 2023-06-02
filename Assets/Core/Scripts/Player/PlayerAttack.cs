@@ -39,8 +39,14 @@ namespace InterOrbital.Player
             var bulletController = tempBullet.GetComponent<BaseBulletController>();
             var bulletMoveDir = attackPoint.position - transform.position;
             bulletController.SetupBullet(_attackDamage, _attackRange * _attackRangeMultiplier, gameObject.tag, bulletMoveDir, transform.position);
+            AttackEffects();
         }
 
+        private void AttackEffects()
+        {
+            CameraShake.Instance.Shake(2, 0.3f);
+        }
+        
         private bool CooldownEnded()
         {
             return _timer <= 0;
