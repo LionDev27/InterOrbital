@@ -3,55 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpaceshipEnergy : MonoBehaviour
+
+namespace InterOrbital.Spaceship
 {
-    [SerializeField] private int _currentEnergy;
-    [SerializeField] private int _maxEnergy;
-    [SerializeField] private Image _spaceshipEnergyImg;
-
-    private void Start()
+    public class SpaceshipEnergy : MonoBehaviour
     {
-        _currentEnergy = _maxEnergy;
-    }
+        [SerializeField] private int _currentEnergy;
+        [SerializeField] private int _maxEnergy;
+        [SerializeField] private Image _spaceshipEnergyImg;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
+
+        private void Awake()
         {
-            LoseEnergy(5);
+
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        private void Start()
         {
-            RestoreEnergy(1);
+            _currentEnergy = _maxEnergy;
         }
-    }
 
-    public void RestoreEnergy(int energyAmount)
-    {
-        _currentEnergy = Mathf.Clamp(_currentEnergy + energyAmount, 0, _maxEnergy);
-        UpdateSpaceshipEnergyUI();
-    }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                LoseEnergy(5);
+            }
 
-    public void LoseEnergy(int energyAmount)
-    {
-        _currentEnergy = Mathf.Clamp(_currentEnergy - energyAmount, 0, _maxEnergy);
-        UpdateSpaceshipEnergyUI();
-    }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                RestoreEnergy(1);
+            }
+        }
 
-    public void UpgradeEnergy(int energyAmount)
-    {
-        _maxEnergy += energyAmount;
-    }
+        public void RestoreEnergy(int energyAmount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy + energyAmount, 0, _maxEnergy);
+            UpdateSpaceshipEnergyUI();
+        }
 
-    public int GetCurrentSpaceshipEnergy() 
-    { 
-        return _currentEnergy; 
-    }
+        public void LoseEnergy(int energyAmount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy - energyAmount, 0, _maxEnergy);
+            UpdateSpaceshipEnergyUI();
+        }
 
-    private void UpdateSpaceshipEnergyUI()
-    {
-        float fillAmount = _currentEnergy / (float)_maxEnergy;
-        _spaceshipEnergyImg.fillAmount = fillAmount;
+        public void UpgradeEnergy(int energyAmount)
+        {
+            _maxEnergy += energyAmount;
+        }
+
+        public int GetCurrentSpaceshipEnergy()
+        {
+            return _currentEnergy;
+        }
+
+        private void UpdateSpaceshipEnergyUI()
+        {
+            float fillAmount = _currentEnergy / (float)_maxEnergy;
+            _spaceshipEnergyImg.fillAmount = fillAmount;
+        }
     }
 }

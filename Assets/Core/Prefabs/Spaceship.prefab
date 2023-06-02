@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 1509358946211027643}
   - component: {fileID: 4079295088080602246}
   - component: {fileID: 1698983921425441879}
+  - component: {fileID: 5813268161030453269}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -379,5 +380,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentEnergy: 0
-  _maxEnergy: 100
+  _maxEnergy: 20
   _spaceshipEnergyImg: {fileID: 6363624313268032432}
+--- !u!114 &5813268161030453269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769846936361690345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2095b5413f98834db190750837e2631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

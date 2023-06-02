@@ -22,4 +22,5 @@ MonoBehaviour:
   buildHighlightSprite: {fileID: 21300000, guid: 903596d7398e2de49bbfa19bc815eb3f, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   itemsRequired: []
-  timeToCraft: 0
+  timeToCraft: 10
+  craftEnergyRequired: 5
