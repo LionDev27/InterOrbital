@@ -49,7 +49,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (!PlayerComponents.Instance.Inventory.isHide)
         {
-            Debug.Log(inventoryIndex);
             parentAfterDrag = transform.parent;
             transform.SetParent(_rootParent);
             transform.SetAsLastSibling();
