@@ -78,33 +78,36 @@ namespace InterOrbital.Player
 
         private void ScrollFastInventory()
         {
-            if (isHide && PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue != _actualItemEquiped)
+            if (isHide && PlayerComponents.Instance.InputHandler.InventoryPositionValue != _actualItemEquiped)
             {
                 if (BuildGrid.Instance.IsBuilding())
                     BuildGrid.Instance.DesactivateBuildMode();
 
                 _itemsSlotBackGround[_actualItemEquiped - 1].sprite = _backgroundDefaultImage;
-                _actualItemEquiped = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue;
+                _actualItemEquiped = PlayerComponents.Instance.InputHandler.InventoryPositionValue;
                 _itemsSlotBackGround[_actualItemEquiped - 1].sprite = _backgroundSelectedImage;
             }
         }
 
         public void UseItem()
         {
-            int index = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue - 1;
+            int index = PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1;
 
             switch (_items[index].itemSo.type)
             {
-                case TypeCraft.Build:
+                case ItemType.Build:
                     if (BuildGrid.Instance.IsBuilding())
                         BuildGrid.Instance.DesactivateBuildMode();
                     else
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
                     break;
-                case TypeCraft.Consumable:
+                case ItemType.Consumable:
                     //_items[actualNumInventoryIndex] consumir item
                     break;
-                case TypeCraft.None:
+                case ItemType.Bullet:
+                    //TODO equipar al menu de balas si hay huecos libres
+                    break;
+                case ItemType.None:
                     //No se puede usar item
                     break;
             }
@@ -131,7 +134,7 @@ namespace InterOrbital.Player
 
         public bool CanUseMore()
         {
-            return _items[PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue - 1].amount >= 1;
+            return _items[PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1].amount >= 1;
         }
 
         public int GetItemAmount(ItemScriptableObject item)
@@ -190,7 +193,7 @@ namespace InterOrbital.Player
 
         public void SubstractUsedItem()
         {
-            int i = PlayerComponents.Instance.InputHandler.ScrollFastInventoryValue - 1;
+            int i = PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1;
             var auxRest = _items[i].amount - 1;
             if (auxRest <= 0)
             {

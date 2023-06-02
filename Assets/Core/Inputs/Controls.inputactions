@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Recolect",
+                    "type": "Button",
+                    "id": "27ea14f8-1e93-4e5b-8ae5-62973a13fe1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Inventory",
                     "type": "Button",
                     "id": "b15d6237-dfa2-4220-89d6-aede99c1924f",
@@ -90,6 +99,15 @@
                     "name": "UseItem",
                     "type": "Button",
                     "id": "4eac5638-6c9a-4bdd-a7bb-2e858a706172",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BulletsMenu",
+                    "type": "Button",
+                    "id": "c1de0b48-bfdd-4f9f-a38d-b592bd6e9346",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -224,7 +242,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -301,7 +319,7 @@
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -312,8 +330,30 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20798495-355f-4b59-9a20-55c225a60c28",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BulletsMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baae76d4-22d9-4a9e-8053-39ab5f05324c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Recolect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

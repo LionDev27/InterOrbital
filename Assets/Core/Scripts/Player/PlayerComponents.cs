@@ -28,7 +28,7 @@ namespace InterOrbital.Player
 
         protected virtual void Awake()
         {
-            if (Instance == null)
+            if (!Instance)
                 Instance = this;
 
             InputHandler = GetComponent<PlayerInputHandler>();

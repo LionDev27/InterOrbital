@@ -25,6 +25,11 @@ namespace InterOrbital.Player
             InputHandler.OnAttack += Attack;
         }
 
+        public void ChangeBullet(GameObject bullet) 
+        {
+            _bulletPrefab = bullet;
+        }
+
         private void Update()
         {
             _timer -= Time.deltaTime;

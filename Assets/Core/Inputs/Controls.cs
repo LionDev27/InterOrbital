@@ -64,6 +64,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Recolect"",
+                    ""type"": ""Button"",
+                    ""id"": ""27ea14f8-1e93-4e5b-8ae5-62973a13fe1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Inventory"",
                     ""type"": ""Button"",
                     ""id"": ""b15d6237-dfa2-4220-89d6-aede99c1924f"",
@@ -112,6 +121,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""UseItem"",
                     ""type"": ""Button"",
                     ""id"": ""4eac5638-6c9a-4bdd-a7bb-2e858a706172"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BulletsMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1de0b48-bfdd-4f9f-a38d-b592bd6e9346"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -246,7 +264,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -323,7 +341,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -334,8 +352,30 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20798495-355f-4b59-9a20-55c225a60c28"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""BulletsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baae76d4-22d9-4a9e-8053-39ab5f05324c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Recolect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -784,12 +824,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_AimPosition = m_Player.FindAction("AimPosition", throwIfNotFound: true);
         m_Player_AimDirection = m_Player.FindAction("AimDirection", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Recolect = m_Player.FindAction("Recolect", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_ScrollY = m_Player.FindAction("ScrollY", throwIfNotFound: true);
         m_Player_SelectNumeric = m_Player.FindAction("SelectNumeric", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
+        m_Player_BulletsMenu = m_Player.FindAction("BulletsMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -867,12 +909,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AimPosition;
     private readonly InputAction m_Player_AimDirection;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Recolect;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_ScrollY;
     private readonly InputAction m_Player_SelectNumeric;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UseItem;
+    private readonly InputAction m_Player_BulletsMenu;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -881,12 +925,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @AimPosition => m_Wrapper.m_Player_AimPosition;
         public InputAction @AimDirection => m_Wrapper.m_Player_AimDirection;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Recolect => m_Wrapper.m_Player_Recolect;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @ScrollY => m_Wrapper.m_Player_ScrollY;
         public InputAction @SelectNumeric => m_Wrapper.m_Player_SelectNumeric;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
+        public InputAction @BulletsMenu => m_Wrapper.m_Player_BulletsMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -908,6 +954,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @Recolect.started += instance.OnRecolect;
+            @Recolect.performed += instance.OnRecolect;
+            @Recolect.canceled += instance.OnRecolect;
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
@@ -926,6 +975,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @UseItem.started += instance.OnUseItem;
             @UseItem.performed += instance.OnUseItem;
             @UseItem.canceled += instance.OnUseItem;
+            @BulletsMenu.started += instance.OnBulletsMenu;
+            @BulletsMenu.performed += instance.OnBulletsMenu;
+            @BulletsMenu.canceled += instance.OnBulletsMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -942,6 +994,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @Recolect.started -= instance.OnRecolect;
+            @Recolect.performed -= instance.OnRecolect;
+            @Recolect.canceled -= instance.OnRecolect;
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
@@ -960,6 +1015,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @UseItem.started -= instance.OnUseItem;
             @UseItem.performed -= instance.OnUseItem;
             @UseItem.canceled -= instance.OnUseItem;
+            @BulletsMenu.started -= instance.OnBulletsMenu;
+            @BulletsMenu.performed -= instance.OnBulletsMenu;
+            @BulletsMenu.canceled -= instance.OnBulletsMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1119,12 +1177,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAimPosition(InputAction.CallbackContext context);
         void OnAimDirection(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnRecolect(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnScrollY(InputAction.CallbackContext context);
         void OnSelectNumeric(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+        void OnBulletsMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

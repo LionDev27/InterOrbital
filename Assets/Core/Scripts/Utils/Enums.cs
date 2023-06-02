@@ -1,8 +1,8 @@
 namespace InterOrbital.Utils
 {
-    public enum TypeCraft
+    public enum ItemType
     {
-        Consumable, Build, None
+        Consumable, Build, Bullet, None
     }
 
     public enum FillMode
