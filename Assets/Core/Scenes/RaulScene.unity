@@ -4996,9 +4996,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ef0e688ba85ae48b0db2f4ddcaf655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
+  debug: 0
+  <width>k__BackingField: 50
+  <height>k__BackingField: 50
   cellSize: {x: 1, y: 1, z: 0}
+  borderSize: 20
   spaceship: {fileID: 5769846936361690345, guid: 131e6bf1a883087419b3e1c8797ab95c, type: 3}
   spaceshipAreaSprite: {fileID: 21300000, guid: 32e1c4b5f281ff847959b1e8684af78b, type: 3}
   spaceshipAreaTilemap: {fileID: 1477242317}
@@ -5012,7 +5014,7 @@ MonoBehaviour:
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
-      animationTiles: {fileID: 0}
+      animationTiles: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
     fillMode: 1
   - name: Grass
     tilemap: {fileID: 666316118}

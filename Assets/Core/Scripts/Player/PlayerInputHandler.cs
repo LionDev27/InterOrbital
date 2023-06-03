@@ -73,7 +73,6 @@ namespace InterOrbital.Player
                 {
                     BulletsPositionValue -= 1;
                     BulletsPositionValue = (BulletsPositionValue + 4) % 4;
-                    Debug.Log(BulletsPositionValue);
                     BulletSelector.Instance.UpdateSelectedBullet(BulletsPositionValue);
                 }
                 else

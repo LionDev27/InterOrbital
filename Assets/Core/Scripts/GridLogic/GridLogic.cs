@@ -1,32 +1,30 @@
-using InterOrbital.Player;
 using InterOrbital.Utils;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
-
-using UnityEditor;
 
 namespace InterOrbital.WorldSystem
 {
     public class GridLogic : MonoBehaviour
     {
-        public int width;
-        public int height;
-        public Vector3 cellSize = new Vector3(1, 1, 0);
-        public GameObject spaceship;
-        public Sprite spaceshipAreaSprite;
-        public Tilemap spaceshipAreaTilemap;
-        public List<string> biomes;
-        public TilemapLayer[] tilemapLayers;
-
-        public static GridLogic Instance;
-
         private const string TEXTURES_PATH = "Textures/";
+        [SerializeField] private bool debug;
+
+        [field: SerializeField] public int width { get; private set; }
+        [field: SerializeField]public int height { get; private set; }
+
+        [SerializeField] private Vector3 cellSize = new Vector3(1, 1, 0);
+        [SerializeField] private int borderSize;
+        [SerializeField] private GameObject spaceship;
+        [SerializeField] private Sprite spaceshipAreaSprite;
+        [SerializeField] private Tilemap spaceshipAreaTilemap;
+        [SerializeField] private List<string> biomes;
+        [SerializeField] private TilemapLayer[] tilemapLayers;
 
         private Cell[,] _gridCells;
         private Grid _grid;
+
+        public static GridLogic Instance;
 
         #region Unity Methods
 
@@ -80,22 +78,38 @@ namespace InterOrbital.WorldSystem
 
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Vector3 center = new Vector3(width / 2, height / 2, 0);
+            Vector3 size = new Vector3(width, height, 0);
+            Gizmos.DrawWireCube(center, size);
+        }
+
         private void Start()
+        {
+            if (!debug)
+            {
+                GenerateWorld();
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void GenerateWorld()
         {
             InitializeGrid();
             CreateRegions();
 
             foreach (var tilemapLayer in tilemapLayers)
             {
-                FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles,tilemapLayer.minimapSprite, tilemapLayer.fillMode);
+                FillTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, tilemapLayer.minimapSprite, tilemapLayer.fillMode);
             }
 
             SpawnSpaceship();
         }
-
-        #endregion
-
-        #region Private Methods
 
         private void FillTilemap(Tilemap tilemap, Tilemap minimapTilemap, List<BiomeRuleTile> tiles, Sprite minimapSprite, FillMode fillMode)
         {
@@ -107,6 +121,7 @@ namespace InterOrbital.WorldSystem
                     FillTilemapAll(tilemap, tiles);
                     FillTilemapBorders(tilemap);
                     GenerateMinimapTilemap(tilemap, minimapTilemap, minimapSprite);
+                    AddNoAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Random:
                     FillTilemapRandom(tilemap, tiles);
@@ -170,66 +185,122 @@ namespace InterOrbital.WorldSystem
         #region Borders Methods
         private void FillTilemapBorders(Tilemap tilemap)
         {
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            if (borderSize > width || borderSize > height)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                borderSize = Mathf.Min(width,height);
+            }
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < borderSize; y++)
                 {
-                    // Obtener la posición de la celda en el grid
-                    Vector3Int position = new Vector3Int(x, y, 0);
-                    Vector3Int rightSideMapPos = new Vector3Int(x + width, y, 0);
-                    Vector3Int leftSideMapPos = new Vector3Int(x - width, y, 0);
+                    Vector3Int posBottomBorder = new Vector3Int(x, y, 0);
+                    TileBase topTile = tilemap.GetTile(posBottomBorder);
                     Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
-                    Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
-                    Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
-                    Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
-                    Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
-                    Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
+                    tilemap.SetTile(topSideMapPos, topTile);
 
+                    
+                    Vector3Int posTopBorder = new Vector3Int(x, y + height - borderSize, 0);
+                    TileBase botTile = tilemap.GetTile(posTopBorder);
+                    Vector3Int botSideMapPos = new Vector3Int(x, y - borderSize, 0);
+                    tilemap.SetTile(botSideMapPos, botTile);
 
-                    // Asigna el Sprite al Tile
-                    TileBase tile = tilemap.GetTile(position);
+                    if(x < borderSize)
+                    {
+                        Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
+                        tilemap.SetTile(topRightSideMapPos, topTile);
 
-                    // Asignar el sprite al Tilemap en la posición correspondiente
-                    tilemap.SetTile(rightSideMapPos, tile);
-                    tilemap.SetTile(leftSideMapPos, tile);
-                    tilemap.SetTile(topSideMapPos, tile);
-                    tilemap.SetTile(botSideMapPos, tile);
-                    tilemap.SetTile(botLeftSideMapPos, tile);
-                    tilemap.SetTile(botRightSideMapPos, tile);
-                    tilemap.SetTile(topLeftSideMapPos, tile);
-                    tilemap.SetTile(topRightSideMapPos, tile);
+                        Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - borderSize, 0);
+                        tilemap.SetTile(botRightSideMapPos, botTile);
+                    }
+
+                    if(x >= width - borderSize)
+                    {
+                        Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
+                        tilemap.SetTile(topLeftSideMapPos, topTile);
+
+                        Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - borderSize, 0);
+                        tilemap.SetTile(botLeftSideMapPos, botTile);
+                    }
+
+                }
+            }
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < borderSize; x++)
+                {
+                    Vector3Int posLeftBorder = new Vector3Int(x, y, 0);
+                    TileBase leftTile = tilemap.GetTile(posLeftBorder);
+                    Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
+                    tilemap.SetTile(leftSideMapPos, leftTile);
+
+                    Vector3Int posRightBorder = new Vector3Int(x + width - borderSize, y, 0);
+                    TileBase rightTile = tilemap.GetTile(posRightBorder);
+                    Vector3Int rightSideMapPos = new Vector3Int(x - borderSize, y, 0);
+                    tilemap.SetTile(rightSideMapPos, rightTile);
                 }
             }
         }
 
+
         private void FillTilemapBorders(Tilemap tilemap, int x, int y, TileBase tile)
         {
-            Vector3Int rightSideMapPos = new Vector3Int(x + width, y, 0);
-            Vector3Int leftSideMapPos = new Vector3Int(x - width, y, 0);
-            Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
-            Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
-            Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
-            Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
-            Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
-            Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
+            if(x < borderSize)
+            {
+                Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
+                tilemap.SetTile(leftSideMapPos, tile);
+            }
+            
+            if(x >= width - borderSize)
+            {
+                Vector3Int rightSideMapPos = new Vector3Int(x - width, y, 0);
+                tilemap.SetTile(rightSideMapPos, tile);
+            }
 
+            if(y < borderSize)
+            {
+                Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
+                tilemap.SetTile(topSideMapPos, tile);
+            }
+            
+            if(y >= height - borderSize)
+            {
+                Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
+                tilemap.SetTile(botSideMapPos, tile);
+            }
 
-            // Asignar el sprite al Tilemap en la posición correspondiente
-            tilemap.SetTile(rightSideMapPos, tile);
-            tilemap.SetTile(leftSideMapPos, tile);
-            tilemap.SetTile(topSideMapPos, tile);
-            tilemap.SetTile(botSideMapPos, tile);
-            tilemap.SetTile(botLeftSideMapPos, tile);
-            tilemap.SetTile(botRightSideMapPos, tile);
-            tilemap.SetTile(topLeftSideMapPos, tile);
-            tilemap.SetTile(topRightSideMapPos, tile);
+            if (x < borderSize && y < borderSize)
+            {
+                Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
+                tilemap.SetTile(topRightSideMapPos, tile);
+
+            }
+
+            if (x < borderSize && y >= height - borderSize)
+            {
+                Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
+                tilemap.SetTile(botRightSideMapPos, tile);
+            }
+
+            if (x >= width - borderSize && y < borderSize)
+            {
+                Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
+                tilemap.SetTile(topLeftSideMapPos, tile);
+            }
+
+            if (x >= width - borderSize && y >= height - borderSize)
+            {
+                Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
+                tilemap.SetTile(botLeftSideMapPos, tile);
+            }
         }
 
         #endregion
 
         
 
-        #region Animated Tiles Methods
+        #region Repaint Map Tiles Methods
         private Sprite[,] GetTilemapSprites(Tilemap tilemap)
         {
             Sprite[,] tilemapSprites = new Sprite[width,height];
@@ -262,6 +333,39 @@ namespace InterOrbital.WorldSystem
             return spriteList;
         }
 
+        private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        {
+            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
+            List<Sprite> spriteList = new List<Sprite>();
+            int lastBiomeIndex = -1;
+
+            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            {
+                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+
+                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
+                    if (biomeIndex != lastBiomeIndex)
+                    {
+                        spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
+                        lastBiomeIndex = biomeIndex;
+                    }
+
+                    Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
+                    if (s != null)
+                    {
+                        Tile tile = ScriptableObject.CreateInstance<Tile>();
+
+                        // Asigna el Sprite al Tile
+                        tile.sprite = s;
+                        tilemap.SetTile(position, tile);
+                        FillTilemapBorders(tilemap, x, y, tile);
+                    }
+
+                }
+            }
+        }
 
         private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
