@@ -12,20 +12,20 @@ namespace InterOrbital.Player
 {
     public class PlayerInventory : Inventory
     {
-        public GameObject gridLeftPocket;
-        public GameObject gridRightPocket;
         private int _level;
         private int _actualItemEquiped;
         [SerializeField] private Sprite _backgroundSelectedImage;
 
+        public GameObject gridLeftPocket;
+        public GameObject gridRightPocket;
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
         public ItemScriptableObject itemTest3;
 
-
         // Start is called before the first frame update
         void Start()
         {
+           
             _level = 1;
             _actualItemEquiped = 2;
             InitSlots();

@@ -17,7 +17,6 @@ public class CraftCreator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _descriptionText;
     private CraftGrid _craftGrid;
     private CraftingItem _craftingItem;
-
     public List<Image> requireImages;
     public List<TextMeshProUGUI> requireTexts;
     public Image craftResultImage;
@@ -30,7 +29,7 @@ public class CraftCreator : MonoBehaviour
 
     private void Awake()
     {
-        _craftGrid = FindObjectOfType<CraftGrid>();
+        _craftGrid = GetComponentInChildren<CraftGrid>();
     }
 
 
@@ -154,7 +153,7 @@ public class CraftCreator : MonoBehaviour
         UpdateEnergyRequired();
     }
 
-    public void CraftItem()
+    public void CraftItem(bool isFast)
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
@@ -164,8 +163,23 @@ public class CraftCreator : MonoBehaviour
         UpdateAmountRequired();
         UpdateEnergyRequired();
         _craftGrid.UpdateFeedback();
-        _craftingItem.Craft(_itemCraft, _amountToCraft);
+        if (!isFast)
+        {
+            _craftingItem.Craft(_itemCraft, _amountToCraft);
+        }
+        else
+        {
+            GameObject obj = Instantiate(PlayerComponents.Instance.Inventory.dropItemPrefab);
+            ItemObject item = obj.AddComponent<ItemObject>();
+            item.ObtainComponents();
+            Destroy(obj);
+            item.SetItem(_itemCraft);
+            item.amount = _amountToCraft;
+            PlayerComponents.Instance.Inventory.AddItem(item);
+        }
     }
+
+   
 
     public void SetCraftingItem(CraftingItem craftingItem)
     {

@@ -122,6 +122,7 @@ namespace InterOrbital.Player
             BulletsMenuSelected = false;
             if (!UIManager.Instance.isChestOpen)
             {
+
                 UIManager.Instance.OpenInventory(false);
             }
         }

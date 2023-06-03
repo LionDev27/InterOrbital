@@ -12,7 +12,6 @@ namespace InterOrbital.Player
 {
     public class Inventory : MonoBehaviour
     {
-    
         protected int _totalNumberOfSlots;
         protected ItemObject [] _items;
         protected Image[] _itemsSlotBackGround;
@@ -29,6 +28,8 @@ namespace InterOrbital.Player
         public float dropForce;
 
         public bool isHide;
+
+        
         
 
         public virtual void Awake()
