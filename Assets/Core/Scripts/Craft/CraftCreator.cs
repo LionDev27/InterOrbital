@@ -16,7 +16,6 @@ public class CraftCreator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _descriptionText;
     private CraftGrid _craftGrid;
     private CraftingItem _craftingItem;
-
     public List<Image> requireImages;
     public List<TextMeshProUGUI> requireTexts;
     public Image craftResultImage;
@@ -27,7 +26,7 @@ public class CraftCreator : MonoBehaviour
 
     private void Awake()
     {
-        _craftGrid = FindObjectOfType<CraftGrid>();
+        _craftGrid = GetComponentInChildren<CraftGrid>();
     }
 
 
@@ -136,8 +135,9 @@ public class CraftCreator : MonoBehaviour
         }
         else
         {
-            GameObject obj = new GameObject();
+            GameObject obj = Instantiate(PlayerComponents.Instance.Inventory.dropItemPrefab);
             ItemObject item = obj.AddComponent<ItemObject>();
+            item.ObtainComponents();
             Destroy(obj);
             item.SetItem(_itemCraft);
             item.amount = _amountToCraft;

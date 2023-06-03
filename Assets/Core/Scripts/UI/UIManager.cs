@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using InterOrbital.Item;
 using InterOrbital.Player;
 
 namespace InterOrbital.UI
@@ -12,7 +13,7 @@ namespace InterOrbital.UI
 
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
-
+        [SerializeField] private CraftingItem _fastCraft;
 
         private bool _somethingOpen;
         public static UIManager Instance = null;
@@ -35,17 +36,15 @@ namespace InterOrbital.UI
        
         public void ActivateOrDesactivateUI(GameObject ui)
         {
-            if (ui.activeSelf)
+            if (ui.transform.localScale == Vector3.one)
             {
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
-                    ui.SetActive(false);
                     _somethingOpen = false;
                 });  
             }
             else if(!_somethingOpen)
             {
-                ui.SetActive(true);
                 _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
@@ -58,6 +57,7 @@ namespace InterOrbital.UI
 
             if(PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
             {
+                _fastCraft.ProccessSelection();
                 if (!_openInventory.IsActive())
                 {
                     if (openChest)

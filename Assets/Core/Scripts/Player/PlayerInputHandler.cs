@@ -81,6 +81,7 @@ namespace InterOrbital.Player
         {
             if (!UIManager.Instance.isChestOpen)
             {
+
                 UIManager.Instance.OpenInventory(false);
             }
         }

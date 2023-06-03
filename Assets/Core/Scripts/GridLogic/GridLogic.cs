@@ -27,6 +27,7 @@ namespace InterOrbital.WorldSystem
 
         private Cell[,] _gridCells;
         private Grid _grid;
+        [SerializeField] private bool debug;
 
         #region Unity Methods
 
@@ -82,15 +83,18 @@ namespace InterOrbital.WorldSystem
 
         private void Start()
         {
-            InitializeGrid();
-            CreateRegions();
-
-            foreach (var tilemapLayer in tilemapLayers)
+            if (!debug)
             {
-                FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles,tilemapLayer.minimapSprite, tilemapLayer.fillMode);
-            }
+                InitializeGrid();
+                CreateRegions();
 
-            SpawnSpaceship();
+                foreach (var tilemapLayer in tilemapLayers)
+                {
+                    FillTilemap(tilemapLayer.tilemap,tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles,tilemapLayer.minimapSprite, tilemapLayer.fillMode);
+                }
+
+                SpawnSpaceship();
+            }
         }
 
         #endregion
