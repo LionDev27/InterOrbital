@@ -77,9 +77,9 @@ public class CraftCreator : MonoBehaviour
         var energyRequired = _itemCraft.craftEnergyRequired * _amountToCraft;
         var currentSpaceshipEnergy = SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
 
-        var colorText = energyRequired <= currentSpaceshipEnergy ? Color.green : Color.red;
+        var colorText = HaveEnoughEnergyToCraft() ? Color.green : Color.red;
         energyRequiredText.color = colorText;
-        energyRequiredText.text = energyRequired + "/" + currentSpaceshipEnergy;
+        energyRequiredText.text = currentSpaceshipEnergy + "/" + energyRequired;
     }
     
     private bool HaveEnoughEnergyToCraft()
@@ -153,7 +153,7 @@ public class CraftCreator : MonoBehaviour
         UpdateEnergyRequired();
     }
 
-    public void CraftItem(bool isFast)
+    public void CraftItem(bool isPlayerCraft)
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
@@ -163,7 +163,7 @@ public class CraftCreator : MonoBehaviour
         UpdateAmountRequired();
         UpdateEnergyRequired();
         _craftGrid.UpdateFeedback();
-        if (!isFast)
+        if (!isPlayerCraft)
         {
             _craftingItem.Craft(_itemCraft, _amountToCraft);
         }

@@ -35,7 +35,5 @@ namespace InterOrbital.Item
             _craftGrid.UpdateFeedback();
             _craftGrid.SelectLast();
         }
-
-        
     }
 }

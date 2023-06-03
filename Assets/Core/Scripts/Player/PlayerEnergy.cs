@@ -42,6 +42,11 @@ namespace InterOrbital.Player
             CheckEnergy();
         }
 
+        public int GetCurrentPlayerEnergy()
+        {
+            return _currentEnergy;
+        }
+
         public void UpgradeEnergy(int energyAmount)
         {
             _maxEnergy += energyAmount;
