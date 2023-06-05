@@ -29,9 +29,6 @@ namespace InterOrbital.Player
 
         public bool isHide;
 
-        
-        
-
         public virtual void Awake()
         {
             

@@ -22,6 +22,7 @@ namespace InterOrbital.UI
         public GameObject bagUI;
         public GameObject craftUI;
         public GameObject storageUI;
+        public GameObject blackout;
         
         
         private void Awake()
@@ -38,6 +39,8 @@ namespace InterOrbital.UI
         {
             if (ui.transform.localScale == Vector3.one)
             {
+                blackout.SetActive(false);
+                PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     _somethingOpen = false;
@@ -45,6 +48,8 @@ namespace InterOrbital.UI
             }
             else if(!_somethingOpen)
             {
+                blackout.SetActive(true);
+                PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
@@ -71,6 +76,8 @@ namespace InterOrbital.UI
                         storageUI.SetActive(false);
                         isChestOpen = false;
                     }
+                    blackout.SetActive(true);
+                    PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                     _somethingOpen = true;
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
@@ -88,6 +95,8 @@ namespace InterOrbital.UI
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     }
+                    blackout.SetActive(false);
+                    PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = true;
