@@ -6,20 +6,28 @@ namespace InterOrbital.Combat.IA
 {
     public class EnemyAgentBase : MonoBehaviour
     {
-        [SerializeField] private List<EnemyStateBase> _states;
-        private EnemyStateBase _currentState;
+        [SerializeField] protected List<EnemyStateBase> _states;
+        protected EnemyStateBase _currentState;
+        protected Animator _animator;
+
+        public List<EnemyStateBase> States => _states;
 
         protected virtual void Awake()
         {
+            if(_states.Count <= 0) return;
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
+            _animator = GetComponentInChildren<Animator>();
         }
 
         protected virtual void Update()
         {
-            _currentState.Execute();
+            if (_currentState)
+            {
+                _currentState.Execute();
+            }
         }
 
         public virtual void ChangeState(EnemyStateBase newState)
