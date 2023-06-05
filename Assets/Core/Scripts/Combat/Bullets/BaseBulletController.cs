@@ -7,11 +7,14 @@ namespace InterOrbital.Combat.Bullets
     {
         [Range(0f, 10f)]
         [SerializeField] private float _speed;
-        private Vector2 _moveDir;
+        [Range(0f, 10f)]
+        [SerializeField] protected float _range;
+        [Range(0f, 10f)]
+        [SerializeField] protected float _cooldown;
+        protected Vector2 _moveDir;
         private Vector2 _parentPos;
-        private float _range;
         private Rigidbody2D _rigidbody2D;
-        private DamageDealer _damageDealer;
+        protected DamageDealer _damageDealer;
 
         protected virtual void Awake()
         {
@@ -50,18 +53,19 @@ namespace InterOrbital.Combat.Bullets
                 Destroy(gameObject);
         }
 
+        public float GetBulletAttackCooldown()
+        {
+            return _cooldown;
+        }
+
         /// <summary>
         /// Metodo necesario para definir las variables del ataque del arma.
         /// </summary>
-        /// <param name="damage">Daño que hace la bala.</param>
-        /// <param name="bulletRange">Rango de la bala. Si lo supera, desaparecerá.</param>
         /// <param name="attackerTag">Tag del objeto que ha lanzado la bala.</param>
         /// <param name="moveVector">Vector dirección de movimiento de la bala.</param>
         /// <param name="parentPos">Posición del objeto que lanza la bala. Se usará para comprobar el rango.</param>
-        public void SetupBullet(int damage, float bulletRange, string attackerTag, Vector2 moveVector, Vector2 parentPos)
+        public void SetupBullet(string attackerTag, Vector2 moveVector, Vector2 parentPos)
         {
-            _damageDealer.damage = damage;
-            _range = bulletRange;
             _damageDealer.attackerTag = attackerTag;
             _moveDir = moveVector;
             _parentPos = parentPos;

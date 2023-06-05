@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 public class BulletSelector : MonoBehaviour
 {
+    private const int MAXIMUM_BULLETS = 4;
+
     [SerializeField] private List<BulletSlot> bulletsSlots;
     [SerializeField] private List<ItemBulletScriptableObject> bulletsItems;
+    [SerializeField] private ItemBulletScriptableObject emptyBullet;
 
     [SerializeField] private Sprite bulletSlotSelectedImage;
     [SerializeField] private Sprite bulletSlotNoSelectedImage;
-    [SerializeField] private Sprite emptySlotImage;
 
     public static BulletSelector Instance;
 
@@ -28,24 +30,36 @@ public class BulletSelector : MonoBehaviour
 
     private void Start()
     {
-        FillBulletSelector();    
+        InitializeBulletSelector();
     }
 
-    private void FillBulletSelector()
+    private void InitializeBulletSelector()
     {
-        for(int i = 0; i < bulletsSlots.Count;  i++)
+        for (int i = 0; i < MAXIMUM_BULLETS; i++)
         {
-            if (i < bulletsItems.Count)
-            {
-                bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
-            }
-            else
-            {
-                bulletsSlots[i].SetBulletSprite(emptySlotImage);
-            }
+            bulletsItems.Add(emptyBullet);
+            bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
             bulletsSlots[i].SetBackgroundSprite(bulletSlotNoSelectedImage);
+            bulletsSlots[i].SetBulletAmount(0);
         }
         bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+        ChangePlayerBullet();
+    }
+
+    private void UpdateBulletSelectorUI()
+    {
+        for (int i = 0; i < bulletsSlots.Count; i++)
+        {
+            bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
+        }
+    }
+
+    public void ChangeBulletInList(int index, ItemBulletScriptableObject bullet)
+    {
+        if (index < bulletsItems.Count)
+        {
+            bulletsItems[index] = bullet;
+        }
     }
 
     public void UpdateSelectedBullet(int index)
