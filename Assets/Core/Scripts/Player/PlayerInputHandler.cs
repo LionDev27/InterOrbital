@@ -127,6 +127,11 @@ namespace InterOrbital.Player
             }
         }
 
+        private void OnMinimap()
+        {
+            UIManager.Instance.ToggleMinimap();
+        }
+
         private void OnUseItem()
         {
             PlayerComponents.Instance.Inventory.UseItem();

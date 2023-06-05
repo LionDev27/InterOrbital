@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using InterOrbital.Item;
 using InterOrbital.Player;
+using UnityEngine.UI;
 
 namespace InterOrbital.UI
 {
@@ -14,6 +15,8 @@ namespace InterOrbital.UI
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
+        [SerializeField] private MinimapController _minimapController;
+
 
         private bool _somethingOpen;
         public static UIManager Instance = null;
@@ -111,7 +114,10 @@ namespace InterOrbital.UI
             _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
         }
 
-
+        public void ToggleMinimap()
+        {
+            _minimapController.ToggleMinimap();
+        }
     }
 }
 

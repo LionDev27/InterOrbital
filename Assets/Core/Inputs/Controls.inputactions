@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Minimap",
+                    "type": "Button",
+                    "id": "ebc65c54-ac4b-4b56-85ac-500c5359e8d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -354,6 +363,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Recolect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a60a802-05e3-49af-8c18-a5abb497b735",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Minimap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
