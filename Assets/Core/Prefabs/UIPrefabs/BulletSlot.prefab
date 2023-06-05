@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544fae7524c86ab4196e48b838d16b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 7081664565929984269}
-  bulletImage: {fileID: 6167518246664115416}
-  amount: {fileID: 950162855942747661}
+  _backgroundImage: {fileID: 7081664565929984269}
+  _bulletImage: {fileID: 6167518246664115416}
+  _amount: {fileID: 950162855942747661}
 --- !u!1 &4279825428357990395
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 8058981535900626974}
   - component: {fileID: 7081664565929984269}
   m_Layer: 5
-  m_Name: BulletBackground1
+  m_Name: BulletBackgroundImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
