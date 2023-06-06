@@ -11,6 +11,11 @@ namespace InterOrbital.Combat.IA
 
         public Transform Target => _target;
 
+        private void Start()
+        {
+            ChangeState(_states[0]);
+        }
+
         protected override void Update()
         {
             base.Update();
@@ -18,8 +23,8 @@ namespace InterOrbital.Combat.IA
 
         public bool IsDetectingPlayer()
         {
-            Collider2D[] collider = Physics2D.OverlapBoxAll(transform.position, _detectionRange, 0f);
-            foreach (var col in collider)
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, _detectionRange, 0f);
+            foreach (var col in colliders)
             {
                 if (col.CompareTag("Player"))
                 {
