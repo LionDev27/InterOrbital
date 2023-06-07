@@ -15,6 +15,7 @@ namespace InterOrbital.WorldSystem
 
         [SerializeField] private Vector3 cellSize = new Vector3(1, 1, 0);
         [SerializeField] private int borderSize;
+        [SerializeField] private GameObject _mapChunkPrefab;
         [SerializeField] private GameObject spaceship;
         [SerializeField] private Sprite spaceshipAreaSprite;
         [SerializeField] private Tilemap spaceshipAreaTilemap;
@@ -22,6 +23,8 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private TilemapLayer[] tilemapLayers;
 
         private Cell[,] _gridCells;
+        private int _chunkSize = 10;
+        private GameObject _mapChunks;
         private Grid _grid;
 
         public static GridLogic Instance;
@@ -100,6 +103,7 @@ namespace InterOrbital.WorldSystem
 
         private void GenerateWorld()
         {
+            CreateMapChunks();
             InitializeGrid();
             CreateRegions();
 
@@ -109,6 +113,33 @@ namespace InterOrbital.WorldSystem
             }
 
             SpawnSpaceship();
+        }
+
+        private void CreateMapChunks()
+        {
+            int numChunksX = Mathf.CeilToInt((float)width / _chunkSize);
+            int numChunksY = Mathf.CeilToInt((float)height / _chunkSize);
+
+            // Dividir el mapa en chunks
+            for (int x = 0; x < numChunksX; x++)
+            {
+                for (int y = 0; y < numChunksY; y++)
+                {
+                    // Calcular el tamaño real del chunk
+                    int chunkWidth = Mathf.Min(_chunkSize, width - x * _chunkSize);
+                    int chunkHeight = Mathf.Min(_chunkSize, height - y * _chunkSize);
+
+                    // Calcular la posición del chunk
+                    float chunkPosX = x * _chunkSize + chunkWidth * 0.5f;
+                    float chunkPosY = y * _chunkSize + chunkHeight * 0.5f;
+
+                    // Crear un nuevo chunk
+                    GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0), Quaternion.identity, transform);
+
+                    // Ajustar el tamaño del Box Collider 2D al tamaño del chunk
+                    chunk.GetComponent<BoxCollider2D>().size = new Vector2(chunkWidth, chunkHeight);
+                }
+            }
         }
 
         private void FillTilemap(Tilemap tilemap, Tilemap minimapTilemap, List<BiomeRuleTile> tiles, Sprite minimapSprite, FillMode fillMode)
@@ -430,6 +461,11 @@ namespace InterOrbital.WorldSystem
                     minimap.SetTile(pos, minimapTile);
                 }
             }
+        }
+
+        private void GenerateChunkMinimap()
+        {
+
         }
 
         private void InitializeGrid()
