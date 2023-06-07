@@ -187,6 +187,11 @@ namespace InterOrbital.Player
             }
         }
 
+        public ItemType GetTypeItemByIndex(int index)
+        {
+            return _items[index].itemSo.type;
+        }
+
     }
 }
 

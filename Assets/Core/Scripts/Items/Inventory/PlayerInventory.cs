@@ -18,6 +18,7 @@ namespace InterOrbital.Player
 
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
+        public GameObject gridBullets;
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
         public ItemScriptableObject itemTest3;
@@ -119,8 +120,9 @@ namespace InterOrbital.Player
             var sizeMain = gridMain.transform.childCount;
             var sizeLeft = gridLeftPocket.transform.childCount;
             var sizeRight = gridRightPocket.transform.childCount;
+            var sizeBullets = gridBullets.transform.childCount ;
 
-            _totalNumberOfSlots = sizeMain + sizeLeft + sizeRight;
+            _totalNumberOfSlots = sizeMain + sizeLeft + sizeRight + sizeBullets;
             _itemsSlot = new Image[_totalNumberOfSlots];
             _itemsSlotBackGround = new Image[_totalNumberOfSlots];
             _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
@@ -128,6 +130,7 @@ namespace InterOrbital.Player
             RelateSlots(gridMain, 0, sizeMain, _itemsSlot, true);
             RelateSlots(gridLeftPocket, sizeMain, sizeLeft, _itemsSlot, true);
             RelateSlots(gridRightPocket, sizeMain + sizeLeft, sizeRight, _itemsSlot, true);
+            RelateSlots(gridBullets, sizeMain + sizeLeft + sizeRight, sizeBullets, _itemsSlot, true);
 
             _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
         }
