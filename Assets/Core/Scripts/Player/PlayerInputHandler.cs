@@ -115,6 +115,11 @@ namespace InterOrbital.Player
         private void OnFire()
         {
             OnAttack();
+
+            if(BuildGrid.Instance.IsBuilding())
+            {
+                BuildGrid.Instance.Build(BuildGrid.Instance.GetPosToBuild());
+            }
         }
         
         private void OnInventory()

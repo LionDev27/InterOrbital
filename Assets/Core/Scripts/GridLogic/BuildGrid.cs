@@ -12,11 +12,11 @@ public class BuildGrid : MonoBehaviour
     public static BuildGrid Instance;
 
 
-    private int buildRange = 10;
-    private ItemScriptableObject itemToBuild;
-    private Vector3Int playerPos;
-    private Vector3Int highlightedTilePos;
-    private bool buildMode;
+    private int _buildRange = 10;
+    private ItemScriptableObject _itemToBuild;
+    private Vector3Int _playerPos;
+    private Vector3Int _highlightedTilePos;
+    private bool _buildMode;
 
     protected virtual void Awake()
     {
@@ -26,17 +26,14 @@ public class BuildGrid : MonoBehaviour
 
     private void Update()
     {
-        if (buildMode)
+        if (_buildMode)
         {
-            playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
+            _playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
 
-            if (itemToBuild != null)
+            if (_itemToBuild != null)
             {
                 HighlightTile();
             }
-
-            if (Input.GetKeyDown(KeyCode.R))
-                Build(highlightedTilePos);
         }
     }
 
@@ -53,17 +50,17 @@ public class BuildGrid : MonoBehaviour
     {
         Vector3Int mouseGridPos = GetMouseOnGridPos();
 
-        if(highlightedTilePos != mouseGridPos)
+        if(_highlightedTilePos != mouseGridPos)
         {
-            highlightBuildLayer.SetTile(highlightedTilePos, null);
+            highlightBuildLayer.SetTile(_highlightedTilePos, null);
 
-            if (InRangeToBuild(playerPos, mouseGridPos, buildRange))
+            if (InRangeToBuild(_playerPos, mouseGridPos, _buildRange))
             {
                 Tile newTile = ScriptableObject.CreateInstance<Tile>();
-                if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
-                    newTile.sprite = ChangeSpritePivot(itemToBuild.buildHighlightSprite);
+                if (IsMoreThanTileBigger(_itemToBuild.buildHighlightSprite))
+                    newTile.sprite = ChangeSpritePivot(_itemToBuild.buildHighlightSprite);
                 else 
-                    newTile.sprite = itemToBuild.buildHighlightSprite; 
+                    newTile.sprite = _itemToBuild.buildHighlightSprite; 
 
                 if (CanBuild(mouseGridPos.x,mouseGridPos.y))
                 {
@@ -76,7 +73,7 @@ public class BuildGrid : MonoBehaviour
 
 
                 highlightBuildLayer.SetTile(mouseGridPos, newTile);
-                highlightedTilePos = mouseGridPos;
+                _highlightedTilePos = mouseGridPos;
             }   
         }
     }
@@ -84,10 +81,10 @@ public class BuildGrid : MonoBehaviour
     private bool CanBuild(int x, int y)
     {
         bool canBuild = true;
-        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        if (IsMoreThanTileBigger(_itemToBuild.buildHighlightSprite))
         {
-            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
-            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
+            int tileWidth = (int)_itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)_itemToBuild.buildHighlightSprite.bounds.size.y;
 
             for (int j = 0; j < tileHeight; j++)
             {
@@ -111,10 +108,10 @@ public class BuildGrid : MonoBehaviour
 
     private void LockCellsOnBuild(Vector3Int coords)
     {
-        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        if (IsMoreThanTileBigger(_itemToBuild.buildHighlightSprite))
         {
-            int tileWidth = (int)itemToBuild.buildHighlightSprite.bounds.size.x;
-            int tileHeight = (int)itemToBuild.buildHighlightSprite.bounds.size.y;
+            int tileWidth = (int)_itemToBuild.buildHighlightSprite.bounds.size.x;
+            int tileHeight = (int)_itemToBuild.buildHighlightSprite.bounds.size.y;
 
             for (int j = 0; j < tileHeight; j++)
             {
@@ -136,7 +133,7 @@ public class BuildGrid : MonoBehaviour
 
         if (Mathf.Abs(distance.x) > range || Mathf.Abs(distance.y) > range)
         {
-            highlightedTilePos = default;
+            _highlightedTilePos = default;
             return false;
         }
 
@@ -170,10 +167,10 @@ public class BuildGrid : MonoBehaviour
 
     private Vector3 BuildPosition(Vector3Int coords)
     {
-        if (IsMoreThanTileBigger(itemToBuild.buildHighlightSprite))
+        if (IsMoreThanTileBigger(_itemToBuild.buildHighlightSprite))
         {
-            float offsetX = itemToBuild.buildHighlightSprite.bounds.size.x / 2;
-            float offsetY = itemToBuild.buildHighlightSprite.bounds.size.y / 2;
+            float offsetX = _itemToBuild.buildHighlightSprite.bounds.size.x / 2;
+            float offsetY = _itemToBuild.buildHighlightSprite.bounds.size.y / 2;
 
             return new Vector3(coords.x + offsetX, coords.y + offsetY, 0);
         }
@@ -187,9 +184,9 @@ public class BuildGrid : MonoBehaviour
     {
         Vector3Int coords = buildLayer.WorldToCell(worldCoords);
         Vector3 buildPos = BuildPosition(coords);
-        if (itemToBuild != null && itemToBuild.buildPrefab != null && CanBuild(coords.x,coords.y))
+        if (_itemToBuild != null && _itemToBuild.buildPrefab != null && CanBuild(coords.x,coords.y))
         {
-            Instantiate(itemToBuild.buildPrefab, buildPos, Quaternion.identity);
+            Instantiate(_itemToBuild.buildPrefab, buildPos, Quaternion.identity);
 
             LockCellsOnBuild(coords);
 
@@ -201,19 +198,24 @@ public class BuildGrid : MonoBehaviour
 
     public void ActivateBuildMode(ItemScriptableObject item)
     {
-        itemToBuild = item;
-        buildMode = true;
+        _itemToBuild = item;
+        _buildMode = true;
     }
 
     public void DesactivateBuildMode()
     {
-        itemToBuild = null;
-        buildMode = false;
-        highlightBuildLayer.SetTile(highlightedTilePos, null);
+        _itemToBuild = null;
+        _buildMode = false;
+        highlightBuildLayer.SetTile(_highlightedTilePos, null);
     }
 
     public bool IsBuilding()
     {
-        return buildMode;
+        return _buildMode;
+    }
+
+    public Vector3Int GetPosToBuild()
+    {
+        return _highlightedTilePos;
     }
 }
