@@ -13,7 +13,7 @@ namespace InterOrbital.Combat.IA
 
         public override void OnStateEnter()
         {
-            Debug.Log("Estado Idle");
+            _currentAgent.Animator.SetBool("Idle", true);
         }
 
         public override void Execute()

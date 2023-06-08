@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace InterOrbital.Combat.IA
 {
     public class ElytrinAlertState : EnemyStateBase
     {
-        [SerializeField] private float _timeToIdle = 5f;
         private ElytrinAgent _currentAgent;
-        private float _timer;
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -17,24 +13,42 @@ namespace InterOrbital.Combat.IA
 
         public override void OnStateEnter()
         {
-            //Navmesh
-            Debug.Log("Estado de alerta");
+            _currentAgent.Animator.SetBool("Idle", false);
+            _currentAgent.Animator.SetBool("PlayerLost", false);
         }
 
         public override void Execute()
         {
+            if (GetCurrentClipName() != "ElytrinRun") return;
+            if (_currentAgent.Animator.GetBool("Running") == false) _currentAgent.Animator.SetBool("Running", true);
             if (!_currentAgent.IsDetectingPlayer())
             {
-                _timer -= Time.deltaTime;
-                if (_timer <= 0f)
-                {
-                    _currentAgent.ChangeState(_currentAgent.States[0]);
-                }
+                if (_currentAgent.ArrivedDestination())
+                    _currentAgent.ChangeState(_currentAgent.States[2]);
             }
-            else if (_timer < _timeToIdle)
+            else
             {
-                _timer = _timeToIdle;
+                if (_currentAgent.NavMeshAgent.destination != _currentAgent.Target.position)
+                {
+                    _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
+                }
+
+                if (_currentAgent.TimerChanged()) _currentAgent.ResetTimer();
             }
+            
+            if (Mathf.Sign(_currentAgent.Target.transform.position.x - transform.position.x) > 0)
+            {
+                _currentAgent.FlipX(true);
+            }
+            else if (Mathf.Sign(_currentAgent.Target.transform.position.x - transform.position.x) < 0)
+            {
+                _currentAgent.FlipX(false);
+            }
+        }
+
+        private string GetCurrentClipName()
+        {
+            return _currentAgent.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         }
     }
 }

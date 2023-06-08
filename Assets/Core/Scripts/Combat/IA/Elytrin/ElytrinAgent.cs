@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace InterOrbital.Combat.IA
 {
@@ -8,11 +9,14 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private Vector2 _detectionRange;
         [SerializeField] private float _attackRange;
         private Transform _target;
-
+        private float _timer;
+        
+        public float timeToIdle = 5f;
         public Transform Target => _target;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             ChangeState(_states[0]);
         }
 
@@ -28,7 +32,7 @@ namespace InterOrbital.Combat.IA
             {
                 if (col.CompareTag("Player"))
                 {
-                    _target = col.transform;
+                    if (!_target) _target = col.transform;
                     return true;
                 }
             }
@@ -38,6 +42,34 @@ namespace InterOrbital.Combat.IA
         public bool CanAttackPlayer()
         {
             return false;
+        }
+
+        public void FlipX(bool value)
+        {
+            Vector2 visualsScale = _spriteRenderer.gameObject.transform.localScale;
+            float flippedX = -visualsScale.x;
+            visualsScale.x = value ? flippedX : visualsScale.x;
+            _spriteRenderer.gameObject.transform.localScale = visualsScale;
+        }
+        
+        public void RunTimer()
+        {
+            _timer -= Time.deltaTime;
+        }
+        
+        public void ResetTimer()
+        {
+            _timer = timeToIdle;
+        }
+        
+        public bool TimerEnded()
+        {
+            return _timer <= 0f;
+        }
+
+        public bool TimerChanged()
+        {
+            return _timer < timeToIdle;
         }
 
         private void OnDrawGizmos()

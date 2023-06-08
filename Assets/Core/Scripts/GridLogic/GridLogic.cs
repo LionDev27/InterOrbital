@@ -17,6 +17,7 @@ namespace InterOrbital.WorldSystem
         public Vector3 cellSize = new Vector3(1, 1, 0);
         public List<string> biomes;
         public TilemapLayer[] tilemapLayers;
+        public Action OnTilemapFilled;
 
         public static GridLogic Instance;
 
@@ -68,7 +69,7 @@ namespace InterOrbital.WorldSystem
             {
                 for (int i = tilemapLayer.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
                 {
-                    if (!biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no est· en la lista de biomas
+                    if (!biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no est√° en la lista de biomas
                     {
                         tilemapLayer.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
                     }
@@ -125,6 +126,7 @@ namespace InterOrbital.WorldSystem
                     AddAnimatedTiles(tilemap, tiles);
                     break;
             }
+            OnTilemapFilled?.Invoke();
         }
 
         private void FillTilemapAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
@@ -133,12 +135,12 @@ namespace InterOrbital.WorldSystem
             {
                 for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
                 {
-                    // Obtener la posiciÛn de la celda en el grid
+                    // Obtener la posici√≥n de la celda en el grid
                     Vector3Int position = new Vector3Int(x, y, 0);
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
 
-                    // Asignar el sprite al Tilemap en la posiciÛn correspondiente
+                    // Asignar el sprite al Tilemap en la posici√≥n correspondiente
                     tilemap.SetTile(position, tiles[biomeIndex].tiles);
                 }
             }
@@ -166,7 +168,7 @@ namespace InterOrbital.WorldSystem
                     {
                         continue;
                     }
-                    // Obtener la posiciÛn de la celda en el grid
+                    // Obtener la posici√≥n de la celda en el grid
                     Vector3Int position = new Vector3Int(x, y, 0);
 
 
@@ -184,7 +186,7 @@ namespace InterOrbital.WorldSystem
             {
                 for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
                 {
-                    // Obtener la posiciÛn de la celda en el grid
+                    // Obtener la posici√≥n de la celda en el grid
                     Vector3Int position = new Vector3Int(x, y, 0);
                     Vector3Int rightSideMapPos = new Vector3Int(x + width, y, 0);
                     Vector3Int leftSideMapPos = new Vector3Int(x - width, y, 0);
@@ -199,7 +201,7 @@ namespace InterOrbital.WorldSystem
                     // Asigna el Sprite al Tile
                     TileBase tile = tilemap.GetTile(position);
 
-                    // Asignar el sprite al Tilemap en la posiciÛn correspondiente
+                    // Asignar el sprite al Tilemap en la posici√≥n correspondiente
                     tilemap.SetTile(rightSideMapPos, tile);
                     tilemap.SetTile(leftSideMapPos, tile);
                     tilemap.SetTile(topSideMapPos, tile);
@@ -224,7 +226,7 @@ namespace InterOrbital.WorldSystem
             Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
 
 
-            // Asignar el sprite al Tilemap en la posiciÛn correspondiente
+            // Asignar el sprite al Tilemap en la posici√≥n correspondiente
             tilemap.SetTile(rightSideMapPos, tile);
             tilemap.SetTile(leftSideMapPos, tile);
             tilemap.SetTile(topSideMapPos, tile);
@@ -398,7 +400,7 @@ namespace InterOrbital.WorldSystem
                 int extension = UnityEngine.Random.Range(minExtension, maxExtension + 1); // determinar la extension aleatoria
                 for (int i = 0; i < extension; i++)
                 {
-                    Vector2Int currentPos = new Vector2Int(x, y); // posiciÛn actual
+                    Vector2Int currentPos = new Vector2Int(x, y); // posici√≥n actual
 
                     while (visited.Contains(currentPos) || (currentPos.x < 0 || currentPos.x >= width || currentPos.y < 0 || currentPos.y >= height))
                     {
@@ -443,7 +445,7 @@ namespace InterOrbital.WorldSystem
                 int extension = UnityEngine.Random.Range(minExtension, maxExtension + 1); // determinar la extension aleatoria
                 for (int i = 0; i < extension; i++)
                 {
-                    Vector2Int currentPos = new Vector2Int(x, y); // posiciÛn actual
+                    Vector2Int currentPos = new Vector2Int(x, y); // posici√≥n actual
 
                     while (visited.Contains(currentPos) || (currentPos.x < 0 || currentPos.x >= width || currentPos.y < 0 || currentPos.y >= height))
                     {
