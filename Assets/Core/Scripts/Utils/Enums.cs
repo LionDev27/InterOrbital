@@ -17,4 +17,16 @@ namespace InterOrbital.Utils
         Small,
         Big
     }
+
+    public enum Orientation
+    {
+        N,
+        E,
+        W,
+        S,
+        NW,
+        NE,
+        SW,
+        SE
+    }
 }

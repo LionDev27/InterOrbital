@@ -1,4 +1,7 @@
+using InterOrbital.Player;
 using InterOrbital.Utils;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,15 +19,14 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Vector3 cellSize = new Vector3(1, 1, 0);
         [SerializeField] private int borderSize;
         [SerializeField] private GameObject _mapChunkPrefab;
-        [SerializeField] private GameObject spaceship;
-        [SerializeField] private Sprite spaceshipAreaSprite;
-        [SerializeField] private Tilemap spaceshipAreaTilemap;
-        [SerializeField] private List<string> biomes;
-        [SerializeField] private TilemapLayer[] tilemapLayers;
+        [SerializeField] private GameObject _spaceship;
+        [SerializeField] private Sprite _spaceshipAreaSprite;
+        [SerializeField] private Tilemap _spaceshipAreaTilemap;
+        [SerializeField] private List<string> _biomes;
+        [SerializeField] private TilemapLayer[] _tilemapLayers;
 
         private Cell[,] _gridCells;
-        private int _chunkSize = 10;
-        private GameObject _mapChunks;
+        private int _chunkSize = 5;
         private Grid _grid;
 
         public static GridLogic Instance;
@@ -42,15 +44,30 @@ namespace InterOrbital.WorldSystem
 
         private void OnValidate()
         {
-            for (int i = 0; i < biomes.Count; i++)
+            if(width % _chunkSize != 0)
+            {
+                width += _chunkSize - (width % _chunkSize);
+            }
+
+            if (height % _chunkSize != 0)
+            {
+                height += _chunkSize - (height % _chunkSize);
+            }
+
+            if (borderSize % _chunkSize != 0)
+            {
+                borderSize += _chunkSize - (borderSize % _chunkSize);
+            }
+
+            for (int i = 0; i < _biomes.Count; i++)
             {
                 // Verificar si el bioma ya existe en la lista de biomas con tiles de reglas
-                foreach (var tilemapLayer in tilemapLayers)
+                foreach (var tilemapLayer in _tilemapLayers)
                 {
                     bool existe = false;
                     for (int j = 0; j < tilemapLayer.biomesTiles.Count; j++)
                     {
-                        if (tilemapLayer.biomesTiles[j].biome == biomes[i])
+                        if (tilemapLayer.biomesTiles[j].biome == _biomes[i])
                         {
                             existe = true;
                             break;
@@ -61,18 +78,18 @@ namespace InterOrbital.WorldSystem
                     if (!existe)
                     {
                         BiomeRuleTile newBiome = new BiomeRuleTile();
-                        newBiome.biome = biomes[i];
+                        newBiome.biome = _biomes[i];
                         tilemapLayer.biomesTiles.Add(newBiome);
                     }
                 }
             }
 
 
-            foreach (var tilemapLayer in tilemapLayers)
+            foreach (var tilemapLayer in _tilemapLayers)
             {
                 for (int i = tilemapLayer.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
                 {
-                    if (!biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no está en la lista de biomas
+                    if (!_biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no está en la lista de biomas
                     {
                         tilemapLayer.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
                     }
@@ -93,7 +110,7 @@ namespace InterOrbital.WorldSystem
         {
             if (!debug)
             {
-                GenerateWorld();
+                StartCoroutine(GenerateWorld());
             }
         }
 
@@ -101,43 +118,89 @@ namespace InterOrbital.WorldSystem
 
         #region Private Methods
 
-        private void GenerateWorld()
+        private IEnumerator GenerateWorld()
         {
             CreateMapChunks();
             InitializeGrid();
             CreateRegions();
 
-            foreach (var tilemapLayer in tilemapLayers)
+            foreach (var tilemapLayer in _tilemapLayers)
             {
                 FillTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, tilemapLayer.minimapSprite, tilemapLayer.fillMode);
             }
 
             SpawnSpaceship();
+            yield return new WaitForSeconds(0.1f);
+            PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
         private void CreateMapChunks()
         {
-            int numChunksX = Mathf.CeilToInt((float)width / _chunkSize);
-            int numChunksY = Mathf.CeilToInt((float)height / _chunkSize);
+            int numBorderChunks = borderSize / _chunkSize;
 
+            int numChunksX = Mathf.CeilToInt((float)width / _chunkSize) + numBorderChunks * 2;
+            int numChunksY = Mathf.CeilToInt((float)height / _chunkSize) + numBorderChunks * 2;
             // Dividir el mapa en chunks
             for (int x = 0; x < numChunksX; x++)
             {
                 for (int y = 0; y < numChunksY; y++)
                 {
-                    // Calcular el tamaño real del chunk
-                    int chunkWidth = Mathf.Min(_chunkSize, width - x * _chunkSize);
-                    int chunkHeight = Mathf.Min(_chunkSize, height - y * _chunkSize);
-
                     // Calcular la posición del chunk
-                    float chunkPosX = x * _chunkSize + chunkWidth * 0.5f;
-                    float chunkPosY = y * _chunkSize + chunkHeight * 0.5f;
+                    float chunkPosX = (x - numBorderChunks) * _chunkSize;
+                    float chunkPosY = (y - numBorderChunks) * _chunkSize;
 
                     // Crear un nuevo chunk
                     GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0), Quaternion.identity, transform);
 
                     // Ajustar el tamaño del Box Collider 2D al tamaño del chunk
-                    chunk.GetComponent<BoxCollider2D>().size = new Vector2(chunkWidth, chunkHeight);
+                    chunk.GetComponent<BoxCollider2D>().size = new Vector2(_chunkSize, _chunkSize);
+                    chunk.GetComponent<BoxCollider2D>().offset = new Vector2(_chunkSize / 2f, _chunkSize / 2f);
+                    
+                    if(chunkPosX < 0)
+                    {
+                        chunk.GetComponent<Chunk>().SetBorder(true);
+                        if(chunkPosY < 0)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.SW);
+                        }
+                        else if (chunkPosY >= 0 && chunkPosY < numChunksY - numBorderChunks)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.W);
+                        }
+                        else if(chunkPosY >= numChunksY - numBorderChunks)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.NW);
+                        }
+                    }
+
+                    if(chunkPosX >= numChunksX - numBorderChunks)
+                    {
+                        chunk.GetComponent<Chunk>().SetBorder(true);
+                        if (chunkPosY < 0)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.SE);
+                        }
+                        else if (chunkPosY >= 0 && chunkPosY < numChunksY - numBorderChunks)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.E);
+                        }
+                        else if (chunkPosY >= numChunksY - numBorderChunks)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.NE);
+                        }
+                    }
+
+                    if(chunkPosX >= 0 && chunkPosX < numChunksX - numBorderChunks)
+                    {
+                        if (chunkPosY < 0)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.S);
+                        }
+                        else if (chunkPosY >= numChunksY - numBorderChunks)
+                        {
+                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.N);
+                        }
+                    }
                 }
             }
         }
@@ -151,13 +214,11 @@ namespace InterOrbital.WorldSystem
                 case FillMode.All:
                     FillTilemapAll(tilemap, tiles);
                     FillTilemapBorders(tilemap);
-                    GenerateMinimapTilemap(tilemap, minimapTilemap, minimapSprite);
                     AddNoAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Random:
                     FillTilemapRandom(tilemap, tiles);
                     FillTilemapBorders(tilemap);
-                    GenerateMinimapTilemap(tilemap, minimapTilemap, minimapSprite);
                     AddAnimatedTiles(tilemap, tiles);
                     break;
             }
@@ -448,24 +509,33 @@ namespace InterOrbital.WorldSystem
 
         #endregion
 
-        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, Sprite minimapSprite)
-        {
-            foreach (var pos in origin.cellBounds.allPositionsWithin)
-            {
-                var sourceTile = origin.GetTile(pos);
-                if (sourceTile != null)
-                {
-                    Tile minimapTile = ScriptableObject.CreateInstance<Tile>();
 
-                    minimapTile.sprite = minimapSprite;
-                    minimap.SetTile(pos, minimapTile);
+        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, Sprite minimapSprite, int chunkXPos, int chunkYPos)
+        {
+            for (int j = chunkYPos; j < (chunkYPos + _chunkSize); j++)
+            {
+                for (int i = chunkXPos; i < (chunkXPos + _chunkSize); i++)
+                {
+                    Vector3Int pos = new Vector3Int(i, j, 0);
+                    var sourceTile = origin.GetTile(pos);
+                    if (sourceTile != null)
+                    {
+                        Tile minimapTile = ScriptableObject.CreateInstance<Tile>();
+
+                        minimapTile.sprite = minimapSprite;
+                        minimap.SetTile(pos, minimapTile);
+                    }
                 }
+
             }
         }
 
-        private void GenerateChunkMinimap()
+        public void GenerateChunkMinimap(int chunkXPos, int chunkYPos)
         {
-
+            foreach (var tilemapLayer in _tilemapLayers)
+            {
+                GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.minimapSprite, chunkXPos, chunkYPos);
+            }
         }
 
         private void InitializeGrid()
@@ -475,21 +545,21 @@ namespace InterOrbital.WorldSystem
             {
                 for (int j = 0; j < height; j++)
                 {
-                    _gridCells[i, j] = new Cell(i, j, biomes[0]);
+                    _gridCells[i, j] = new Cell(i, j, _biomes[0]);
                 }
             }
         }
 
         private void SpawnSpaceship()
         {
-            Instantiate(spaceship,new Vector3(width/2, height/2, 0), Quaternion.identity);
+            Instantiate(_spaceship,new Vector3(width/2, height/2, 0), Quaternion.identity);
             int spaceshipTilesWidth = 6;
             int spaceshipTilesHeight = 6;
             int spaceshipWidth = width / 2 - spaceshipTilesWidth / 2;
             int spaceshipHeight = height / 2;
 
             Tile spaceshipAreaTile = ScriptableObject.CreateInstance<Tile>();
-            spaceshipAreaTile.sprite = spaceshipAreaSprite;
+            spaceshipAreaTile.sprite = _spaceshipAreaSprite;
 
             for (int y = 0; y < spaceshipTilesHeight; y++)
             {
@@ -498,7 +568,7 @@ namespace InterOrbital.WorldSystem
                     if (y == 0)
                     {
                         Vector3Int position = new Vector3Int(x + spaceshipWidth, y + spaceshipHeight, 0);
-                        spaceshipAreaTilemap.SetTile(position, spaceshipAreaTile);
+                        _spaceshipAreaTilemap.SetTile(position, spaceshipAreaTile);
                     }
                     LockCell(x + spaceshipWidth, y + spaceshipHeight);
                 }
@@ -513,7 +583,7 @@ namespace InterOrbital.WorldSystem
             int heightArea = 0;
 
             Tile spaceshipAreaTile = ScriptableObject.CreateInstance<Tile>();
-            spaceshipAreaTile.sprite = spaceshipAreaSprite;
+            spaceshipAreaTile.sprite = _spaceshipAreaSprite;
 
             switch (tier)
             {
@@ -542,7 +612,7 @@ namespace InterOrbital.WorldSystem
 
                     Vector3Int position = new Vector3Int(x + startWidthArea, y + startHeightArea, 0);
 
-                    spaceshipAreaTilemap.SetTile(position,spaceshipAreaTile);
+                    _spaceshipAreaTilemap.SetTile(position,spaceshipAreaTile);
                     MakeSpaceshipArea(x + startWidthArea,y + startHeightArea);
                 }
             }
@@ -673,6 +743,11 @@ namespace InterOrbital.WorldSystem
             if (x >= 0 && x < width && y >= 0 && y < height)
                 _gridCells[x, y].MakeSpaceshipArea();
             
+        }
+
+        public int GetChunkSize()
+        {
+            return _chunkSize;
         }
 
         #endregion

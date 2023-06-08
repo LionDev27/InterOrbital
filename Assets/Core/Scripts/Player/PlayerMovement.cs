@@ -9,6 +9,7 @@ namespace InterOrbital.Player
         [Range(0f, 10f)]
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _timeForHelmetAnimation;
+        [SerializeField] private CircleCollider2D _minimapDetector;
         private float _helmetAnimationTimer;
 
         [SerializeField] private CinemachineVirtualCamera followCamera;
@@ -19,7 +20,7 @@ namespace InterOrbital.Player
 
         private void Start()
         {
-            transform.position = new Vector3(GridLogic.Instance.width/2, GridLogic.Instance.height/2 - 1f, 0f);
+            PlayerSpawn();
         }
 
         private void Update()
@@ -34,6 +35,12 @@ namespace InterOrbital.Player
             {
                 Move();
             }
+        }
+
+        private void PlayerSpawn()
+        {
+            _minimapDetector.enabled = false;
+            transform.position = new Vector3(GridLogic.Instance.width / 2, GridLogic.Instance.height / 2 - 1f, 0f);
         }
 
         private void Move()
@@ -100,6 +107,11 @@ namespace InterOrbital.Player
         private void WarpFollowCamera(Vector3 newCameraPos)
         {
             followCamera.OnTargetObjectWarped(transform, newCameraPos - followCamera.transform.position);
+        }
+
+        public void ActivateMinimapDetector()
+        {
+            _minimapDetector.enabled = true;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace InterOrbital.UI
         private void Awake()
         {
             _minimapFrameRect = GetComponent<RectTransform>();
+            _orthographicMinimizedSize = _minimapCamera.orthographicSize;
         }
 
         private void Start()
@@ -58,7 +59,6 @@ namespace InterOrbital.UI
         private void GetMinimapCameraSizes()
         {
             _orthographicOpenSize = GridLogic.Instance.width / 2;
-            _orthographicMinimizedSize = GridLogic.Instance.width / 3;
         }
 
     }
