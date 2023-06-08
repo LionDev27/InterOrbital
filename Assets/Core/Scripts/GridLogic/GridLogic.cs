@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 namespace InterOrbital.WorldSystem
 {
@@ -126,7 +127,7 @@ namespace InterOrbital.WorldSystem
 
             foreach (var tilemapLayer in _tilemapLayers)
             {
-                FillTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, tilemapLayer.minimapSprite, tilemapLayer.fillMode);
+                FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
             }
 
             SpawnSpaceship();
@@ -205,7 +206,7 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-        private void FillTilemap(Tilemap tilemap, Tilemap minimapTilemap, List<BiomeRuleTile> tiles, Sprite minimapSprite, FillMode fillMode)
+        private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
         {
             switch (fillMode)
             {
@@ -235,8 +236,10 @@ namespace InterOrbital.WorldSystem
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
 
-                    // Asignar el sprite al Tilemap en la posición correspondiente
-                    tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                    if (tiles[biomeIndex].tiles != null)
+                    {
+                        tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                    }
                 }
             }
         }
@@ -269,7 +272,10 @@ namespace InterOrbital.WorldSystem
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
 
-                    tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                    if (tiles[biomeIndex].tiles != null)
+                    {
+                        tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                    }
                 }
             }
         }
@@ -438,7 +444,7 @@ namespace InterOrbital.WorldSystem
                     Vector3Int position = new Vector3Int(x, y, 0);
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-                    if (biomeIndex != lastBiomeIndex)
+                    if (biomeIndex != lastBiomeIndex && tiles[biomeIndex].animationTiles != null)
                     {
                         spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
                         lastBiomeIndex = biomeIndex;
@@ -472,7 +478,7 @@ namespace InterOrbital.WorldSystem
                     Vector3Int position = new Vector3Int(x, y, 0);
 
                     int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-                    if(biomeIndex != lastBiomeIndex) 
+                    if(biomeIndex != lastBiomeIndex && tiles[biomeIndex].animationTiles != null) 
                     {
                         spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
                         lastBiomeIndex = biomeIndex;
@@ -510,31 +516,63 @@ namespace InterOrbital.WorldSystem
         #endregion
 
 
-        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, Sprite minimapSprite, int chunkXPos, int chunkYPos)
+        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, List<BiomeRuleTile> tiles, int chunkXPos, int chunkYPos)
         {
             for (int j = chunkYPos; j < (chunkYPos + _chunkSize); j++)
             {
                 for (int i = chunkXPos; i < (chunkXPos + _chunkSize); i++)
                 {
                     Vector3Int pos = new Vector3Int(i, j, 0);
+
                     var sourceTile = origin.GetTile(pos);
                     if (sourceTile != null)
                     {
-                        Tile minimapTile = ScriptableObject.CreateInstance<Tile>();
+                        Vector2Int mapCoordinates = BorderIntoMapCoordinates(i,j);
+                        int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[mapCoordinates.x, mapCoordinates.y].biomeType);
 
-                        minimapTile.sprite = minimapSprite;
-                        minimap.SetTile(pos, minimapTile);
+                        if (tiles[biomeIndex].minimapSprite != null)
+                        {
+                            Tile minimapTile = ScriptableObject.CreateInstance<Tile>();
+                            minimapTile.sprite = tiles[biomeIndex].minimapSprite;
+                            minimap.SetTile(pos, minimapTile);
+                        }
                     }
                 }
 
             }
         }
 
+        private Vector2Int BorderIntoMapCoordinates(int x, int y)
+        {
+            Vector2Int mapCoordinates = new Vector2Int(x,y);
+            if (x < 0)
+            {
+                mapCoordinates.x += width;
+            }
+
+            if (x >= width)
+            {
+                mapCoordinates.x -= width;
+            }
+
+            if (y < 0)
+            {
+                mapCoordinates.y += height;
+            }
+
+            if (y >= height)
+            {
+                mapCoordinates.y -= height;
+            }
+
+            return mapCoordinates;
+        }
+
         public void GenerateChunkMinimap(int chunkXPos, int chunkYPos)
         {
             foreach (var tilemapLayer in _tilemapLayers)
             {
-                GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.minimapSprite, chunkXPos, chunkYPos);
+                GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, chunkXPos, chunkYPos);
             }
         }
 
@@ -549,6 +587,8 @@ namespace InterOrbital.WorldSystem
                 }
             }
         }
+
+        #region Spaceship
 
         private void SpawnSpaceship()
         {
@@ -618,10 +658,14 @@ namespace InterOrbital.WorldSystem
             }
         }
 
+        #endregion
+
         private void CreateRegions()
         {
 
-            //RandomBiomeCreation(10, 40, biomes[1], 400, 450);
+            RandomBiomeCreation(10, 40, _biomes[1], 400, 450);
+            RandomBiomeCreation(20, 10, _biomes[2], 400, 450);
+            RandomBiomeCreation(40, 10, _biomes[3], 400, 450);
         }
 
         private void RandomBiomeCreation(int x, int y, string biome, int minExtension, int maxExtension)

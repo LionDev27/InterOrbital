@@ -5909,12 +5909,182 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].name
+      value: FirstLayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].tilemap
+      value: 
+      objectReference: {fileID: 2451232444189286934}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].fillMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].minimapSprite
+      value: 
+      objectReference: {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].minimapTilemap
+      value: 
+      objectReference: {fileID: 2451232444189286933}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[1].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[2].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[1].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fc895de84ecda6448f3aa32bdf32166, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[2].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 84fd7e3970c457e45893e8b1e419948b, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[3].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 2383928783cdbe043aeb90f5265b38cb, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[0].biome
+      value: Neutral
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[0].tiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[1].biome
+      value: Forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[1].tiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[2].biome
+      value: Rocky
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[2].tiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[3].biome
+      value: Muddy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[3].tiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d1b53f8c9b5a4c4292dd359d8d6af42, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[0].minimapSprite
+      value: 
+      objectReference: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[1].minimapSprite
+      value: 
+      objectReference: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[2].minimapSprite
+      value: 
+      objectReference: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].minimapSprite
+      value: 
+      objectReference: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[0].minimapSprite
+      value: 
+      objectReference: {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[1].minimapSprite
+      value: 
+      objectReference: {fileID: 1795004806370670412, guid: 203797f2ff1af7a44add84d2a9d5915f, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[2].minimapSprite
+      value: 
+      objectReference: {fileID: 2679309945874032998, guid: 223530cd41769424c97acb0f15fc0cd1, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[3].minimapSprite
+      value: 
+      objectReference: {fileID: 6325617476035518318, guid: 8f7721151de80dd409b163dcb4d558bd, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[3].minimapSprite
+      value: 
+      objectReference: {fileID: 475092032981899576, guid: ed92f9847c947c4408c90351c4d17a7b, type: 3}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[1].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[2].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[1].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: ee9d59ee4c4c6fd40904509a2439ede0, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[2].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 42de8e7eca80e2b4e96efde50d1fbd5d, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[1].biomesTiles.Array.data[3].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f5d6b1d7270f80428e76ff5c3e67e08, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[0].animationTiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[1].animationTiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[2].animationTiles
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[2].biomesTiles.Array.data[3].animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 3449bec29c69afe4e89b9b2e397f4597, type: 2}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+--- !u!1839735485 &2451232444189286933 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 1162250523355005266, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+  m_PrefabInstance: {fileID: 2451232444189286932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &2451232444189286934 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8263977617910102429, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+  m_PrefabInstance: {fileID: 2451232444189286932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4814067017583364669
 PrefabInstance:
   m_ObjectHideFlags: 0
