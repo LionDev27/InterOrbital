@@ -25,11 +25,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             
             if(switchItem != null)
             {
-                if (PlayerComponents.Instance.Inventory.GetTypeItemByIndex(draggableItem.inventoryIndex).ToString() != "Bullet" && switchItem.transform.parent.CompareTag("BulletSlot"))
+                if (PlayerComponents.Instance.Inventory.GetItemObjectByIndex(draggableItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && switchItem.transform.parent.CompareTag("BulletSlot"))
                 {
                     cantSwitch = true;
                 }
-                else if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetTypeItemByIndex(switchItem.inventoryIndex).ToString() != "Bullet")
+                else if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet")
                 {
                     cantSwitch = true;
                 }
@@ -60,11 +60,18 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                     {
                         PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex);
                     }
+                    else
+                    {
+                        PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
+                        BulletSelector.Instance.UpdateBulletSelectorUI();
+                    }
                 }
                 else
                 {
                      PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
                 }
+
+               
             }
         }
       

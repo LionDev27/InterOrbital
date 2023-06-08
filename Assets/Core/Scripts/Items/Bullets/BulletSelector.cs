@@ -46,12 +46,29 @@ public class BulletSelector : MonoBehaviour
         ChangePlayerBullet();
     }
 
-    private void UpdateBulletSelectorUI()
+    public void UpdateBulletSelectorUI()
     {
-        for (int i = 0; i < bulletsSlots.Count; i++)
+        int j = bulletsSlots.Count - 1;
+        for (int i =  0; i < bulletsSlots.Count; i++)
         {
-            bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
+            
+            int index = PlayerComponents.Instance.Inventory.GetTotalNumberOfSlots() - (j+1);
+            j--;
+
+            ItemObject itemInInventory = PlayerComponents.Instance.Inventory.GetItemObjectByIndex(index);
+            if(itemInInventory.itemSo != PlayerComponents.Instance.Inventory.itemVoid)
+            {
+                bulletsItems[i] = (ItemBulletScriptableObject) itemInInventory.itemSo;
+            }
+            else
+            {
+                bulletsItems[i] = emptyBullet;
+            }
+                bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
+                bulletsSlots[i].SetBulletAmount(itemInInventory.amount);
         }
+
+        ChangePlayerBullet();
     }
 
     public void ChangeBulletInList(int index, ItemBulletScriptableObject bullet)
@@ -78,5 +95,12 @@ public class BulletSelector : MonoBehaviour
         {
             PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab);
         }
+    }
+
+    public void SubstractBullet()
+    {
+        int j = bulletsSlots.Count - (_selectedBulletIndex + 1);
+        PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
+        UpdateBulletSelectorUI();
     }
 }

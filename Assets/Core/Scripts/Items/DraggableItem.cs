@@ -14,7 +14,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Transform _rootParent;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public int inventoryIndex;
+    public int inventoryIndex;
 
     private void Awake()
     {  

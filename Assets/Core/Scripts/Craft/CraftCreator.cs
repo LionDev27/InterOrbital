@@ -53,7 +53,7 @@ public class CraftCreator : MonoBehaviour
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
-            var actualAmount = PlayerComponents.Instance.Inventory.GetItemAmount(_itemCraft.itemsRequired[i].item);
+            var actualAmount = PlayerComponents.Instance.Inventory.GetTotalItemAmount(_itemCraft.itemsRequired[i].item);
             var requiredAmount = _itemCraft.itemsRequired[i].amountRequired * _amountToCraft;
             var alpha = actualAmount >= requiredAmount ? 1 : 0.5f;
             requireImages[i].ChangueAlphaColor(alpha);

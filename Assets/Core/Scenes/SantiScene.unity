@@ -4686,6 +4686,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 694186545}
     - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: itemTest
+      value: 
+      objectReference: {fileID: 11400000, guid: f25c7125d8c369748aae7d95d3c03386, type: 2}
+    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: itemTest2
+      value: 
+      objectReference: {fileID: 11400000, guid: b4cd5eaa372cea84e84c015cc8a78a62, type: 2}
+    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridBullets
       value: 
       objectReference: {fileID: 551111206}

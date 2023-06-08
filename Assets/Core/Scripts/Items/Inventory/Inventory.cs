@@ -187,9 +187,13 @@ namespace InterOrbital.Player
             }
         }
 
-        public ItemType GetTypeItemByIndex(int index)
+        public ItemObject GetItemObjectByIndex(int index)
         {
-            return _items[index].itemSo.type;
+            return _items[index];
+        }
+        public int GetTotalNumberOfSlots()
+        {
+            return _totalNumberOfSlots;
         }
 
     }
