@@ -207,6 +207,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1009950511}
     m_Modifications:
+    - target: {fileID: 1845576799490476759, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1845576799697945156, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -884,10 +888,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1655812709716897851, guid: cf36bf940ac5986439754615ed314527, type: 3}
-      propertyPath: m_TagString
-      value: Inventory
-      objectReference: {fileID: 0}
     - target: {fileID: 3517797454013103107, guid: cf36bf940ac5986439754615ed314527, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -959,10 +959,6 @@ PrefabInstance:
     - target: {fileID: 4677904599108778596, guid: cf36bf940ac5986439754615ed314527, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6664008885765206280, guid: cf36bf940ac5986439754615ed314527, type: 3}
-      propertyPath: m_TagString
-      value: BulletSlot
       objectReference: {fileID: 0}
     - target: {fileID: 7239652500395425430, guid: cf36bf940ac5986439754615ed314527, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4629,6 +4625,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1009950511}
     m_Modifications:
+    - target: {fileID: 2131957790172490604, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4681,18 +4681,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3361990410593093050, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419965273919347833, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: 84f46a63db784084893d8ef311903014, type: 3}
+    - target: {fileID: 3419965273919347833, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridMain
       value: 
       objectReference: {fileID: 694186545}
-    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: itemTest
-      value: 
-      objectReference: {fileID: 11400000, guid: f25c7125d8c369748aae7d95d3c03386, type: 2}
-    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: itemTest2
-      value: 
-      objectReference: {fileID: 11400000, guid: b4cd5eaa372cea84e84c015cc8a78a62, type: 2}
     - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridBullets
       value: 
@@ -4705,7 +4709,8 @@ PrefabInstance:
       propertyPath: gridRightPocket
       value: 
       objectReference: {fileID: 553953698}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281225118686175209, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
 --- !u!1 &1363788064
 GameObject:
