@@ -9,10 +9,18 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private Vector2 _detectionRange;
         [SerializeField] private float _attackRange;
         private Transform _target;
+        private SpriteFlipper _spriteFlipper;
         private float _timer;
         
         public float timeToIdle = 5f;
         public Transform Target => _target;
+        public SpriteFlipper SpriteFlipper => _spriteFlipper;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _spriteFlipper = GetComponentInChildren<SpriteFlipper>();
+        }
 
         protected override void Start()
         {
@@ -42,14 +50,6 @@ namespace InterOrbital.Combat.IA
         public bool CanAttackPlayer()
         {
             return false;
-        }
-
-        public void FlipX(bool value)
-        {
-            Vector2 visualsScale = _spriteRenderer.gameObject.transform.localScale;
-            float flippedX = -visualsScale.x;
-            visualsScale.x = value ? flippedX : visualsScale.x;
-            _spriteRenderer.gameObject.transform.localScale = visualsScale;
         }
         
         public void RunTimer()

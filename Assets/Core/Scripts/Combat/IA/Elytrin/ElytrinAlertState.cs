@@ -32,17 +32,17 @@ namespace InterOrbital.Combat.IA
                 {
                     _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
                 }
-
+            
                 if (_currentAgent.TimerChanged()) _currentAgent.ResetTimer();
             }
             
             if (Mathf.Sign(_currentAgent.Target.transform.position.x - transform.position.x) > 0)
             {
-                _currentAgent.FlipX(true);
+                _currentAgent.SpriteFlipper.FlipX(1);
             }
             else if (Mathf.Sign(_currentAgent.Target.transform.position.x - transform.position.x) < 0)
             {
-                _currentAgent.FlipX(false);
+                _currentAgent.SpriteFlipper.FlipX(0);
             }
         }
 

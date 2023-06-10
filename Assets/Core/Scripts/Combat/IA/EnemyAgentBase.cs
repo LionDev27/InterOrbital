@@ -11,7 +11,6 @@ namespace InterOrbital.Combat.IA
         protected EnemyStateBase _currentState;
         protected Animator _animator;
         protected NavMeshAgent _navMeshAgent;
-        protected SpriteRenderer _spriteRenderer;
 
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -25,7 +24,6 @@ namespace InterOrbital.Combat.IA
                 state.Setup(this);
             }
             _animator = GetComponentInChildren<Animator>();
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -42,7 +40,7 @@ namespace InterOrbital.Combat.IA
                 _currentState.Execute();
             }
         }
-
+        
         public virtual void ChangeState(EnemyStateBase newState)
         {
             _currentState = newState;
