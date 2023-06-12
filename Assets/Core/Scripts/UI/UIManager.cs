@@ -14,6 +14,8 @@ namespace InterOrbital.UI
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
+        [SerializeField] private GameObject _fastingCraft;
+        [SerializeField] private GameObject _bulletSelector;
 
         private bool _somethingOpen;
         public static UIManager Instance = null;
@@ -120,6 +122,26 @@ namespace InterOrbital.UI
             _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
         }
 
+        public void OpenFastCraft()
+        {
+           _fastingCraft.transform.localScale = Vector3.one;
+        }
+
+        public void CloseFastCraft()
+        {
+            _fastingCraft.transform.localScale = Vector3.zero;
+        }
+
+
+        public void OpenBulletSelector()
+        {
+            _bulletSelector.transform.localScale = Vector3.one;
+        }
+
+        public void CloseBulletSelector()
+        {
+            _bulletSelector.transform.localScale = Vector3.zero;
+        }
 
     }
 }
