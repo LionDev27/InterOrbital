@@ -18,10 +18,15 @@ namespace InterOrbital.Combat.IA
 
         public override void Execute()
         {
-            _currentAgent.RunTimer();
-            if (!_currentAgent.TimerEnded()) return;
-            if (_currentAgent.Animator.GetBool("Running")) _currentAgent.Animator.SetBool("Running", false);
-            _currentAgent.ChangeState(_currentAgent.States[0]);
+            if (_currentAgent.IsDetectingPlayer())
+                _currentAgent.ChangeState(_currentAgent.States[1]);
+            else
+            {
+                _currentAgent.RunTimer();
+                if (!_currentAgent.TimerEnded()) return;
+                if (_currentAgent.Animator.GetBool("Running")) _currentAgent.Animator.SetBool("Running", false);
+                _currentAgent.ChangeState(_currentAgent.States[0]);
+            }
         }
     }
 }

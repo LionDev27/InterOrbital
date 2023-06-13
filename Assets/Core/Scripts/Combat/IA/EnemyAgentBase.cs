@@ -8,9 +8,10 @@ namespace InterOrbital.Combat.IA
     public class EnemyAgentBase : MonoBehaviour
     {
         [SerializeField] protected List<EnemyStateBase> _states;
-        protected EnemyStateBase _currentState;
-        protected Animator _animator;
-        protected NavMeshAgent _navMeshAgent;
+        private EnemyStateBase _currentState;
+        private Animator _animator;
+        private NavMeshAgent _navMeshAgent;
+        private float _speed;
 
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -29,6 +30,7 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Start()
         {
+            _speed = _navMeshAgent.speed;
             _navMeshAgent.updateRotation = false;
             _navMeshAgent.updateUpAxis = false;
         }
@@ -51,6 +53,12 @@ namespace InterOrbital.Combat.IA
         {
             return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance &&
                    (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f);
+        }
+
+        public void EnableNavigation(bool value)
+        {
+            _navMeshAgent.velocity = value ? Vector3.one : Vector3.zero;
+            _navMeshAgent.isStopped = !value;
         }
     }
 }

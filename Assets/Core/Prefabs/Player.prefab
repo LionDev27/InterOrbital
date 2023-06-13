@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 24
-  _invencibilityTime: 5
+  _invencibilityTime: 1
   _loseHealthTimerDefaultValue: 1
 --- !u!114 &265110465
 MonoBehaviour:
@@ -815,6 +815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d162aab6aa8d2458a2b019c9b86710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recollectionRange: 2.5
+  _recollectionRange: 3
   _recollectionCooldownInSeconds: 1
   _recollectionWidth: 1.5
