@@ -26,7 +26,7 @@ namespace InterOrbital.Player
         private void Update()
         {
             HandleAnimations();
-            HandleMapBorders();
+            //HandleMapBorders();
         }
 
         private void FixedUpdate()

@@ -1235,6 +1235,7 @@ MonoBehaviour:
   <height>k__BackingField: 50
   cellSize: {x: 1, y: 1, z: 0}
   borderSize: 20
+  _borderPrefab: {fileID: 3254057356427198123, guid: 488b98c8b88a54544ac89f1714735656, type: 3}
   _mapChunkPrefab: {fileID: 789443001100901279, guid: 63fb25d86af2999448976bbad66c9028, type: 3}
   _spaceship: {fileID: 5769846936361690345, guid: 131e6bf1a883087419b3e1c8797ab95c, type: 3}
   _spaceshipAreaSprite: {fileID: 21300000, guid: 32e1c4b5f281ff847959b1e8684af78b, type: 3}
@@ -1248,38 +1249,44 @@ MonoBehaviour:
   - name: Background
     tilemap: {fileID: 2451232443705475807}
     minimapTilemap: {fileID: 2451232444793473814}
-    minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
       animationTiles: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+      minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     - biome: Forest
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: 5058360b0d5cf2d46a966d82723137bc, type: 2}
+      animationTiles: {fileID: 11400000, guid: 87ced14951a934f48b3e1fec36d327d8, type: 2}
+      minimapSprite: {fileID: 1549855137, guid: f51aaf476ebd6414493828be1a878b52, type: 3}
     - biome: Rocky
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
+      animationTiles: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+      minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     - biome: Muddy
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
+      animationTiles: {fileID: 11400000, guid: 87ff1e990a7fa754f870b23f4085506a, type: 2}
+      minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     fillMode: 1
   - name: Detail
     tilemap: {fileID: 2451232443729416002}
     minimapTilemap: {fileID: 2451232444003352205}
-    minimapSprite: {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     biomesTiles:
     - biome: Neutral
       tiles: {fileID: 11400000, guid: d08d286e8099b604ca3f1f1c66ca317c, type: 2}
       animationTiles: {fileID: 11400000, guid: 34d0c3191d1358f4eb24882470a62b83, type: 2}
+      minimapSprite: {fileID: -493034682, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
     - biome: Forest
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: 2fc895de84ecda6448f3aa32bdf32166, type: 2}
+      animationTiles: {fileID: 11400000, guid: ee9d59ee4c4c6fd40904509a2439ede0, type: 2}
+      minimapSprite: {fileID: 1795004806370670412, guid: 203797f2ff1af7a44add84d2a9d5915f, type: 3}
     - biome: Rocky
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: 84fd7e3970c457e45893e8b1e419948b, type: 2}
+      animationTiles: {fileID: 11400000, guid: 42de8e7eca80e2b4e96efde50d1fbd5d, type: 2}
+      minimapSprite: {fileID: 2679309945874032998, guid: 223530cd41769424c97acb0f15fc0cd1, type: 3}
     - biome: Muddy
-      tiles: {fileID: 0}
-      animationTiles: {fileID: 0}
+      tiles: {fileID: 11400000, guid: 2383928783cdbe043aeb90f5265b38cb, type: 2}
+      animationTiles: {fileID: 11400000, guid: 8f5d6b1d7270f80428e76ff5c3e67e08, type: 2}
+      minimapSprite: {fileID: 6325617476035518318, guid: 8f7721151de80dd409b163dcb4d558bd, type: 3}
     fillMode: 2
 --- !u!114 &2451232444733730305
 MonoBehaviour:

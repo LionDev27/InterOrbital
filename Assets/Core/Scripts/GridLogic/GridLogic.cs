@@ -3,9 +3,12 @@ using InterOrbital.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditor.Sprites;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace InterOrbital.WorldSystem
 {
@@ -19,6 +22,7 @@ namespace InterOrbital.WorldSystem
 
         [SerializeField] private Vector3 cellSize = new Vector3(1, 1, 0);
         [SerializeField] private int borderSize;
+        [SerializeField] private GameObject _borderPrefab;
         [SerializeField] private GameObject _mapChunkPrefab;
         [SerializeField] private GameObject _spaceship;
         [SerializeField] private Sprite _spaceshipAreaSprite;
@@ -29,6 +33,8 @@ namespace InterOrbital.WorldSystem
         private Cell[,] _gridCells;
         private int _chunkSize = 5;
         private Grid _grid;
+        private Dictionary<Vector2Int,Chunk> _chunks;
+        private Dictionary<Tilemap,Sprite[,]> _tilemapSprites;
 
         public static GridLogic Instance;
 
@@ -41,6 +47,7 @@ namespace InterOrbital.WorldSystem
 
             _grid = GetComponent<Grid>();
             _grid.cellSize = cellSize;
+            _tilemapSprites = new Dictionary<Tilemap, Sprite[,]>();
         }
 
         private void OnValidate()
@@ -122,6 +129,7 @@ namespace InterOrbital.WorldSystem
         private IEnumerator GenerateWorld()
         {
             CreateMapChunks();
+            CreateMapBorders();
             InitializeGrid();
             CreateRegions();
 
@@ -135,20 +143,38 @@ namespace InterOrbital.WorldSystem
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
+        private void CreateMapBorders()
+        {
+            for (int x = -1; x < width + 1; x++)
+            {
+                Vector3 positionBot = new Vector3(x, -1f, 0); 
+                Instantiate(_borderPrefab, positionBot, Quaternion.identity);
+                Vector3 positionTop = new Vector3(x, height, 0);
+                Instantiate(_borderPrefab, positionTop, Quaternion.identity);
+            }
+
+            for (int y = 0; y < height; y++)
+            {
+                Vector3 positionLeft = new Vector3(-1, y, 0); 
+                Instantiate(_borderPrefab, positionLeft, Quaternion.identity);
+                Vector3 positionRight = new Vector3(width, y, 0); 
+                Instantiate(_borderPrefab, positionRight, Quaternion.identity);
+            }
+        }
         private void CreateMapChunks()
         {
-            int numBorderChunks = borderSize / _chunkSize;
+            _chunks = new Dictionary<Vector2Int, Chunk>();
 
-            int numChunksX = Mathf.CeilToInt((float)width / _chunkSize) + numBorderChunks * 2;
-            int numChunksY = Mathf.CeilToInt((float)height / _chunkSize) + numBorderChunks * 2;
+            int numChunksX = Mathf.CeilToInt((float)width / _chunkSize);
+            int numChunksY = Mathf.CeilToInt((float)height / _chunkSize);
             // Dividir el mapa en chunks
             for (int x = 0; x < numChunksX; x++)
             {
                 for (int y = 0; y < numChunksY; y++)
                 {
                     // Calcular la posición del chunk
-                    float chunkPosX = (x - numBorderChunks) * _chunkSize;
-                    float chunkPosY = (y - numBorderChunks) * _chunkSize;
+                    int chunkPosX = x * _chunkSize;
+                    int chunkPosY = y * _chunkSize;
 
                     // Crear un nuevo chunk
                     GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0), Quaternion.identity, transform);
@@ -156,53 +182,10 @@ namespace InterOrbital.WorldSystem
                     // Ajustar el tamaño del Box Collider 2D al tamaño del chunk
                     chunk.GetComponent<BoxCollider2D>().size = new Vector2(_chunkSize, _chunkSize);
                     chunk.GetComponent<BoxCollider2D>().offset = new Vector2(_chunkSize / 2f, _chunkSize / 2f);
-                    
-                    if(chunkPosX < 0)
-                    {
-                        chunk.GetComponent<Chunk>().SetBorder(true);
-                        if(chunkPosY < 0)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.SW);
-                        }
-                        else if (chunkPosY >= 0 && chunkPosY < numChunksY - numBorderChunks)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.W);
-                        }
-                        else if(chunkPosY >= numChunksY - numBorderChunks)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.NW);
-                        }
-                    }
+                    chunk.GetComponent<Chunk>().SetChunkPos(chunkPosX, chunkPosY);
 
-                    if(chunkPosX >= numChunksX - numBorderChunks)
-                    {
-                        chunk.GetComponent<Chunk>().SetBorder(true);
-                        if (chunkPosY < 0)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.SE);
-                        }
-                        else if (chunkPosY >= 0 && chunkPosY < numChunksY - numBorderChunks)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.E);
-                        }
-                        else if (chunkPosY >= numChunksY - numBorderChunks)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.NE);
-                        }
-                    }
-
-                    if(chunkPosX >= 0 && chunkPosX < numChunksX - numBorderChunks)
-                    {
-                        if (chunkPosY < 0)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.S);
-                        }
-                        else if (chunkPosY >= numChunksY - numBorderChunks)
-                        {
-                            chunk.GetComponent<Chunk>().SetBorderPos(Orientation.N);
-                        }
-                    }
-                }
+                    _chunks.Add(new Vector2Int(chunkPosX,chunkPosY),chunk.GetComponent<Chunk>());
+                }   
             }
         }
 
@@ -214,31 +197,38 @@ namespace InterOrbital.WorldSystem
                     break;
                 case FillMode.All:
                     FillTilemapAll(tilemap, tiles);
-                    FillTilemapBorders(tilemap);
-                    AddNoAnimatedTiles(tilemap, tiles);
                     break;
                 case FillMode.Random:
                     FillTilemapRandom(tilemap, tiles);
-                    FillTilemapBorders(tilemap);
-                    AddAnimatedTiles(tilemap, tiles);
                     break;
             }
         }
 
         private void FillTilemapAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
+            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
+
+            Dictionary<string, int> biomeIndexMap = new Dictionary<string, int>();
+
+            for (int i = 0; i < tiles.Count; i++)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                biomeIndexMap[tiles[i].biome] = i;
+            }
+
+            for (int x = 0; x < gridSizeX; x++)
+            {
+                for (int y = 0; y < gridSizeY; y++)
                 {
-                    // Obtener la posición de la celda en el grid
                     Vector3Int position = new Vector3Int(x, y, 0);
+                    string currentBiome = _gridCells[x, y].biomeType;
 
-                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-
-                    if (tiles[biomeIndex].tiles != null)
+                    if (biomeIndexMap.TryGetValue(currentBiome, out int biomeIndex))
                     {
-                        tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                        if (tiles[biomeIndex].tiles != null)
+                        {
+                            tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                        }
                     }
                 }
             }
@@ -247,34 +237,45 @@ namespace InterOrbital.WorldSystem
         private void FillTilemapRandom(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
             int detailZones = width + height / 2;
+            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
+            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
+            int tilesCount = tiles.Count;
+            int halfDetailZones = detailZones / 2;
 
             for (int i = 0; i < detailZones; i++)
             {
                 int x = UnityEngine.Random.Range(0, width);
                 int y = UnityEngine.Random.Range(0, height);
-                int minExt = UnityEngine.Random.Range(1, detailZones / 2);
-                int maxExt = UnityEngine.Random.Range(detailZones / 2, detailZones);
+                int extension = UnityEngine.Random.Range(1, halfDetailZones);
 
-                RandomDetail(x, y, minExt, maxExt);
+                RandomDetail(x, y, extension);
             }
 
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            Dictionary<string, int> biomeIndexMap = new Dictionary<string, int>(tilesCount);
+
+            for (int i = 0; i < tilesCount; i++)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                biomeIndexMap[tiles[i].biome] = i;
+            }
+
+            for (int x = 0; x < gridSizeX; x++)
+            {
+                for (int y = 0; y < gridSizeY; y++)
                 {
                     if (!_gridCells[x, y].HaveDetail())
                     {
                         continue;
                     }
-                    // Obtener la posición de la celda en el grid
+
                     Vector3Int position = new Vector3Int(x, y, 0);
+                    string currentBiome = _gridCells[x, y].biomeType;
 
-
-                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-
-                    if (tiles[biomeIndex].tiles != null)
+                    if (biomeIndexMap.TryGetValue(currentBiome, out int biomeIndex))
                     {
-                        tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                        if (tiles[biomeIndex].tiles != null)
+                        {
+                            tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                        }
                     }
                 }
             }
@@ -285,7 +286,7 @@ namespace InterOrbital.WorldSystem
         {
             if (borderSize > width || borderSize > height)
             {
-                borderSize = Mathf.Min(width,height);
+                borderSize = Mathf.Min(width, height);
             }
 
             for (int x = 0; x < width; x++)
@@ -297,13 +298,13 @@ namespace InterOrbital.WorldSystem
                     Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
                     tilemap.SetTile(topSideMapPos, topTile);
 
-                    
+
                     Vector3Int posTopBorder = new Vector3Int(x, y + height - borderSize, 0);
                     TileBase botTile = tilemap.GetTile(posTopBorder);
                     Vector3Int botSideMapPos = new Vector3Int(x, y - borderSize, 0);
                     tilemap.SetTile(botSideMapPos, botTile);
 
-                    if(x < borderSize)
+                    if (x < borderSize)
                     {
                         Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
                         tilemap.SetTile(topRightSideMapPos, topTile);
@@ -312,7 +313,7 @@ namespace InterOrbital.WorldSystem
                         tilemap.SetTile(botRightSideMapPos, botTile);
                     }
 
-                    if(x >= width - borderSize)
+                    if (x >= width - borderSize)
                     {
                         Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
                         tilemap.SetTile(topLeftSideMapPos, topTile);
@@ -344,77 +345,78 @@ namespace InterOrbital.WorldSystem
 
         private void FillTilemapBorders(Tilemap tilemap, int x, int y, TileBase tile)
         {
-            if(x < borderSize)
-            {
-                Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
-                tilemap.SetTile(leftSideMapPos, tile);
-            }
-            
-            if(x >= width - borderSize)
-            {
-                Vector3Int rightSideMapPos = new Vector3Int(x - width, y, 0);
-                tilemap.SetTile(rightSideMapPos, tile);
-            }
+            if (x < borderSize || x >= width - borderSize || y < borderSize || y >= height - borderSize) {
+                if (x < borderSize && y >= borderSize && y < height - borderSize)
+                {
+                    Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
+                    tilemap.SetTile(leftSideMapPos, tile);
+                }
 
-            if(y < borderSize)
-            {
-                Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
-                tilemap.SetTile(topSideMapPos, tile);
-            }
-            
-            if(y >= height - borderSize)
-            {
-                Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
-                tilemap.SetTile(botSideMapPos, tile);
-            }
+                if (x >= width - borderSize && y >= borderSize && y < height - borderSize)
+                {
+                    Vector3Int rightSideMapPos = new Vector3Int(x - width, y, 0);
+                    tilemap.SetTile(rightSideMapPos, tile);
+                }
 
-            if (x < borderSize && y < borderSize)
-            {
-                Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
-                tilemap.SetTile(topRightSideMapPos, tile);
+                if (y < borderSize)
+                {
+                    Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
+                    tilemap.SetTile(topSideMapPos, tile);
+                }
 
-            }
+                if (y >= height - borderSize)
+                {
+                    Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
+                    tilemap.SetTile(botSideMapPos, tile);
+                }
 
-            if (x < borderSize && y >= height - borderSize)
-            {
-                Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
-                tilemap.SetTile(botRightSideMapPos, tile);
-            }
+                if (x < borderSize && y < borderSize)
+                {
+                    Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
+                    tilemap.SetTile(topRightSideMapPos, tile);
 
-            if (x >= width - borderSize && y < borderSize)
-            {
-                Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
-                tilemap.SetTile(topLeftSideMapPos, tile);
-            }
+                }
 
-            if (x >= width - borderSize && y >= height - borderSize)
-            {
-                Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
-                tilemap.SetTile(botLeftSideMapPos, tile);
+                if (x < borderSize && y >= height - borderSize)
+                {
+                    Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
+                    tilemap.SetTile(botRightSideMapPos, tile);
+                }
+
+                if (x >= width - borderSize && y < borderSize)
+                {
+                    Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
+                    tilemap.SetTile(topLeftSideMapPos, tile);
+                }
+
+                if (x >= width - borderSize && y >= height - borderSize)
+                {
+                    Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
+                    tilemap.SetTile(botLeftSideMapPos, tile);
+                }
             }
         }
 
         #endregion
 
-        
+
 
         #region Repaint Map Tiles Methods
-        private Sprite[,] GetTilemapSprites(Tilemap tilemap)
+        private void GetTilemapSprites(Tilemap tilemap)
         {
-            Sprite[,] tilemapSprites = new Sprite[width,height];
+            Sprite[,] tilemapSprites = new Sprite[tilemap.size.x, tilemap.size.y];
 
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            for (int x = 0; x < tilemap.size.x; x++)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                for (int y = 0; y < tilemap.size.y; y++)
                 {
                     Vector3Int position = new Vector3Int(x, y, 0);
 
-                    tilemapSprites[x,y] = tilemap.GetSprite(position);
+                    tilemapSprites[x, y] = tilemap.GetSprite(position);
                 }
             }
 
-            return tilemapSprites;
-
+            _tilemapSprites.Add(tilemap, tilemapSprites);
         }
 
         private List<Sprite> GenerateSpriteList(Texture2D texture)
@@ -425,36 +427,71 @@ namespace InterOrbital.WorldSystem
             // Obtiene todos los sprites generados por el Sprite Editor
             Sprite[] sprites = Resources.LoadAll<Sprite>(texturePath); // Asigna el nombre de la textura como nombre de la carpeta de recursos
 
-            // Agrega los sprites a la lista
-            spriteList.AddRange(sprites);
+            if (sprites != null)
+            {
+                spriteList.AddRange(sprites);
+            }
 
             return spriteList;
         }
 
-        private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        public void SubstituteRuleTiles(int chunkX, int chunkY)
         {
-            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
-            List<Sprite> spriteList = new List<Sprite>();
-            int lastBiomeIndex = -1;
-
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            foreach (var tilemapLayer in _tilemapLayers)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                _tilemapSprites.TryGetValue(tilemapLayer.tilemap, out Sprite[,] tilemapSprites);
+
+                for (int x = chunkX; x < chunkX + _chunkSize; x++)
+                {
+                    for (int y = chunkY; y < chunkY + _chunkSize; y++)
+                    {
+                        Vector3Int position = new Vector3Int(x, y, 0);
+
+                        Sprite sprite = tilemapSprites[x, y];
+                        if (sprite != null)
+                        {
+                            UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
+                            // Asigna el Sprite al Tile
+                            tile.sprite = sprite;
+                            tilemapLayer.tilemap.SetTile(position, tile);
+                            FillTilemapBorders(tilemapLayer.tilemap, x, y, tile);
+                        }
+
+                    }
+                }
+            }
+        }
+
+       /* private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        {
+           /Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
+            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
+            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
+            Dictionary<string, List<Sprite>> spriteDictionary = new Dictionary<string, List<Sprite>>();
+
+            foreach (BiomeRuleTile tile in tiles)
+            {
+                if (tile.animationTiles != null)
+                {
+                    List<Sprite> spriteList = GenerateSpriteList(tile.animationTiles.textureToChangeRuleTile);
+                    if (!spriteDictionary.ContainsKey(tile.biome))
+                    {
+                        spriteDictionary.Add(tile.biome, spriteList);
+                    }
+                }
+            }
+
+            for (int x = 0; x < gridSizeX; x++)
+            {
+                for (int y = 0; y < gridSizeY; y++)
                 {
                     Vector3Int position = new Vector3Int(x, y, 0);
 
-                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-                    if (biomeIndex != lastBiomeIndex && tiles[biomeIndex].animationTiles != null)
-                    {
-                        spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
-                        lastBiomeIndex = biomeIndex;
-                    }
-
+                    spriteDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<Sprite> spriteList);
                     Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
                     if (s != null)
                     {
-                        Tile tile = ScriptableObject.CreateInstance<Tile>();
-
+                        UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
                         // Asigna el Sprite al Tile
                         tile.sprite = s;
                         tilemap.SetTile(position, tile);
@@ -468,26 +505,37 @@ namespace InterOrbital.WorldSystem
         private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
             Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
-            List<Sprite> spriteList = new List<Sprite>();
-            int lastBiomeIndex = -1;
+            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
+            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
+            Dictionary<string, List<Sprite>> spriteDictionary = new Dictionary<string, List<Sprite>>();
+            Dictionary<string, List<SpriteAnimatedTile>> spriteAnimatedDictionary = new Dictionary<string, List<SpriteAnimatedTile>>();
 
-            for (int x = 0; x < Mathf.RoundToInt(_grid.cellSize.x) * width; x++)
+            foreach (BiomeRuleTile tile in tiles)
             {
-                for (int y = 0; y < Mathf.RoundToInt(_grid.cellSize.y) * height; y++)
+                if (tile.animationTiles != null)
+                {
+                    List<Sprite> spriteList = GenerateSpriteList(tile.animationTiles.textureToChangeRuleTile);
+                    if (!spriteDictionary.ContainsKey(tile.biome))
+                    {
+                        spriteDictionary.Add(tile.biome, spriteList);
+                    }
+                    if (!spriteAnimatedDictionary.ContainsKey(tile.biome) && tile.animationTiles.spriteToAnimatedTiles != null)
+                    {
+                        spriteAnimatedDictionary.Add(tile.biome, tile.animationTiles.spriteToAnimatedTiles);
+                    }
+                }
+            }
+
+            for (int x = 0; x < gridSizeX; x++)
+            {
+                for (int y = 0; y < gridSizeY; y++)
                 {
                     Vector3Int position = new Vector3Int(x, y, 0);
 
-                    int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[x, y].biomeType);
-                    if(biomeIndex != lastBiomeIndex && tiles[biomeIndex].animationTiles != null) 
+                    spriteAnimatedDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<SpriteAnimatedTile> spriteAnimatedList);
+                    if (spriteAnimatedList != null)
                     {
-                        spriteList = GenerateSpriteList(tiles[biomeIndex].animationTiles.textureToChangeRuleTile);
-                        lastBiomeIndex = biomeIndex;
-                    }
-
-
-                    if (tiles[biomeIndex].animationTiles != null)
-                    {
-                        SpriteAnimatedTile encounteredSprite = tiles[biomeIndex].animationTiles.spriteToAnimatedTiles.Find(spriteAnimado => spriteAnimado.sprite == tilemapSprites[x, y]);
+                        SpriteAnimatedTile encounteredSprite = spriteAnimatedList.Find(spriteAnimado => spriteAnimado.sprite == tilemapSprites[x, y]);
 
                         if (encounteredSprite.sprite != null)
                         {
@@ -497,12 +545,11 @@ namespace InterOrbital.WorldSystem
                     }
 
 
-
+                    spriteDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<Sprite> spriteList);
                     Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
                     if (s != null)
                     {
                         UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
-
                         // Asigna el Sprite al Tile
                         tile.sprite = s;
                         tilemap.SetTile(position, tile);
@@ -512,12 +559,13 @@ namespace InterOrbital.WorldSystem
                 }
             }
         }
-
+       */
         #endregion
 
 
         private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, List<BiomeRuleTile> tiles, int chunkXPos, int chunkYPos)
         {
+
             for (int j = chunkYPos; j < (chunkYPos + _chunkSize); j++)
             {
                 for (int i = chunkXPos; i < (chunkXPos + _chunkSize); i++)
@@ -527,7 +575,7 @@ namespace InterOrbital.WorldSystem
                     var sourceTile = origin.GetTile(pos);
                     if (sourceTile != null)
                     {
-                        Vector2Int mapCoordinates = BorderIntoMapCoordinates(i,j);
+                        Vector2Int mapCoordinates = BorderIntoMapCoordinates(i, j);
                         int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[mapCoordinates.x, mapCoordinates.y].biomeType);
 
                         if (tiles[biomeIndex].minimapSprite != null)
@@ -540,6 +588,7 @@ namespace InterOrbital.WorldSystem
                 }
 
             }
+
         }
 
         private Vector2Int BorderIntoMapCoordinates(int x, int y)
@@ -570,10 +619,19 @@ namespace InterOrbital.WorldSystem
 
         public void GenerateChunkMinimap(int chunkXPos, int chunkYPos)
         {
-            foreach (var tilemapLayer in _tilemapLayers)
+            Vector2Int chunkPos = new Vector2Int(chunkXPos, chunkYPos);
+
+            _chunks.TryGetValue(chunkPos, out Chunk chunkFound);
+
+            if (chunkFound != null && !chunkFound.IsRevealed())
             {
-                GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, chunkXPos, chunkYPos);
+                foreach (var tilemapLayer in _tilemapLayers)
+                {
+                    GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, chunkXPos, chunkYPos);
+                }
             }
+            chunkFound.SetRevealed(true);
+
         }
 
         private void InitializeGrid()
@@ -662,98 +720,172 @@ namespace InterOrbital.WorldSystem
 
         private void CreateRegions()
         {
-
-            RandomBiomeCreation(10, 40, _biomes[1], 400, 450);
-            RandomBiomeCreation(20, 10, _biomes[2], 400, 450);
-            RandomBiomeCreation(40, 10, _biomes[3], 400, 450);
+            RandomBiomeCreation(10, 40, _biomes[1], 450);
+            RandomBiomeCreation(20, 10, _biomes[2], 450);
+            RandomBiomeCreation(40, 10, _biomes[3], 450);
         }
 
-        private void RandomBiomeCreation(int x, int y, string biome, int minExtension, int maxExtension)
+        private Vector2Int UpdatePosToMap(Vector2Int pos)
         {
-            if (x >= 0 && x < width && y >= 0 && y < height)
+            Vector2Int mapPos = new Vector2Int(pos.x, pos.y);
+
+            if (mapPos.x < 0)
             {
-                HashSet<Vector2Int> visited = new HashSet<Vector2Int>(); // conjunto de casillas visitadas
-                int extension = UnityEngine.Random.Range(minExtension, maxExtension + 1); // determinar la extension aleatoria
-                for (int i = 0; i < extension; i++)
+                mapPos.x = width;
+            }
+
+            if (mapPos.x >= width)
+            {
+                mapPos.x = 0;
+            }
+
+            if (mapPos.y < 0)
+            {
+                mapPos.y = height;
+            }
+
+            if (mapPos.y >= height)
+            {
+                mapPos.y = 0;
+            }
+
+            return mapPos;
+        }
+
+        private void RandomBiomeCreation(int x, int y, string biome, int extension)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height && extension < (height * width))
+            {
+                HashSet<Vector2Int> visited = new HashSet<Vector2Int>(); // Conjunto de casillas visitadas
+                List<Vector2Int> positions = new List<Vector2Int>(); // Lista de posiciones para la extensión
+
+                Vector2Int startPos = new Vector2Int(x, y);
+                positions.Add(startPos);
+                visited.Add(startPos);
+                _gridCells[startPos.x, startPos.y].biomeType = biome;
+
+                while (positions.Count > 0 && visited.Count < extension)
                 {
-                    Vector2Int currentPos = new Vector2Int(x, y); // posición actual
+                    int randomIndex = UnityEngine.Random.Range(0, positions.Count);
+                    Vector2Int currentPos = positions[randomIndex];
 
-                    while (visited.Contains(currentPos) || (currentPos.x < 0 || currentPos.x >= width || currentPos.y < 0 || currentPos.y >= height))
+                    List<Vector2Int> directions = GetValidDirections(currentPos, biome);
+                    if (directions.Count == 0)
                     {
-                        int direction = UnityEngine.Random.Range(0, 4);
-                        switch (direction)
-                        {
-                            case 0: // arriba
-                                currentPos.y++;
-                                if (currentPos.y >= height)
-                                    currentPos.y = 0;
-                                break;
-                            case 1: // abajo
-                                currentPos.y--;
-                                if (currentPos.y < 0)
-                                    currentPos.y = height - 1;
-                                break;
-                            case 2: // izquierda
-                                currentPos.x--;
-                                if (currentPos.x >= width)
-                                    currentPos.x = 0;
-                                break;
-                            case 3: // derecha
-                                currentPos.x++;
-                                if (currentPos.x < 0)
-                                    currentPos.x = width - 1;
-                                break;
-                        }
+                        positions.RemoveAt(randomIndex);
+                        continue;
                     }
-                    _gridCells[currentPos.x, currentPos.y].biomeType = biome; // Asignar bioma a la casilla actual
 
-                    visited.Add(currentPos); // agregar la casilla actual al conjunto de casillas visitadas
+                    int randomDirectionIndex = UnityEngine.Random.Range(0, directions.Count);
+                    Vector2Int direction = directions[randomDirectionIndex];
+                    Vector2Int newPos = currentPos + direction;
 
+                    newPos = UpdatePosToMap(newPos);
+
+                    visited.Add(newPos);
+
+                    _gridCells[newPos.x, newPos.y].biomeType = biome;
+
+                    List<Vector2Int> newDirections = GetValidDirections(newPos, biome);
+                    if (newDirections.Count > 0)
+                    {
+                        positions.Add(newPos);
+                    }
                 }
             }
         }
 
-        private void RandomDetail(int x, int y, int minExtension, int maxExtension)
+        private List<Vector2Int> GetValidDirections(Vector2Int pos,string biome)
         {
-            if (x >= 0 && x < width && y >= 0 && y < height)
+            List<Vector2Int> directions = new List<Vector2Int>();
+
+            Vector2Int[] offsets =
+            {
+        new Vector2Int(0, 1), // Arriba
+        new Vector2Int(0, -1), // Abajo
+        new Vector2Int(1, 0), // Derecha
+        new Vector2Int(-1, 0) // Izquierda
+    };
+
+            foreach (Vector2Int offset in offsets)
+            {
+                Vector2Int neighborPos = pos + offset;
+
+                neighborPos = UpdatePosToMap(neighborPos);
+
+                if (_gridCells[neighborPos.x, neighborPos.y].biomeType != biome)
+                {
+                    directions.Add(offset);
+                }
+            }
+
+            return directions;
+        }
+
+        private List<Vector2Int> GetDirectionsWithoutDetail(Vector2Int pos)
+        {
+            List<Vector2Int> directions = new List<Vector2Int>();
+
+            Vector2Int[] offsets =
+            {
+        new Vector2Int(0, 1), // Arriba
+        new Vector2Int(0, -1), // Abajo
+        new Vector2Int(1, 0), // Derecha
+        new Vector2Int(-1, 0) // Izquierda
+    };
+
+            foreach (Vector2Int offset in offsets)
+            {
+                Vector2Int neighborPos = pos + offset;
+
+                neighborPos = UpdatePosToMap(neighborPos);
+
+                if (!_gridCells[neighborPos.x, neighborPos.y].HaveDetail())
+                {
+                    directions.Add(offset);
+                }
+            }
+            return directions;
+        }
+
+        private void RandomDetail(int x, int y, int extension)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height && extension < (height * width))
             {
                 HashSet<Vector2Int> visited = new HashSet<Vector2Int>(); // conjunto de casillas visitadas
-                int extension = UnityEngine.Random.Range(minExtension, maxExtension + 1); // determinar la extension aleatoria
-                for (int i = 0; i < extension; i++)
+                List<Vector2Int> posiblePositions = new List<Vector2Int>(); // Lista de posiciones para la extensión
+
+                Vector2Int startPos = new Vector2Int(x, y);
+                posiblePositions.Add(startPos);
+                visited.Add(startPos);
+                _gridCells[startPos.x, startPos.y].AddDetail();
+
+                while (posiblePositions.Count > 0 && visited.Count < extension)
                 {
-                    Vector2Int currentPos = new Vector2Int(x, y); // posición actual
+                    int randomIndex = UnityEngine.Random.Range(0, posiblePositions.Count);
+                    Vector2Int currentPos = posiblePositions[randomIndex];
 
-                    while (visited.Contains(currentPos) || (currentPos.x < 0 || currentPos.x >= width || currentPos.y < 0 || currentPos.y >= height))
+                    List<Vector2Int> directions = GetDirectionsWithoutDetail(currentPos);
+                    if (directions.Count == 0)
                     {
-                        int direction = UnityEngine.Random.Range(0, 4);
-                        switch (direction)
-                        {
-                            case 0: // arriba
-                                currentPos.y++;
-                                if (currentPos.y >= height)
-                                    currentPos.y = 0;
-                                break;
-                            case 1: // abajo
-                                currentPos.y--;
-                                if (currentPos.y < 0)
-                                    currentPos.y = height - 1;
-                                break;
-                            case 2: // izquierda
-                                currentPos.x--;
-                                if (currentPos.x >= width)
-                                    currentPos.x = 0;
-                                break;
-                            case 3: // derecha
-                                currentPos.x++;
-                                if (currentPos.x < 0)
-                                    currentPos.x = width - 1;
-                                break;
-                        }
+                        posiblePositions.RemoveAt(randomIndex);
+                        continue;
                     }
-                    _gridCells[currentPos.x, currentPos.y].AddDetail(); // Asignar bioma a la casilla actual
 
-                    visited.Add(currentPos); // agregar la casilla actual al conjunto de casillas visitadas
+                    int randomDirectionIndex = UnityEngine.Random.Range(0, directions.Count);
+                    Vector2Int direction = directions[randomDirectionIndex];
+                    Vector2Int newPos = currentPos + direction;
 
+                    newPos = UpdatePosToMap(newPos);
+
+                    visited.Add(newPos);
+                    _gridCells[newPos.x, newPos.y].AddDetail();
+
+                    List<Vector2Int> newDirections = GetDirectionsWithoutDetail(newPos);
+                    if (newDirections.Count > 0)
+                    {
+                        posiblePositions.Add(newPos);
+                    }
                 }
             }
         }

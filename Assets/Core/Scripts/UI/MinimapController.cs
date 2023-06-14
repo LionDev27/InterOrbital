@@ -46,7 +46,10 @@ namespace InterOrbital.UI
                 DOTween.To(() => _minimapFrameRect.offsetMin, x => _minimapFrameRect.offsetMin = x, new Vector2(636, 636), _animationDuration).SetEase(Ease.Linear);
                 DOTween.To(() => _minimapCamera.orthographicSize, x => _minimapCamera.orthographicSize = x, _orthographicMinimizedSize, _animationDuration).SetEase(Ease.Linear);
                 Vector3 playerPos = PlayerComponents.Instance.GetPlayerPosition();
-                _minimapCamera.transform.DOMove(new Vector3(playerPos.x, playerPos.y, _minimapCamera.transform.position.z), _animationDuration).SetEase(Ease.Linear)
+                float posX = Mathf.Clamp(playerPos.x, _orthographicMinimizedSize, GridLogic.Instance.width - _orthographicMinimizedSize);
+                float posY = Mathf.Clamp(playerPos.y, _orthographicMinimizedSize, GridLogic.Instance.width - _orthographicMinimizedSize);
+                Vector3 newPos = new Vector3(posX, posY, -_orthographicMinimizedSize);
+                _minimapCamera.transform.DOMove(new Vector3(newPos.x, newPos.y, _minimapCamera.transform.position.z), _animationDuration).SetEase(Ease.Linear)
                     .OnComplete(() =>
                     {
                         _minimapCamera.GetComponent<CameraFollow>().CloseMinimap();
