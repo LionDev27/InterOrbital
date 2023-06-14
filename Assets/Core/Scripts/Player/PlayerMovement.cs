@@ -11,6 +11,7 @@ namespace InterOrbital.Player
         [SerializeField] private float _timeForHelmetAnimation;
         private float _helmetAnimationTimer;
         [SerializeField] private CinemachineVirtualCamera followCamera;
+        private int selfLayerIndex;
 
         [HideInInspector]
         public bool canMove = true;
@@ -26,6 +27,7 @@ namespace InterOrbital.Player
 
         private void Start()
         {
+            selfLayerIndex = gameObject.layer;
             transform.position = new Vector3(GridLogic.Instance.width/2 + 0.5f, GridLogic.Instance.height/2 + 0.5f, 0f);
         }
 
@@ -107,6 +109,16 @@ namespace InterOrbital.Player
         private void WarpFollowCamera(Vector3 newCameraPos)
         {
             followCamera.OnTargetObjectWarped(transform, newCameraPos - followCamera.transform.position);
+        }
+        
+        public void EnableCollisions(bool value)
+        {
+            Physics2D.IgnoreLayerCollision(selfLayerIndex, 8, !value);
+        }
+
+        public void EnableMovement(bool value)
+        {
+            canMove = value;
         }
     }
 }

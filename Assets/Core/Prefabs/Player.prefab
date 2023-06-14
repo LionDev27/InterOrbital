@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14428869}
   - component: {fileID: 14428870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228081137}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070631634}
   - component: {fileID: 2070631633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 3227855541346394482}
   - component: {fileID: 3227855541346394483}
   - component: {fileID: 2091602762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 446727633}
   - component: {fileID: 1346188536}
   - component: {fileID: 331055969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -766,6 +766,9 @@ MonoBehaviour:
   _dashForce: 450
   _dashTime: 0.4
   _dashInvulnerabilityExtraTime: 0.1
+  _ignoredLayersWhenDashing:
+  - serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &446727633
 MonoBehaviour:
   m_ObjectHideFlags: 0

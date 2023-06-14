@@ -22,7 +22,14 @@ namespace InterOrbital.Player
         private void Update()
         {
             LoseHealthOverTime();
-            RunInvencibilityTimer();
+            if (CanTakeDamage())
+            {
+                _playerComponents.PlayerMovement.EnableCollisions(true);
+            }
+            else
+            {
+                RunInvencibilityTimer();
+            }
         }
 
         private void LoseHealthOverTime()
@@ -55,11 +62,16 @@ namespace InterOrbital.Player
         {
             _invencibilityTimer -= Time.deltaTime;
         }
+
+        private bool InvencibilityEnded()
+        {
+            return _invencibilityTimer <= 0;
+        }
         
         private bool CanTakeDamage()
         {
             //Recibira daño si ha terminado su cooldown de invencibilidad y no está realizando un dash.
-            return _invencibilityTimer <= 0 && !_playerComponents.PlayerDash.IsDashing();
+            return InvencibilityEnded() && !_playerComponents.PlayerDash.IsDashing();
         }
 
         #endregion
@@ -71,6 +83,7 @@ namespace InterOrbital.Player
                 Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
                 _invencibilityTimer = _invencibilityTime;
+                _playerComponents.PlayerMovement.EnableCollisions(false);
             }
         }
 
