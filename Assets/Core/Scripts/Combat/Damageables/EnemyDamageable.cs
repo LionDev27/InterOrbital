@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace InterOrbital.Combat.IA
 {
     public class EnemyDamageable : Damageable
     {
+        [SerializeField] private ParticleSystem _deathParticles;
+        [SerializeField] private float _deathTime;
         private EnemyAgentBase _agent;
-
+        
         private void Awake()
         {
             _agent = GetComponent<EnemyAgentBase>();
@@ -20,6 +23,13 @@ namespace InterOrbital.Combat.IA
 
         protected override void Death()
         {
+            StartCoroutine(nameof(DeathSequence));
+        }
+
+        private IEnumerator DeathSequence()
+        {
+            yield return new WaitForSeconds(_deathTime);
+            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
             Destroy(gameObject);
         }
     }
