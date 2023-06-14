@@ -13,6 +13,7 @@ namespace InterOrbital.Combat.IA
 
         public override void OnStateEnter()
         {
+            _currentAgent.ResetTimer();
             _currentAgent.Animator.SetBool("PlayerLost", true);
         }
 

@@ -8,10 +8,11 @@ namespace InterOrbital.Combat.IA
     public class EnemyAgentBase : MonoBehaviour
     {
         [SerializeField] protected List<EnemyStateBase> _states;
-        private EnemyStateBase _currentState;
+        [SerializeField] private float _hitAnimationTime;
+        protected EnemyStateBase _currentState;
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
-        private float _speed;
+        private float _hitTimer;
 
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -19,30 +20,35 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Awake()
         {
-            if(_states.Count <= 0) return;
+            if (_states.Count <= 0) return;
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
+
             _animator = GetComponentInChildren<Animator>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         protected virtual void Start()
         {
-            _speed = _navMeshAgent.speed;
             _navMeshAgent.updateRotation = false;
             _navMeshAgent.updateUpAxis = false;
         }
 
         protected virtual void Update()
         {
-            if (_currentState)
+            _hitTimer -= Time.deltaTime;
+            if (_hitTimer > 0) return;
+            if (_animator.GetBool("Hit"))
             {
-                _currentState.Execute();
+                _animator.SetBool("Hit", false);
+                EnableNavigation(true);
             }
+            if (_currentState)
+                _currentState.Execute();
         }
-        
+
         public virtual void ChangeState(EnemyStateBase newState)
         {
             _currentState = newState;
@@ -59,6 +65,14 @@ namespace InterOrbital.Combat.IA
         {
             _navMeshAgent.velocity = value ? Vector3.one : Vector3.zero;
             _navMeshAgent.isStopped = !value;
+        }
+
+        public void HitEnemy()
+        {
+            _animator.SetBool("Hit", true);
+            _hitTimer = _hitAnimationTime;
+            if (_navMeshAgent.isStopped) return;
+            EnableNavigation(false);
         }
     }
 }

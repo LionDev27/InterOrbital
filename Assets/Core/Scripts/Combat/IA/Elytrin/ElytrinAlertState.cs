@@ -29,9 +29,6 @@ namespace InterOrbital.Combat.IA
                 if (_currentAgent.NavMeshAgent.destination != _currentAgent.Target.position)
                     _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
 
-                if (_currentAgent.TimerChanged())
-                    _currentAgent.ResetTimer();
-
                 if (Mathf.Sign(_currentAgent.Target.transform.position.x - transform.position.x) > 0)
                 {
                     _currentAgent.SpriteFlipper.FlipX(1);

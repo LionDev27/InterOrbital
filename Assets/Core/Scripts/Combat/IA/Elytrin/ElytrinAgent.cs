@@ -36,6 +36,10 @@ namespace InterOrbital.Combat.IA
 
         protected override void Update()
         {
+            if (Animator.GetBool("Hit") && _currentState == _states[0])
+            {
+                ChangeState(_states[1]);
+            }
             base.Update();
         }
 
