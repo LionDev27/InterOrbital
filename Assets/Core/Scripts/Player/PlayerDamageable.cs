@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using InterOrbital.Combat;
 using InterOrbital.UI;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace InterOrbital.Player
 {
     public class PlayerDamageable : Damageable
     {
+        [SerializeField] private GameObject _hitSpriteObj;
+        [SerializeField] private float _damageCameraShakeIntensity = 5f;
         [SerializeField] private float _invencibilityTime;
         [SerializeField] private float _loseHealthTimerDefaultValue;
         private float _loseHealthTimer;
@@ -19,17 +22,21 @@ namespace InterOrbital.Player
             _playerComponents = PlayerComponents.Instance;
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            if (_hitSpriteObj.activeInHierarchy)
+                _hitSpriteObj.SetActive(false);
+        }
+
         private void Update()
         {
             LoseHealthOverTime();
+            
             if (CanTakeDamage())
-            {
                 _playerComponents.PlayerMovement.EnableCollisions(true);
-            }
             else
-            {
                 RunInvencibilityTimer();
-            }
         }
 
         private void LoseHealthOverTime()
@@ -45,19 +52,27 @@ namespace InterOrbital.Player
                 {
                     _currentHealth = Mathf.Clamp(_currentHealth - 1, 0, _maxHealth);
                     UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
-                    ResetTimer();
+                    CameraShake.Instance.Shake(_damageCameraShakeIntensity / 2f, 0.5f);
+                    ResetHealthTimer();
                     CheckHealth();
                 }
             }
         }
         
-        private void ResetTimer()
+        private void ResetHealthTimer()
         {
             _loseHealthTimer = _loseHealthTimerDefaultValue;
         }
 
         #region Invencibility
 
+        private void SetInvencibilityState()
+        {
+            _invencibilityTimer = _invencibilityTime;
+            _playerComponents.PlayerMovement.EnableCollisions(false);
+            StartCoroutine(nameof(HitAnimation));
+        }
+        
         private void RunInvencibilityTimer()
         {
             _invencibilityTimer -= Time.deltaTime;
@@ -82,15 +97,16 @@ namespace InterOrbital.Player
             {
                 Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
-                _invencibilityTimer = _invencibilityTime;
-                _playerComponents.PlayerMovement.EnableCollisions(false);
+                UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
+                CameraShake.Instance.Shake(_damageCameraShakeIntensity, 0.5f);
+                SetInvencibilityState();
             }
         }
 
         public override void RestoreHealth(int healthAmount)
         {
             base.RestoreHealth(healthAmount);
-            ResetTimer();
+            ResetHealthTimer();
         }
 
         protected override void Death()
@@ -100,5 +116,14 @@ namespace InterOrbital.Player
             _playerComponents.InputHandler.DeactivateControls();
         }
 
+        private IEnumerator HitAnimation()
+        {
+            while (!InvencibilityEnded())
+            {
+                _hitSpriteObj.SetActive(!_hitSpriteObj.activeInHierarchy);
+                yield return new WaitForSeconds(0.2f);
+            }
+            _hitSpriteObj.SetActive(false);
+        }
     }
 }
