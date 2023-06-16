@@ -8,6 +8,7 @@ namespace InterOrbital.Player
     {
         public Transform attackPoint;
         [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private GameObject _gunSpriteObj;
         [SerializeField] private float _attackRange;
 
         [Header("Weapon Upgrades")]
@@ -27,6 +28,7 @@ namespace InterOrbital.Player
 
         private void Update()
         {
+            _gunSpriteObj.SetActive(canAttack);
             _timer -= Time.deltaTime;
         }
 

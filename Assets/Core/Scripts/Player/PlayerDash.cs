@@ -43,7 +43,10 @@ namespace InterOrbital.Player
         private void Update()
         {
             if (_dashTimer <= 0)
+            {
                 PlayerMovement.EnableMovement(true);
+                PlayerAttack.canAttack = true;
+            }
             else
                 _dashTimer -= Time.deltaTime;
             if (_dashInvulnerabilityTimer <= 0)
@@ -59,6 +62,7 @@ namespace InterOrbital.Player
             if (IsDashing()) return;
             PlayerMovement.EnableCollisions(false);
             PlayerMovement.EnableMovement(false);
+            PlayerAttack.canAttack = false;
             
             _dashTimer = _dashTime;
             _dashInvulnerabilityTimer = _dashTotalTime;

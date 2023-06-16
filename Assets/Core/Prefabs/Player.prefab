@@ -763,6 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 228081137}
   _bulletPrefab: {fileID: 27296961458175940, guid: 5614a6077fb78544ab25bd3cd9c99e90, type: 3}
+  _gunSpriteObj: {fileID: 14428868}
   _attackRange: 7
   _attackDamage: 1
   _attackRangeMultiplier: 6.7
@@ -935,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1717168947855178073
 Transform:
   m_ObjectHideFlags: 0
