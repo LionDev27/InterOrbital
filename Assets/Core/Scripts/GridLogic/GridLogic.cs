@@ -1,3 +1,4 @@
+using InterOrbital.Item;
 using InterOrbital.Player;
 using InterOrbital.Utils;
 using System;
@@ -28,6 +29,8 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Sprite _spaceshipAreaSprite;
         [SerializeField] private Tilemap _spaceshipAreaTilemap;
         [SerializeField] private List<string> _biomes;
+        [SerializeField] private Tilemap _animationTilemap;
+        [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
 
         private Cell[,] _gridCells;
@@ -275,6 +278,10 @@ namespace InterOrbital.WorldSystem
                         if (tiles[biomeIndex].tiles != null)
                         {
                             tilemap.SetTile(position, tiles[biomeIndex].tiles);
+                            if(_gridCells[x, y].HaveAnimationTile())
+                            {
+                                _animationTilemap.SetTile(position, _animationTiles.GetRandomTileFromBiome(currentBiome));
+                            }
                         }
                     }
                 }
@@ -282,7 +289,7 @@ namespace InterOrbital.WorldSystem
         }
 
         #region Borders Methods
-        private void FillTilemapBorders(Tilemap tilemap)
+        /*private void FillTilemapBorders(Tilemap tilemap)
         {
             if (borderSize > width || borderSize > height)
             {
@@ -395,14 +402,14 @@ namespace InterOrbital.WorldSystem
                     tilemap.SetTile(botLeftSideMapPos, tile);
                 }
             }
-        }
+        }*/
 
         #endregion
 
 
 
         #region Repaint Map Tiles Methods
-        private void GetTilemapSprites(Tilemap tilemap)
+        /*private void GetTilemapSprites(Tilemap tilemap)
         {
             Sprite[,] tilemapSprites = new Sprite[tilemap.size.x, tilemap.size.y];
 
@@ -435,7 +442,7 @@ namespace InterOrbital.WorldSystem
             return spriteList;
         }
 
-        public void SubstituteRuleTiles(int chunkX, int chunkY)
+        /*public void SubstituteRuleTiles(int chunkX, int chunkY)
         {
             foreach (var tilemapLayer in _tilemapLayers)
             {
@@ -462,7 +469,7 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-       /* private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
+        private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
         {
            /Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
             int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
@@ -880,6 +887,11 @@ namespace InterOrbital.WorldSystem
 
                     visited.Add(newPos);
                     _gridCells[newPos.x, newPos.y].AddDetail();
+
+                    if(UnityEngine.Random.value < 0.05f)
+                    {
+                        _gridCells[newPos.x, newPos.y].AddAnimationTile();
+                    }
 
                     List<Vector2Int> newDirections = GetDirectionsWithoutDetail(newPos);
                     if (newDirections.Count > 0)

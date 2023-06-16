@@ -5926,12 +5926,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _animationTiles
+      value: 
+      objectReference: {fileID: 11400000, guid: 34d0c3191d1358f4eb24882470a62b83, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _animationTilemap
+      value: 
+      objectReference: {fileID: 2451232444189286933}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: <width>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: <height>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+--- !u!1839735485 &2451232444189286933 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8263977617910102429, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+  m_PrefabInstance: {fileID: 2451232444189286932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4814067017583364669
 PrefabInstance:
   m_ObjectHideFlags: 0

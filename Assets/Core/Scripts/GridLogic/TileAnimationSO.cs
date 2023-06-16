@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace InterOrbital.Item
 {
@@ -10,8 +11,21 @@ namespace InterOrbital.Item
 
     public class TileAnimationSO : ScriptableObject
     {
-        public Texture2D textureToChangeRuleTile;
         [SerializeField]
-        public List<SpriteAnimatedTile> spriteToAnimatedTiles;
+        public List<AnimatedBiomeTiles> animatedBiomeTiles;
+
+        public AnimatedTile GetRandomTileFromBiome(string biome)
+        {
+            foreach (AnimatedBiomeTiles biomeAnimatedTiles in animatedBiomeTiles)
+            {
+                if (biomeAnimatedTiles.biome == biome && biomeAnimatedTiles.animatedTile.Count > 0)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, biomeAnimatedTiles.animatedTile.Count);
+                    return biomeAnimatedTiles.animatedTile[randomIndex];
+                }
+            }
+
+            return null;
+        }
     }
 }

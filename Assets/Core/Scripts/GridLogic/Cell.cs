@@ -6,7 +6,8 @@ namespace InterOrbital.WorldSystem
         private int x;
         private int y;
         public string biomeType;
-        private bool haveDetail;
+        private bool detail;
+        private bool animationTile;
         private bool locked;
         private bool spaceshipArea;
 
@@ -15,7 +16,8 @@ namespace InterOrbital.WorldSystem
             this.x = x;
             this.y = y;
             biomeType = null;
-            haveDetail = false;
+            detail = false;
+            animationTile = false;
             locked = false;
             spaceshipArea = false;
         }
@@ -25,7 +27,8 @@ namespace InterOrbital.WorldSystem
             this.x = x;
             this.y = y;
             this.biomeType = biomeType;
-            haveDetail = false;
+            detail = false;
+            animationTile = false;
             locked = false;
             spaceshipArea = false;
         }
@@ -33,7 +36,12 @@ namespace InterOrbital.WorldSystem
 
         public void AddDetail()
         {
-            haveDetail = true;
+            detail = true;
+        }
+        
+        public void AddAnimationTile()
+        {
+            animationTile = true;
         }
 
         public void LockCell() 
@@ -69,7 +77,12 @@ namespace InterOrbital.WorldSystem
 
         public bool HaveDetail()
         {
-            return haveDetail;
+            return detail;
+        }
+
+        public bool HaveAnimationTile()
+        {
+            return animationTile;
         }
     }
 }
