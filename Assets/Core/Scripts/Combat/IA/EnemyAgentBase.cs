@@ -1,3 +1,4 @@
+using InterOrbital.Combat.Spawner;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace InterOrbital.Combat.IA
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
         private float _hitTimer;
+        private EnemySpawner _enemySpawner;
+
 
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -73,6 +76,19 @@ namespace InterOrbital.Combat.IA
             _hitTimer = _hitAnimationTime;
             if (_navMeshAgent.isStopped) return;
             EnableNavigation(false);
+        }
+
+        public void SetEnemySpawner(EnemySpawner spawner)
+        {
+            if(spawner != null && _enemySpawner == null)
+            {
+                _enemySpawner = spawner;
+            }
+        }
+
+        public void Death()
+        {
+            _enemySpawner.EnemyDead();
         }
     }
 }

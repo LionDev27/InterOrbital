@@ -1,41 +1,103 @@
+using InterOrbital.Combat.IA;
+using InterOrbital.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace InterOrbital.Combat.Spawner
 {
-    [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private Transform player; // Referencia al transform del jugador
-    [SerializeField] private int _maxEnemiesSpawn;
-    [SerializeField] private float _spawnRadius = 5f;
-    [SerializeField] private float _spawnDelay = 1f;
-    [SerializeField ]public float _spawnActivationDistance = 10f; // Distancia de activación
-
-    private float _spawnTimer;
-    private int currentEnemies = 0; // Contador de enemigos actual
-    private bool playerInRange = false;
-
-    private void Update()
+    public class EnemySpawner : MonoBehaviour
     {
-        float distance = Vector3.Distance(transform.position, player.position);
-        playerInRange = distance <= _spawnActivationDistance;
+        [SerializeField] private GameObject _enemyPrefab;
+        [SerializeField] private Transform player; // Referencia al transform del jugador
+        [SerializeField] private int _maxEnemiesSpawn;
+        [SerializeField] private float _spawnRadius = 5f;
+        [SerializeField] private float _spawnDelay = 3f;
+        [SerializeField] public float _spawnMinActivationDistance = 15f; // Distancia de activación
 
-        if (playerInRange && currentEnemies < _maxEnemiesSpawn)
+        private bool _canSpawn;
+        private float _playerNearSpawnTimer = -1;
+        private float _spawnTimer;
+        private int currentEnemiesSpawned = 0; // Contador de enemigos actual
+        private bool playerInRangeToSpawn = false;
+
+        private void Start()
         {
-            StartCoroutine(SpawnEnemy());
+            player = PlayerComponents.Instance.transform;
         }
-    }
 
-    private IEnumerator SpawnEnemy()
-    {
-        yield return new WaitForSeconds(_spawnDelay);
-
-        if (currentEnemies < _maxEnemiesSpawn)
+        private void Update()
         {
-            Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
+            SpawnEnemies();
+        }
 
-            Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
-            currentEnemies++;
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                _canSpawn = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                _canSpawn = false;
+                if (_playerNearSpawnTimer < 0)
+                {
+                    _playerNearSpawnTimer = 20f;
+                }
+            }
+        }
+
+        private void SpawnEnemies()
+        {
+            if (_canSpawn && _playerNearSpawnTimer < 0)
+            {
+                float distance = Vector3.Distance(transform.position, player.position);
+                playerInRangeToSpawn = distance > _spawnMinActivationDistance;
+
+                if (playerInRangeToSpawn)
+                {
+                    if (_spawnTimer >= 0)
+                    {
+                        _spawnTimer -= Time.deltaTime;
+                    }
+
+                    if (_spawnTimer < 0)
+                    {
+                        if (currentEnemiesSpawned < _maxEnemiesSpawn)
+                        {
+                            StartCoroutine(SpawnEnemy());
+                            _spawnTimer = _spawnDelay;
+                        }
+                    }
+                }
+            }
+
+            if (_playerNearSpawnTimer >= 0)
+            {
+                _playerNearSpawnTimer -= Time.deltaTime;
+            }
+        }
+
+        private IEnumerator SpawnEnemy()
+        {
+            if (currentEnemiesSpawned < _maxEnemiesSpawn)
+            {
+                Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
+
+                GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+                enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
+                currentEnemiesSpawned++;
+            }
+            yield return null;
+        }
+
+        public void EnemyDead()
+        {
+            currentEnemiesSpawned--;
         }
     }
 }
