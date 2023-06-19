@@ -147,8 +147,9 @@ namespace InterOrbital.WorldSystem
             SpawnSpaceship();
             OnTilemapFilled?.Invoke();
             yield return new WaitForSeconds(0.1f);
-            GenerateEnemySpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
+            yield return new WaitForSeconds(1f);
+            GenerateEnemySpawners();
         }
 
         private void CreateMapBorders()

@@ -52,7 +52,7 @@ namespace InterOrbital.Combat.IA
             if (_currentState)
             {
                 _currentState.Execute();
-                Debug.Log(_currentState);
+                //Debug.Log(_currentState);
             }
         }
 
