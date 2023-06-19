@@ -30,7 +30,6 @@ namespace InterOrbital.Combat.IA
         {
             base.Start();
             _attackRange = Vector3.Distance(transform.position, _damageDealer.position);
-            //Debug.Log(_attackRange);
             ChangeState(_states[0]);
         }
 
