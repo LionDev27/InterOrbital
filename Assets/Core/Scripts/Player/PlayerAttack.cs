@@ -7,6 +7,7 @@ namespace InterOrbital.Player
     public class PlayerAttack : PlayerComponents
     {
         public Transform attackPoint;
+        [SerializeField] private GameObject _gunSpriteObj;
         private GameObject _bulletPrefab;
 
         [Header("Weapon Upgrades")]
@@ -32,6 +33,7 @@ namespace InterOrbital.Player
 
         private void Update()
         {
+            _gunSpriteObj.SetActive(canAttack);
             _timer -= Time.deltaTime;
         }
 
@@ -45,9 +47,15 @@ namespace InterOrbital.Player
                 var bulletController = tempBullet.GetComponent<BaseBulletController>();
                 var bulletMoveDir = attackPoint.position - transform.position;
                 bulletController.SetupBullet(gameObject.tag, bulletMoveDir, transform.position);
+                AttackEffects();
             }
         }
-
+        
+        private void AttackEffects()
+        {
+            CameraShake.Instance.Shake(2, 0.3f);
+        }
+        
         private bool CooldownEnded()
         {
             return _timer <= 0;

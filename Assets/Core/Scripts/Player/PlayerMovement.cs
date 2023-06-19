@@ -11,15 +11,24 @@ namespace InterOrbital.Player
         [SerializeField] private float _timeForHelmetAnimation;
         [SerializeField] private CircleCollider2D _minimapDetector;
         private float _helmetAnimationTimer;
-
         [SerializeField] private CinemachineVirtualCamera followCamera;
-
+        private int selfLayerIndex;
 
         [HideInInspector]
         public bool canMove = true;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            if (!followCamera)
+            {
+                followCamera = GameObject.Find("Followcam").GetComponent<CinemachineVirtualCamera>();
+            }
+        }
+
         private void Start()
         {
+            selfLayerIndex = gameObject.layer;
             PlayerSpawn();
         }
 
@@ -112,6 +121,16 @@ namespace InterOrbital.Player
         public void ActivateMinimapDetector()
         {
             _minimapDetector.enabled = true;
+        }
+        
+        public void EnableCollisions(bool value)
+        {
+            Physics2D.IgnoreLayerCollision(selfLayerIndex, 8, !value);
+        }
+
+        public void EnableMovement(bool value)
+        {
+            canMove = value;
         }
     }
 }

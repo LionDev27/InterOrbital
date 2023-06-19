@@ -11,12 +11,13 @@ namespace InterOrbital.Player
     public class PlayerComponents : MonoBehaviour
     {
         protected Rigidbody2D Rigidbody { get; private set; }
+        protected BoxCollider2D Collider { get; private set; }
         protected Animator Animator { get; private set; }
         protected SpriteRenderer PlayerSprite { get; private set; }
         protected PlayerInput PlayerInput { get; private set; }
-        protected PlayerMovement PlayerMovement { get; private set; }
         protected PlayerAim PlayerAim { get; private set; }
        
+        public PlayerMovement PlayerMovement { get; private set; }
         public PlayerAttack PlayerAttack { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
         public PlayerInventory Inventory { get; private set; }
@@ -37,6 +38,7 @@ namespace InterOrbital.Player
             PlayerMovement = GetComponent<PlayerMovement>();
             PlayerAim = GetComponent<PlayerAim>();
             Rigidbody = GetComponent<Rigidbody2D>();
+            Collider = GetComponent<BoxCollider2D>();
             Animator = GetComponentInChildren<Animator>();
             PlayerSprite = GetComponentInChildren<SpriteRenderer>();
             Inventory = GetComponent<PlayerInventory>();

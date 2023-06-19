@@ -41,6 +41,8 @@ namespace InterOrbital.WorldSystem
 
         public static GridLogic Instance;
 
+        public Action OnTilemapFilled;
+        
         #region Unity Methods
 
         protected virtual void Awake()
@@ -100,7 +102,7 @@ namespace InterOrbital.WorldSystem
             {
                 for (int i = tilemapLayer.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
                 {
-                    if (!_biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no está en la lista de biomas
+                    if (!_biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no estï¿½ en la lista de biomas
                     {
                         tilemapLayer.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
                     }
@@ -143,6 +145,7 @@ namespace InterOrbital.WorldSystem
 
             SpawnSpaceship();
             yield return new WaitForSeconds(0.1f);
+            OnTilemapFilled?.Invoke();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
@@ -175,14 +178,14 @@ namespace InterOrbital.WorldSystem
             {
                 for (int y = 0; y < numChunksY; y++)
                 {
-                    // Calcular la posición del chunk
+                    // Calcular la posiciï¿½n del chunk
                     int chunkPosX = x * _chunkSize;
                     int chunkPosY = y * _chunkSize;
 
                     // Crear un nuevo chunk
                     GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0), Quaternion.identity, transform);
 
-                    // Ajustar el tamaño del Box Collider 2D al tamaño del chunk
+                    // Ajustar el tamaï¿½o del Box Collider 2D al tamaï¿½o del chunk
                     chunk.GetComponent<BoxCollider2D>().size = new Vector2(_chunkSize, _chunkSize);
                     chunk.GetComponent<BoxCollider2D>().offset = new Vector2(_chunkSize / 2f, _chunkSize / 2f);
                     chunk.GetComponent<Chunk>().SetChunkPos(chunkPosX, chunkPosY);
@@ -764,7 +767,7 @@ namespace InterOrbital.WorldSystem
             if (x >= 0 && x < width && y >= 0 && y < height && extension < (height * width))
             {
                 HashSet<Vector2Int> visited = new HashSet<Vector2Int>(); // Conjunto de casillas visitadas
-                List<Vector2Int> positions = new List<Vector2Int>(); // Lista de posiciones para la extensión
+                List<Vector2Int> positions = new List<Vector2Int>(); // Lista de posiciones para la extensiï¿½n
 
                 Vector2Int startPos = new Vector2Int(x, y);
                 positions.Add(startPos);
@@ -860,7 +863,7 @@ namespace InterOrbital.WorldSystem
             if (x >= 0 && x < width && y >= 0 && y < height && extension < (height * width))
             {
                 HashSet<Vector2Int> visited = new HashSet<Vector2Int>(); // conjunto de casillas visitadas
-                List<Vector2Int> posiblePositions = new List<Vector2Int>(); // Lista de posiciones para la extensión
+                List<Vector2Int> posiblePositions = new List<Vector2Int>(); // Lista de posiciones para la extensiï¿½n
 
                 Vector2Int startPos = new Vector2Int(x, y);
                 posiblePositions.Add(startPos);
