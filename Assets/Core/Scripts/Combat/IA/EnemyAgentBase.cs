@@ -1,4 +1,3 @@
-using InterOrbital.Combat.Spawner;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +13,6 @@ namespace InterOrbital.Combat.IA
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
         private float _hitTimer;
-        private EnemySpawner _enemySpawner;
-
 
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -48,8 +45,12 @@ namespace InterOrbital.Combat.IA
                 _animator.SetBool("Hit", false);
                 EnableNavigation(true);
             }
+
             if (_currentState)
+            {
                 _currentState.Execute();
+                Debug.Log(_currentState);
+            }
         }
 
         public virtual void ChangeState(EnemyStateBase newState)
@@ -60,7 +61,7 @@ namespace InterOrbital.Combat.IA
 
         public bool ArrivedDestination()
         {
-            return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance &&
+            return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance ||
                    (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f);
         }
 
@@ -76,19 +77,6 @@ namespace InterOrbital.Combat.IA
             _hitTimer = _hitAnimationTime;
             if (_navMeshAgent.isStopped) return;
             EnableNavigation(false);
-        }
-
-        public void SetEnemySpawner(EnemySpawner spawner)
-        {
-            if(spawner != null && _enemySpawner == null)
-            {
-                _enemySpawner = spawner;
-            }
-        }
-
-        public void Death()
-        {
-            _enemySpawner.EnemyDead();
         }
     }
 }

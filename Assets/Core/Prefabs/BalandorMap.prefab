@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  <width>k__BackingField: 100
-  <height>k__BackingField: 100
+  <width>k__BackingField: 50
+  <height>k__BackingField: 50
   cellSize: {x: 1, y: 1, z: 0}
   borderSize: 20
   _borderPrefab: {fileID: 3254057356427198123, guid: 488b98c8b88a54544ac89f1714735656, type: 3}
@@ -440,7 +440,6 @@ MonoBehaviour:
   - Forest
   - Rocky
   - Muddy
-  _enemiesSpawners: {fileID: 11400000, guid: 81831494098994941867a059fbc00c87, type: 2}
   _animationTilemap: {fileID: 1591103708735996734}
   _animationTiles: {fileID: 11400000, guid: 34d0c3191d1358f4eb24882470a62b83, type: 2}
   _tilemapLayers:

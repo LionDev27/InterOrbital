@@ -12,7 +12,6 @@ namespace InterOrbital.Combat.IA
         private void Awake()
         {
             _navigationSurface = GetComponent<NavMeshSurface>();
-            _navigationSurface.hideEditorLogs = true;
         }
 
         private void Start()

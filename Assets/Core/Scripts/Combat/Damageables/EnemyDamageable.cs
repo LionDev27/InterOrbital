@@ -30,7 +30,6 @@ namespace InterOrbital.Combat.IA
         {
             yield return new WaitForSeconds(_deathTime);
             Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
-            _agent.Death();
             Destroy(gameObject);
         }
     }
