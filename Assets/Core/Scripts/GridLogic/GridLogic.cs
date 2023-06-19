@@ -1,3 +1,4 @@
+using InterOrbital.Combat.Spawner;
 using InterOrbital.Item;
 using InterOrbital.Player;
 using InterOrbital.Utils;
@@ -15,7 +16,6 @@ namespace InterOrbital.WorldSystem
 {
     public class GridLogic : MonoBehaviour
     {
-        private const string TEXTURES_PATH = "Textures/";
         [SerializeField] private bool debug;
 
         [field: SerializeField] public int width { get; private set; }
@@ -29,6 +29,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Sprite _spaceshipAreaSprite;
         [SerializeField] private Tilemap _spaceshipAreaTilemap;
         [SerializeField] private List<string> _biomes;
+        [SerializeField] private MapEnemySpawnersSO _enemiesSpawners;
         [SerializeField] private Tilemap _animationTilemap;
         [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
@@ -144,8 +145,9 @@ namespace InterOrbital.WorldSystem
             }
 
             SpawnSpaceship();
-            yield return new WaitForSeconds(0.1f);
             OnTilemapFilled?.Invoke();
+            yield return new WaitForSeconds(0.1f);
+            GenerateEnemySpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
@@ -193,6 +195,71 @@ namespace InterOrbital.WorldSystem
                     _chunks.Add(new Vector2Int(chunkPosX,chunkPosY),chunk.GetComponent<Chunk>());
                 }   
             }
+        }
+
+        private void InitializeGrid()
+        {
+            _gridCells = new Cell[width, height];
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    _gridCells[i, j] = new Cell(i, j, _biomes[0]);
+                }
+            }
+        }
+
+        private void GenerateEnemySpawners()
+        {
+            Vector2 mapCenter = new Vector2(width/2, height/2);
+            float minCenterSpawnDistance = (width + height) * 0.05f;
+
+            for(int i = 0; i < _enemiesSpawners.spawnersAmount; i++)
+            {
+                Vector2 spawnPosition = GetRandomSpawnPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners);
+                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+                {
+                    int index = UnityEngine.Random.Range(0, _enemiesSpawners._enemySpawners.Count);
+
+                    Instantiate(_enemiesSpawners._enemySpawners[index], spawnPosition, Quaternion.identity);
+                }
+            }
+        }
+
+        private Vector2 GetRandomSpawnPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners)
+        {
+            Vector2 spawnPosition = Vector2.zero;
+
+            bool positionValid = false;
+
+            for(int cont = 0; cont < 20 && !positionValid; cont++)
+            {
+                do
+                {
+                    spawnPosition = new Vector2(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
+
+                } while (Vector2.Distance(spawnPosition,center) <= minDistanceFromCenter);
+
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, minDistanceBetweenSpawners);
+
+                positionValid = true;
+
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    if (colliders[i].CompareTag("EnemySpawner"))
+                    {
+                        positionValid = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!positionValid) 
+            {
+                spawnPosition = new Vector2(-1,-1);
+            }
+
+            return spawnPosition;
         }
 
         private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
@@ -291,286 +358,11 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-        #region Borders Methods
-        /*private void FillTilemapBorders(Tilemap tilemap)
-        {
-            if (borderSize > width || borderSize > height)
-            {
-                borderSize = Mathf.Min(width, height);
-            }
-
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < borderSize; y++)
-                {
-                    Vector3Int posBottomBorder = new Vector3Int(x, y, 0);
-                    TileBase topTile = tilemap.GetTile(posBottomBorder);
-                    Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
-                    tilemap.SetTile(topSideMapPos, topTile);
-
-
-                    Vector3Int posTopBorder = new Vector3Int(x, y + height - borderSize, 0);
-                    TileBase botTile = tilemap.GetTile(posTopBorder);
-                    Vector3Int botSideMapPos = new Vector3Int(x, y - borderSize, 0);
-                    tilemap.SetTile(botSideMapPos, botTile);
-
-                    if (x < borderSize)
-                    {
-                        Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
-                        tilemap.SetTile(topRightSideMapPos, topTile);
-
-                        Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - borderSize, 0);
-                        tilemap.SetTile(botRightSideMapPos, botTile);
-                    }
-
-                    if (x >= width - borderSize)
-                    {
-                        Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
-                        tilemap.SetTile(topLeftSideMapPos, topTile);
-
-                        Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - borderSize, 0);
-                        tilemap.SetTile(botLeftSideMapPos, botTile);
-                    }
-
-                }
-            }
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < borderSize; x++)
-                {
-                    Vector3Int posLeftBorder = new Vector3Int(x, y, 0);
-                    TileBase leftTile = tilemap.GetTile(posLeftBorder);
-                    Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
-                    tilemap.SetTile(leftSideMapPos, leftTile);
-
-                    Vector3Int posRightBorder = new Vector3Int(x + width - borderSize, y, 0);
-                    TileBase rightTile = tilemap.GetTile(posRightBorder);
-                    Vector3Int rightSideMapPos = new Vector3Int(x - borderSize, y, 0);
-                    tilemap.SetTile(rightSideMapPos, rightTile);
-                }
-            }
-        }
-
-
-        private void FillTilemapBorders(Tilemap tilemap, int x, int y, TileBase tile)
-        {
-            if (x < borderSize || x >= width - borderSize || y < borderSize || y >= height - borderSize) {
-                if (x < borderSize && y >= borderSize && y < height - borderSize)
-                {
-                    Vector3Int leftSideMapPos = new Vector3Int(x + width, y, 0);
-                    tilemap.SetTile(leftSideMapPos, tile);
-                }
-
-                if (x >= width - borderSize && y >= borderSize && y < height - borderSize)
-                {
-                    Vector3Int rightSideMapPos = new Vector3Int(x - width, y, 0);
-                    tilemap.SetTile(rightSideMapPos, tile);
-                }
-
-                if (y < borderSize)
-                {
-                    Vector3Int topSideMapPos = new Vector3Int(x, y + height, 0);
-                    tilemap.SetTile(topSideMapPos, tile);
-                }
-
-                if (y >= height - borderSize)
-                {
-                    Vector3Int botSideMapPos = new Vector3Int(x, y - height, 0);
-                    tilemap.SetTile(botSideMapPos, tile);
-                }
-
-                if (x < borderSize && y < borderSize)
-                {
-                    Vector3Int topRightSideMapPos = new Vector3Int(x + width, y + height, 0);
-                    tilemap.SetTile(topRightSideMapPos, tile);
-
-                }
-
-                if (x < borderSize && y >= height - borderSize)
-                {
-                    Vector3Int botRightSideMapPos = new Vector3Int(x + width, y - height, 0);
-                    tilemap.SetTile(botRightSideMapPos, tile);
-                }
-
-                if (x >= width - borderSize && y < borderSize)
-                {
-                    Vector3Int topLeftSideMapPos = new Vector3Int(x - width, y + height, 0);
-                    tilemap.SetTile(topLeftSideMapPos, tile);
-                }
-
-                if (x >= width - borderSize && y >= height - borderSize)
-                {
-                    Vector3Int botLeftSideMapPos = new Vector3Int(x - width, y - height, 0);
-                    tilemap.SetTile(botLeftSideMapPos, tile);
-                }
-            }
-        }*/
-
-        #endregion
+    
 
 
 
-        #region Repaint Map Tiles Methods
-        /*private void GetTilemapSprites(Tilemap tilemap)
-        {
-            Sprite[,] tilemapSprites = new Sprite[tilemap.size.x, tilemap.size.y];
-
-            for (int x = 0; x < tilemap.size.x; x++)
-            {
-                for (int y = 0; y < tilemap.size.y; y++)
-                {
-                    Vector3Int position = new Vector3Int(x, y, 0);
-
-                    tilemapSprites[x, y] = tilemap.GetSprite(position);
-                }
-            }
-
-            _tilemapSprites.Add(tilemap, tilemapSprites);
-        }
-
-        private List<Sprite> GenerateSpriteList(Texture2D texture)
-        {
-            List<Sprite> spriteList = new List<Sprite>();
-
-            string texturePath = TEXTURES_PATH + texture.name;
-            // Obtiene todos los sprites generados por el Sprite Editor
-            Sprite[] sprites = Resources.LoadAll<Sprite>(texturePath); // Asigna el nombre de la textura como nombre de la carpeta de recursos
-
-            if (sprites != null)
-            {
-                spriteList.AddRange(sprites);
-            }
-
-            return spriteList;
-        }
-
-        /*public void SubstituteRuleTiles(int chunkX, int chunkY)
-        {
-            foreach (var tilemapLayer in _tilemapLayers)
-            {
-                _tilemapSprites.TryGetValue(tilemapLayer.tilemap, out Sprite[,] tilemapSprites);
-
-                for (int x = chunkX; x < chunkX + _chunkSize; x++)
-                {
-                    for (int y = chunkY; y < chunkY + _chunkSize; y++)
-                    {
-                        Vector3Int position = new Vector3Int(x, y, 0);
-
-                        Sprite sprite = tilemapSprites[x, y];
-                        if (sprite != null)
-                        {
-                            UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
-                            // Asigna el Sprite al Tile
-                            tile.sprite = sprite;
-                            tilemapLayer.tilemap.SetTile(position, tile);
-                            FillTilemapBorders(tilemapLayer.tilemap, x, y, tile);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        private void AddNoAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
-        {
-           /Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
-            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
-            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
-            Dictionary<string, List<Sprite>> spriteDictionary = new Dictionary<string, List<Sprite>>();
-
-            foreach (BiomeRuleTile tile in tiles)
-            {
-                if (tile.animationTiles != null)
-                {
-                    List<Sprite> spriteList = GenerateSpriteList(tile.animationTiles.textureToChangeRuleTile);
-                    if (!spriteDictionary.ContainsKey(tile.biome))
-                    {
-                        spriteDictionary.Add(tile.biome, spriteList);
-                    }
-                }
-            }
-
-            for (int x = 0; x < gridSizeX; x++)
-            {
-                for (int y = 0; y < gridSizeY; y++)
-                {
-                    Vector3Int position = new Vector3Int(x, y, 0);
-
-                    spriteDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<Sprite> spriteList);
-                    Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
-                    if (s != null)
-                    {
-                        UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
-                        // Asigna el Sprite al Tile
-                        tile.sprite = s;
-                        tilemap.SetTile(position, tile);
-                        FillTilemapBorders(tilemap, x, y, tile);
-                    }
-
-                }
-            }
-        }
-
-        private void AddAnimatedTiles(Tilemap tilemap, List<BiomeRuleTile> tiles)
-        {
-            Sprite[,] tilemapSprites = GetTilemapSprites(tilemap);
-            int gridSizeX = Mathf.RoundToInt(_grid.cellSize.x) * width;
-            int gridSizeY = Mathf.RoundToInt(_grid.cellSize.y) * height;
-            Dictionary<string, List<Sprite>> spriteDictionary = new Dictionary<string, List<Sprite>>();
-            Dictionary<string, List<SpriteAnimatedTile>> spriteAnimatedDictionary = new Dictionary<string, List<SpriteAnimatedTile>>();
-
-            foreach (BiomeRuleTile tile in tiles)
-            {
-                if (tile.animationTiles != null)
-                {
-                    List<Sprite> spriteList = GenerateSpriteList(tile.animationTiles.textureToChangeRuleTile);
-                    if (!spriteDictionary.ContainsKey(tile.biome))
-                    {
-                        spriteDictionary.Add(tile.biome, spriteList);
-                    }
-                    if (!spriteAnimatedDictionary.ContainsKey(tile.biome) && tile.animationTiles.spriteToAnimatedTiles != null)
-                    {
-                        spriteAnimatedDictionary.Add(tile.biome, tile.animationTiles.spriteToAnimatedTiles);
-                    }
-                }
-            }
-
-            for (int x = 0; x < gridSizeX; x++)
-            {
-                for (int y = 0; y < gridSizeY; y++)
-                {
-                    Vector3Int position = new Vector3Int(x, y, 0);
-
-                    spriteAnimatedDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<SpriteAnimatedTile> spriteAnimatedList);
-                    if (spriteAnimatedList != null)
-                    {
-                        SpriteAnimatedTile encounteredSprite = spriteAnimatedList.Find(spriteAnimado => spriteAnimado.sprite == tilemapSprites[x, y]);
-
-                        if (encounteredSprite.sprite != null)
-                        {
-                            tilemap.SetTile(position, encounteredSprite.animatedTile);
-                            FillTilemapBorders(tilemap, x, y, encounteredSprite.animatedTile);
-                        }
-                    }
-
-
-                    spriteDictionary.TryGetValue(_gridCells[x, y].biomeType, out List<Sprite> spriteList);
-                    Sprite s = spriteList.Find(s => s == tilemapSprites[x, y]);
-                    if (s != null)
-                    {
-                        UnityEngine.Tilemaps.Tile tile = ScriptableObject.CreateInstance<UnityEngine.Tilemaps.Tile>();
-                        // Asigna el Sprite al Tile
-                        tile.sprite = s;
-                        tilemap.SetTile(position, tile);
-                        FillTilemapBorders(tilemap, x, y, tile);
-                    }
-
-                }
-            }
-        }
-       */
-        #endregion
+        #region Minimap Generation
 
 
         private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, List<BiomeRuleTile> tiles, int chunkXPos, int chunkYPos)
@@ -644,17 +436,9 @@ namespace InterOrbital.WorldSystem
 
         }
 
-        private void InitializeGrid()
-        {
-            _gridCells = new Cell[width, height];
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    _gridCells[i, j] = new Cell(i, j, _biomes[0]);
-                }
-            }
-        }
+        #endregion
+
+       
 
         #region Spaceship
 
