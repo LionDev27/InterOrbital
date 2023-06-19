@@ -15,31 +15,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+
+            if (transform.childCount != 0)
+            {
                 
-            DraggableItem switchItem = GetComponentInChildren<DraggableItem>();
-
-            //Debug.Log(PlayerComponents.Instance.Inventory.GetTypeItemByIndex(draggableItem.inventoryIndex).ToString() + "----------" + switchItem.transform.parent.tag);
-            //Debug.Log(draggableItem.parentAfterDrag.tag + "----------" + PlayerComponents.Instance.Inventory.GetTypeItemByIndex(switchItem.inventoryIndex).ToString());
-
-            bool cantSwitch =false;
-            
-            if(switchItem != null)
-            {
-                if (PlayerComponents.Instance.Inventory.GetItemObjectByIndex(draggableItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && switchItem.transform.parent.CompareTag("BulletSlot"))
-                {
-                    cantSwitch = true;
-                }
-                else if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet")
-                {
-                    cantSwitch = true;
-                }
-            }
-
-            
-               
-            
-            if (transform.childCount != 0 && !cantSwitch)
-            {
+                DraggableItem switchItem = GetComponentInChildren<DraggableItem>();
                 Transform aux = draggableItem.parentAfterDrag;
                 int auxIndex = draggableItem.inventoryIndex;
                 draggableItem.parentAfterDrag = transform;
@@ -49,30 +29,21 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 if(dropped.tag != gameObject.tag)
                 {
                     string auxTag = switchItem.tag;
-                    
                     switchItem.tag = dropped.tag;
                     dropped.tag = auxTag;
                     if (dropped.CompareTag("Chest"))
                     {
                         PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex);
                     }
-                    else if(!gameObject.CompareTag("BulletSlot"))
-                    {
-                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex);
-                    }
                     else
                     {
-                        PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
-                        BulletSelector.Instance.UpdateBulletSelectorUI();
+                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex);
                     }
                 }
                 else
                 {
                      PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
-                     BulletSelector.Instance.UpdateBulletSelectorUI();
                 }
-
-               
             }
         }
       

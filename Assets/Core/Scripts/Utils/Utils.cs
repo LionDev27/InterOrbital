@@ -19,16 +19,6 @@ namespace InterOrbital.Utils
             }
         }
 
-        public static void ChangueSpriteAlphaColor(this SpriteRenderer spriteRenderer, float newAlpha)
-        {
-            if (spriteRenderer != null)
-            {
-                var imageColor = spriteRenderer.color;
-                imageColor.a = newAlpha;
-                spriteRenderer.color = imageColor;
-            }
-        }
-
         public static int ObtainNumName(GameObject gameObject)
         {
             string nombre = gameObject.name;

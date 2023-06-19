@@ -16,20 +16,15 @@ namespace InterOrbital.UI
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
         [SerializeField] private MinimapController _minimapController;
-        [SerializeField] private GameObject _fastingCraft;
-        [SerializeField] private GameObject _bulletSelector;
 
 
-        private CanvasGroup _tagButtonsInventory;
         private bool _somethingOpen;
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
         public ChestInventory chestInventory;
         public GameObject bagUI;
         public GameObject craftUI;
-        public GameObject spaceshipUI;
         public GameObject storageUI;
-        public GameObject blackout;
         
         
         private void Awake()
@@ -39,8 +34,6 @@ namespace InterOrbital.UI
             else if(Instance != this) 
                 Destroy(gameObject);
 
-
-            _tagButtonsInventory = bagUI.GetComponentInChildren<CanvasGroup>();
         }
 
        
@@ -48,8 +41,6 @@ namespace InterOrbital.UI
         {
             if (ui.transform.localScale == Vector3.one)
             {
-                blackout.SetActive(false);
-                PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     _somethingOpen = false;
@@ -57,8 +48,6 @@ namespace InterOrbital.UI
             }
             else if(!_somethingOpen)
             {
-                blackout.SetActive(true);
-                PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
             }
@@ -85,8 +74,6 @@ namespace InterOrbital.UI
                         storageUI.SetActive(false);
                         isChestOpen = false;
                     }
-                    blackout.SetActive(true);
-                    PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                     _somethingOpen = true;
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
@@ -104,8 +91,6 @@ namespace InterOrbital.UI
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     }
-                    blackout.SetActive(false);
-                    PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = true;
@@ -129,37 +114,10 @@ namespace InterOrbital.UI
             _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
         }
 
-
         public void ToggleMinimap()
         {
             _minimapController.ToggleMinimap();
         }
-
-        public void OpenFastCraft()
-        {
-           _fastingCraft.transform.localScale = Vector3.one;
-            _tagButtonsInventory.interactable = false;
-        }
-
-        public void CloseFastCraft()
-        {
-            _fastingCraft.transform.localScale = Vector3.zero;
-            _tagButtonsInventory.interactable = true;
-        }
-
-
-        public void OpenBulletSelector()
-        {
-            _bulletSelector.transform.localScale = Vector3.one;
-            _tagButtonsInventory.interactable = false;
-        }
-
-        public void CloseBulletSelector()
-        {
-            _bulletSelector.transform.localScale = Vector3.zero;
-            _tagButtonsInventory.interactable = true;
-        }
-
     }
 }
 
