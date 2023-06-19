@@ -17,6 +17,7 @@ namespace InterOrbital.UI
         [SerializeField] private GameObject _fastingCraft;
         [SerializeField] private GameObject _bulletSelector;
 
+        private CanvasGroup _tagButtonsInventory;
         private bool _somethingOpen;
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
@@ -35,6 +36,8 @@ namespace InterOrbital.UI
             else if(Instance != this) 
                 Destroy(gameObject);
 
+
+            _tagButtonsInventory = bagUI.GetComponentInChildren<CanvasGroup>();
         }
 
        
@@ -126,22 +129,26 @@ namespace InterOrbital.UI
         public void OpenFastCraft()
         {
            _fastingCraft.transform.localScale = Vector3.one;
+            _tagButtonsInventory.interactable = false;
         }
 
         public void CloseFastCraft()
         {
             _fastingCraft.transform.localScale = Vector3.zero;
+            _tagButtonsInventory.interactable = true;
         }
 
 
         public void OpenBulletSelector()
         {
             _bulletSelector.transform.localScale = Vector3.one;
+            _tagButtonsInventory.interactable = false;
         }
 
         public void CloseBulletSelector()
         {
             _bulletSelector.transform.localScale = Vector3.zero;
+            _tagButtonsInventory.interactable = true;
         }
 
     }
