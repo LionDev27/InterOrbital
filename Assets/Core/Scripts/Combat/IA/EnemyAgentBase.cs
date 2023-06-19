@@ -48,12 +48,8 @@ namespace InterOrbital.Combat.IA
                 _animator.SetBool("Hit", false);
                 EnableNavigation(true);
             }
-
             if (_currentState)
-            {
                 _currentState.Execute();
-                Debug.Log(_currentState);
-            }
         }
 
         public virtual void ChangeState(EnemyStateBase newState)
@@ -64,7 +60,7 @@ namespace InterOrbital.Combat.IA
 
         public bool ArrivedDestination()
         {
-            return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance ||
+            return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance &&
                    (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f);
         }
 
