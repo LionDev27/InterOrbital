@@ -16,6 +16,8 @@ MonoBehaviour:
   id: 1
   itemName: Saporo
   itemDescription: "L\xEDquido parecido a la savia"
-  type: 2
+  type: 3
   isStackable: 1
   maxAmount: 20
+  buildHighlightSprite: {fileID: 0}
+  buildPrefab: {fileID: 0}

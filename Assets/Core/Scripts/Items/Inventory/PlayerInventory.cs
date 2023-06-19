@@ -18,6 +18,7 @@ namespace InterOrbital.Player
 
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
+        public GameObject gridBullets;
         public ItemScriptableObject itemTest;
         public ItemScriptableObject itemTest2;
         public ItemScriptableObject itemTest3;
@@ -119,8 +120,9 @@ namespace InterOrbital.Player
             var sizeMain = gridMain.transform.childCount;
             var sizeLeft = gridLeftPocket.transform.childCount;
             var sizeRight = gridRightPocket.transform.childCount;
+            var sizeBullets = gridBullets.transform.childCount ;
 
-            _totalNumberOfSlots = sizeMain + sizeLeft + sizeRight;
+            _totalNumberOfSlots = sizeMain + sizeLeft + sizeRight + sizeBullets;
             _itemsSlot = new Image[_totalNumberOfSlots];
             _itemsSlotBackGround = new Image[_totalNumberOfSlots];
             _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
@@ -128,6 +130,7 @@ namespace InterOrbital.Player
             RelateSlots(gridMain, 0, sizeMain, _itemsSlot, true);
             RelateSlots(gridLeftPocket, sizeMain, sizeLeft, _itemsSlot, true);
             RelateSlots(gridRightPocket, sizeMain + sizeLeft, sizeRight, _itemsSlot, true);
+            RelateSlots(gridBullets, sizeMain + sizeLeft + sizeRight, sizeBullets, _itemsSlot, true);
 
             _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
         }
@@ -137,7 +140,7 @@ namespace InterOrbital.Player
             return _items[PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1].amount >= 1;
         }
 
-        public int GetItemAmount(ItemScriptableObject item)
+        public int GetTotalItemAmount(ItemScriptableObject item)
         {
             int amountOnInventory = 0;
 
@@ -152,11 +155,18 @@ namespace InterOrbital.Player
             return amountOnInventory;
         }
 
+        public int GetItemAmountByIndex(int index)
+        {
+            return _items[index].amount;
+        }
+
+        
+
         public bool CanCraft(ItemCraftScriptableObject itemCraft, int amount)
         {
             for (int i = 0; i < itemCraft.itemsRequired.Count; i++)
             {
-                var actualAmountItem = GetItemAmount(itemCraft.itemsRequired[i].item);
+                var actualAmountItem = GetTotalItemAmount(itemCraft.itemsRequired[i].item);
                 if (actualAmountItem < itemCraft.itemsRequired[i].amountRequired * amount)
                     return false;
             }
@@ -188,6 +198,23 @@ namespace InterOrbital.Player
                         break;
                     }
                 }
+            }
+        }
+
+        public void SubstractBulletInInventory(int indexInBulletSelector)
+        {
+            int index = _totalNumberOfSlots - (indexInBulletSelector+1);
+            _items[index].amount--;
+            if(_items[index].amount <= 0)
+            {
+                _items[index].itemSo = itemVoid;
+                _itemsSlot[index].sprite = itemVoid.itemSprite;
+                _items[index].amount = 0;
+                _textAmount[index].text = "";
+            }
+            else
+            {
+                _textAmount[index].text = _items[index].amount.ToString();
             }
         }
 

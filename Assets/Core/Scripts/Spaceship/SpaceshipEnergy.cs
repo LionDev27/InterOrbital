@@ -58,6 +58,11 @@ namespace InterOrbital.Spaceship
             return _currentEnergy;
         }
 
+        public int GetMaxEnergy()
+        {
+            return _maxEnergy;
+        }
+
         private void UpdateSpaceshipEnergyUI()
         {
             float fillAmount = _currentEnergy / (float)_maxEnergy;

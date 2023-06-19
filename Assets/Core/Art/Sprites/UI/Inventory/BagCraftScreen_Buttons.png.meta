@@ -113,6 +113,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -132,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 46b7e809358895447bc0990527607627
-      internalID: 1444415694
+      internalID: 3736764646834971030
       vertices: []
       indices: 
       edges: []
@@ -153,7 +165,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 607ca25c8db0313439bbef0608218d0f
-      internalID: 1624200873
+      internalID: 7088946948189726895
       vertices: []
       indices: 
       edges: []
@@ -174,7 +186,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ce7d772446f95474a934f9d2b60d93a4
-      internalID: 1164371409
+      internalID: 1819009474939576298
       vertices: []
       indices: 
       edges: []
@@ -195,7 +207,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a7c1e73fa4598d942b684ba0a31f773d
-      internalID: 1931687576
+      internalID: 7261027072036862353
       vertices: []
       indices: 
       edges: []
@@ -216,7 +228,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d93e1d19707d55a4a818c0fcab06f28f
-      internalID: 1665201734
+      internalID: 74342599230474358
       vertices: []
       indices: 
       edges: []
@@ -237,7 +249,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2f0c0f27de42dc942b9f60b8c4ba0e74
-      internalID: 1842895481
+      internalID: 7641841413930020929
       vertices: []
       indices: 
       edges: []
@@ -258,7 +270,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2ece2377ea3f7804e89864bd5c252e3a
-      internalID: 1310352391
+      internalID: 5549025101860737483
       vertices: []
       indices: 
       edges: []
@@ -279,7 +291,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9f6504c05991a2f42b39d8f21feab184
-      internalID: 1615887019
+      internalID: -1430247960926049081
       vertices: []
       indices: 
       edges: []
@@ -300,7 +312,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8501795240a4f9a47abf73d037d61930
-      internalID: 1628070940
+      internalID: -3781109653590436557
       vertices: []
       indices: 
       edges: []
@@ -309,208 +321,19 @@ TextureImporter:
       name: BagCraftScreen_Buttons_9
       rect:
         serializedVersion: 2
-        x: 33
-        y: 177
-        width: 14
-        height: 14
+        x: 0
+        y: 0
+        width: 0
+        height: 0
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d71b67c8d1d95f94cba7fbf2c85a92cb
-      internalID: 268840484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_10
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 177
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 112c5a714cb34154aa36a0edf7c1fe8d
-      internalID: 40793564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_11
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 177
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d45f888a3262ba94e9adf4b436b85de1
-      internalID: -1946283057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_12
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 177
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 185a036c47f0005408cf334f9a143672
-      internalID: -130757688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_13
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 177
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3486764ecd476734fb71b470f1aa3a80
-      internalID: -1422583585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_14
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 152
-        width: 143
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c1921d3bb3c17c439d0a157f0c89a55
-      internalID: -956592869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_15
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 120
-        width: 60
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 655c2c507bbc9404e88abb2b84c4ddd2
-      internalID: 1914259927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_16
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 120
-        width: 60
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36ef342e8412579489b15edb04a741bf
-      internalID: 1056056863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_17
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 88
-        width: 60
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dab6b881969f66846aaeb6478d899c81
-      internalID: 2044669590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BagCraftScreen_Buttons_18
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 177
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb72dbea39418e8439e05a0e7b7afd68
-      internalID: 1756922765
+      spriteID: 7526b238837e399f0800000000000000
+      internalID: -462772106784185769
       vertices: []
       indices: 
       edges: []
@@ -518,7 +341,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -526,25 +349,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BagCraftScreen_Buttons_0: 1444415694
-      BagCraftScreen_Buttons_1: 1624200873
-      BagCraftScreen_Buttons_10: 40793564
-      BagCraftScreen_Buttons_11: -1946283057
-      BagCraftScreen_Buttons_12: -130757688
-      BagCraftScreen_Buttons_13: -1422583585
-      BagCraftScreen_Buttons_14: -956592869
-      BagCraftScreen_Buttons_15: 1914259927
-      BagCraftScreen_Buttons_16: 1056056863
-      BagCraftScreen_Buttons_17: 2044669590
-      BagCraftScreen_Buttons_18: 1756922765
-      BagCraftScreen_Buttons_2: 1164371409
-      BagCraftScreen_Buttons_3: 1931687576
-      BagCraftScreen_Buttons_4: 1665201734
-      BagCraftScreen_Buttons_5: 1842895481
-      BagCraftScreen_Buttons_6: 1310352391
-      BagCraftScreen_Buttons_7: 1615887019
-      BagCraftScreen_Buttons_8: 1628070940
-      BagCraftScreen_Buttons_9: 268840484
+      BagCraftScreen_Buttons_0: 3736764646834971030
+      BagCraftScreen_Buttons_1: 7088946948189726895
+      BagCraftScreen_Buttons_2: 1819009474939576298
+      BagCraftScreen_Buttons_3: 7261027072036862353
+      BagCraftScreen_Buttons_4: 74342599230474358
+      BagCraftScreen_Buttons_5: 7641841413930020929
+      BagCraftScreen_Buttons_6: 5549025101860737483
+      BagCraftScreen_Buttons_7: -1430247960926049081
+      BagCraftScreen_Buttons_8: -3781109653590436557
+      BagCraftScreen_Buttons_9: -462772106784185769
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
