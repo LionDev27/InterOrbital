@@ -4,14 +4,14 @@ using UnityEditor;
 
 namespace InterOrbital.Item
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemScriptableObject", order = 1)]
+    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemScriptableObject", order = 0)]
     public class ItemScriptableObject : ScriptableObject
     {
         public Sprite itemSprite;
         public int id;
         public string itemName;
         public string itemDescription;
-        public TypeCraft type;
+        public ItemType type;
         public bool isStackable;
         public int maxAmount;
         public Sprite buildHighlightSprite;
@@ -42,7 +42,7 @@ namespace InterOrbital.Item
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
                     }
 
-                    if (scriptableObject.type == TypeCraft.Build)
+                    if (scriptableObject.type == ItemType.Build)
                     {
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("buildHighlightSprite"));
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("buildPrefab"));

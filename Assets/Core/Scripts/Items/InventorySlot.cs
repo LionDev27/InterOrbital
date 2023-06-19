@@ -26,7 +26,24 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 draggableItem.inventoryIndex = switchItem.inventoryIndex;
                 switchItem.transform.SetParent(aux);
                 switchItem.inventoryIndex = auxIndex;
-                PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
+                if(dropped.tag != gameObject.tag)
+                {
+                    string auxTag = switchItem.tag;
+                    switchItem.tag = dropped.tag;
+                    dropped.tag = auxTag;
+                    if (dropped.CompareTag("Chest"))
+                    {
+                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex);
+                    }
+                    else
+                    {
+                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex);
+                    }
+                }
+                else
+                {
+                     PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
+                }
             }
         }
       

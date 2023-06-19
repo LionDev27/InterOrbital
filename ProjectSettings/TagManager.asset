@@ -7,6 +7,10 @@ TagManager:
   - Pickup
   - Bullet
   - Enemy
+  - Inventory
+  - Chest
+  - EmptyBullet
+  - PlayerMinimap
   layers:
   - Default
   - TransparentFX

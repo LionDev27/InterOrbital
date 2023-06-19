@@ -15,20 +15,18 @@ namespace InterOrbital.Item
         private Image _image;
         private ItemCraftScriptableObject _item;
         private CraftingItem _currentCraftingItem;
-       // [SerializeField] private TextMeshProUGUI _descriptionText;
         private CraftCreator _craftCreator;
 
         private void Awake()
         {
             _image = transform.GetChild(0).GetComponent<Image>();
-            _craftCreator = FindObjectOfType<CraftCreator>();
         }
    
         public void SetItemCraft(ItemCraftScriptableObject item)
         {
             _item = item;
             _image.sprite = item.itemSprite;
-           // _descriptionText.text = item.itemDescription;
+
         }
         
         public void OnPointerClick(PointerEventData eventData)
@@ -58,6 +56,11 @@ namespace InterOrbital.Item
             {
                 _image.ChangueAlphaColor(1f);
             }
+        }
+
+        public void SetCraftCreator(CraftCreator cr)
+        {
+            _craftCreator = cr;
         }
     }
 }

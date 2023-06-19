@@ -7,6 +7,7 @@ using InterOrbital.Player;
 public class CraftGrid : MonoBehaviour
 {
     private List<CraftSlot> _craftSlots;
+    private CraftCreator _craftCreator;
     [SerializeField] private GameObject _craftUI;
     public GameObject gridPrefab;
     public List<ItemCraftScriptableObject> itemsCraft;
@@ -16,20 +17,22 @@ public class CraftGrid : MonoBehaviour
     private void Awake()
     {
         _craftSlots = new List<CraftSlot>();
+        _craftCreator = GetComponentInParent<CraftCreator>();
     }
 
     private void Start()
     {
         for(int i=0; i<itemsCraft.Count; i++)
         {
+            
             var newCraft= Instantiate(gridPrefab);
             newCraft.transform.SetParent(gameObject.transform, false);
             CraftSlot craftSlot =  newCraft.GetComponent<CraftSlot>();
+            craftSlot.SetCraftCreator(_craftCreator);
             craftSlot.SetItemCraft(itemsCraft[i]);
             _craftSlots.Add(craftSlot);
         }
 
-        _craftUI.SetActive(false);
     }
 
     public void UpdateFeedback()

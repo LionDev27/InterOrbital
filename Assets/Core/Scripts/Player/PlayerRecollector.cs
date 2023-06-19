@@ -84,23 +84,5 @@ namespace InterOrbital.Player
         {
             return _timer >= _recollectionCooldownInSeconds;
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            if (Application.isPlaying)
-            {
-                Gizmos.color = Color.magenta;
-                Vector2 dir = PlayerAim.AimDir();
-                Vector2 halfWidthOffset = Vector2.up * _recollectionWidth * 0.5f;
-                
-                Vector2 start = (Vector2)transform.position + halfWidthOffset;
-                Vector2 end = (Vector2)transform.position - halfWidthOffset;
-                
-                Gizmos.DrawLine(start, start + dir * _recollectionRange);
-                Gizmos.DrawLine(end, end + dir * _recollectionRange);
-            }
-        }
-#endif
     }
 }

@@ -9,12 +9,8 @@ namespace InterOrbital.Player
         public Transform attackPoint;
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private GameObject _gunSpriteObj;
-        [SerializeField] private float _attackRange;
 
         [Header("Weapon Upgrades")]
-        [SerializeField] private int _attackDamage;
-        [Range(1f, 20f)]
-        [SerializeField] private float _attackRangeMultiplier;
         [SerializeField] private float _attackCooldown;
         private float _timer;
 
@@ -24,6 +20,15 @@ namespace InterOrbital.Player
         {
             base.Awake();
             InputHandler.OnAttack += Attack;
+        }
+
+        public void ChangeBullet(GameObject bullet) 
+        {
+            _bulletPrefab = bullet;
+            if (!_bulletPrefab.CompareTag("EmptyBullet"))
+            {
+                _attackCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
+            }
         }
 
         private void Update()
@@ -37,13 +42,15 @@ namespace InterOrbital.Player
             if (!canAttack || !CooldownEnded()) return;
             _timer = _attackCooldown;
             //Creación de la bala [TODO: MODIFICAR A OBJECT POOLING]
-            var tempBullet = Instantiate(_bulletPrefab, attackPoint.position, Quaternion.identity);
-            var bulletController = tempBullet.GetComponent<BaseBulletController>();
-            var bulletMoveDir = attackPoint.position - transform.position;
-            bulletController.SetupBullet(_attackDamage, _attackRange * _attackRangeMultiplier, gameObject.tag, bulletMoveDir, transform.position);
-            AttackEffects();
+            if (!_bulletPrefab.CompareTag("EmptyBullet")){
+                var tempBullet = Instantiate(_bulletPrefab, attackPoint.position, Quaternion.identity);
+                var bulletController = tempBullet.GetComponent<BaseBulletController>();
+                var bulletMoveDir = attackPoint.position - transform.position;
+                bulletController.SetupBullet(gameObject.tag, bulletMoveDir, transform.position);
+                AttackEffects();
+            }
         }
-
+        
         private void AttackEffects()
         {
             CameraShake.Instance.Shake(2, 0.3f);
@@ -62,7 +69,6 @@ namespace InterOrbital.Player
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _attackRange * _attackRangeMultiplier);
         }
     }
 }

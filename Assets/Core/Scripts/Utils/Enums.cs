@@ -1,8 +1,8 @@
 namespace InterOrbital.Utils
 {
-    public enum TypeCraft
+    public enum ItemType
     {
-        Consumable, Build, None
+        Consumable, Build, Bullet, None
     }
 
     public enum FillMode
@@ -10,5 +10,23 @@ namespace InterOrbital.Utils
         None,
         All,
         Random
+    }
+
+    public enum SizeChest
+    {
+        Small,
+        Big
+    }
+
+    public enum Orientation
+    {
+        N,
+        E,
+        W,
+        S,
+        NW,
+        NE,
+        SW,
+        SE
     }
 }
