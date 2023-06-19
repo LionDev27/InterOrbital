@@ -145,6 +145,7 @@ namespace InterOrbital.WorldSystem
 
             SpawnSpaceship();
             yield return new WaitForSeconds(0.1f);
+            OnTilemapFilled?.Invoke();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
@@ -207,7 +208,6 @@ namespace InterOrbital.WorldSystem
                     FillTilemapRandom(tilemap, tiles);
                     break;
             }
-            OnTilemapFilled?.Invoke();
         }
 
         private void FillTilemapAll(Tilemap tilemap, List<BiomeRuleTile> tiles)

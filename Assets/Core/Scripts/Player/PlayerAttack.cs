@@ -7,8 +7,8 @@ namespace InterOrbital.Player
     public class PlayerAttack : PlayerComponents
     {
         public Transform attackPoint;
-        [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private GameObject _gunSpriteObj;
+        private GameObject _bulletPrefab;
 
         [Header("Weapon Upgrades")]
         [SerializeField] private float _attackCooldown;
