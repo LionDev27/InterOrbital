@@ -69,6 +69,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 else
                 {
                      PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex);
+                     BulletSelector.Instance.UpdateBulletSelectorUI();
                 }
 
                
