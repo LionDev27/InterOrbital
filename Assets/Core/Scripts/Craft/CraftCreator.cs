@@ -53,7 +53,7 @@ public class CraftCreator : MonoBehaviour
     {
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {
-            var actualAmount = PlayerComponents.Instance.Inventory.GetTotalItemAmount(_itemCraft.itemsRequired[i].item);
+            var actualAmount = PlayerComponents.Instance.Inventory.GetItemAmount(_itemCraft.itemsRequired[i].item);
             var requiredAmount = _itemCraft.itemsRequired[i].amountRequired * _amountToCraft;
             var alpha = actualAmount >= requiredAmount ? 1 : 0.5f;
             requireImages[i].ChangueAlphaColor(alpha);
@@ -61,7 +61,7 @@ public class CraftCreator : MonoBehaviour
             requireTexts[i].text = actualAmount + "/" + requiredAmount;
         }
 
-        if(PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, _amountToCraft) && HaveEnoughEnergyToCraft(GetCorrespondingEnergy()))
+        if(PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, _amountToCraft) && HaveEnoughEnergyToCraft())
         {
             _craftButton.interactable = true;
         }
@@ -72,48 +72,28 @@ public class CraftCreator : MonoBehaviour
 
     }
 
-
-    private int GetCorrespondingEnergy()
-    {
-        if (_craftingItem is CraftingTable)
-        {
-            return SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
-        }
-        else
-        {
-            return PlayerComponents.Instance.PlayerEnergy.GetCurrentPlayerEnergy();
-        }
-    }
-
     private void UpdateEnergyRequired()
     {
         var energyRequired = _itemCraft.craftEnergyRequired * _amountToCraft;
-        var currentEnergy = GetCorrespondingEnergy();
-        
+        var currentSpaceshipEnergy = SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
 
-        var colorText = HaveEnoughEnergyToCraft(currentEnergy) ? Color.green : Color.red;
+        var colorText = HaveEnoughEnergyToCraft() ? Color.green : Color.red;
         energyRequiredText.color = colorText;
-        energyRequiredText.text = currentEnergy + "/" + energyRequired;
+        energyRequiredText.text = currentSpaceshipEnergy + "/" + energyRequired;
     }
     
-    private bool HaveEnoughEnergyToCraft(int currentEnergy)
+    private bool HaveEnoughEnergyToCraft()
     {
         var energyRequired = _itemCraft.craftEnergyRequired * _amountToCraft;
+        var currentSpaceshipEnergy = SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
         
-        return energyRequired <= currentEnergy;
+        return energyRequired <= currentSpaceshipEnergy;
     }
 
     private void DecreaseEnergyOnCraft()
     {
         var energyRequired = _itemCraft.craftEnergyRequired * _amountToCraft;
-        if (_craftingItem is CraftingTable)
-        {
-            SpaceshipComponents.Instance.SpaceshipEnergy.LoseEnergy(energyRequired);
-        }
-        else
-        {
-            PlayerComponents.Instance.PlayerEnergy.LoseEnergy(energyRequired);
-        }
+        SpaceshipComponents.Instance.SpaceshipEnergy.LoseEnergy(energyRequired);
     }
 
     public void SetItemCraftCreator(ItemCraftScriptableObject itemCraft)
@@ -149,7 +129,7 @@ public class CraftCreator : MonoBehaviour
         int testValue = 1;
         for(int i=0; i< 99; i++)
         {
-            if (PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, testValue) && HaveEnoughEnergyToCraft(GetCorrespondingEnergy()))
+            if (PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, testValue) && HaveEnoughEnergyToCraft())
             {
                 maxValue=testValue;
                 testValue++;
