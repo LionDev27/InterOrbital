@@ -15,6 +15,10 @@ namespace InterOrbital.UI
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
+        [SerializeField] private MinimapController _minimapController;
+        [SerializeField] private CanvasGroup _tagButtonsInventory;
+        [SerializeField] private GameObject _fastingCraft;
+        [SerializeField] private GameObject _bulletSelector;
 
         private bool _somethingOpen;
         public static UIManager Instance = null;

@@ -326,7 +326,7 @@ TextureImporter:
         width: 0
         height: 0
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,10 +338,220 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_10
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa02a330d422c08499dd55bebd9bc868
+      internalID: 1386132440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cf4133db75d8d4eb64962c6a7f1d1e
+      internalID: -427272864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_12
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e467f5100a66c9b45854bd8b9ef831c8
+      internalID: 2105912438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_13
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3943a202e66d374e8c578f7ed1edfb8
+      internalID: -1005141213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b22e445b8a5184297420372f770600
+      internalID: -1889035050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_15
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 152
+        width: 143
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee72d9a768ebb143ad5acee9870d544
+      internalID: 8076864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_16
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 120
+        width: 60
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7613899deb20c61478bfc426ce810c3d
+      internalID: -1283788190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_17
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 120
+        width: 60
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd05fbea42d41ed45a8a10cd4a766ac4
+      internalID: 932228685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_18
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 88
+        width: 60
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f6114c39bc21949a844b27281f5895
+      internalID: 387037995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BagCraftScreen_Buttons_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 177
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7777fad6ec3c9154597080ecf25243e6
+      internalID: 2131084459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2c39457155319354b8c9ae4960d86fba
     internalID: 0
     vertices: []
     indices: 
@@ -351,6 +561,16 @@ TextureImporter:
     nameFileIdTable:
       BagCraftScreen_Buttons_0: 3736764646834971030
       BagCraftScreen_Buttons_1: 7088946948189726895
+      BagCraftScreen_Buttons_10: 1386132440
+      BagCraftScreen_Buttons_11: -427272864
+      BagCraftScreen_Buttons_12: 2105912438
+      BagCraftScreen_Buttons_13: -1005141213
+      BagCraftScreen_Buttons_14: -1889035050
+      BagCraftScreen_Buttons_15: 8076864
+      BagCraftScreen_Buttons_16: -1283788190
+      BagCraftScreen_Buttons_17: 932228685
+      BagCraftScreen_Buttons_18: 387037995
+      BagCraftScreen_Buttons_19: 2131084459
       BagCraftScreen_Buttons_2: 1819009474939576298
       BagCraftScreen_Buttons_3: 7261027072036862353
       BagCraftScreen_Buttons_4: 74342599230474358
