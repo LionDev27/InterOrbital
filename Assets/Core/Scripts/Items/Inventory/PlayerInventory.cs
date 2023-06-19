@@ -155,7 +155,7 @@ namespace InterOrbital.Player
             return amountOnInventory;
         }
 
-        public int GetTotalItemAmount(int index)
+        public int GetItemAmountByIndex(int index)
         {
             return _items[index].amount;
         }

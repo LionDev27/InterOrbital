@@ -23,6 +23,7 @@ namespace InterOrbital.UI
         public ChestInventory chestInventory;
         public GameObject bagUI;
         public GameObject craftUI;
+        public GameObject spaceshipUI;
         public GameObject storageUI;
         public GameObject blackout;
         

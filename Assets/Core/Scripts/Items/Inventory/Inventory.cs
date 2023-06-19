@@ -101,6 +101,17 @@ namespace InterOrbital.Player
             _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;          
         }
 
+        public void AddOneItemSO(ItemScriptableObject item)
+        {
+            GameObject obj = Instantiate(dropItemPrefab);
+            ItemObject itemAux= obj.AddComponent<ItemObject>();
+            itemAux.ObtainComponents();
+            Destroy(obj);
+            itemAux.SetItem(item);
+            itemAux.amount = 1;
+            PlayerComponents.Instance.Inventory.AddItem(itemAux);
+        }
+
         public void AddItem(ItemObject item)
         {
             var rest = 0;

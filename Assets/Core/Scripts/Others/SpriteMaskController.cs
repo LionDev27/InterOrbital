@@ -60,7 +60,7 @@ public class SpriteMaskController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-        if(spriteRenderer != null)
+        if(spriteRenderer != null && collision.CompareTag("StaticObject"))
         {
             _otherRenderes.Add(spriteRenderer);
             checking = true;
@@ -70,7 +70,7 @@ public class SpriteMaskController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-        if(spriteRenderer != null)
+        if(spriteRenderer != null && collision.CompareTag("StaticObject"))
         {
             checking = false;
             spriteRenderer.ChangueSpriteAlphaColor(1f);
