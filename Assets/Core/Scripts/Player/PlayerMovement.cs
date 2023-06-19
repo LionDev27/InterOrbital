@@ -48,7 +48,7 @@ namespace InterOrbital.Player
 
         private void PlayerSpawn()
         {
-            _minimapDetector.enabled = false;
+            //_minimapDetector.enabled = false;
             transform.position = new Vector3(GridLogic.Instance.width / 2, GridLogic.Instance.height / 2 - 1f, 0f);
         }
 
