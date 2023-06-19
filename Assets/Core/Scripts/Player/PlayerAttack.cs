@@ -42,12 +42,13 @@ namespace InterOrbital.Player
             if (!canAttack || !CooldownEnded()) return;
             _timer = _attackCooldown;
             //Creación de la bala [TODO: MODIFICAR A OBJECT POOLING]
-            if (!_bulletPrefab.CompareTag("EmptyBullet")){
+            if (!_bulletPrefab.CompareTag("EmptyBullet")){ 
                 var tempBullet = Instantiate(_bulletPrefab, attackPoint.position, Quaternion.identity);
                 var bulletController = tempBullet.GetComponent<BaseBulletController>();
                 var bulletMoveDir = attackPoint.position - transform.position;
                 bulletController.SetupBullet(gameObject.tag, bulletMoveDir, transform.position);
                 AttackEffects();
+                BulletSelector.Instance.SubstractBullet();
             }
         }
         
