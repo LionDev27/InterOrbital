@@ -145,8 +145,8 @@ namespace InterOrbital.WorldSystem
             }
 
             SpawnSpaceship();
-            OnTilemapFilled?.Invoke();
             yield return new WaitForSeconds(0.1f);
+            OnTilemapFilled?.Invoke();
             GenerateEnemySpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
