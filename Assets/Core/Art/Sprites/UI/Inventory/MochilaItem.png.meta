@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0f319f305ade54429a13b4d156e4495
+guid: d450f95c1c4c5114096cd77971170d56
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt3_0
+      name: MochilaItem_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 7
+        y: 39
+        width: 18
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b179d70914ca4d8299dd90c4bc08e
-      internalID: 587307934
+      spriteID: ee38bc8a8d11b644d91bbdffff1ba307
+      internalID: 1265998992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt3_1
+      name: MochilaItem_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 38
+        y: 38
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24591a0ec6b2634ca76389285948ef4
-      internalID: -1078304778
+      spriteID: d37329c2d425f7b46a27045243c12480
+      internalID: -2021092146
       vertices: []
       indices: 
       edges: []
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt3_0: 587307934
-      GunFireAlt3_1: -1078304778
+      MochilaItem_0: 1265998992
+      MochilaItem_1: -2021092146
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

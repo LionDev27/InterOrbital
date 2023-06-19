@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0f319f305ade54429a13b4d156e4495
+guid: 6ebe5caa469d34a4f8da1b8052a7f60e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt3_0
+      name: CraftMenu_CraftButton_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
-        height: 16
+        y: 32
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b179d70914ca4d8299dd90c4bc08e
-      internalID: 587307934
+      spriteID: 23601878af87a7a4e97bbeec5aa964f7
+      internalID: -1828096781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt3_1
+      name: CraftMenu_CraftButton_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 64
+        y: 32
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24591a0ec6b2634ca76389285948ef4
-      internalID: -1078304778
+      spriteID: 3d12ff0c551ee34428e6e4f38599f377
+      internalID: 940724544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CraftMenu_CraftButton_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46003b5cd45934d48bc087146dc12201
+      internalID: 2039684559
       vertices: []
       indices: 
       edges: []
@@ -169,8 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt3_0: 587307934
-      GunFireAlt3_1: -1078304778
+      CraftMenu_CraftButton_0: -1828096781
+      CraftMenu_CraftButton_1: 940724544
+      CraftMenu_CraftButton_2: 2039684559
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

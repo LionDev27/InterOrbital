@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0f319f305ade54429a13b4d156e4495
+guid: fc9b5a17c51638b47a47d54d6d012d84
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt3_0
+      name: GunRecolectAnimation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bf19ddf374c6d47b23c749e5fdae87
+      internalID: -582346532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunRecolectAnimation_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef8d829bc29e6e4799bbf6cae4eea15
+      internalID: 784319676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunRecolectAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd1a001307c306489ff7c41f8e451b1
+      internalID: -99484739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunRecolectAnimation_3
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b179d70914ca4d8299dd90c4bc08e
-      internalID: 587307934
+      spriteID: ffd5bf06757a40943ae0aa4f2e25505c
+      internalID: 2014968425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt3_1
+      name: GunRecolectAnimation_4
       rect:
         serializedVersion: 2
         x: 16
@@ -152,8 +215,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24591a0ec6b2634ca76389285948ef4
-      internalID: -1078304778
+      spriteID: 61449f52361600f45a3da05b10d90eee
+      internalID: -1971106227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunRecolectAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc85bd108dcdf540afa63a63d613914
+      internalID: 165231811
       vertices: []
       indices: 
       edges: []
@@ -169,8 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt3_0: 587307934
-      GunFireAlt3_1: -1078304778
+      GunRecolectAnimation_0: -582346532
+      GunRecolectAnimation_1: 784319676
+      GunRecolectAnimation_2: -99484739
+      GunRecolectAnimation_3: 2014968425
+      GunRecolectAnimation_4: -1971106227
+      GunRecolectAnimation_5: 165231811
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

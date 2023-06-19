@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0f319f305ade54429a13b4d156e4495
+guid: 081b974354bef714e856876db64e85cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt3_0
+      name: ActionButton_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
-        height: 16
+        y: 24
+        width: 38
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b179d70914ca4d8299dd90c4bc08e
-      internalID: 587307934
+      spriteID: 8ba50d51c5339ad4396187adc2ab2542
+      internalID: 589704407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt3_1
+      name: ActionButton_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 38
+        y: 24
+        width: 38
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24591a0ec6b2634ca76389285948ef4
-      internalID: -1078304778
+      spriteID: 98a20b9457d65ab4eaaa87894f269e74
+      internalID: 2029100066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionButton_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 38
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c2b7fd8fc718a4980c302e33918dfa
+      internalID: 363470867
       vertices: []
       indices: 
       edges: []
@@ -169,8 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt3_0: 587307934
-      GunFireAlt3_1: -1078304778
+      ActionButton_0: 589704407
+      ActionButton_1: 2029100066
+      ActionButton_2: 363470867
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

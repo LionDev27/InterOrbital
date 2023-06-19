@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0f319f305ade54429a13b4d156e4495
+guid: df4d77c992efd9b42b89d7402a2eeaf4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt3_0
+      name: MainScreen_CloseButton_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
-        height: 16
+        y: 32
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 003b179d70914ca4d8299dd90c4bc08e
-      internalID: 587307934
+      spriteID: 032953cd8d370f341a1e2fc692fc73e9
+      internalID: 1393453756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt3_1
+      name: MainScreen_CloseButton_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 96
+        y: 32
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24591a0ec6b2634ca76389285948ef4
-      internalID: -1078304778
+      spriteID: fdee9dcf1a378c14ebb1a9e0a95ecd41
+      internalID: 114322302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainScreen_CloseButton_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f60b88537590c478eb8b91c6010cce
+      internalID: -1360770701
       vertices: []
       indices: 
       edges: []
@@ -169,8 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt3_0: 587307934
-      GunFireAlt3_1: -1078304778
+      MainScreen_CloseButton_0: 1393453756
+      MainScreen_CloseButton_1: 114322302
+      MainScreen_CloseButton_2: -1360770701
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
