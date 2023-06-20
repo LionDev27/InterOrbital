@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 playerPos = PlayerComponents.Instance.GetPlayerPosition();
         
-        if(playerPos.x < minX || playerPos.x  >= maxX || playerPos.y >= minY || playerPos.y >= maxY) {
+        if(playerPos.x < minX || playerPos.x  >= maxX || playerPos.y < minY || playerPos.y >= maxY) {
             
             Vector3 offset = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset;
             if(playerPos.x < minX)

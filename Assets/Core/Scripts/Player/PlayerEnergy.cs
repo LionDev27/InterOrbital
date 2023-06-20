@@ -13,11 +13,13 @@ namespace InterOrbital.Player
         [SerializeField] private int _loseEnergyValue;
         [SerializeField] private float _loseEnergyTimerDefaultValue;
         private float _loseEnergyTimer;
+        private bool _loseEnegrgyOverTime;
 
         private void Start()
         {
             _currentEnergy = _maxEnergy;
             EnergyEmpty = false;
+            _loseEnegrgyOverTime = true;
             ResetTimer();
         }
 
@@ -47,6 +49,16 @@ namespace InterOrbital.Player
             return _currentEnergy;
         }
 
+        public void StopLoseEnergyOverTime()
+        {
+            _loseEnegrgyOverTime = false;
+        }
+        public void ResumeLoseEnergyOverTime()
+        {
+            _loseEnegrgyOverTime = true;
+        }
+
+
         public void UpgradeEnergy(int energyAmount)
         {
             _maxEnergy += energyAmount;
@@ -54,7 +66,7 @@ namespace InterOrbital.Player
 
         private void LoseEnergyOverTime()
         {
-            if (!EnergyEmpty)
+            if (!EnergyEmpty && _loseEnegrgyOverTime)
             {
                 if (_loseEnergyTimer > 0)
                 {

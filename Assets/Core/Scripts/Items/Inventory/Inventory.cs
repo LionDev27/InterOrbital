@@ -29,9 +29,6 @@ namespace InterOrbital.Player
 
         public bool isHide;
 
-        
-        
-
         public virtual void Awake()
         {
             
@@ -102,6 +99,17 @@ namespace InterOrbital.Player
 
             RelateSlots(gridMain, 0,sizeMain, _itemsSlot, true);
             _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;          
+        }
+
+        public void AddOneItemSO(ItemScriptableObject item)
+        {
+            GameObject obj = Instantiate(dropItemPrefab);
+            ItemObject itemAux= obj.AddComponent<ItemObject>();
+            itemAux.ObtainComponents();
+            Destroy(obj);
+            itemAux.SetItem(item);
+            itemAux.amount = 1;
+            PlayerComponents.Instance.Inventory.AddItem(itemAux);
         }
 
         public void AddItem(ItemObject item)
@@ -188,6 +196,15 @@ namespace InterOrbital.Player
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
             }
+        }
+
+        public ItemObject GetItemObjectByIndex(int index)
+        {
+            return _items[index];
+        }
+        public int GetTotalNumberOfSlots()
+        {
+            return _totalNumberOfSlots;
         }
 
     }
