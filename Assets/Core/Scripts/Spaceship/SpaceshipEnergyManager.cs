@@ -49,6 +49,27 @@ namespace InterOrbital.Spaceship
             }
         }
 
+        private int GetAmountRequired()
+        {
+            int count = PlayerComponents.Instance.Inventory.GetTotalItemAmount(_fuelSlotSelected.item);
+            int energyNeeded = SpaceshipComponents.Instance.SpaceshipEnergy.GetMaxEnergy() - SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
+            int amountrequired = Mathf.CeilToInt((float)energyNeeded / _fuelSlotSelected.item.energyProvided);
+
+            if (count < amountrequired)
+                amountrequired = count + 1;
+
+            return amountrequired;
+        }
+
+        private bool NeedAddMore()
+        {
+            int energyObtained = _amountSelected * _fuelSlotSelected.item.energyProvided;
+            int futureEnergy = energyObtained + SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
+
+            return  futureEnergy < SpaceshipComponents.Instance.SpaceshipEnergy.GetMaxEnergy();
+
+        }
+
         public void UpdateEnergyBar()
         {
             int currentEnergy = SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy();
@@ -80,6 +101,10 @@ namespace InterOrbital.Spaceship
             _fuelSelectedText.text = _amountSelected.ToString();
             _fuelSelectedImage.sprite = _fuelSlotSelected.item.itemSprite;
             UpdateButtons();
+            if (!NeedAddMore())
+            {
+                _buttonPlus.image.ChangueAlphaColor(0.5f);
+            }
         }
 
         public void UpdateButtons()
@@ -106,23 +131,36 @@ namespace InterOrbital.Spaceship
         {
             if (_fuelSlotSelected)
             {
-                if(PlayerComponents.Instance.Inventory.GetTotalItemAmount(_fuelSlotSelected.item) > 0)
+
+                if(PlayerComponents.Instance.Inventory.GetTotalItemAmount(_fuelSlotSelected.item) > 0 && NeedAddMore())
                 {
                     _amountSelected++;
                     _fuelSelectedText.text = _amountSelected.ToString();
                     _fuelSlotSelected.SubstractSlot();
+                }
+                if (NeedAddMore())
+                {
+                    _buttonPlus.image.ChangueAlphaColor(1f);
+                }
+                else
+                {
+                    _buttonPlus.image.ChangueAlphaColor(0.5f);
                 }
             }
         }
 
         public void TakeAll()
         {
-            int count = PlayerComponents.Instance.Inventory.GetTotalItemAmount(_fuelSlotSelected.item);
-            for (int i=0; i<count ; i++)
+            if (NeedAddMore())
             {
-                _amountSelected++;
-                _fuelSelectedText.text = _amountSelected.ToString();
-                _fuelSlotSelected.SubstractSlot();
+                int amountrequired = GetAmountRequired();
+                for (int i=0; i<amountrequired-1 ; i++)
+                {
+                    _amountSelected++;
+                    _fuelSelectedText.text = _amountSelected.ToString();
+                    _fuelSlotSelected.SubstractSlot();
+                    _buttonPlus.image.ChangueAlphaColor(0.5f);
+                }
             }
         }
 
@@ -135,6 +173,10 @@ namespace InterOrbital.Spaceship
                     _amountSelected--;
                     _fuelSelectedText.text = _amountSelected.ToString();
                     _fuelSlotSelected.AddSlot();
+                    if (NeedAddMore())
+                    {
+                        _buttonPlus.image.ChangueAlphaColor(1f);
+                    }
                 }
                 else
                 {
@@ -157,8 +199,6 @@ namespace InterOrbital.Spaceship
             _fuelSelectedImage.sprite = _transparentImage;
             UpdateButtons();
             UpdateEnergyGiven();
-            
-
         }
 
 
@@ -180,7 +220,6 @@ namespace InterOrbital.Spaceship
             UpdateButtons();
             UpdateEnergyGiven();
             UpdateEnergyBar();
-
         }
         
 

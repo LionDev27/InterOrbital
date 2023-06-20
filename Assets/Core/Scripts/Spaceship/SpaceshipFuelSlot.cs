@@ -39,7 +39,6 @@ namespace InterOrbital.Spaceship
                 _spaceshipEnergyManager.SetFuelSelected(this);
                 FindInInventory();
             }
-           
         }
 
         public void SubstractSlot()
@@ -67,7 +66,8 @@ namespace InterOrbital.Spaceship
                 _amountText.text = amount.ToString();
                 var fuelSlotSelected= _spaceshipEnergyManager.GetFuelSlotSelected();
 
-                if (fuelSlotSelected != null  && item.id == fuelSlotSelected.item.id)
+                if (fuelSlotSelected != null  && item.id == fuelSlotSelected.item.id ||
+                    SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy() == SpaceshipComponents.Instance.SpaceshipEnergy.GetMaxEnergy())
                 {
                     _canBeSelected = false;
                     _image.ChangueAlphaColor(0.5f);
@@ -92,7 +92,8 @@ namespace InterOrbital.Spaceship
 
         public void RestoreSlot()
         {
-            if(PlayerComponents.Instance.Inventory.GetTotalItemAmount(item) > 0)
+            if(PlayerComponents.Instance.Inventory.GetTotalItemAmount(item) > 0 && 
+                    SpaceshipComponents.Instance.SpaceshipEnergy.GetCurrentSpaceshipEnergy() != SpaceshipComponents.Instance.SpaceshipEnergy.GetMaxEnergy())
             {
                 _canBeSelected = true;
                 _image.ChangueAlphaColor(1f);
