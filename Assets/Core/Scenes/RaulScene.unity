@@ -2035,7 +2035,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2451232444733730304, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2451232444733730304, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2077,6 +2077,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _resourcesSpawners
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
@@ -2306,68 +2310,6 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4811978537146608245, guid: fa6aa5a2a6b9ffc478ebdb8839b22c94, type: 3}
   m_PrefabInstance: {fileID: 1232114296}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1281480439
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1846178550}
-    m_Modifications:
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076485647804008095, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-      propertyPath: m_Name
-      value: Tree
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
---- !u!4 &1281480440 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1076485647804008094, guid: fe3a955d427193b4ebe8b240c277bc1b, type: 3}
-  m_PrefabInstance: {fileID: 1281480439}
   m_PrefabAsset: {fileID: 0}
 --- !u!225 &1288102932 stripped
 CanvasGroup:
@@ -5620,7 +5562,6 @@ Transform:
   - {fileID: 414139703}
   - {fileID: 949477334}
   - {fileID: 562994219}
-  - {fileID: 1281480440}
   - {fileID: 1132445531}
   m_Father: {fileID: 0}
   m_RootOrder: 2

@@ -1,6 +1,7 @@
 using InterOrbital.Combat.Spawner;
 using InterOrbital.Item;
 using InterOrbital.Player;
+using InterOrbital.Recollectables.Spawner;
 using InterOrbital.Utils;
 using System;
 using System.Collections;
@@ -30,6 +31,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Tilemap _spaceshipAreaTilemap;
         [SerializeField] private List<string> _biomes;
         [SerializeField] private MapEnemySpawnersSO _enemiesSpawners;
+        [SerializeField] private MapResourcesSpawnersSO _resourcesSpawners;
         [SerializeField] private Tilemap _animationTilemap;
         [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
@@ -148,6 +150,7 @@ namespace InterOrbital.WorldSystem
             yield return new WaitForSeconds(0.1f);
             OnTilemapFilled?.Invoke();
             GenerateEnemySpawners();
+            GenerateResourcesSpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
         }
 
@@ -216,7 +219,7 @@ namespace InterOrbital.WorldSystem
 
             for(int i = 0; i < _enemiesSpawners.spawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners);
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner");
                 if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
                 {
                     int index = UnityEngine.Random.Range(0, _enemiesSpawners._enemySpawners.Count);
@@ -225,8 +228,29 @@ namespace InterOrbital.WorldSystem
                 }
             }
         }
+        private void GenerateResourcesSpawners()
+        {
+            Vector2 mapCenter = new Vector2(width / 2, height / 2);
+            float minCenterSpawnDistance = (width + height) * 0.05f;
 
-        private Vector2 GetRandomSpawnPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners)
+            for (int i = 0; i < _resourcesSpawners.spawnersAmount; i++)
+            {
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner");
+                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+                {
+                    string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
+
+                    GameObject resourceSpawner = _resourcesSpawners.GetRandomResourceSpawnerFromBiome(currentBiome);
+                    if(resourceSpawner != null)
+                    {
+                        Instantiate(resourceSpawner, spawnPosition, Quaternion.identity);
+                    }
+                }
+            }
+        }
+
+
+        private Vector2 GetRandomSpawnerPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners, string tag)
         {
             Vector2 spawnPosition = Vector2.zero;
 
@@ -246,7 +270,7 @@ namespace InterOrbital.WorldSystem
 
                 for (int i = 0; i < colliders.Length; i++)
                 {
-                    if (colliders[i].CompareTag("EnemySpawner"))
+                    if (colliders[i].CompareTag(tag))
                     {
                         positionValid = false;
                         break;
@@ -723,6 +747,22 @@ namespace InterOrbital.WorldSystem
         public int GetChunkSize()
         {
             return _chunkSize;
+        }
+
+        public bool IsCellAreaLocked(int x, int y, Vector2 dimensions)
+        {
+            for(int i = x; i < dimensions.x; i++)
+            {
+                for(int j = y; j < dimensions.y; j++)
+                {
+                    if(IsCellLocked(i, j))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         #endregion

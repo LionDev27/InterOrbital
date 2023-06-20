@@ -43,7 +43,7 @@ namespace InterOrbital.Utils
     public struct ResourceBiomeSpawner
     {
         public string biome;
-        public List<GameObject> _resourcesSpawnerws;
+        public List<GameObject> _resourcesSpawners;
     }
 
     [Serializable]

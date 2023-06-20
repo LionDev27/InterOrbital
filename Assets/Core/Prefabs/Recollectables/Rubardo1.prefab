@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a9acd105c7b464c916102994a56fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dimensions: {x: 2, y: 4}
   _scriptableObject: {fileID: 11400000, guid: ac1192b4b5840d244bb17be8cdee5809, type: 2}
   _health: 5
   _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
