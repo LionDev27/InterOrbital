@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3077233168791400470}
   m_Layer: 6
   m_Name: MinimapSprite
-  m_TagString: Untagged
+  m_TagString: PlayerMinimap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
   _maxHealth: 20
   _hitSpriteObj: {fileID: 5999009077387959219}
   _damageCameraShakeIntensity: 5
-  _invencibilityTime: 5
+  _invencibilityTime: 2
   _loseHealthTimerDefaultValue: 100
 --- !u!114 &265110465
 MonoBehaviour:
@@ -970,7 +970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3723595298983703083
 Transform:
   m_ObjectHideFlags: 0
@@ -1024,9 +1024,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 543544073
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 3e179ad712ab10f44b2a75ffa84459d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1136,3 +1136,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rendererToApplyMask: {fileID: 3227855541346394483}
+  updateSprite: 1

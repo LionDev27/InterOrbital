@@ -5736,10 +5736,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452537711}
     m_Modifications:
-    - target: {fileID: 718687922, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: m_TagString
-      value: PlayerMinimap
-      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player

@@ -1394,11 +1394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683965154}
   m_CullTransparentMesh: 1
---- !u!331 &701820859 stripped
-SpriteMask:
-  m_CorrespondingSourceObject: {fileID: 6837466388630486922, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-  m_PrefabInstance: {fileID: 5153264607440936916}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &722789593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2605,11 +2600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd37bff76569d54f8a65fb65219977a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &1342806525 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3227855541346394483, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-  m_PrefabInstance: {fileID: 5153264607440936916}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1361615261
 GameObject:
   m_ObjectHideFlags: 0
@@ -6066,18 +6056,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1846178550}
     m_Modifications:
-    - target: {fileID: 718687922, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: m_TagString
-      value: PlayerMinimap
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131957790172490604, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: _spriteMask
-      value: 
-      objectReference: {fileID: 701820859}
-    - target: {fileID: 2131957790172490604, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: _playerSpriteRenderer
-      value: 
-      objectReference: {fileID: 1342806525}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player
