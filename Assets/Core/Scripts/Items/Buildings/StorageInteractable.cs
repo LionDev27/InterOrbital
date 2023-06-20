@@ -6,15 +6,15 @@ using System.Collections;
 
 namespace InterOrbital.Item
 {
-    public class StorageItem : MonoBehaviour, IInteractable
+    public class StorageInteractable : BaseInteractable
     {
         private ItemObject[] _itemsChest;
         [SerializeField] private SizeChest _size;
         [SerializeField] private ItemScriptableObject _itemVoid;
 
-        private void Start()
+        protected override void Start()
         {
- 
+            base.Start();
             int size = _size == SizeChest.Small ? 10 : 19;
             _itemsChest = new ItemObject[size];
             
@@ -28,16 +28,15 @@ namespace InterOrbital.Item
             }
         }
 
-        public void Interact()
+        public override void Interact()
         {
            UIManager.Instance.chestInventory.SetChest(_itemsChest);
            UIManager.Instance.OpenInventory(true);
            UIManager.Instance.chestInventory.isHide = false;
         }
 
-        public void EndInteraction()
+        public override void EndInteraction()
         {
-         
             UIManager.Instance.OpenInventory(true);
             _itemsChest = UIManager.Instance.chestInventory.GetItems();
             UIManager.Instance.chestInventory.isHide = true;

@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace InterOrbital.Item
 {
-    public class CraftingTable : CraftingItem, IInteractable
+    public class CraftingTable : CraftingItem
     {
         [SerializeField] private Image _itemCraftImage;
         [SerializeField] private Image _progressBar;
@@ -20,6 +20,7 @@ namespace InterOrbital.Item
         [SerializeField] private Transform dropPosition;
         private Queue<CraftAmountItem> _queueCraft;
         private bool _isCrafting;
+        
         protected override void Start()
         {
             _craftUI = UIManager.Instance.craftUI;
@@ -57,7 +58,6 @@ namespace InterOrbital.Item
 
                     yield return new WaitUntil(() => _progressBar.fillAmount == 1);
                     i++;
-
                 }
             }
 
@@ -69,13 +69,11 @@ namespace InterOrbital.Item
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
             ProccessSelection();
-            
         }
 
         public void EndInteraction()
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
-
         }
 
     }
