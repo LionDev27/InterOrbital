@@ -92,8 +92,11 @@ namespace InterOrbital.Spaceship
 
         public void RestoreSlot()
         {
-            _canBeSelected = true;
-            _image.ChangueAlphaColor(1f);
+            if(PlayerComponents.Instance.Inventory.GetTotalItemAmount(item) > 0)
+            {
+                _canBeSelected = true;
+                _image.ChangueAlphaColor(1f);
+            }
         }
     }
 }

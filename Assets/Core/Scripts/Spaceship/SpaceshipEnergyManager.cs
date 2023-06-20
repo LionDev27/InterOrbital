@@ -172,6 +172,7 @@ namespace InterOrbital.Spaceship
         {
             int energyObtained = _amountSelected * _fuelSlotSelected.item.energyProvided;
             SpaceshipComponents.Instance.SpaceshipEnergy.RestoreEnergy(energyObtained);
+            _fuelSlotSelected.RestoreSlot();
             _amountSelected = 0;
             _fuelSelectedText.text = "";
             _fuelSlotSelected = null;
@@ -179,6 +180,7 @@ namespace InterOrbital.Spaceship
             UpdateButtons();
             UpdateEnergyGiven();
             UpdateEnergyBar();
+
         }
         
 
