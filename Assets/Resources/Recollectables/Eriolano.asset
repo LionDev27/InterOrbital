@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
+    - {fileID: 11400000, guid: b1593eed2f1d35248aa5814e8fd0b841, type: 2}
+    - {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
     - {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
-    - {fileID: 0}
     itemSelectors:
+    - itemName: Eriolano Leaves
+    - itemName: Eriolano Wood
     - itemName: Saporo
-    - itemName: Flumoso
-    dropRates: 5000000014000000
+    dropRates: 3c0000001e0000000a000000

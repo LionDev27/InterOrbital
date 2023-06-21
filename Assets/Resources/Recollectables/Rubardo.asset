@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
+    - {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}
     - {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
-    - {fileID: 0}
     itemSelectors:
+    - itemName: Rubardo Wood
     - itemName: Saporo
-    - itemName: Flumoso
     dropRates: 5000000014000000

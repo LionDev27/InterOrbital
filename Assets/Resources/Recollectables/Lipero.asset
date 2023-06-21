@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
+    - {fileID: 11400000, guid: 9862451323be6ec4aa493e6bfdcae92c, type: 2}
+    - {fileID: 11400000, guid: c4446f9b1aea9de419ce728e60b50f20, type: 2}
     - {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
-    - {fileID: 0}
     itemSelectors:
+    - itemName: Lipero Leaves
+    - itemName: Lipero Wood
     - itemName: Saporo
-    - itemName: Flumoso
-    dropRates: 5000000014000000
+    dropRates: 320000001e00000014000000
