@@ -40,6 +40,13 @@ namespace InterOrbital.Utils
     }
 
     [Serializable]
+    public struct ResourceBiomeSpawner
+    {
+        public string biome;
+        public List<GameObject> _resourcesSpawners;
+    }
+
+    [Serializable]
 
     public struct CraftAmountItem
     {

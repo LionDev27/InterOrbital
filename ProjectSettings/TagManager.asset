@@ -13,6 +13,8 @@ TagManager:
   - PlayerMinimap
   - BulletSlot
   - StaticObject
+  - EnemySpawner
+  - ResourceSpawner
   layers:
   - Default
   - TransparentFX
