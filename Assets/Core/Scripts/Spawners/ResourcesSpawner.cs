@@ -10,7 +10,7 @@ namespace InterOrbital.Recollectables.Spawner
 {
     public class ResourcesSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _resourcePrefab;
+        [SerializeField] private List<GameObject> _resourcePrefabs;
         [SerializeField] private Transform player; // Referencia al transform del jugador
         [SerializeField] private int _maxResourcesSpawn;
         [SerializeField] private float _spawnRadius = 15f;
@@ -27,7 +27,6 @@ namespace InterOrbital.Recollectables.Spawner
         private void Start()
         {
             player = PlayerComponents.Instance.transform;
-            resourceDimensions = _resourcePrefab.GetComponent<Recollectable>().GetDimensions();
         }
         private void Update()
         {
@@ -94,9 +93,11 @@ namespace InterOrbital.Recollectables.Spawner
 
                 if (spawnPositionInt.x >= 0 && spawnPositionInt.x < GridLogic.Instance.width && spawnPositionInt.y >= 0 && spawnPositionInt.y < GridLogic.Instance.height)
                 {
+                    int resourceIndex = UnityEngine.Random.Range(0, _resourcePrefabs.Count);
+                    resourceDimensions = _resourcePrefabs[resourceIndex].GetComponent<Recollectable>().GetDimensions();
                     if (!GridLogic.Instance.IsCellAreaLocked(spawnPositionInt.x, spawnPositionInt.y, resourceDimensions))
                     {
-                        Instantiate(_resourcePrefab, spawnPositionInt, Quaternion.identity);
+                        Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt, Quaternion.identity);
                         currentResourcesSpawned++;
                     }
                 }
