@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using InterOrbital.Player;
+using InterOrbital.Item;
 using InterOrbital.Utils;
 using UnityEngine;
 
@@ -11,6 +8,7 @@ namespace InterOrbital.Player
     {
         [SerializeField] private float _interactionRange;
         [SerializeField] private float _interactionColdown;
+        private BaseInteractable _currentInteractable;
         private bool _isInteracting;
         private float _timer;
 
@@ -23,48 +21,50 @@ namespace InterOrbital.Player
         private void Update()
         {
             _timer -= Time.deltaTime;
+            CheckInteractables();
         }
 
-        private void Interact()
+        private void CheckInteractables()
         {
-            if (_timer >= 0)
-            {
-                return;
-            }
-
-            if (PlayerDash.IsDashing()) return;
             RaycastHit2D[] hitColliders =
                 Physics2D.RaycastAll(transform.position, PlayerAim.AimDir(), _interactionRange);
             foreach (var hit in hitColliders)
             {
-                if (hit.collider.TryGetComponent(out IInteractable raycastInteractable))
+                if (hit.collider.TryGetComponent(out BaseInteractable raycastInteractable))
                 {
-                    Interact(raycastInteractable);
+                    ChangeInteractable(raycastInteractable);
                     return;
                 }
             }
 
-            Debug.Log("InteractingAll");
-            var colliders = Physics2D.OverlapCircleAll(transform.position, _interactionRange);
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out IInteractable interactable))
-                {
-                    Interact(interactable);
-                    return;
-                }
-            }
+            if (_currentInteractable && !_isInteracting)
+                ChangeInteractable(null);
         }
 
-        private void Interact(IInteractable interactable)
+        private void ChangeInteractable(BaseInteractable interactable)
         {
+            if (interactable)
+            {
+                _currentInteractable = interactable;
+                _currentInteractable.ShowInteraction(true);
+            }
+            else
+            {
+                _currentInteractable.ShowInteraction(false);
+                _currentInteractable = null;
+            }
+        }
+        
+        private void Interact()
+        {
+            if (_timer >= 0 || PlayerDash.IsDashing() || !_currentInteractable) return;
+            
             _timer = _interactionColdown;
             InputHandler.ChangeActionMap();
             if (_isInteracting)
-                interactable.EndInteraction();
+                _currentInteractable.EndInteraction();
             else
-                interactable.Interact();
-            Debug.Log($"Selected object: {interactable}");
+                _currentInteractable.Interact();
             _isInteracting = !_isInteracting;
         }
 

@@ -1,5 +1,6 @@
 using InterOrbital.Combat.IA;
 using InterOrbital.Player;
+using InterOrbital.WorldSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -87,10 +88,12 @@ namespace InterOrbital.Combat.Spawner
             if (currentEnemiesSpawned < _maxEnemiesSpawn)
             {
                 Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
-
-                GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
-                enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
-                currentEnemiesSpawned++;
+                if (spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 && spawnPosition.y < GridLogic.Instance.height)
+                {
+                    GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+                    enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
+                    currentEnemiesSpawned++;
+                }
             }
             yield return null;
         }

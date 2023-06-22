@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InterOrbital.Combat.Spawner
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/MapSpawnersSO", order = 3)]
+    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/MapEnemySpawnersSO", order = 3)]
 
     public class MapEnemySpawnersSO : ScriptableObject
     {

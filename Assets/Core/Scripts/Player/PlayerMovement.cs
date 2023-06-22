@@ -122,11 +122,6 @@ namespace InterOrbital.Player
         {
             _minimapDetector.enabled = true;
         }
-        
-        public void EnableCollisions(bool value)
-        {
-            Physics2D.IgnoreLayerCollision(selfLayerIndex, 8, !value);
-        }
 
         public void EnableMovement(bool value)
         {

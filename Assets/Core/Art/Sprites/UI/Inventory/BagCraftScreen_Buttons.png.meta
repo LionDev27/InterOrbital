@@ -468,10 +468,10 @@ TextureImporter:
       name: BagCraftScreen_Buttons_16
       rect:
         serializedVersion: 2
-        x: 7
-        y: 120
-        width: 60
-        height: 18
+        x: 4
+        y: 117
+        width: 66
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -489,10 +489,10 @@ TextureImporter:
       name: BagCraftScreen_Buttons_17
       rect:
         serializedVersion: 2
-        x: 82
-        y: 120
-        width: 60
-        height: 18
+        x: 79
+        y: 117
+        width: 66
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -510,10 +510,10 @@ TextureImporter:
       name: BagCraftScreen_Buttons_18
       rect:
         serializedVersion: 2
-        x: 7
-        y: 88
-        width: 60
-        height: 16
+        x: 4
+        y: 85
+        width: 66
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,7 +536,7 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

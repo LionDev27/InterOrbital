@@ -8,6 +8,7 @@ namespace InterOrbital.Recollectables
 {
     public class Recollectable : MonoBehaviour
     {
+        [SerializeField] private Vector2 _dimensions;
         [SerializeField] private RecollectableScriptableObject _scriptableObject;
         [Tooltip("How many times can the player recollect from this recollectable.")]
         [SerializeField] private int _health;
@@ -76,6 +77,11 @@ namespace InterOrbital.Recollectables
             {
                 DestroyRecollectable();
             }
+        }
+
+        public Vector2 GetDimensions()
+        {
+            return _dimensions;
         }
     }
 }

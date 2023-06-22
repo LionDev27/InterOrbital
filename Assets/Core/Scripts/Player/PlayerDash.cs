@@ -59,8 +59,7 @@ namespace InterOrbital.Player
 
         private void Dash()
         {
-            if (IsDashing()) return;
-            PlayerMovement.EnableCollisions(false);
+            if (IsDashing() && !PlayerEnergy.EnergyEmpty) return;
             PlayerMovement.EnableMovement(false);
             PlayerAttack.canAttack = false;
             

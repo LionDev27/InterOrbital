@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace InterOrbital.Utils
@@ -5,6 +6,7 @@ namespace InterOrbital.Utils
     public class SpriteMaskChanger : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _rendererToApplyMask;
+        [SerializeField] private bool updateSprite;
         private SpriteMask _spriteMask;
 
         private void Awake()
@@ -12,10 +14,19 @@ namespace InterOrbital.Utils
             _spriteMask = GetComponent<SpriteMask>();
         }
 
+        private void Start()
+        {
+            if (!updateSprite)
+                _spriteMask.sprite = _rendererToApplyMask.sprite;
+        }
+
         private void Update()
         {
-            ChangeSpriteMask();
-            FlipSpriteMask();
+            if (updateSprite)
+            {
+                ChangeSpriteMask();
+                FlipSpriteMask();
+            }
         }
 
         private void ChangeSpriteMask()

@@ -33,9 +33,7 @@ namespace InterOrbital.Player
         {
             LoseHealthOverTime();
             
-            if (CanTakeDamage())
-                _playerComponents.PlayerMovement.EnableCollisions(true);
-            else
+            if (!CanTakeDamage())
                 RunInvencibilityTimer();
         }
 
@@ -69,7 +67,6 @@ namespace InterOrbital.Player
         private void SetInvencibilityState()
         {
             _invencibilityTimer = _invencibilityTime;
-            _playerComponents.PlayerMovement.EnableCollisions(false);
             StartCoroutine(nameof(HitAnimation));
         }
         
