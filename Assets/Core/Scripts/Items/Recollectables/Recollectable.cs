@@ -26,15 +26,17 @@ namespace InterOrbital.Recollectables
 
         private void DropItem(ItemObject item)
         {
+            Vector2 dropItemOriginPos = new Vector2(transform.position.x + (_dimensions.x/2), transform.position.y);
             float x = Random.Range(-1f, 1f);
-            float y = Random.Range(-1f, 1f);
+            float y = Random.Range(-1f, 0f);
             while (x == 0 && y == 0)
             {
                 x = Random.Range(-1f, 1f);
-                y = Random.Range(-1f, 1f);
+                y = Random.Range(-1f, 0f);
             }
             Vector2 dropDir = new Vector2(x, y).normalized;
-            item.DropItem((dropDir * _dropForce + (Vector2)transform.position));
+
+            item.DropItem((dropDir * _dropForce + dropItemOriginPos));
         }
 
         private ItemScriptableObject GetRandomItem()
@@ -63,7 +65,8 @@ namespace InterOrbital.Recollectables
         {
             if (_dropItems.Count <= 0) return;
 
-            GameObject tempDroppingObject = Instantiate(_dropItemPrefab, transform.position, Quaternion.identity);
+            Vector2 dropItemOriginPos = new Vector2(transform.position.x + (_dimensions.x / 2), transform.position.y);
+            GameObject tempDroppingObject = Instantiate(_dropItemPrefab, dropItemOriginPos, Quaternion.identity);
             ItemObject tempDroppingItem = tempDroppingObject.GetComponent<ItemObject>();
             
             if (tempDroppingItem == null) return;

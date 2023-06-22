@@ -541,6 +541,8 @@ namespace InterOrbital.WorldSystem
             RandomBiomeCreation(10, 40, _biomes[1], 450);
             RandomBiomeCreation(20, 10, _biomes[2], 450);
             RandomBiomeCreation(40, 10, _biomes[3], 450);
+            RandomBiomeCreation(80, 60, _biomes[2], 1000);
+            RandomBiomeCreation(80, 20, _biomes[1], 600);
         }
 
         private Vector2Int UpdatePosToMap(Vector2Int pos)

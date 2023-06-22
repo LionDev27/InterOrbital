@@ -441,6 +441,7 @@ MonoBehaviour:
   - Rocky
   - Muddy
   _enemiesSpawners: {fileID: 11400000, guid: 81831494098994941867a059fbc00c87, type: 2}
+  _resourcesSpawners: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
   _animationTilemap: {fileID: 1591103708735996734}
   _animationTiles: {fileID: 11400000, guid: 34d0c3191d1358f4eb24882470a62b83, type: 2}
   _tilemapLayers:
@@ -455,8 +456,8 @@ MonoBehaviour:
       tiles: {fileID: 11400000, guid: 5058360b0d5cf2d46a966d82723137bc, type: 2}
       minimapSprite: {fileID: 1549855137, guid: f51aaf476ebd6414493828be1a878b52, type: 3}
     - biome: Rocky
-      tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
-      minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+      tiles: {fileID: 11400000, guid: e7277911166064547980e875e6ace814, type: 2}
+      minimapSprite: {fileID: -866257724, guid: 7bdd66847f5623e4a969a3036f32b99a, type: 3}
     - biome: Muddy
       tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
       minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}

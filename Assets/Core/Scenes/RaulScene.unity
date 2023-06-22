@@ -2078,9 +2078,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
-      propertyPath: _resourcesSpawners
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].tiles
       value: 
-      objectReference: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
+      objectReference: {fileID: 11400000, guid: 62e9f0177c4c602488cbac03a622ebc8, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].minimapSprite
+      value: 
+      objectReference: {fileID: 52238719, guid: 755def9da79fb2d4a985b1baf3f03ce8, type: 3}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
