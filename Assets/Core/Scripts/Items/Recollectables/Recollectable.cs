@@ -24,9 +24,8 @@ namespace InterOrbital.Recollectables
             _currentHealth = _health;
         }
 
-        private void DropItem(ItemObject item)
+        private void DropItem(ItemObject item, Vector2 originPos)
         {
-            Vector2 dropItemOriginPos = new Vector2(transform.position.x + (_dimensions.x/2), transform.position.y);
             float x = Random.Range(-1f, 1f);
             float y = Random.Range(-1f, 0f);
             while (x == 0 && y == 0)
@@ -36,7 +35,7 @@ namespace InterOrbital.Recollectables
             }
             Vector2 dropDir = new Vector2(x, y).normalized;
 
-            item.DropItem((dropDir * _dropForce + dropItemOriginPos));
+            item.DropItem((dropDir * _dropForce + originPos));
         }
 
         private ItemScriptableObject GetRandomItem()
@@ -73,7 +72,7 @@ namespace InterOrbital.Recollectables
             tempDroppingItem.ObtainComponents();
             tempDroppingItem.SetItem(GetRandomItem());
             
-            DropItem(tempDroppingItem);
+            DropItem(tempDroppingItem, dropItemOriginPos);
             
             _currentHealth--;
             if (_currentHealth <= 0)
