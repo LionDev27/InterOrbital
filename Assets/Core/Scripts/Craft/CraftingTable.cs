@@ -18,12 +18,25 @@ namespace InterOrbital.Item
         [SerializeField] private TextMeshProUGUI _textAmount;
         [SerializeField] private GameObject _craftContent;
         [SerializeField] private Transform dropPosition;
+        [SerializeField] private TypeTableCraft typeTable;
         private Queue<CraftAmountItem> _queueCraft;
         private bool _isCrafting;
         
         protected override void Start()
         {
-            _craftUI = UIManager.Instance.craftUI;
+            switch (typeTable)
+            {
+                case TypeTableCraft.Craft:
+                    _craftUI = UIManager.Instance.craftUI;
+                    break;
+                case TypeTableCraft.Fundition:
+                    _craftUI = UIManager.Instance.funditionUI;
+                    break;
+                case TypeTableCraft.Bullet:
+                    _craftUI = UIManager.Instance.bulletUI;
+                    break;
+            }
+           
             base.Start();
             _queueCraft = new Queue<CraftAmountItem>();
         }

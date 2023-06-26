@@ -29,4 +29,11 @@ namespace InterOrbital.Utils
         SW,
         SE
     }
+
+    public enum TypeTableCraft
+    {
+        Craft,
+        Fundition, 
+        Bullet
+    }
 }
