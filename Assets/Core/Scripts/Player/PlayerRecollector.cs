@@ -37,20 +37,17 @@ namespace InterOrbital.Player
 
         private void Recollect()
         {
-            Debug.Log("Recollecting");
             Vector2 dir = PlayerAim.AimDir();
             Vector2 boxcastSize = new Vector2(0.05f, _recollectionWidth);
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxcastSize, 0f, dir, _recollectionRange);
             
             if(hits.Length <= 0) return;
-            Debug.Log("Hay objeto");
 
             foreach (var hit in hits)
             {
                 Recollectable recollectable = hit.collider.GetComponent<Recollectable>();
                 if (recollectable != null)
                 {
-                    Debug.Log("Hay recolectable");
                     recollectable.Recollect();
                     _timer = 0f;
                 }

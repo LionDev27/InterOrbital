@@ -8,52 +8,53 @@ public class SpriteMaskController : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer _playerSpriteRenderer;
-
     [SerializeField]
     private SpriteMask _spriteMask;
-
     private Collider2D _spriteMaskCollider;
-
-    private List<SpriteRenderer> _otherRenderes;
+    private List<SpriteRenderer> _otherRenderers;
 
     public bool checking = false;
 
     private void Awake()
     {
-        _otherRenderes = new List<SpriteRenderer>();
+        _otherRenderers = new List<SpriteRenderer>();
         _spriteMaskCollider = GetComponent<Collider2D>();
         _spriteMaskCollider.isTrigger = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (checking)
+        if (_otherRenderers.Count > 0)
         {
-            foreach(SpriteRenderer renderer in _otherRenderes)
+            foreach (var renderer in _otherRenderers)
             {
-                if(_playerSpriteRenderer.sortingLayerName == renderer.sortingLayerName
-                    && _playerSpriteRenderer.sortingOrder <= renderer.sortingOrder
-                    && _playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
+                if (_playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
                 {
-                    //_spriteMask.enabled = true;
-                    //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                     renderer.ChangueSpriteAlphaColor(0.4f);
-                    return;
                 }
                 else
                 {
                     renderer.ChangueSpriteAlphaColor(1f);
-                    //_spriteMask.enabled = false;
-                    //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
                 }
             }
+            // foreach(SpriteRenderer renderer in _otherRenderers)
+            // {
+            //     if(_playerSpriteRenderer.sortingLayerName == renderer.sortingLayerName
+            //         && _playerSpriteRenderer.sortingOrder <= renderer.sortingOrder
+            //         && _playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
+            //     {
+            //         //_spriteMask.enabled = true;
+            //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            //         renderer.ChangueSpriteAlphaColor(0.4f);
+            //         return;
+            //     }
+            //     else
+            //     {
+            //         renderer.ChangueSpriteAlphaColor(1f);
+            //         //_spriteMask.enabled = false;
+            //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+            //     }
+            // }
         }
     }
 
@@ -62,20 +63,25 @@ public class SpriteMaskController : MonoBehaviour
         SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
         if(spriteRenderer != null && collision.CompareTag("StaticObject"))
         {
-            _otherRenderes.Add(spriteRenderer);
-            checking = true;
+            _otherRenderers.Add(spriteRenderer);
+            //checking = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-        if(spriteRenderer != null && collision.CompareTag("StaticObject"))
+        if (_otherRenderers.Contains(spriteRenderer))
         {
-            checking = false;
             spriteRenderer.ChangueSpriteAlphaColor(1f);
-            //_spriteMask.enabled = false;
-            //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None; 
+            _otherRenderers.Remove(spriteRenderer);
         }
+        // if(spriteRenderer != null && collision.CompareTag("StaticObject"))
+        // {
+        //     //checking = false;
+        //     //spriteRenderer.ChangueSpriteAlphaColor(1f);
+        //     //_spriteMask.enabled = false;
+        //     //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None; 
+        // }
     }
 }

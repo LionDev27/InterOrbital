@@ -8,21 +8,21 @@ namespace InterOrbital.Item
 {
     public class ItemObject : MonoBehaviour
     {
+        public bool DropingItem { get; private set; } = true;
+        [HideInInspector] public ItemScriptableObject itemSo;
         public Transform playerT;
+        public int amount;
 
-        private Rigidbody2D _rigidbody;
         private float _minSpeed = 5f;
         private float _maxSpeed = 30f;
         private float accelerationTime = 0.5f;
         private float distanceToBeCollected = 0.5f;
+        
+        private Rigidbody2D _rigidbody;
         private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
        
         private Sequence _sequenceIdleItem;
-
-        public bool DropingItem { get; private set; } = true;
-       [HideInInspector] public ItemScriptableObject itemSo;
-
-        public int amount;
 
         private void Update()
         { 
@@ -73,6 +73,10 @@ namespace InterOrbital.Item
         {
             itemSo = item;
             _spriteRenderer.sprite = itemSo.itemSprite;
+            if (item.animator != null)
+                _animator.runtimeAnimatorController = item.animator;
+            else
+                _animator.enabled = false;
         }
 
         public void DropItem(Vector3 directionDrop)
@@ -89,10 +93,7 @@ namespace InterOrbital.Item
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
-
-
-
-        
     }
 }
