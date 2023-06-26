@@ -766,6 +766,22 @@ namespace InterOrbital.WorldSystem
 
             return false;
         }
+        
+        public bool IsCellAreaSpaceshipArea(int x, int y, Vector2 dimensions)
+        {
+            for(int i = x; i < dimensions.x; i++)
+            {
+                for(int j = y; j < dimensions.y; j++)
+                {
+                    if(IsCellSpaceshipArea(i, j))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
 
         #endregion
 
