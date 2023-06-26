@@ -155,7 +155,7 @@ namespace InterOrbital.Player
                     {
                         BulletSelector.Instance.UpdateBulletSelectorUI();
                     }
-                    Debug.Log("eSTOY AQUOI");
+                    _itemsSlot[i].sprite = null;
                     _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
                     
                     return;
@@ -207,9 +207,12 @@ namespace InterOrbital.Player
             if(index >= 0)
             {
                 _items[index].itemSo = itemVoid;
+                _items[index].amount = 0;
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
             }
+
+            BulletSelector.Instance.UpdateBulletSelectorUI();
         }
 
         public ItemObject GetItemObjectByIndex(int index)
