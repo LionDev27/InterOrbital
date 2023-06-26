@@ -31,6 +31,7 @@ namespace InterOrbital.Player
             _actualItemEquiped = 2;
             InitSlots();
             StartInventory();
+            _sizeInventory += gridBullets.transform.childCount;
         }
 
         // Update is called once per frame
@@ -120,7 +121,7 @@ namespace InterOrbital.Player
             var sizeMain = gridMain.transform.childCount;
             var sizeLeft = gridLeftPocket.transform.childCount;
             var sizeRight = gridRightPocket.transform.childCount;
-            var sizeBullets = gridBullets.transform.childCount ;
+            var sizeBullets = gridBullets.transform.childCount;
 
             _totalNumberOfSlots = sizeMain + sizeLeft + sizeRight + sizeBullets;
             _itemsSlot = new Image[_totalNumberOfSlots];
@@ -128,9 +129,9 @@ namespace InterOrbital.Player
             _textAmount = new TextMeshProUGUI[_totalNumberOfSlots];
 
             RelateSlots(gridMain, 0, sizeMain, _itemsSlot, true);
-            RelateSlots(gridLeftPocket, sizeMain, sizeLeft, _itemsSlot, true);
-            RelateSlots(gridRightPocket, sizeMain + sizeLeft, sizeRight, _itemsSlot, true);
-            RelateSlots(gridBullets, sizeMain + sizeLeft + sizeRight, sizeBullets, _itemsSlot, true);
+            RelateSlots(gridBullets, sizeMain, sizeBullets, _itemsSlot, true);
+            RelateSlots(gridLeftPocket, sizeMain + sizeBullets, sizeLeft, _itemsSlot, true);
+            RelateSlots(gridRightPocket, sizeMain + sizeBullets + sizeLeft, sizeRight, _itemsSlot, true);
 
             _backgroundDefaultImage = _itemsSlotBackGround[1].sprite;
         }
@@ -203,7 +204,7 @@ namespace InterOrbital.Player
 
         public void SubstractBulletInInventory(int indexInBulletSelector)
         {
-            int index = _totalNumberOfSlots - (indexInBulletSelector+1);
+            int index = GetStartIndexBulletSlot() + indexInBulletSelector;
             _items[index].amount--;
             if(_items[index].amount <= 0)
             {
@@ -235,6 +236,11 @@ namespace InterOrbital.Player
                 _textAmount[i].text = _items[i].amount.ToString();
             }
 
+        }
+
+        public int GetStartIndexBulletSlot()
+        {
+            return gridMain.transform.childCount;
         }
     }
 }

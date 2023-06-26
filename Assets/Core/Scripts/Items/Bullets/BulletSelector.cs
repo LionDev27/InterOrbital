@@ -48,12 +48,10 @@ public class BulletSelector : MonoBehaviour
 
     public void UpdateBulletSelectorUI()
     {
-        int j = bulletsSlots.Count - 1;
         for (int i =  0; i < bulletsSlots.Count; i++)
         {
             
-            int index = PlayerComponents.Instance.Inventory.GetTotalNumberOfSlots() - (j+1);
-            j--;
+            int index = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + i;
 
             ItemObject itemInInventory = PlayerComponents.Instance.Inventory.GetItemObjectByIndex(index);
             if(itemInInventory.itemSo != PlayerComponents.Instance.Inventory.itemVoid)
@@ -99,7 +97,8 @@ public class BulletSelector : MonoBehaviour
 
     public void SubstractBullet()
     {
-        int j = bulletsSlots.Count - (_selectedBulletIndex + 1);
+        
+        int j =_selectedBulletIndex;
         PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
         UpdateBulletSelectorUI();
     }
