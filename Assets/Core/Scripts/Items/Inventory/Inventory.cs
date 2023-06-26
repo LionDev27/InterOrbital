@@ -118,30 +118,44 @@ namespace InterOrbital.Player
 
             for(int i=0; i < _sizeInventory; i++)
             {
+                
                  if (_items[i].itemSo == item.itemSo && _items[i].itemSo.isStackable && _items[i].amount <= _items[i].itemSo.maxAmount)
                  {
                    
                     int sum = _items[i].amount + item.amount;
                     if(sum <= _items[i].itemSo.maxAmount)
                     {
-                        SetAmount(i, sum);       
+                        SetAmount(i, sum);     
+                        if(item.itemSo.type == ItemType.Bullet)
+                        {
+                            BulletSelector.Instance.UpdateBulletSelectorUI();
+                        }
                         return;
                     }
                     else
                     {
                         rest = sum - _items[i].itemSo.maxAmount;
                         SetAmount(i, _items[i].itemSo.maxAmount);
+                        if (item.itemSo.type == ItemType.Bullet)
+                        {
+                            BulletSelector.Instance.UpdateBulletSelectorUI();
+                        }
                         item.amount = rest;
                     }
                  }
             }
-            
-            for(int i=0; i< _sizeInventory; i++)
+
+            for (int i=0; i< _sizeInventory; i++)
             {
                 if (_items[i].itemSo == itemVoid)
                 {
                     _items[i] = item;
                     SetAmount(i, item.amount);
+                    if (item.itemSo.type == ItemType.Bullet)
+                    {
+                        BulletSelector.Instance.UpdateBulletSelectorUI();
+                    }
+                    _itemsSlot[i].sprite = null;
                     _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
                     
                     return;
@@ -193,19 +207,19 @@ namespace InterOrbital.Player
             if(index >= 0)
             {
                 _items[index].itemSo = itemVoid;
+                _items[index].amount = 0;
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
             }
+
+            BulletSelector.Instance.UpdateBulletSelectorUI();
         }
 
         public ItemObject GetItemObjectByIndex(int index)
         {
             return _items[index];
         }
-        public int GetTotalNumberOfSlots()
-        {
-            return _totalNumberOfSlots;
-        }
+        
 
     }
 }
