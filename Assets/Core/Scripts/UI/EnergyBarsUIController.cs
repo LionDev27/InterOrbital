@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,21 +15,21 @@ public class EnergyBarsUIController : MonoBehaviour
         {
             Image energyBarImg = energyBars[i];
 
-            // Verifica si la barra actual debe estar llena o vacía
+            // Verifica si la barra actual debe estar llena o vacï¿½a
             if (i < filledBars)
             {
-                // La barra está llena
+                // La barra estï¿½ llena
                 SetBarFillAmount(energyBarImg, 1f);
             }
             else if (i == filledBars)
             {
-                // La barra actual está parcialmente llena
+                // La barra actual estï¿½ parcialmente llena
                 float fillAmount = (float)(currentEnergy % energyPerBar) / energyPerBar;
                 SetBarFillAmount(energyBarImg, fillAmount);
             }
             else
             {
-                // La barra está vacía
+                // La barra estï¿½ vacï¿½a
                 SetBarFillAmount(energyBarImg, 0f);
             }
         }
