@@ -1,16 +1,18 @@
+using System;
 using InterOrbital.Item;
-using InterOrbital.Utils;
+using InterOrbital.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace InterOrbital.Player
 {
     public class PlayerInteraction : PlayerComponents
     {
         [SerializeField] private float _interactionRange;
-        [SerializeField] private float _interactionColdown;
+        [FormerlySerializedAs("_interactionColdown")] [SerializeField] private float _interactionCooldown;
         private BaseInteractable _currentInteractable;
+        private UIManager _uiManager;
         private bool _isInteracting;
-        private float _timer;
 
         protected override void Awake()
         {
@@ -18,10 +20,17 @@ namespace InterOrbital.Player
             InputHandler.OnInteractPerformed += Interact;
         }
 
+        private void Start()
+        {
+            _uiManager = UIManager.Instance;
+        }
+
         private void Update()
         {
-            _timer -= Time.deltaTime;
-            CheckInteractables();
+            if (!_isInteracting)
+            {
+                CheckInteractables();
+            }
         }
 
         private void CheckInteractables()
@@ -37,7 +46,7 @@ namespace InterOrbital.Player
                 }
             }
 
-            if (_currentInteractable && !_isInteracting)
+            if (_currentInteractable)
                 ChangeInteractable(null);
         }
 
@@ -57,15 +66,19 @@ namespace InterOrbital.Player
         
         private void Interact()
         {
-            if (_timer >= 0 || PlayerDash.IsDashing() || !_currentInteractable) return;
+            if (!CanInteract()) return;
             
-            _timer = _interactionColdown;
             InputHandler.ChangeActionMap();
             if (_isInteracting)
                 _currentInteractable.EndInteraction();
             else
                 _currentInteractable.Interact();
             _isInteracting = !_isInteracting;
+        }
+
+        private bool CanInteract()
+        {
+            return !PlayerDash.IsDashing() && _currentInteractable && !_uiManager.animating;
         }
 
         private void OnDrawGizmos()

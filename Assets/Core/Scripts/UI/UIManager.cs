@@ -10,8 +10,6 @@ namespace InterOrbital.UI
     {
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
-
-
         [SerializeField] private EnergyUIController _energyUIController;
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
@@ -19,10 +17,11 @@ namespace InterOrbital.UI
         [SerializeField] private CanvasGroup _tagButtonsInventory;
         [SerializeField] private GameObject _fastingCraft;
         [SerializeField] private GameObject _bulletSelector;
-
         private bool _somethingOpen;
+        
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
+        [HideInInspector] public bool animating;
         public ChestInventory chestInventory;
         public GameObject bagUI;
         public GameObject craftUI;
@@ -38,7 +37,6 @@ namespace InterOrbital.UI
             else if(Instance != this) 
                 Destroy(gameObject);
 
-
             _tagButtonsInventory = bagUI.GetComponentInChildren<CanvasGroup>();
         }
 
@@ -47,22 +45,23 @@ namespace InterOrbital.UI
         {
             if (ui.transform.localScale == Vector3.one)
             {
+                animating = true;
                 blackout.SetActive(false);
                 PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     _somethingOpen = false;
+                    animating = false;
                 });  
             }
             else if(!_somethingOpen)
             {
+                animating = true;
                 blackout.SetActive(true);
                 PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
-                ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play();
+                ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play().OnComplete(() => { animating = false; });
             }
-            
-           
         }
 
         public void OpenInventory(bool openChest)
