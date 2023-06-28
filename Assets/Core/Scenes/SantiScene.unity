@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd37bff76569d54f8a65fb65219977a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _navMeshRefreshRate: 2
 --- !u!1001 &147871394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4745,10 +4746,12 @@ MonoBehaviour:
   _lifeUIController: {fileID: 550535012}
   _fastCraft: {fileID: 581287278}
   _minimapController: {fileID: 2049787357}
+  _itemActionController: {fileID: 0}
   _tagButtonsInventory: {fileID: 581287277}
   _fastingCraft: {fileID: 581287276}
   _bulletSelector: {fileID: 581287280}
   isChestOpen: 0
+  animating: 0
   chestInventory: {fileID: 581287275}
   bagUI: {fileID: 581287279}
   craftUI: {fileID: 238030740}

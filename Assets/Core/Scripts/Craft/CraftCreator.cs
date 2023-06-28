@@ -35,11 +35,19 @@ public class CraftCreator : MonoBehaviour
 
     private void SetCraft()
     {
+       
         for (int i = 0; i < _itemCraft.itemsRequired.Count; i++)
         {      
             _amountToCraft= 1;
             amountToCraftText.text = _amountToCraft.ToString();
             requireImages[i].sprite = _itemCraft.itemsRequired[i].item.itemSprite;
+        }
+        if (_itemCraft.itemsRequired.Count != requireImages.Count)
+        {
+            for (int i = _itemCraft.itemsRequired.Count; i< requireImages.Count; i++)
+            {
+                requireImages[i].sprite = PlayerComponents.Instance.Inventory.itemVoid.itemSprite;
+            }
         }
 
         UpdateAmountRequired();
@@ -61,7 +69,15 @@ public class CraftCreator : MonoBehaviour
             requireTexts[i].text = actualAmount + "/" + requiredAmount;
         }
 
-        if(PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, _amountToCraft) && HaveEnoughEnergyToCraft(GetCorrespondingEnergy()))
+        if (_itemCraft.itemsRequired.Count != requireImages.Count)
+        {
+            for (int i = _itemCraft.itemsRequired.Count; i < requireImages.Count; i++)
+            {
+                requireTexts[i].text = "";
+            }
+        }
+
+        if (PlayerComponents.Instance.Inventory.CanCraft(_itemCraft, _amountToCraft) && HaveEnoughEnergyToCraft(GetCorrespondingEnergy()))
         {
             _craftButton.interactable = true;
         }
