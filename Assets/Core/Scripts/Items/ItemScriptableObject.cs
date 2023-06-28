@@ -12,10 +12,12 @@ namespace InterOrbital.Item
         public string itemName;
         public string itemDescription;
         public ItemType type;
+        public ConsumableValues consumableValues;
         public bool isStackable;
         public int maxAmount;
         public Sprite buildHighlightSprite;
         public GameObject buildPrefab;
+        public AnimatorOverrideController animator;
     }
 #if UNITY_EDITOR
     [CustomEditor(typeof(ItemScriptableObject),true)]
@@ -35,11 +37,17 @@ namespace InterOrbital.Item
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("itemDescription"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("isStackable"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("animator"));
 
 
                     if (scriptableObject.isStackable)
                     {
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
+                    }
+
+                    if (scriptableObject.type == ItemType.Consumable)
+                    {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("consumableValues"));
                     }
 
                     if (scriptableObject.type == ItemType.Build)

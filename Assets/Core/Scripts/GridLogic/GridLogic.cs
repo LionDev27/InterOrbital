@@ -1,17 +1,12 @@
 using InterOrbital.Combat.Spawner;
 using InterOrbital.Item;
 using InterOrbital.Player;
-using InterOrbital.Recollectables.Spawner;
 using InterOrbital.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEditor.Sprites;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace InterOrbital.WorldSystem
 {
@@ -541,6 +536,8 @@ namespace InterOrbital.WorldSystem
             RandomBiomeCreation(10, 40, _biomes[1], 450);
             RandomBiomeCreation(20, 10, _biomes[2], 450);
             RandomBiomeCreation(40, 10, _biomes[3], 450);
+            RandomBiomeCreation(80, 60, _biomes[2], 1000);
+            RandomBiomeCreation(80, 20, _biomes[1], 600);
         }
 
         private Vector2Int UpdatePosToMap(Vector2Int pos)
@@ -756,6 +753,22 @@ namespace InterOrbital.WorldSystem
                 for(int j = y; j < dimensions.y; j++)
                 {
                     if(IsCellLocked(i, j))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+        
+        public bool IsCellAreaSpaceshipArea(int x, int y, Vector2 dimensions)
+        {
+            for(int i = x; i < dimensions.x; i++)
+            {
+                for(int j = y; j < dimensions.y; j++)
+                {
+                    if(IsCellSpaceshipArea(i, j))
                     {
                         return true;
                     }

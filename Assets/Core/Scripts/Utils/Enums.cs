@@ -5,6 +5,11 @@ namespace InterOrbital.Utils
         Consumable, Build, Bullet, None
     }
 
+    public enum ConsumableType
+    {
+        Elytrum, Health
+    }
+
     public enum FillMode
     {
         None,

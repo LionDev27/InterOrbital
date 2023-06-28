@@ -721,6 +721,7 @@ MonoBehaviour:
   _lifeUIController: {fileID: 1195246897}
   _fastCraft: {fileID: 1710561035}
   _minimapController: {fileID: 1617050233}
+  _itemActionController: {fileID: 1089863836}
   _tagButtonsInventory: {fileID: 1288102932}
   _fastingCraft: {fileID: 125338048}
   _bulletSelector: {fileID: 1583026726}
@@ -1855,6 +1856,7 @@ GameObject:
   - component: {fileID: 1089863833}
   - component: {fileID: 1089863835}
   - component: {fileID: 1089863834}
+  - component: {fileID: 1089863836}
   m_Layer: 5
   m_Name: EAction
   m_TagString: Untagged
@@ -1879,8 +1881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 30}
-  m_SizeDelta: {x: 96, y: 72}
+  m_AnchoredPosition: {x: -30, y: 30}
+  m_SizeDelta: {x: 152, y: 96}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1089863834
 MonoBehaviour:
@@ -1902,7 +1904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 559e6205acf7b5a4aaab6d792b87a708, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a1cde24acd42e049a4df0285c465068, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1920,6 +1922,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089863832}
   m_CullTransparentMesh: 1
+--- !u!114 &1089863836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089863832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1024a2d0caac14b42a7f1187a80b8643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildableItem: {fileID: 589704407, guid: 081b974354bef714e856876db64e85cc, type: 3}
+  _energyRestoreItem: {fileID: 363470867, guid: 081b974354bef714e856876db64e85cc, type: 3}
+  _healthRestoreItem: {fileID: 2029100066, guid: 081b974354bef714e856876db64e85cc, type: 3}
+  _emptyImage: {fileID: 21300000, guid: 1a1cde24acd42e049a4df0285c465068, type: 3}
+  _actionImage: {fileID: 1089863834}
 --- !u!1 &1119805906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 829954507757906657, guid: cf36bf940ac5986439754615ed314527, type: 3}
@@ -2078,9 +2097,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
-      propertyPath: _resourcesSpawners
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].tiles
       value: 
-      objectReference: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
+      objectReference: {fileID: 11400000, guid: 62e9f0177c4c602488cbac03a622ebc8, type: 2}
+    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
+      propertyPath: _tilemapLayers.Array.data[0].biomesTiles.Array.data[3].minimapSprite
+      value: 
+      objectReference: {fileID: 52238719, guid: 755def9da79fb2d4a985b1baf3f03ce8, type: 3}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
@@ -2408,6 +2431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd37bff76569d54f8a65fb65219977a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _navMeshRefreshRate: 2
 --- !u!212 &1342806525 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3227855541346394483, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
@@ -3125,6 +3149,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 363830211, guid: cf36bf940ac5986439754615ed314527, type: 3}
+      propertyPath: itemsCraft.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb08277f5f25c0244945210d39f7fd19, type: 2}
+    - target: {fileID: 363830211, guid: cf36bf940ac5986439754615ed314527, type: 3}
+      propertyPath: itemsCraft.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 96f6fcd8e31c47946a0bdec348de4157, type: 2}
+    - target: {fileID: 363830211, guid: cf36bf940ac5986439754615ed314527, type: 3}
+      propertyPath: itemsCraft.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 17b931de1d568f84baeee36d8415ecec, type: 2}
     - target: {fileID: 455122527, guid: cf36bf940ac5986439754615ed314527, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -95,7 +95,7 @@ namespace InterOrbital.Recollectables.Spawner
                 {
                     int resourceIndex = UnityEngine.Random.Range(0, _resourcePrefabs.Count);
                     resourceDimensions = _resourcePrefabs[resourceIndex].GetComponent<Recollectable>().GetDimensions();
-                    if (!GridLogic.Instance.IsCellAreaLocked(spawnPositionInt.x, spawnPositionInt.y, resourceDimensions))
+                    if (IsPosibleToSpawn(spawnPositionInt.x, spawnPositionInt.y, resourceDimensions))
                     {
                         Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt, Quaternion.identity);
                         currentResourcesSpawned++;
@@ -104,6 +104,20 @@ namespace InterOrbital.Recollectables.Spawner
 
             }
             yield return null;
+        }
+
+        private bool IsPosibleToSpawn(int x, int y, Vector2 dimensions)
+        {
+            if (GridLogic.Instance.IsCellAreaLocked(x, y, dimensions))
+            {
+                return false;
+            }
+
+            if (GridLogic.Instance.IsCellAreaSpaceshipArea(x, y, dimensions))
+            {
+                return false;
+            }
+            return true;
         }
 
         public void ResourceObtained()

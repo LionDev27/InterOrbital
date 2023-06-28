@@ -426,6 +426,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
+  _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
+  _dropsList:
+  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    dropRate: 100
+    minAmount: 1
+    maxAmount: 2
   _deathParticles: {fileID: 2654630309178519690, guid: 50edcdf778ed040498797dc9c15a1a41, type: 3}
   _deathTime: 0.4
 --- !u!114 &576695968265976471
