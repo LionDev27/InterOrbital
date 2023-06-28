@@ -13,12 +13,23 @@ MonoBehaviour:
   m_Name: DefaultBullet
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -1078304778, guid: f0f319f305ade54429a13b4d156e4495, type: 3}
-  id: 7
+  id: 38
   itemName: Bala normal
   itemDescription: La bala mas sencilla del juego
   type: 2
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
-  maxAmount: 10
+  maxAmount: 50
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: c3cb2633c158b34419100d9693bc7485, type: 2}
+    amountRequired: 1
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
+    amountRequired: 1
+  timeToCraft: 0
+  craftEnergyRequired: 2
   bulletPrefab: {fileID: 27296961458175940, guid: 5614a6077fb78544ab25bd3cd9c99e90, type: 3}

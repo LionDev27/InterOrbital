@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Elytral
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -895528789, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 13
+  id: 16
   itemName: Elytral
   itemDescription: "Contiene energ\xEDa"
   type: 3
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}

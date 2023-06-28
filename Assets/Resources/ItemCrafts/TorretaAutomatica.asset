@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
+  m_Name: TorretaAutomatica
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 23
+  itemName: Torreta Automatica
+  itemDescription: "Estructura que permite la creaci\xF3n de diferentes objetos"
+  type: 1
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
+  isStackable: 0
+  maxAmount: 0
+  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 02d0af574372e724eaed41578ab6c4f5, type: 2}
+    amountRequired: 3
+  timeToCraft: 10
+  craftEnergyRequired: 5

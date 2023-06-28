@@ -4,14 +4,14 @@ using UnityEditor;
 namespace InterOrbital.Item
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemBulletScriptableObject", order = 2)]
-    public class ItemBulletScriptableObject : ItemScriptableObject
+    public class ItemBulletScriptableObject : ItemCraftScriptableObject
     {
         public GameObject bulletPrefab;
     }
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(ItemBulletScriptableObject), true)]
-    public class ItemBulletScriptableObjectEditor : ItemScriptableObjectEditor
+    public class ItemBulletScriptableObjectEditor : ItemCraftScriptableObjectEditor
     {
         public override void OnInspectorGUI()
         {

@@ -60,4 +60,11 @@ namespace InterOrbital.Utils
         }
     }
 
+    [Serializable]
+    public struct ConsumableValues
+    {
+        public ConsumableType consumableType;
+        public int amountToRestore;
+    }
+
 }

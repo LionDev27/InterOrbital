@@ -12,6 +12,7 @@ namespace InterOrbital.Item
         public string itemName;
         public string itemDescription;
         public ItemType type;
+        public ConsumableValues consumableValues;
         public bool isStackable;
         public int maxAmount;
         public Sprite buildHighlightSprite;
@@ -42,6 +43,11 @@ namespace InterOrbital.Item
                     if (scriptableObject.isStackable)
                     {
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAmount"));
+                    }
+
+                    if (scriptableObject.type == ItemType.Consumable)
+                    {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("consumableValues"));
                     }
 
                     if (scriptableObject.type == ItemType.Build)

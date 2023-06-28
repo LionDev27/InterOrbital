@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Talita
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -1955915844, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 12
+  id: 13
   itemName: Talita
   itemDescription: "S\xEDlice con el que se puede obtener Talio"
   type: 3
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}

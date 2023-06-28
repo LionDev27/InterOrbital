@@ -5,6 +5,11 @@ namespace InterOrbital.Utils
         Consumable, Build, Bullet, None
     }
 
+    public enum ConsumableType
+    {
+        Elytrum, Health
+    }
+
     public enum FillMode
     {
         None,
@@ -28,5 +33,12 @@ namespace InterOrbital.Utils
         NE,
         SW,
         SE
+    }
+
+    public enum TypeTableCraft
+    {
+        Craft,
+        Fundition, 
+        Bullet
     }
 }
