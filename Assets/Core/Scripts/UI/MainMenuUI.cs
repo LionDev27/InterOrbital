@@ -23,10 +23,11 @@ namespace InterOrbital.UI
         private void Start()
         {
             _levelManager = LevelManager.Instance;
-            EnableCanvasGroup(_mainCanvasGroup, true);
+            EnableCanvasGroup(_mainCanvasGroup, false);
             EnableCanvasGroup(_blackoutCanvasGroup, false);
             EnableCanvasGroup(_loadingCanvasGroup, false);
             _playPanel.SetActive(false);
+            ShowMainMenu();
         }
 
         private void Update()
@@ -35,11 +36,16 @@ namespace InterOrbital.UI
                 UpdateLoadingBar();
         }
 
+        private void ShowMainMenu()
+        {
+            _mainCanvasGroup.DOFade(1f, 2f).OnComplete(() => EnableCanvasGroup(_mainCanvasGroup, true)).Play();
+        }
+
         private void UpdateLoadingBar()
         {
             _fillAmount = Mathf.MoveTowards(_fillAmount, _levelManager.LoadingProgress, Time.deltaTime);
             _levelManager.loadingBarsController.UpdateBarFills(1f,_fillAmount);
-            if (_fillAmount >= 0.9f)
+            if (_fillAmount >= 1f)
             {
                 _loading = false;
                 _loadingPanel.SetActive(false);
@@ -63,7 +69,7 @@ namespace InterOrbital.UI
                 EnableCanvasGroup(_loadingCanvasGroup, false);
                 _levelManager.AllowSceneActivation();
             }));
-            playSequence.Append(_blackoutCanvasGroup.DOFade(0f, 1f));
+            playSequence.Append(_blackoutCanvasGroup.DOFade(0f, 2f));
             playSequence.Play();
         }
 

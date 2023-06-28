@@ -40,7 +40,7 @@ namespace InterOrbital.Others
 
             await Task.Delay(1000);
 
-            _loadingProgress = _loadingScene.progress;
+            _loadingProgress = 1f;
         }
 
         public void AllowSceneActivation()
