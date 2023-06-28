@@ -14,6 +14,7 @@ namespace InterOrbital.UI
         [SerializeField] private LifeUIController _lifeUIController;
         [SerializeField] private CraftingItem _fastCraft;
         [SerializeField] private MinimapController _minimapController;
+        [SerializeField] private ItemActionController _itemActionController;
         [SerializeField] private CanvasGroup _tagButtonsInventory;
         [SerializeField] private GameObject _fastingCraft;
         [SerializeField] private GameObject _bulletSelector;
@@ -155,6 +156,11 @@ namespace InterOrbital.UI
         public void ToggleMinimap()
         {
             _minimapController.ToggleMinimap();
+        }
+
+        public void ChangeActionUI(ItemScriptableObject item)
+        {
+            _itemActionController.ChangeActionImage(item);
         }
     }
 }
