@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
-  m_Name: Mini Modulo Elytrum
+  m_Name: Tarro de Talio
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 2017772461, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 29
-  itemName: Mini Modulo Elytrum
-  itemDescription: Restaura 10 de Elytrum
-  type: 0
+  itemSprite: {fileID: 1665702239, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 34
+  itemName: Tarro Talio
+  itemDescription: "Botella para almacenar l\xEDquidos hecha de Talio"
+  type: 3
   consumableValues:
     consumableType: 0
-    amountToRestore: 10
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 20
-  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
-    amountRequired: 1
-  timeToCraft: 5
+  - item: {fileID: 11400000, guid: 0f0b2f0a90206c341bfb9ce282a6ed51, type: 2}
+    amountRequired: 3
+  timeToCraft: 10
   craftEnergyRequired: 1

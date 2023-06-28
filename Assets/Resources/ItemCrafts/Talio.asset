@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
-  m_Name: Mini Modulo Elytrum
+  m_Name: Talio
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 2017772461, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 29
-  itemName: Mini Modulo Elytrum
-  itemDescription: Restaura 10 de Elytrum
-  type: 0
+  itemSprite: {fileID: 1665702239, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 33
+  itemName: Talio
+  itemDescription: Lingote refinado de Talita
+  type: 3
   consumableValues:
     consumableType: 0
-    amountToRestore: 10
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 20
-  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
-    amountRequired: 1
-  timeToCraft: 5
+  - item: {fileID: 11400000, guid: 6e3274b409fd8d945b17a5bc43443f3d, type: 2}
+    amountRequired: 5
+  timeToCraft: 10
   craftEnergyRequired: 1
