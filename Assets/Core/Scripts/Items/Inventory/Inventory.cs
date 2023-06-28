@@ -65,14 +65,19 @@ namespace InterOrbital.Player
                 }
             }
         }
-        
+
+        protected void UpdateActionUI()
+        {
+            int _actualItemEquiped = PlayerComponents.Instance.InputHandler.InventoryPositionValue;
+            UIManager.Instance.ChangeActionUI(_items[_actualItemEquiped - 1].itemSo);
+        }
+
         private void SetAmount(int index, int num)
         {
             _items[index].amount = num;
             _textAmount[index].text = _items[index].amount.ToString();
         }
 
-    
         public bool IsInventoryFull()
         {
             for(int i=0; i<_sizeInventory; i++)
@@ -124,7 +129,9 @@ namespace InterOrbital.Player
                     int sum = _items[i].amount + item.amount;
                     if(sum <= _items[i].itemSo.maxAmount)
                     {
-                        SetAmount(i, sum);       
+                        SetAmount(i, sum);
+                        UpdateActionUI();
+
                         return;
                     }
                     else
@@ -143,7 +150,8 @@ namespace InterOrbital.Player
                     _items[i] = item;
                     SetAmount(i, item.amount);
                     _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
-                    
+                    UpdateActionUI();
+
                     return;
                 }
             }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using InterOrbital.Item;
 using InterOrbital.Utils;
+using System;
 
 namespace InterOrbital.Player
 {
@@ -87,6 +88,7 @@ namespace InterOrbital.Player
                 _itemsSlotBackGround[_actualItemEquiped - 1].sprite = _backgroundDefaultImage;
                 _actualItemEquiped = PlayerComponents.Instance.InputHandler.InventoryPositionValue;
                 _itemsSlotBackGround[_actualItemEquiped - 1].sprite = _backgroundSelectedImage;
+                UpdateActionUI();
             }
         }
 
@@ -103,7 +105,17 @@ namespace InterOrbital.Player
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
                     break;
                 case ItemType.Consumable:
-                    //_items[actualNumInventoryIndex] consumir item
+                    if(_items[index].itemSo.consumableValues.consumableType == ConsumableType.Elytrum)
+                    {
+                        PlayerComponents.Instance.GetComponent<PlayerEnergy>().RestoreEnergy(_items[index].itemSo.consumableValues.amountToRestore);
+                        SubstractUsedItem();
+                    }
+
+                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Health)
+                    {
+                        PlayerComponents.Instance.GetComponent<PlayerDamageable>().RestoreHealth(_items[index].itemSo.consumableValues.amountToRestore);
+                        SubstractUsedItem();
+                    }
                     break;
                 case ItemType.Bullet:
                     //TODO equipar al menu de balas si hay huecos libres
@@ -199,6 +211,7 @@ namespace InterOrbital.Player
                     }
                 }
             }
+            UpdateActionUI();
         }
 
         public void SubstractBulletInInventory(int indexInBulletSelector)
