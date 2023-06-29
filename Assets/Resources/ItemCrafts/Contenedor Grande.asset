@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: Contenedor Grande
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -639359889, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 5
+  id: 17
   itemName: Contenedor Grande
   itemDescription: Permite almacenar una gran cantidad de objetos (20 objetos)
   type: 1
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 3
   buildHighlightSprite: {fileID: -639359889, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 2758888862094030041, guid: a28d56afb4ae0e84d9d5cd48307d28e3, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: 1afdce13d0e74f045b079f8f52ed23ad, type: 2}
+  - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
     amountRequired: 15
   - item: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
     amountRequired: 3

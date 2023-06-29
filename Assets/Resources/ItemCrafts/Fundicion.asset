@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: Fundicion
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 1936871818, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 5
+  id: 20
   itemName: "Fundici\xF3n"
   itemDescription: Esta estructura permite derretir objetos para refinarlos mediante
     el uso de Elytrum.
   type: 1
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 0
   maxAmount: 0
   buildHighlightSprite: {fileID: 21300000, guid: 0fa70e1392ab6dd439fca3057304a80d, type: 3}
-  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  buildPrefab: {fileID: 6367156890596238142, guid: e588c5e59b4978b4786d57f936579342, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: 1afdce13d0e74f045b079f8f52ed23ad, type: 2}
+  - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
     amountRequired: 10
   - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
     amountRequired: 3

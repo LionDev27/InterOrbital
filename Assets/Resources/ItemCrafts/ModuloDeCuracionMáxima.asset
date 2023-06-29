@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
-  m_Name: "VallasDeProtecci\xF3n"
+  m_Name: "ModuloDeCuracionM\xE1xima"
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 24
-  itemName: Vallas de Proteccion
+  itemSprite: {fileID: -920909410, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 28
+  itemName: Modulo de Curacion Grande
   itemDescription: Bloquean el paso a los enemigos
-  type: 1
+  type: 0
   consumableValues:
-    consumableType: 0
-    amountToRestore: 0
+    consumableType: 1
+    amountToRestore: 30
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
-    amountRequired: 5
-  - item: {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}
-    amountRequired: 5
-  - item: {fileID: 11400000, guid: c4446f9b1aea9de419ce728e60b50f20, type: 2}
-    amountRequired: 2
+  - item: {fileID: 11400000, guid: b231abf8dfcf8374a9a876f86bd79ee7, type: 2}
+    amountRequired: 10
+  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
+    amountRequired: 4
+  - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+    amountRequired: 3
   timeToCraft: 10
   craftEnergyRequired: 1

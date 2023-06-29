@@ -13,12 +13,25 @@ MonoBehaviour:
   m_Name: ClusterBullet
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 805190538, guid: 01189b94e1a12234287bdbebfb8f2113, type: 3}
-  id: 8
+  id: 37
   itemName: Bala Racimo
   itemDescription: Bala que se divide en 3
   type: 2
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 50
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: c3cb2633c158b34419100d9693bc7485, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
+    amountRequired: 2
+  timeToCraft: 0
+  craftEnergyRequired: 0
   bulletPrefab: {fileID: 27296961458175940, guid: fb0e13a266203794eb5102f4c02ae9d5, type: 3}

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: "Contenedor Peque\xF1o"
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 4
+  id: 18
   itemName: "Contenedor Peque\xF1o"
   itemDescription: Permite almacenar 10 recursos
   type: 1
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 3
   buildHighlightSprite: {fileID: -142253870, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
@@ -27,7 +30,7 @@ MonoBehaviour:
     amountRequired: 1
   - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
     amountRequired: 1
-  - item: {fileID: 11400000, guid: 1afdce13d0e74f045b079f8f52ed23ad, type: 2}
+  - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
     amountRequired: 3
   timeToCraft: 5
   craftEnergyRequired: 1

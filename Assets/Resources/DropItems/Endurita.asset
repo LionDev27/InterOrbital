@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Endurita
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 913740778, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  id: 11
+  id: 12
   itemName: Endurita
   itemDescription: Mena que se puede fundir para obtener Endurio
   type: 3
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}
