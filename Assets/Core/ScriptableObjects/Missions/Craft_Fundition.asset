@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
-  m_Name: Craft_Temporal_Fundition
+  m_Name: Craft_Fundition
   m_EditorClassIdentifier: 
   typeMission: 2
-  missionDescription: Craft a Temporal Fundition
+  missionDescription: Craft a Fundition
   amountToReach: 1
   imageMission: {fileID: -491262000, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   itemsGoalList:
-  - {fileID: 11400000, guid: 03a8b995bab1dd14cb509a87e8a479a9, type: 2}
+  - {fileID: 11400000, guid: 75eb406dff0ebe94aaabc53a023b3b86, type: 2}

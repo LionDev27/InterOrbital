@@ -103,6 +103,7 @@ namespace InterOrbital.Player
         public override void RestoreHealth(int healthAmount)
         {
             base.RestoreHealth(healthAmount);
+            UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
             ResetHealthTimer();
         }
 

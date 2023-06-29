@@ -15,11 +15,11 @@ MonoBehaviour:
   itemSprite: {fileID: 385260345, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 29
   itemName: Mini Modulo Elytrum
-  itemDescription: Restaura 10 de Elytrum
+  itemDescription: Restaura 20 de Energia
   type: 0
   consumableValues:
     consumableType: 0
-    amountToRestore: 10
+    amountToRestore: 20
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}

@@ -593,6 +593,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 75eb406dff0ebe94aaabc53a023b3b86, type: 2}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 18e1f5b46156692499e361e4309a5adf, type: 2}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: dfd7f12ede84e2d4eb29a68edc3f0277, type: 2}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: dfd7f12ede84e2d4eb29a68edc3f0277, type: 2}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: dfd7f12ede84e2d4eb29a68edc3f0277, type: 2}
     - target: {fileID: 7473110525007335444, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: m_Name
       value: Craft
