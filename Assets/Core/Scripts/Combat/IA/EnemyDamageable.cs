@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
+using InterOrbital.Mission;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,10 +15,12 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private ParticleSystem _deathParticles;
         [SerializeField] private float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
+        private MissionCreator _missionCreator;
         private EnemyAgentBase _agent;
 
         private void Awake()
         {
+            _missionCreator = FindObjectOfType<MissionCreator>();
             _agent = GetComponent<EnemyAgentBase>();
         }
 
@@ -29,6 +32,7 @@ namespace InterOrbital.Combat.IA
 
         protected override void Death()
         {
+            _missionCreator.UpdateMission(1, null);
             StartCoroutine(nameof(DeathSequence));
         }
 
