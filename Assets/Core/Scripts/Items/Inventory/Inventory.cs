@@ -7,11 +7,13 @@ using TMPro;
 using Unity.VisualScripting;
 using System;
 using InterOrbital.Utils;
+using InterOrbital.Mission;
 
 namespace InterOrbital.Player
 {
     public class Inventory : MonoBehaviour
     {
+        private MissionCreator _missionCreator;
         protected int _totalNumberOfSlots;
         protected ItemObject [] _items;
         protected Image[] _itemsSlotBackGround;
@@ -135,7 +137,6 @@ namespace InterOrbital.Player
                         {
                             BulletSelector.Instance.UpdateBulletSelectorUI();
                         }
-                        SetAmount(i, sum);
                         UpdateActionUI();
 
                         return;

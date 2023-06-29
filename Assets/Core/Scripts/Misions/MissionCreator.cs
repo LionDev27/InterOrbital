@@ -31,16 +31,16 @@ namespace InterOrbital.Mission
             _actualProgress = 0;
         }
 
-        public void UpdateMission(int amountGet, ItemScriptableObject item = null)
+        public void UpdateMission(int amountGet, string name = null)
         {
 
-            if (item != null && _actualMission is MissionItemScriptableObject childObject)
+            if (name != null && _actualMission is MissionItemScriptableObject childObject)
             {
-               if(childObject.itemGoal == item) {
+               if(childObject.itemGoal.itemName == name) {
                     _actualProgress += amountGet;
                 }
             }
-            else if (item == null)
+            else if (name == null)
             {
                 _actualProgress += amountGet;
             }
