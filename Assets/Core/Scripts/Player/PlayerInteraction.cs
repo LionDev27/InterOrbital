@@ -9,7 +9,6 @@ namespace InterOrbital.Player
     public class PlayerInteraction : PlayerComponents
     {
         [SerializeField] private float _interactionRange;
-        [FormerlySerializedAs("_interactionColdown")] [SerializeField] private float _interactionCooldown;
         private BaseInteractable _currentInteractable;
         private UIManager _uiManager;
         private bool _isInteracting;

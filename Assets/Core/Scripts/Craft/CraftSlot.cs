@@ -26,7 +26,6 @@ namespace InterOrbital.Item
         {
             _item = item;
             _image.sprite = item.itemSprite;
-
         }
         
         public void OnPointerClick(PointerEventData eventData)

@@ -50,6 +50,7 @@ namespace InterOrbital.Player
                 {
                     recollectable.Recollect();
                     _timer = 0f;
+                    return;
                 }
             }
         }

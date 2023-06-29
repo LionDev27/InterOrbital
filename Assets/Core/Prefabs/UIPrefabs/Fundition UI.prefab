@@ -720,9 +720,7 @@ MonoBehaviour:
   _craftUI: {fileID: 1653554379471341967}
   gridPrefab: {fileID: 481760642261103904, guid: 573c346b0a16ee84daf9de06f6274d85, type: 3}
   itemsCraft:
-  - {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
-  - {fileID: 11400000, guid: 0f0b2f0a90206c341bfb9ce282a6ed51, type: 2}
-  - {fileID: 11400000, guid: 9254e584eff99184a8c0d1a62e0fb776, type: 2}
+  - {fileID: 0}
   currentCraftingItem: {fileID: 0}
 --- !u!1 &1653554378812902072
 GameObject:
