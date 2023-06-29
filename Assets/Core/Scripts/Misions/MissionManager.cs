@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using InterOrbital.Others;
+using InterOrbital.Player;
 using UnityEngine;
 
 namespace InterOrbital.Mission
@@ -36,7 +37,8 @@ namespace InterOrbital.Mission
             }
             else
             {
-                //FIN DEMO
+                PlayerComponents.Instance.InputHandler.DeactivateControls();
+                LevelManager.Instance.BackMenu();
             }
             
         }

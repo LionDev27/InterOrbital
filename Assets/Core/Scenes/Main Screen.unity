@@ -5194,11 +5194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &653047984 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 736037908784321799, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
-  m_PrefabInstance: {fileID: 736037909226007991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &662787516
 GameObject:
   m_ObjectHideFlags: 0
@@ -5658,10 +5653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCanvasGroup: {fileID: 1918018824}
-  _blackoutCanvasGroup: {fileID: 1989068053}
-  _loadingCanvasGroup: {fileID: 1892319295}
-  _loadingPanel: {fileID: 653047984}
-  _playPanel: {fileID: 1100895272}
 --- !u!114 &898977256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5877,11 +5868,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978353255}
   m_CullTransparentMesh: 1
---- !u!1 &1100895272 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 736037910309861791, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
-  m_PrefabInstance: {fileID: 736037909226007991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1243959922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6352,11 +6338,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!225 &1892319295 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 736037910027545992, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
-  m_PrefabInstance: {fileID: 736037909226007991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1918018823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6409,11 +6390,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &1989068053 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 736037910124292258, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
-  m_PrefabInstance: {fileID: 736037909226007991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &736037909226007991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6421,10 +6397,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 736037909287943823, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 898977255}
     - target: {fileID: 736037910314970081, guid: 8222eb63cd8798943be393d2c32d8897, type: 3}
       propertyPath: m_RootOrder
       value: 3
