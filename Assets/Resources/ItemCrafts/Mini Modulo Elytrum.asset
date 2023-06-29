@@ -15,18 +15,19 @@ MonoBehaviour:
   itemSprite: {fileID: 385260345, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 29
   itemName: Mini Modulo Elytrum
-  itemDescription: Restaura 10 de Elytrum
+  itemDescription: Restaura un poco de Energia
   type: 0
   consumableValues:
     consumableType: 0
-    amountToRestore: 10
+    amountToRestore: 20
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
     amountRequired: 1
   timeToCraft: 5
   craftEnergyRequired: 1
+  amountToCraft: 1

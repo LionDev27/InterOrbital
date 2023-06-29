@@ -3,85 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using InterOrbital.Utils;
 
-[RequireComponent(typeof(Collider2D))]
-public class SpriteMaskController : MonoBehaviour
+namespace InterOrbital.Others
 {
-    [SerializeField]
-    private SpriteRenderer _playerSpriteRenderer;
-    [SerializeField]
-    private SpriteMask _spriteMask;
-    private Collider2D _spriteMaskCollider;
-    private List<SpriteRenderer> _otherRenderers;
-
-    public bool checking = false;
-
-    private void Awake()
+    [RequireComponent(typeof(Collider2D))]
+    public class SpriteMaskController : MonoBehaviour
     {
-        _otherRenderers = new List<SpriteRenderer>();
-        _spriteMaskCollider = GetComponent<Collider2D>();
-        _spriteMaskCollider.isTrigger = true;
-    }
+        [SerializeField] private SpriteRenderer _playerSpriteRenderer;
+        [SerializeField] private SpriteMask _spriteMask;
+        private Collider2D _spriteMaskCollider;
+        private List<SpriteRenderer> _otherRenderers;
 
-    void Update()
-    {
-        if (_otherRenderers.Count > 0)
+        public bool checking = false;
+
+        private void Awake()
         {
-            foreach (var renderer in _otherRenderers)
+            _otherRenderers = new List<SpriteRenderer>();
+            _spriteMaskCollider = GetComponent<Collider2D>();
+            _spriteMaskCollider.isTrigger = true;
+        }
+
+        void Update()
+        {
+            if (_otherRenderers.Count > 0)
             {
-                if (_playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
+                foreach (var renderer in _otherRenderers)
                 {
-                    renderer.ChangueSpriteAlphaColor(0.4f);
+                    if (_playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
+                    {
+                        renderer.ChangueSpriteAlphaColor(0.4f);
+                    }
+                    else
+                    {
+                        renderer.ChangueSpriteAlphaColor(1f);
+                    }
                 }
-                else
-                {
-                    renderer.ChangueSpriteAlphaColor(1f);
-                }
+                // foreach(SpriteRenderer renderer in _otherRenderers)
+                // {
+                //     if(_playerSpriteRenderer.sortingLayerName == renderer.sortingLayerName
+                //         && _playerSpriteRenderer.sortingOrder <= renderer.sortingOrder
+                //         && _playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
+                //     {
+                //         //_spriteMask.enabled = true;
+                //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                //         renderer.ChangueSpriteAlphaColor(0.4f);
+                //         return;
+                //     }
+                //     else
+                //     {
+                //         renderer.ChangueSpriteAlphaColor(1f);
+                //         //_spriteMask.enabled = false;
+                //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+                //     }
+                // }
             }
-            // foreach(SpriteRenderer renderer in _otherRenderers)
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer != null && collision.CompareTag("StaticObject"))
+            {
+                _otherRenderers.Add(spriteRenderer);
+                //checking = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
+            if (_otherRenderers.Contains(spriteRenderer))
+            {
+                spriteRenderer.ChangueSpriteAlphaColor(1f);
+                _otherRenderers.Remove(spriteRenderer);
+            }
+            // if(spriteRenderer != null && collision.CompareTag("StaticObject"))
             // {
-            //     if(_playerSpriteRenderer.sortingLayerName == renderer.sortingLayerName
-            //         && _playerSpriteRenderer.sortingOrder <= renderer.sortingOrder
-            //         && _playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
-            //     {
-            //         //_spriteMask.enabled = true;
-            //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-            //         renderer.ChangueSpriteAlphaColor(0.4f);
-            //         return;
-            //     }
-            //     else
-            //     {
-            //         renderer.ChangueSpriteAlphaColor(1f);
-            //         //_spriteMask.enabled = false;
-            //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
-            //     }
+            //     //checking = false;
+            //     //spriteRenderer.ChangueSpriteAlphaColor(1f);
+            //     //_spriteMask.enabled = false;
+            //     //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None; 
             // }
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-        if(spriteRenderer != null && collision.CompareTag("StaticObject"))
-        {
-            _otherRenderers.Add(spriteRenderer);
-            //checking = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-        if (_otherRenderers.Contains(spriteRenderer))
-        {
-            spriteRenderer.ChangueSpriteAlphaColor(1f);
-            _otherRenderers.Remove(spriteRenderer);
-        }
-        // if(spriteRenderer != null && collision.CompareTag("StaticObject"))
-        // {
-        //     //checking = false;
-        //     //spriteRenderer.ChangueSpriteAlphaColor(1f);
-        //     //_spriteMask.enabled = false;
-        //     //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None; 
-        // }
     }
 }

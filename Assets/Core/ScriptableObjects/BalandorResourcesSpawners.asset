@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97207702a3f228049b4db2f701a428fc, type: 3}
   m_Name: BalandorResourcesSpawners
   m_EditorClassIdentifier: 
-  spawnersAmount: 15
+  spawnersAmount: 18
   distanceBetweenSpawners: 5
   _resourcesBiomeSpawners:
   - biome: Neutral
@@ -21,6 +21,7 @@ MonoBehaviour:
     - {fileID: 3000195985902945075, guid: d9168bf8b1e0f2646acc9e16a002691f, type: 3}
     - {fileID: 3000195985902945075, guid: 6b065f3fc7f54344992a8a66d8056698, type: 3}
     - {fileID: 3000195985902945075, guid: 36e69645198d67b45a44754ff2c2e5c9, type: 3}
+    - {fileID: 3000195985902945075, guid: 186a7069e17612a408c6358e48ae7d65, type: 3}
   - biome: Rocky
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: 115064839f805fb43b16432fd0dcdfd2, type: 3}

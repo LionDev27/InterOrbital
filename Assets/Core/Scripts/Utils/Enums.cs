@@ -41,4 +41,11 @@ namespace InterOrbital.Utils
         Fundition, 
         Bullet
     }
+
+    public enum TypeMission
+    {
+        Recolection,
+        Hunt,
+        Craft
+    }
 }

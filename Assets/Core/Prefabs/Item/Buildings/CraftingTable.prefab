@@ -409,6 +409,7 @@ MonoBehaviour:
   _textAmount: {fileID: 6377032258291234821}
   _craftContent: {fileID: 8394653197092505987}
   dropPosition: {fileID: 1547859603167643492}
+  typeTable: 0
 --- !u!114 &562994222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,8 +498,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 543544073
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6301464117466257835
 MonoBehaviour:
@@ -793,9 +794,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 543544073
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 54c9cf56cfce9f344aab3ca30a4b5c8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using InterOrbital.Item;
+using InterOrbital.Mission;
 using InterOrbital.Player;
 using InterOrbital.UI;
 using InterOrbital.Utils;
@@ -20,8 +21,15 @@ namespace InterOrbital.Item
         [SerializeField] private Transform dropPosition;
         [SerializeField] private TypeTableCraft typeTable;
         private Queue<CraftAmountItem> _queueCraft;
+        private MissionCreator _missionCreator;
         private bool _isCrafting;
-        
+
+
+        private void Awake()
+        {
+            _missionCreator = FindObjectOfType<MissionCreator>();
+        }
+
         protected override void Start()
         {
             switch (typeTable)
@@ -44,6 +52,7 @@ namespace InterOrbital.Item
         public override void Craft(ItemCraftScriptableObject itemCraft, int amount)
         {
             _queueCraft.Enqueue(new CraftAmountItem(itemCraft, amount));
+            _missionCreator.UpdateMission(amount, itemCraft.itemName);
             if (!_isCrafting)
             {
                 StartCoroutine(CreateItem());
@@ -66,7 +75,10 @@ namespace InterOrbital.Item
                     _progressBar.fillAmount = 0;
                     _progressBar.DOFillAmount(1f, craftItem.item.timeToCraft).SetEase(Ease.Linear).OnComplete(() =>
                     {
-                        PlayerComponents.Instance.Inventory.DropItem(dropPosition.position, transform.position, -1, craftItem.item);
+                        for (int j = 0; j < craftItem.item.amountToCraft; j++)
+                        {
+                            PlayerComponents.Instance.Inventory.DropItem(dropPosition.position, transform.position, -1, craftItem.item);
+                        }
                     });
 
                     yield return new WaitUntil(() => _progressBar.fillAmount == 1);

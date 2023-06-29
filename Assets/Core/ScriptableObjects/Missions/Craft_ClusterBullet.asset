@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
+  m_Name: Craft_ClusterBullet
+  m_EditorClassIdentifier: 
+  typeMission: 2
+  missionDescription: Craft a Cluster Bullet
+  amountToReach: 1
+  imageMission: {fileID: 805190538, guid: 01189b94e1a12234287bdbebfb8f2113, type: 3}
+  itemsGoalList:
+  - {fileID: 11400000, guid: f25c7125d8c369748aae7d95d3c03386, type: 2}

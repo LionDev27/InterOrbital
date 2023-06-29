@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using InterOrbital.Combat;
+using InterOrbital.Others;
 using InterOrbital.UI;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace InterOrbital.Player
     public class PlayerDamageable : Damageable
     {
         [SerializeField] private GameObject _hitSpriteObj;
+        [SerializeField] private ParticleSystem _deathParticles;
         [SerializeField] private float _damageCameraShakeIntensity = 5f;
         [SerializeField] private float _invencibilityTime;
         [SerializeField] private float _loseHealthTimerDefaultValue;
@@ -103,14 +105,22 @@ namespace InterOrbital.Player
         public override void RestoreHealth(int healthAmount)
         {
             base.RestoreHealth(healthAmount);
+            UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
             ResetHealthTimer();
         }
 
         protected override void Death()
         {
-            Debug.Log("Player Dead");
-            //TODO: Desactivar colisiones y animacion de muerte.
             _playerComponents.InputHandler.DeactivateControls();
+            StartCoroutine(DeathSequence());
+        }
+        
+        private IEnumerator DeathSequence()
+        {
+            yield return new WaitForSeconds(_invencibilityTime);
+            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
+            LevelManager.Instance.BackMenu();
+            gameObject.SetActive(false);
         }
 
         private IEnumerator HitAnimation()

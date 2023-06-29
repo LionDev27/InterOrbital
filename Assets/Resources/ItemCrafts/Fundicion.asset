@@ -27,13 +27,11 @@ MonoBehaviour:
   buildPrefab: {fileID: 6367156890596238142, guid: e588c5e59b4978b4786d57f936579342, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
-    amountRequired: 10
-  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
-    amountRequired: 3
-  - item: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
-    amountRequired: 2
-  - item: {fileID: 11400000, guid: 02d0af574372e724eaed41578ab6c4f5, type: 2}
+  - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
     amountRequired: 5
+  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    amountRequired: 1
+  - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+    amountRequired: 1
   timeToCraft: 10
   craftEnergyRequired: 5

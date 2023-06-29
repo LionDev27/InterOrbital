@@ -6,14 +6,14 @@ using UnityEngine;
 namespace InterOrbital.Item
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemFuelScriptableObject", order = 6)]
-    public class ItemFuelScriptableObject : ItemScriptableObject
+    public class ItemFuelScriptableObject : ItemCraftScriptableObject
     {
         public int energyProvided;
     }
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(ItemFuelScriptableObject), true)]
-    public class ItemFuelScriptableObjectEditor : ItemScriptableObjectEditor
+    public class ItemFuelScriptableObjectEditor : ItemCraftScriptableObjectEditor
     {
         public override void OnInspectorGUI()
         {

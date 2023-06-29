@@ -15,11 +15,11 @@ MonoBehaviour:
   itemSprite: {fileID: -920909410, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 28
   itemName: Modulo de Curacion Grande
-  itemDescription: Bloquean el paso a los enemigos
+  itemDescription: Cura 24 de Vida
   type: 0
   consumableValues:
     consumableType: 1
-    amountToRestore: 30
+    amountToRestore: 24
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
@@ -36,3 +36,4 @@ MonoBehaviour:
     amountRequired: 3
   timeToCraft: 10
   craftEnergyRequired: 1
+  amountToCraft: 1

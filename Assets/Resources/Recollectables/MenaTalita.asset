@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
+    - {fileID: 11400000, guid: c3cb2633c158b34419100d9693bc7485, type: 2}
     - {fileID: 11400000, guid: 6e3274b409fd8d945b17a5bc43443f3d, type: 2}
+    - {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
     itemSelectors:
+    - itemName: Pedrusco
     - itemName: Talita
-    dropRates: 64000000
+    - itemName: Elytral
+    dropRates: 460000001c00000002000000
