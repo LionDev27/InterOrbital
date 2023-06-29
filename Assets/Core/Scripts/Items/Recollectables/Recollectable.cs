@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
 using UnityEngine;
@@ -13,8 +14,9 @@ namespace InterOrbital.Recollectables
         [Tooltip("How many times can the player recollect from this recollectable.")]
         [SerializeField] private int _health;
         [SerializeField] private GameObject _dropItemPrefab;
-        [SerializeField] private float _dropForce = 3f;
-
+        [SerializeField] private float _dropForce = 3f; 
+        [SerializeField] private GameObject _hitMask;
+        
         private int _currentHealth;
         private List<ItemScriptableObject> _dropItems => _scriptableObject.recollectableConfig.dropItems;
         private List<int> _dropRates => _scriptableObject.recollectableConfig.dropRates;
@@ -75,10 +77,18 @@ namespace InterOrbital.Recollectables
             DropItem(tempDroppingItem, dropItemOriginPos);
             
             _currentHealth--;
+            StartCoroutine(HitAnimation());
+        }
+
+        private IEnumerator HitAnimation()
+        {
+            _hitMask.SetActive(true);
+            yield return new WaitForSeconds(0.15f);
             if (_currentHealth <= 0)
             {
                 DestroyRecollectable();
             }
+            _hitMask.SetActive(false);
         }
 
         public Vector2 GetDimensions()

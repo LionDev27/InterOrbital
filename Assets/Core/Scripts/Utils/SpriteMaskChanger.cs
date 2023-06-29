@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace InterOrbital.Utils
 {
     public class SpriteMaskChanger : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _rendererToApplyMask;
-        [SerializeField] private bool updateSprite;
+        [SerializeField] private bool _updateSprite;
+        [SerializeField] private bool _changePosition;
         private SpriteMask _spriteMask;
 
         private void Awake()
@@ -16,13 +18,15 @@ namespace InterOrbital.Utils
 
         private void Start()
         {
-            if (!updateSprite)
+            if (!_updateSprite)
                 _spriteMask.sprite = _rendererToApplyMask.sprite;
+            if (_changePosition)
+                transform.position = _rendererToApplyMask.transform.position;
         }
 
         private void Update()
         {
-            if (updateSprite)
+            if (_updateSprite)
             {
                 ChangeSpriteMask();
                 FlipSpriteMask();
