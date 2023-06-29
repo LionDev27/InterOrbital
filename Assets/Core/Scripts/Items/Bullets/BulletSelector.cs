@@ -91,7 +91,7 @@ public class BulletSelector : MonoBehaviour
     {
         if(_selectedBulletIndex < bulletsItems.Count)
         {
-            PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab);
+            PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab, bulletsItems[_selectedBulletIndex].shotSFX);
         }
     }
 

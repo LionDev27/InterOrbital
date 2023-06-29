@@ -9,6 +9,7 @@ namespace InterOrbital.Player
         public Transform attackPoint;
         [SerializeField] private GameObject _gunSpriteObj;
         private GameObject _bulletPrefab;
+        private AudioClip _bulletSFX;
 
         [Header("Weapon Upgrades")]
         [SerializeField] private float _attackCooldown;
@@ -22,9 +23,10 @@ namespace InterOrbital.Player
             InputHandler.OnAttack += Attack;
         }
 
-        public void ChangeBullet(GameObject bullet) 
+        public void ChangeBullet(GameObject bullet,AudioClip bulletSFX) 
         {
             _bulletPrefab = bullet;
+            _bulletSFX = bulletSFX;
             if (!_bulletPrefab.CompareTag("EmptyBullet"))
             {
                 _attackCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
@@ -50,6 +52,7 @@ namespace InterOrbital.Player
                 AttackEffects();
                 BulletSelector.Instance.SubstractBullet();
             }
+            AudioManager.Instance.PlaySFX(_bulletSFX);
         }
         
         private void AttackEffects()

@@ -7,6 +7,7 @@ namespace InterOrbital.Item
     public class ItemBulletScriptableObject : ItemCraftScriptableObject
     {
         public GameObject bulletPrefab;
+        public AudioClip shotSFX;
     }
 
 #if UNITY_EDITOR
@@ -23,6 +24,7 @@ namespace InterOrbital.Item
                 if (scriptableObject != null)
                 {
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("bulletPrefab"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("shotSFX"));
                 }
                 serializedObject.ApplyModifiedProperties();
             }
