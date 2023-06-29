@@ -205,13 +205,16 @@ public class CraftCreator : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(PlayerComponents.Instance.Inventory.dropItemPrefab);
-            ItemObject item = obj.AddComponent<ItemObject>();
-            item.ObtainComponents();
-            Destroy(obj);
-            item.SetItem(_itemCraft);
-            item.amount = _amountToCraft;
-            PlayerComponents.Instance.Inventory.AddItem(item);
+            for (int i = 0; i < _itemCraft.amountToCraft; i++)
+            {
+                GameObject obj = Instantiate(PlayerComponents.Instance.Inventory.dropItemPrefab);
+                ItemObject item = obj.AddComponent<ItemObject>();
+                item.ObtainComponents();
+                Destroy(obj);
+                item.SetItem(_itemCraft);
+                item.amount = _amountToCraft;
+                PlayerComponents.Instance.Inventory.AddItem(item);
+            }
         }
     }
 

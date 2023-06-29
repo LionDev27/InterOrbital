@@ -15,11 +15,11 @@ MonoBehaviour:
   itemSprite: {fileID: 1746437706, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 26
   itemName: Mini Modulo Curativo
-  itemDescription: Restaura 8 de Vida
+  itemDescription: Restaura un poco de Vida
   type: 0
   consumableValues:
     consumableType: 1
-    amountToRestore: 8
+    amountToRestore: 4
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
@@ -27,6 +27,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   itemsRequired:
   - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
-    amountRequired: 2
+    amountRequired: 1
   timeToCraft: 5
   craftEnergyRequired: 1
+  amountToCraft: 1
