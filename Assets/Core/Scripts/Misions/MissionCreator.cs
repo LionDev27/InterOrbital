@@ -14,11 +14,13 @@ namespace InterOrbital.Mission
         [SerializeField] private TextMeshProUGUI _feedbackText;
         private int _actualProgress = 0;
         private MissionScriptableObject _actualMission;
+        private bool _missionCompleted;
 
         private IEnumerator WaitForNextMission()
         {
             yield return new WaitForSeconds(1);
             MissionManager.Instance.NextMission();
+            _missionCompleted = false;
         }
     
         public void CreateMission(MissionScriptableObject mission)
@@ -33,11 +35,15 @@ namespace InterOrbital.Mission
 
         public void UpdateMission(int amountGet, string name = null)
         {
-
+            if (_missionCompleted) return;
             if (name != null && _actualMission is MissionItemScriptableObject childObject)
             {
-               if(childObject.itemGoal.itemName == name) {
-                    _actualProgress += amountGet;
+                foreach (var item in childObject.itemsGoalList)
+                {
+                    if(item.itemName == name)
+                    {
+                        _actualProgress += amountGet;
+                    }
                 }
             }
             else if (name == null)
@@ -48,6 +54,7 @@ namespace InterOrbital.Mission
             _feedbackText.text = _actualProgress.ToString() + "/" + _actualMission.amountToReach.ToString();
             if (_actualProgress >= _actualMission.amountToReach)
             {
+                _missionCompleted = true;
                 StartCoroutine(WaitForNextMission());
             }
         }

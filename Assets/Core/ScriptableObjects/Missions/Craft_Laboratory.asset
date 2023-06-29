@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
-  m_Name: Recollect_Saporo
+  m_Name: Craft_Laboratory
   m_EditorClassIdentifier: 
-  typeMission: 0
-  missionDescription: Recolecta Saporo
-  amountToReach: 5
-  imageMission: {fileID: 1889928051, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  itemGoal: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+  typeMission: 2
+  missionDescription: Craft a Laboratory
+  amountToReach: 1
+  imageMission: {fileID: 21300000, guid: 66b5851b2ce30814a88302e77666de0c, type: 3}
+  itemsGoalList:
+  - {fileID: 11400000, guid: 18e1f5b46156692499e361e4309a5adf, type: 2}
