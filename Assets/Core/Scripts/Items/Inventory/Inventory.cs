@@ -33,7 +33,7 @@ namespace InterOrbital.Player
 
         public virtual void Awake()
         {
-            
+            _missionCreator = FindObjectOfType<MissionCreator>();
         }
 
         
@@ -137,6 +137,7 @@ namespace InterOrbital.Player
                         {
                             BulletSelector.Instance.UpdateBulletSelectorUI();
                         }
+                        _missionCreator.UpdateMission(item.amount, item.itemSo.itemName);
                         UpdateActionUI();
 
                         return;
@@ -149,6 +150,7 @@ namespace InterOrbital.Player
                         {
                             BulletSelector.Instance.UpdateBulletSelectorUI();
                         }
+                        _missionCreator.UpdateMission(item.amount - rest, item.itemSo.itemName);
                         item.amount = rest;
                     }
                  }
@@ -167,7 +169,7 @@ namespace InterOrbital.Player
                     _itemsSlot[i].sprite = null;
                     _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
                     UpdateActionUI();
-
+                    _missionCreator.UpdateMission(item.amount, item.itemSo.itemName);
                     return;
                 }
             }
