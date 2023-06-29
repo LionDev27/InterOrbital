@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e953fd7479a47378d3fffb9aa936a4c, type: 3}
-  m_Name: Eriolano
+  m_Name: EnduritaPuraGrande
   m_EditorClassIdentifier: 
   recollectableConfig:
     dropItems:
-    - {fileID: 11400000, guid: b1593eed2f1d35248aa5814e8fd0b841, type: 2}
-    - {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
-    - {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+    - {fileID: 11400000, guid: 0dc7bcb816303ff4198382e40f3674e7, type: 2}
+    - {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
     itemSelectors:
-    - itemName: Eriolano Leaves
-    - itemName: Eriolano Wood
-    - itemName: Saporo
-    dropRates: 1e0000003c0000000a000000
+    - itemName: Endurita
+    - itemName: Elytral
+    dropRates: 5000000014000000

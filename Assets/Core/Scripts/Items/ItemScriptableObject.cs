@@ -10,6 +10,7 @@ namespace InterOrbital.Item
         public Sprite itemSprite;
         public int id;
         public string itemName;
+        [TextArea(1, 2)]
         public string itemDescription;
         public ItemType type;
         public ConsumableValues consumableValues;
