@@ -17,8 +17,21 @@ MonoBehaviour:
   itemName: Biocombustible
   itemDescription: Recurso basico para generar energia
   type: 0
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
   isStackable: 1
   maxAmount: 30
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
+    amountRequired: 1
+  - item: {fileID: 11400000, guid: d8ef12576524f774ab3528bfb8c1125c, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
+    amountRequired: 1
+  timeToCraft: 5
+  craftEnergyRequired: 1
   energyProvided: 5
