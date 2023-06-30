@@ -762,7 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunAnimator: {fileID: 4286876814580422552}
   _recollectionRange: 2.5
-  _recollectionCooldownInSeconds: 1
+  _recollectionCooldownInSeconds: 0.8
   _recollectionWidth: 1.5
 --- !u!114 &5377065433316699244
 MonoBehaviour:
@@ -1086,7 +1086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rendererToApplyMask: {fileID: 3227855541346394483}
-  updateSprite: 1
+  _updateSprite: 0
+  _changePosition: 0
 --- !u!1001 &5039784841043459449
 PrefabInstance:
   m_ObjectHideFlags: 0
