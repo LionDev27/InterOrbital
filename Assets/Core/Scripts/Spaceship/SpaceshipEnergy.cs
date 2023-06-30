@@ -25,14 +25,17 @@ namespace InterOrbital.Spaceship
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Application.isEditor)
             {
-                LoseEnergy(5);
-            }
+                if (Input.GetKeyDown(KeyCode.N))
+                {
+                    LoseEnergy(5);
+                }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                RestoreEnergy(1);
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    RestoreEnergy(1);
+                }
             }
         }
 

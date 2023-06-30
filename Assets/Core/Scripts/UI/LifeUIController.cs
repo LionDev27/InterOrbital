@@ -13,8 +13,11 @@ public class LifeUIController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H)) {
-            UpgradeLifeTier();
+        if (Application.isEditor)
+        {
+            if(Input.GetKeyDown(KeyCode.H)) {
+                UpgradeLifeTier();
+            }
         }
     }
 

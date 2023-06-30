@@ -14,8 +14,11 @@ public class EnergyUIController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H)) {
-            UpgradeEnergyTier();
+        if (Application.isEditor)
+        {
+            if(Input.GetKeyDown(KeyCode.H)) {
+                UpgradeEnergyTier();
+            }
         }
     }
 

@@ -38,21 +38,24 @@ namespace InterOrbital.Player
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Application.isEditor)
             {
-                UpdateLevel();
-            }
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest);
-            }
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest2);
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest3);
+                if (Input.GetKeyDown(KeyCode.U))
+                {
+                    UpdateLevel();
+                }
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest);
+                }
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest2);
+                }
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    DropItem(PlayerComponents.Instance.PlayerAttack.attackPoint.position, transform.position, -1, itemTest3);
+                }
             }
 
             Vector3 direction = PlayerComponents.Instance.PlayerAttack.attackPoint.position - transform.position;
