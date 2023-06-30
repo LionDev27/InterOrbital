@@ -652,7 +652,7 @@ MonoBehaviour:
   _deathParticles: {fileID: 7000790301138292211}
   _damageCameraShakeIntensity: 5
   _invencibilityTime: 1
-  _loseHealthTimerDefaultValue: 100
+  _loseHealthTimerDefaultValue: 10
 --- !u!114 &265110465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunAnimator: {fileID: 4286876814580422552}
   _recollectionRange: 2.5
-  _recollectionCooldownInSeconds: 0.8
+  _recollectionCooldownInSeconds: 0.5
   _recollectionWidth: 1.5
 --- !u!114 &5377065433316699244
 MonoBehaviour:
@@ -785,9 +785,9 @@ MonoBehaviour:
   gridLeftPocket: {fileID: 0}
   gridRightPocket: {fileID: 0}
   gridBullets: {fileID: 0}
-  itemTest: {fileID: 11400000, guid: aec4acbdac9451e41946a87e40bfbddf, type: 2}
-  itemTest2: {fileID: 11400000, guid: b4cd5eaa372cea84e84c015cc8a78a62, type: 2}
-  itemTest3: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
+  itemTest: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
+  itemTest2: {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}
+  itemTest3: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
 --- !u!1 &5876937837474072947
 GameObject:
   m_ObjectHideFlags: 0

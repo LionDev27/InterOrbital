@@ -595,24 +595,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b99b7559c3373734897d2372dbc6185d, type: 2}
+    - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
+      propertyPath: itemsCraft.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82f497401388cf04ea34ddfa0e40d883, type: 2}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 75eb406dff0ebe94aaabc53a023b3b86, type: 2}
+      objectReference: {fileID: 11400000, guid: ce2f8f9c84644864782c12f57319b535, type: 2}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 18e1f5b46156692499e361e4309a5adf, type: 2}
+      objectReference: {fileID: 11400000, guid: fd57a451a142c75459a14e2f3901704d, type: 2}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: dfd7f12ede84e2d4eb29a68edc3f0277, type: 2}
+      objectReference: {fileID: 11400000, guid: 75eb406dff0ebe94aaabc53a023b3b86, type: 2}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: dfd7f12ede84e2d4eb29a68edc3f0277, type: 2}
+      objectReference: {fileID: 11400000, guid: 18e1f5b46156692499e361e4309a5adf, type: 2}
     - target: {fileID: 7473110524674251200, guid: 30e264364c852744f93ff1b90fbe5882, type: 3}
       propertyPath: itemsCraft.Array.data[6]
       value: 
@@ -6767,10 +6775,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1452537711}
     m_Modifications:
-    - target: {fileID: 331055969, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: _recollectionCooldownInSeconds
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3227855542068895825, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6823,18 +6827,6 @@ PrefabInstance:
       propertyPath: gridMain
       value: 
       objectReference: {fileID: 1360426638}
-    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: itemTest
-      value: 
-      objectReference: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
-    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: itemTest2
-      value: 
-      objectReference: {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}
-    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: itemTest3
-      value: 
-      objectReference: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
     - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridBullets
       value: 

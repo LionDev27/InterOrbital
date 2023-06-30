@@ -27,10 +27,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   itemsRequired:
   - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
-    amountRequired: 3
-  - item: {fileID: 11400000, guid: 97cd23091a2d1a9408395e0707722192, type: 2}
+    amountRequired: 2
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
     amountRequired: 1
   - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
     amountRequired: 2
   timeToCraft: 10
   craftEnergyRequired: 1
+  amountToCraft: 1
