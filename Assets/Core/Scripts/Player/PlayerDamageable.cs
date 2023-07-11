@@ -9,8 +9,8 @@ namespace InterOrbital.Player
 {
     public class PlayerDamageable : Damageable
     {
-        [SerializeField] private GameObject _hitSpriteObj;
         [SerializeField] private ParticleSystem _deathParticles;
+        [SerializeField] private HitShaderController _hitShaderController;
         [SerializeField] private float _damageCameraShakeIntensity = 5f;
         [SerializeField] private float _invencibilityTime;
         [SerializeField] private float _loseHealthTimerDefaultValue;
@@ -27,8 +27,6 @@ namespace InterOrbital.Player
         protected override void Start()
         {
             base.Start();
-            if (_hitSpriteObj.activeInHierarchy)
-                _hitSpriteObj.SetActive(false);
         }
 
         private void Update()
@@ -127,10 +125,10 @@ namespace InterOrbital.Player
         {
             while (!InvencibilityEnded())
             {
-                _hitSpriteObj.SetActive(!_hitSpriteObj.activeInHierarchy);
+                _hitShaderController.Hit(!_hitShaderController.HitValue());
                 yield return new WaitForSeconds(0.2f);
             }
-            _hitSpriteObj.SetActive(false);
+            _hitShaderController.Hit(0);
         }
     }
 }

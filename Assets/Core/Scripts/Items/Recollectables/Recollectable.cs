@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
+using InterOrbital.Others;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,11 +12,11 @@ namespace InterOrbital.Recollectables
     {
         [SerializeField] private Vector2 _dimensions;
         [SerializeField] private RecollectableScriptableObject _scriptableObject;
+        [SerializeField] private HitShaderController _hitShaderController;
         [Tooltip("How many times can the player recollect from this recollectable.")]
         [SerializeField] private int _health;
         [SerializeField] private GameObject _dropItemPrefab;
-        [SerializeField] private float _dropForce = 3f; 
-        [SerializeField] private GameObject _hitMask;
+        [SerializeField] private float _dropForce = 3f;
         
         private int _currentHealth;
         private List<ItemScriptableObject> _dropItems => _scriptableObject.recollectableConfig.dropItems;
@@ -82,13 +83,11 @@ namespace InterOrbital.Recollectables
 
         private IEnumerator HitAnimation()
         {
-            _hitMask.SetActive(true);
+            _hitShaderController.Hit(1);
             yield return new WaitForSeconds(0.15f);
             if (_currentHealth <= 0)
-            {
                 DestroyRecollectable();
-            }
-            _hitMask.SetActive(false);
+            _hitShaderController.Hit(0);
         }
 
         public Vector2 GetDimensions()
