@@ -28,6 +28,7 @@ public class BuildGrid : MonoBehaviour
     {
         if (_buildMode)
         {
+            PlayerComponents.Instance.PlayerAttack.canAttack = false;
             _playerPos = buildLayer.WorldToCell(PlayerComponents.Instance.GetPlayerPosition());
 
             if (_itemToBuild != null)
@@ -35,6 +36,8 @@ public class BuildGrid : MonoBehaviour
                 HighlightTile();
             }
         }
+        else
+            PlayerComponents.Instance.PlayerAttack.canAttack = true;
     }
 
     private Vector3Int GetMouseOnGridPos()
@@ -152,7 +155,7 @@ public class BuildGrid : MonoBehaviour
     {
         int spriteWidth = (int)sprite.bounds.size.x;
         int spriteHeight = (int)sprite.bounds.size.y;
-        // Tamaño de cada tile individual
+        // Tamaï¿½o de cada tile individual
         int tileWidth = 16;
         int tileHeight = 16;
 
