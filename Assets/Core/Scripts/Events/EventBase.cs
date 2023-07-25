@@ -8,11 +8,9 @@ namespace InterOrbital.Events
     {
         public virtual void StartEvent()
         {
-            Debug.Log("INICIAR OSCURIDAD");
         }
         public virtual void EndEvent()
         {
-            Debug.Log("FINALIZAR OSCURIDAD");
         }
     }
 
