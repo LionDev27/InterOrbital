@@ -23,14 +23,14 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Awake()
         {
+            _animator = GetComponentInChildren<Animator>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
             if (_states.Count <= 0) return;
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
 
-            _animator = GetComponentInChildren<Animator>();
-            _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         protected virtual void Start()
