@@ -58,6 +58,11 @@ namespace InterOrbital.Player
             _loseEnegrgyOverTime = true;
         }
 
+        public void ToggleLoseEnergy()
+        {
+            if (Application.isEditor)
+                _loseEnegrgyOverTime = !_loseEnegrgyOverTime;
+        }
 
         public void UpgradeEnergy(int energyAmount)
         {
