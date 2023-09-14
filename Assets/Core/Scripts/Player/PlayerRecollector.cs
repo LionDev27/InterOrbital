@@ -1,4 +1,5 @@
 using System;
+using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
 
@@ -7,6 +8,7 @@ namespace InterOrbital.Player
     public class PlayerRecollector : PlayerComponents
     {
         [SerializeField] private Animator _gunAnimator;
+        [SerializeField] private int _recollectionAttackDamage = 1;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
         [SerializeField] private float _recollectionWidth = 3f;
@@ -49,6 +51,13 @@ namespace InterOrbital.Player
                 if (recollectable != null)
                 {
                     recollectable.Recollect();
+                    _timer = 0f;
+                    return;
+                }
+
+                if (hit.collider.TryGetComponent(out Damageable damageable) && !hit.collider.CompareTag(tag))
+                {
+                    damageable.GetDamage(_recollectionAttackDamage);
                     _timer = 0f;
                     return;
                 }

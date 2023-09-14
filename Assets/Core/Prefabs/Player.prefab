@@ -886,6 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunAnimator: {fileID: 4286876814580422552}
+  _recollectionAttackDamage: 1
   _recollectionRange: 2.5
   _recollectionCooldownInSeconds: 0.5
   _recollectionWidth: 1.5
