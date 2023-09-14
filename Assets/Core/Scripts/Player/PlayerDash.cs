@@ -46,6 +46,7 @@ namespace InterOrbital.Player
             {
                 PlayerMovement.EnableMovement(true);
                 PlayerAttack.canAttack = true;
+                PlayerAim.ShowGun(true);
             }
             else
                 _dashTimer -= Time.deltaTime;
@@ -62,6 +63,7 @@ namespace InterOrbital.Player
             if (IsDashing() || PlayerEnergy.EnergyEmpty) return;
             PlayerMovement.EnableMovement(false);
             PlayerAttack.canAttack = false;
+            PlayerAim.ShowGun(false);
             
             _dashTimer = _dashTime;
             _dashInvulnerabilityTimer = _dashTotalTime;
