@@ -13,10 +13,6 @@ namespace InterOrbital.Player
         private float _aimOffset;
         private float _gunSpriteOffset;
 
-        public Transform cursorT;
-
-        public Transform GunSpriteT => _gunSpriteT;
-
         protected override void Awake()
         {
             base.Awake();

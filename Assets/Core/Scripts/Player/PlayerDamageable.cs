@@ -16,9 +16,7 @@ namespace InterOrbital.Player
         [SerializeField] private float _loseHealthTimerDefaultValue;
         private float _loseHealthTimer;
         private float _invencibilityTimer;
-#if UNITY_EDITOR
         private bool _godMode;
-#endif
         
         private PlayerComponents _playerComponents;
 

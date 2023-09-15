@@ -1,105 +1,131 @@
 using InterOrbital.Item;
 using InterOrbital.Player;
-using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BulletSelector : MonoBehaviour
+namespace InterOrbital.UI
 {
-    private const int MAXIMUM_BULLETS = 4;
-
-    [SerializeField] private List<BulletSlot> bulletsSlots;
-    [SerializeField] private List<ItemBulletScriptableObject> bulletsItems;
-    [SerializeField] private ItemBulletScriptableObject emptyBullet;
-
-    [SerializeField] private Sprite bulletSlotSelectedImage;
-    [SerializeField] private Sprite bulletSlotNoSelectedImage;
-
-    public static BulletSelector Instance;
-
-    private int _selectedBulletIndex = 0;
-
-    private void Awake()
+    public class BulletSelector : MonoBehaviour
     {
-        if(!Instance) 
+        private const int MAXIMUM_BULLETS = 4;
+
+        [SerializeField] private List<BulletSlot> bulletsSlots;
+        [SerializeField] private List<ItemBulletScriptableObject> bulletsItems;
+        [SerializeField] private ItemBulletScriptableObject emptyBullet;
+
+        [SerializeField] private Sprite bulletSlotSelectedImage;
+        [SerializeField] private Sprite bulletSlotNoSelectedImage;
+
+        [SerializeField] private UIAnimationStruct _selectAnimation, _deselectAnimation;
+        [SerializeField] private float _animationDuration = 0.5f;
+
+        public static BulletSelector Instance;
+
+        private RectTransform _rectTransform;
+        private int _selectedBulletIndex = 0;
+
+        private void Awake()
         {
-            Instance = this;
-        }
-    }
-
-    private void Start()
-    {
-        InitializeBulletSelector();
-    }
-
-    private void InitializeBulletSelector()
-    {
-        for (int i = 0; i < MAXIMUM_BULLETS; i++)
-        {
-            bulletsItems.Add(emptyBullet);
-            bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
-            bulletsSlots[i].SetBackgroundSprite(bulletSlotNoSelectedImage);
-            bulletsSlots[i].SetBulletAmount(0);
-        }
-        bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
-        ChangePlayerBullet();
-    }
-
-    public void UpdateBulletSelectorUI()
-    {
-        for (int i =  0; i < bulletsSlots.Count; i++)
-        {
-            
-            int index = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + i;
-
-            ItemObject itemInInventory = PlayerComponents.Instance.Inventory.GetItemObjectByIndex(index);
-            if(itemInInventory.itemSo != PlayerComponents.Instance.Inventory.itemVoid)
+            if (!Instance)
             {
-                bulletsItems[i] = (ItemBulletScriptableObject) itemInInventory.itemSo;
+                Instance = this;
             }
-            else
+
+            _rectTransform = GetComponent<RectTransform>();
+        }
+
+        private void Start()
+        {
+            InitializeBulletSelector();
+        }
+
+        private void InitializeBulletSelector()
+        {
+            for (int i = 0; i < MAXIMUM_BULLETS; i++)
             {
-                bulletsItems[i] = emptyBullet;
+                bulletsItems.Add(emptyBullet);
+                bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
+                bulletsSlots[i].SetBackgroundSprite(bulletSlotNoSelectedImage);
+                bulletsSlots[i].SetBulletAmount(0);
             }
+
+            bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ChangePlayerBullet();
+        }
+
+        public void UpdateBulletSelectorUI()
+        {
+            for (int i = 0; i < bulletsSlots.Count; i++)
+            {
+
+                int index = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + i;
+
+                ItemObject itemInInventory = PlayerComponents.Instance.Inventory.GetItemObjectByIndex(index);
+                if (itemInInventory.itemSo != PlayerComponents.Instance.Inventory.itemVoid)
+                {
+                    bulletsItems[i] = (ItemBulletScriptableObject)itemInInventory.itemSo;
+                }
+                else
+                {
+                    bulletsItems[i] = emptyBullet;
+                }
+
                 bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
                 bulletsSlots[i].SetBulletAmount(itemInInventory.amount);
+            }
+
+            ChangePlayerBullet();
         }
 
-        ChangePlayerBullet();
-    }
-
-    public void ChangeBulletInList(int index, ItemBulletScriptableObject bullet)
-    {
-        if (index < bulletsItems.Count)
+        public void ChangeBulletInList(int index, ItemBulletScriptableObject bullet)
         {
-            bulletsItems[index] = bullet;
+            if (index < bulletsItems.Count)
+            {
+                bulletsItems[index] = bullet;
+            }
         }
-    }
 
-    public void UpdateSelectedBullet(int index)
-    {
-        var lastSelectedBulletIndex = _selectedBulletIndex;
-        _selectedBulletIndex = index;
-
-        bulletsSlots[lastSelectedBulletIndex].SetBackgroundSprite(bulletSlotNoSelectedImage);
-        bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
-        ChangePlayerBullet();
-    }
-
-    public void ChangePlayerBullet()
-    {
-        if(_selectedBulletIndex < bulletsItems.Count)
+        public void UpdateSelectedBullet(int index)
         {
-            PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab, bulletsItems[_selectedBulletIndex].shotSFX);
-        }
-    }
+            var lastSelectedBulletIndex = _selectedBulletIndex;
+            _selectedBulletIndex = index;
 
-    public void SubstractBullet()
-    {
-        
-        int j =_selectedBulletIndex;
-        PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
-        UpdateBulletSelectorUI();
+            bulletsSlots[lastSelectedBulletIndex].SetBackgroundSprite(bulletSlotNoSelectedImage);
+            bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ChangePlayerBullet();
+        }
+
+        public void ChangePlayerBullet()
+        {
+            if (_selectedBulletIndex < bulletsItems.Count)
+            {
+                PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab,
+                    bulletsItems[_selectedBulletIndex].shotSFX);
+            }
+        }
+
+        public void SubstractBullet()
+        {
+
+            int j = _selectedBulletIndex;
+            PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
+            UpdateBulletSelectorUI();
+        }
+
+        public void SelectAnimation()
+        {
+            _rectTransform.DOKill();
+            _rectTransform.DOMove(_selectAnimation.position, _animationDuration).SetEase(Ease.OutBack);
+            _rectTransform.DOScale(_selectAnimation.scale, _animationDuration).SetEase(Ease.OutBack);
+        }
+
+        public void DeselectAnimation()
+        {
+            _rectTransform.DOKill();
+            _rectTransform.DOMove(_deselectAnimation.position, _animationDuration).SetEase(Ease.OutBack);
+            _rectTransform.DOScale(_deselectAnimation.scale, _animationDuration).SetEase(Ease.OutBack);
+        }
     }
 }
