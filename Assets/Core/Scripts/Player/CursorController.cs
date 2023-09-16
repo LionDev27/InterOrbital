@@ -10,6 +10,7 @@ namespace InterOrbital.Player
         [SerializeField] private Sprite[] _sprites;
 
         private Image _image;
+        private Camera _camera;
 
         public static CursorController Instance;
 
@@ -28,6 +29,7 @@ namespace InterOrbital.Player
 
         private void Start()
         {
+            _camera = Camera.main;
             Cursor.visible = false;
         }
 
@@ -39,16 +41,12 @@ namespace InterOrbital.Player
                 StopAllCoroutines();
                 StartCoroutine(ClickAnimation());
             }
-        }
 
-        public void SetAlpha(bool transparent)
-        {
-            var tempColor = _image.color;
-            tempColor.a = transparent ? 0.6f : 1f;
-            _image.color = tempColor;
+            if (_camera == null)
+                _camera = Camera.main;
         }
         
-        public IEnumerator ClickAnimation()
+        private IEnumerator ClickAnimation()
         {
             for (int i = 1; i < _sprites.Length; i++)
             {
@@ -70,6 +68,13 @@ namespace InterOrbital.Player
         private void UpdatePosition()
         {
             transform.position = Mouse.current.position.value;
+        }
+
+        public void SetAlpha(bool transparent)
+        {
+            var tempColor = _image.color;
+            tempColor.a = transparent ? 0.6f : 1f;
+            _image.color = tempColor;
         }
     }
 }
