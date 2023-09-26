@@ -72,6 +72,7 @@ namespace InterOrbital.Player
         {
             int _actualItemEquiped = PlayerComponents.Instance.InputHandler.InventoryPositionValue;
             UIManager.Instance.ChangeActionUI(_items[_actualItemEquiped - 1].itemSo);
+            Debug.Log("Hola");
         }
 
         private void SetAmount(int index, int num)

@@ -231,7 +231,7 @@ namespace InterOrbital.Player
                 _items[i].amount -= 1;
                 _textAmount[i].text = _items[i].amount.ToString();
             }
-
+            UpdateActionUI();
         }
 
         public int GetStartIndexBulletSlot()

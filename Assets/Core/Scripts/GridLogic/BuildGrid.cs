@@ -155,7 +155,7 @@ public class BuildGrid : MonoBehaviour
     {
         int spriteWidth = (int)sprite.bounds.size.x;
         int spriteHeight = (int)sprite.bounds.size.y;
-        // Tama�o de cada tile individual
+        // Tamanio de cada tile individual
         int tileWidth = 16;
         int tileHeight = 16;
 
