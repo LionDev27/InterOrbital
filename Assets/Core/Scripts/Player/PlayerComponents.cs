@@ -17,6 +17,7 @@ namespace InterOrbital.Player
         protected PlayerInput PlayerInput { get; private set; }
         protected PlayerAim PlayerAim { get; private set; }
        
+        public PlayerInteraction PlayerInteraction { get; private set; }
         public PlayerMovement PlayerMovement { get; private set; }
         public PlayerAttack PlayerAttack { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
@@ -45,6 +46,7 @@ namespace InterOrbital.Player
             PlayerEnergy = GetComponent<PlayerEnergy>();
             PlayerDash = GetComponent<PlayerDash>();
             PlayerDamageable = GetComponent<PlayerDamageable>();
+            PlayerInteraction = GetComponent<PlayerInteraction>();
         }
 
         public Vector3 GetPlayerPosition()

@@ -9,60 +9,38 @@ using InterOrbital.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace InterOrbital.Item
 {
-    public class CraftingTable : CraftingItem
+    public class TemporalFunditionTable : CraftingTable
     {
-        [SerializeField] protected Image _itemCraftImage;
-        [SerializeField] protected Image _progressBar;
-        [SerializeField] protected TextMeshProUGUI _textAmount;
-        [SerializeField] protected GameObject _craftContent;
-        [SerializeField] protected Transform dropPosition;
-        [SerializeField] private TypeTableCraft typeTable;
-        protected Queue<CraftAmountItem> _queueCraft;
-        private MissionCreator _missionCreator;
-        protected bool _isCrafting;
-
-
-        private void Awake()
-        {
-            _missionCreator = FindObjectOfType<MissionCreator>();
-        }
+        private const int maxCraftsAllowed = 3;
+        private int _currentCraftsAmount = 0;
 
         protected override void Start()
         {
-            switch (typeTable)
-            {
-                case TypeTableCraft.Craft:
-                    _craftUI = UIManager.Instance.craftUI;
-                    break;
-                case TypeTableCraft.TemporalFundition:
-                    _craftUI = UIManager.Instance.temporalFunditionUI;
-                    break;
-                case TypeTableCraft.Fundition:
-                    _craftUI = UIManager.Instance.funditionUI;
-                    break;
-                case TypeTableCraft.Bullet:
-                    _craftUI = UIManager.Instance.bulletUI;
-                    break;
-            }
-           
+            _currentCraftsAmount = 0;
             base.Start();
-            _queueCraft = new Queue<CraftAmountItem>();
+            _craftCreator.SetMaxCraftsAmount(maxCraftsAllowed);
+            _craftCreator.SetCraftsLeftAmount(maxCraftsAllowed - _currentCraftsAmount);
         }
 
         public override void Craft(ItemCraftScriptableObject itemCraft, int amount)
         {
-            _queueCraft.Enqueue(new CraftAmountItem(itemCraft, amount));
-            _missionCreator.UpdateMission(amount, itemCraft.itemName);
-            if (!_isCrafting)
+            if(amount <= (maxCraftsAllowed - _currentCraftsAmount)) 
             {
-                StartCoroutine(CreateItem());
+                _currentCraftsAmount += amount;
+                _craftCreator.SetCraftsLeftAmount(maxCraftsAllowed - _currentCraftsAmount);
+                if(_currentCraftsAmount >= maxCraftsAllowed)
+                {
+                    PlayerComponents.Instance.GetComponent<PlayerInteraction>().Interact();
+                }
+                base.Craft(itemCraft, amount);
             }
         }
 
-        public virtual IEnumerator CreateItem()
+        public override IEnumerator CreateItem()
         {
             _craftContent.SetActive(true);
             _isCrafting = true;
@@ -91,15 +69,25 @@ namespace InterOrbital.Item
 
             _craftContent.SetActive(false);
             _isCrafting = false;
+            if(_currentCraftsAmount >= maxCraftsAllowed)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        public virtual void Interact()
+        public override void Interact()
         {
-            UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
-            ProccessSelection();
+            Debug.Log(_currentCraftsAmount);
+            Debug.Log(maxCraftsAllowed);
+
+            if(_currentCraftsAmount < maxCraftsAllowed)
+            {
+                UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
+                ProccessSelection();
+            }
         }
 
-        public virtual void EndInteraction()
+        public override void EndInteraction()
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
         }

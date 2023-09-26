@@ -38,6 +38,7 @@ namespace InterOrbital.Utils
     public enum TypeTableCraft
     {
         Craft,
+        TemporalFundition,
         Fundition, 
         Bullet
     }

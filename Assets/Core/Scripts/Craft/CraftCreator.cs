@@ -17,6 +17,8 @@ public class CraftCreator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _descriptionText;
     private CraftGrid _craftGrid;
     private CraftingItem _craftingItem;
+    private int _maxCraftsAmount = -1;
+    private int _craftsLeft;
     public List<Image> requireImages;
     public List<TextMeshProUGUI> requireTexts;
     public Image craftResultImage;
@@ -25,6 +27,7 @@ public class CraftCreator : MonoBehaviour
 
     public TextMeshProUGUI amountToCraftText;
     public TextMeshProUGUI energyRequiredText;
+    public TextMeshProUGUI craftsRemaining;
 
 
     private void Awake()
@@ -52,6 +55,7 @@ public class CraftCreator : MonoBehaviour
 
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
         craftResultImage.sprite =_itemCraft.itemSprite;
         itemCraftName.text = _itemCraft.itemName;
         _descriptionText.text = _itemCraft.itemDescription;
@@ -111,7 +115,25 @@ public class CraftCreator : MonoBehaviour
         energyRequiredText.color = colorText;
         energyRequiredText.text = currentEnergy + "/" + energyRequired;
     }
-    
+
+    private void UpdateCraftsRemaining()
+    {
+        if (_maxCraftsAmount > 0)
+        {
+            craftsRemaining.text = _craftsLeft + "/" + _maxCraftsAmount;
+            if (_amountToCraft <= _craftsLeft)
+            {
+                _craftButton.interactable = true;
+                craftsRemaining.color = Color.green;
+            }
+            else
+            {
+                _craftButton.interactable = false;
+                craftsRemaining.color = Color.red;
+            }
+        }
+    }
+
     private bool HaveEnoughEnergyToCraft(int currentEnergy)
     {
         var energyRequired = _itemCraft.craftEnergyRequired * _amountToCraft;
@@ -146,6 +168,7 @@ public class CraftCreator : MonoBehaviour
         amountToCraftText.text = _amountToCraft.ToString();
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
     }
 
     public void DecreaseAmount()
@@ -157,6 +180,7 @@ public class CraftCreator : MonoBehaviour
         amountToCraftText.text = _amountToCraft.ToString();
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
     }
 
     public void GetMaxAmountToCraft()
@@ -179,6 +203,7 @@ public class CraftCreator : MonoBehaviour
         amountToCraftText.text = maxValue.ToString();
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
     }
 
     public void GetMinAmountToCraft()
@@ -187,6 +212,7 @@ public class CraftCreator : MonoBehaviour
         amountToCraftText.text =_amountToCraft.ToString();
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
     }
 
     public void CraftItem(bool isPlayerCraft)
@@ -198,6 +224,7 @@ public class CraftCreator : MonoBehaviour
         DecreaseEnergyOnCraft();
         UpdateAmountRequired();
         UpdateEnergyRequired();
+        UpdateCraftsRemaining();
         _craftGrid.UpdateFeedback();
         if (!isPlayerCraft)
         {
@@ -225,6 +252,17 @@ public class CraftCreator : MonoBehaviour
         _craftingItem = craftingItem;
     }
     
+    public void SetMaxCraftsAmount(int maxCrafts)
+    {
+        _maxCraftsAmount = maxCrafts;
+        _craftsLeft = _maxCraftsAmount;
+    }
+
+    public void SetCraftsLeftAmount(int craftsLeft)
+    {
+        _craftsLeft = craftsLeft;
+        UpdateCraftsRemaining();
+    }
 
 
 }

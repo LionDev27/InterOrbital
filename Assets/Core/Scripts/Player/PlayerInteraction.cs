@@ -63,7 +63,7 @@ namespace InterOrbital.Player
             }
         }
         
-        private void Interact()
+        public void Interact()
         {
             if (!CanInteract()) return;
             

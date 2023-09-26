@@ -27,6 +27,7 @@ namespace InterOrbital.UI
         public GameObject bagUI;
         public GameObject craftUI;
         public GameObject funditionUI;
+        public GameObject temporalFunditionUI;
         public GameObject bulletUI;
         public GameObject spaceshipUI;
         public GameObject storageUI;
