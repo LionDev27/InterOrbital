@@ -6038,6 +6038,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 668951245}
     - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
+      propertyPath: itemTest
+      value: 
+      objectReference: {fileID: 11400000, guid: b4cd5eaa372cea84e84c015cc8a78a62, type: 2}
+    - target: {fileID: 5377065433316699244, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
       propertyPath: gridBullets
       value: 
       objectReference: {fileID: 1273138041}

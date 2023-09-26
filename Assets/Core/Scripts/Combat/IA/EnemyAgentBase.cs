@@ -52,6 +52,11 @@ namespace InterOrbital.Combat.IA
                 _currentState.Execute();
         }
 
+        public virtual void Death()
+        {
+            _enemySpawner.EnemyDead();
+        }
+
         public virtual void ChangeState(EnemyStateBase newState)
         {
             _currentState = newState;
@@ -86,9 +91,6 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        public void Death()
-        {
-            _enemySpawner.EnemyDead();
-        }
+        
     }
 }

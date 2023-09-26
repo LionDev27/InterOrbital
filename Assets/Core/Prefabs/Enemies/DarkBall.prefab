@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5435320029420470403}
   - component: {fileID: 6165719125930475540}
-  - component: {fileID: 8920729356149262717}
+  - component: {fileID: 3951226257614976812}
   m_Layer: 8
   m_Name: DamageDealer
   m_TagString: Enemy
@@ -195,13 +195,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!114 &8920729356149262717
+--- !u!114 &3951226257614976812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,11 +210,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5435320029420470402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf502ab408ad0e340964956e71e73e17, type: 3}
+  m_Script: {fileID: 11500000, guid: b287d7526ae1f5a4d84b1f692528756d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
   attackerTag: 
+  radiusExplosion: 1
 --- !u!1 &5435320029756944154
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,9 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5435320029756944155}
   - component: {fileID: 5435320029756944146}
-  - component: {fileID: 1363548960615092763}
   - component: {fileID: 2472950351413934529}
-  - component: {fileID: 2721306581555030709}
   - component: {fileID: 8590949916580895649}
   m_Layer: 8
   m_Name: DarkBall
@@ -268,26 +267,12 @@ NavMeshAgent:
   m_AngularSpeed: 100
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 1.25
+  m_Height: 1.5
   m_BaseOffset: 0.75
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1363548960615092763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5435320029756944154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf502ab408ad0e340964956e71e73e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  attackerTag: 
 --- !u!114 &2472950351413934529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,25 +288,9 @@ MonoBehaviour:
   _maxHealth: 2
   _dropItemPrefab: {fileID: 0}
   _dropsList: []
-  _deathParticles: {fileID: 0}
+  _deathParticles: {fileID: 2794488077021448652, guid: 811fc42eaf187784a947c793ec39ff8d, type: 3}
   _deathTime: 0
   _dropForce: 1.5
---- !u!58 &2721306581555030709
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5435320029756944154}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.53
 --- !u!114 &8590949916580895649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _states: []
   _hitAnimationTime: 0
+  _deathParticles: {fileID: 2794488077021448652, guid: 811fc42eaf187784a947c793ec39ff8d, type: 3}
   initialSpeed: 3
   maxSpeed: 15
   acceleration: 2

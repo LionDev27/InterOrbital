@@ -30,6 +30,11 @@ namespace InterOrbital.Combat.IA
             base.GetDamage(damage);
         }
 
+        public void ExplosionDeath()
+        {
+            StartCoroutine(nameof(DeathSequence));
+        }
+
         protected override void Death()
         {
             _missionCreator.UpdateMission(1, null);

@@ -11,6 +11,9 @@ namespace InterOrbital.Combat.IA
         private Transform _target;
         private bool _isChasingPlayer = true;
         private Vector3 _previousPlayerPosition;
+        private DarkBallExplosion _explosionBall;
+        private EnemyDamageable _enemyDamageable;
+        [SerializeField] private ParticleSystem _deathParticles;
 
         public float initialSpeed = 3f;
         public float maxSpeed = 7f; 
@@ -23,6 +26,8 @@ namespace InterOrbital.Combat.IA
             base.Awake();
             _spriteFlipper = GetComponentInChildren<SpriteFlipper>();
             _target = FindObjectOfType<Player.PlayerAim>().GetComponent<Transform>();
+            _explosionBall = GetComponentInChildren<DarkBallExplosion>();
+            _enemyDamageable = GetComponent<EnemyDamageable>();
             
         }
 
@@ -39,6 +44,11 @@ namespace InterOrbital.Combat.IA
                 Vector3 playerDirection = _target.position - _previousPlayerPosition;
                 Vector3 enemyDirection = transform.position - _previousPlayerPosition;
 
+                if (!NavMeshAgent.enabled)
+                {
+                    NavMeshAgent.enabled = true;
+                }
+
                 if (Vector3.Angle(enemyDirection, playerDirection) > 120f)
                 {
                     _isChasingPlayer = false;
@@ -53,12 +63,16 @@ namespace InterOrbital.Combat.IA
                     float desiredSpeed = Mathf.Lerp(initialSpeed, maxSpeed, NavMeshAgent.velocity.magnitude / maxSpeed);
                     NavMeshAgent.speed = Mathf.MoveTowards(NavMeshAgent.speed, desiredSpeed, acceleration * Time.deltaTime);
                 }
-                
+
                 NavMeshAgent.SetDestination(_target.position);
 
                 _previousPlayerPosition = _target.position;
             }
+        }
 
+        public override void Death()
+        {
+            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
         }
 
     }
