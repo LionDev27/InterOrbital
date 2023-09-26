@@ -23,22 +23,6 @@ namespace InterOrbital.Spaceship
             _currentEnergy = _maxEnergy;
         }
 
-        private void Update()
-        {
-            if (Application.isEditor)
-            {
-                if (Input.GetKeyDown(KeyCode.N))
-                {
-                    LoseEnergy(5);
-                }
-
-                if (Input.GetKeyDown(KeyCode.M))
-                {
-                    RestoreEnergy(1);
-                }
-            }
-        }
-
         public void RestoreEnergy(int energyAmount)
         {
             _currentEnergy = Mathf.Clamp(_currentEnergy + energyAmount, 0, _maxEnergy);

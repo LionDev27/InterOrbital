@@ -16,6 +16,7 @@ namespace InterOrbital.Player
         [SerializeField] private float _loseHealthTimerDefaultValue;
         private float _loseHealthTimer;
         private float _invencibilityTimer;
+        private bool _godMode;
         
         private PlayerComponents _playerComponents;
 
@@ -31,6 +32,7 @@ namespace InterOrbital.Player
 
         private void Update()
         {
+            if (_godMode && Application.isEditor) return;
             LoseHealthOverTime();
             
             if (!CanTakeDamage())
@@ -82,6 +84,9 @@ namespace InterOrbital.Player
         
         private bool CanTakeDamage()
         {
+#if UNITY_EDITOR
+            if (_godMode) return false;
+#endif
             //Recibira daño si ha terminado su cooldown de invencibilidad y no está realizando un dash.
             return InvencibilityEnded() && !_playerComponents.PlayerDash.IsDashing();
         }
@@ -129,6 +134,12 @@ namespace InterOrbital.Player
                 yield return new WaitForSeconds(0.2f);
             }
             _hitShaderController.Hit(0);
+        }
+
+        public void ToggleGodMode()
+        {
+            if (Application.isEditor)
+                _godMode = !_godMode;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -11,8 +12,6 @@ namespace InterOrbital.Player
         private Vector2 _aimDir;
         private float _aimOffset;
         private float _gunSpriteOffset;
-
-        public Transform cursorT;
 
         protected override void Awake()
         {
@@ -74,6 +73,20 @@ namespace InterOrbital.Player
         public Vector2 AimDir()
         {
             return (PlayerAttack.attackPoint.position - transform.position).normalized;
+        }
+
+        public void ShowGun(bool show)
+        {
+            if (show)
+            {
+                _gunSpriteT.gameObject.SetActive(true);
+                _gunSpriteT.transform.DOScale(Vector2.one, 0.1f).Play();
+            }
+            else
+            {
+                _gunSpriteT.transform.DOScale(Vector2.zero, 0.1f).
+                    OnComplete(() => _gunSpriteT.gameObject.SetActive(false)).Play();
+            }
         }
     }
 }

@@ -11,16 +11,6 @@ public class LifeUIController : MonoBehaviour
         lifePrefabs[lifeTier].SetActive(true);
     }
 
-    private void Update()
-    {
-        if (Application.isEditor)
-        {
-            if(Input.GetKeyDown(KeyCode.H)) {
-                UpgradeLifeTier();
-            }
-        }
-    }
-
     private void ActiveLifeBarTier()
     {
         if(lifePrefabs[lifeTier] != null)
@@ -37,7 +27,7 @@ public class LifeUIController : MonoBehaviour
         }
     }
 
-    private void UpgradeLifeTier()
+    public void UpgradeLifeTier()
     {
         if (lifeTier + 1 < lifePrefabs.Count)
         {
