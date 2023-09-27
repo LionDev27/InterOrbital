@@ -1,4 +1,3 @@
-using System;
 using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
@@ -8,6 +7,7 @@ namespace InterOrbital.Player
     public class PlayerRecollector : PlayerComponents
     {
         [SerializeField] private Animator _gunAnimator;
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private int _recollectionAttackDamage = 1;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
@@ -15,11 +15,6 @@ namespace InterOrbital.Player
 
         private bool _transitionAnimationEnded;
         private float _timer;
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
 
         private void Update()
         {
@@ -31,10 +26,16 @@ namespace InterOrbital.Player
                 if (CanRecollect())
                     Recollect();
                 if (_gunAnimator.GetBool("Recollecting") == false)
+                {
                     _gunAnimator.SetBool("Recollecting", true);
+                    _audioSource.Play();
+                }
             }
             else if (_gunAnimator.GetBool("Recollecting"))
+            {
                 _gunAnimator.SetBool("Recollecting", false);
+                _audioSource.Stop();
+            }
         }
 
         private void Recollect()
