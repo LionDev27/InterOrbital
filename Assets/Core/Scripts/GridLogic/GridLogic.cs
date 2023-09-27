@@ -748,11 +748,11 @@ namespace InterOrbital.WorldSystem
 
         public bool IsCellAreaLocked(int x, int y, Vector2 dimensions)
         {
-            for(int i = x; i < dimensions.x; i++)
+            for (int i = 0; i < dimensions.x; i++)
             {
-                for(int j = y; j < dimensions.y; j++)
+                for (int j = 0; j < dimensions.y; j++)
                 {
-                    if(IsCellLocked(i, j))
+                    if (IsCellLocked(x + i,y + j))
                     {
                         return true;
                     }
@@ -764,11 +764,11 @@ namespace InterOrbital.WorldSystem
         
         public bool IsCellAreaSpaceshipArea(int x, int y, Vector2 dimensions)
         {
-            for(int i = x; i < dimensions.x; i++)
+            for(int i = 0; i < dimensions.x; i++)
             {
-                for(int j = y; j < dimensions.y; j++)
+                for(int j = 0; j < dimensions.y; j++)
                 {
-                    if(IsCellSpaceshipArea(i, j))
+                    if(IsCellSpaceshipArea(x + i,y + j))
                     {
                         return true;
                     }
