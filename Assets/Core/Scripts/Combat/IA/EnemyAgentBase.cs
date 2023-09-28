@@ -1,6 +1,8 @@
 using InterOrbital.Combat.Spawner;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using InterOrbital.Others;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +11,7 @@ namespace InterOrbital.Combat.IA
     public class EnemyAgentBase : MonoBehaviour
     {
         [SerializeField] protected List<EnemyStateBase> _states;
+        [SerializeField] private HitShaderController _hitShaderController;
         [SerializeField] private float _hitAnimationTime;
         protected EnemyStateBase _currentState;
         private Animator _animator;
@@ -42,7 +45,7 @@ namespace InterOrbital.Combat.IA
         protected virtual void Update()
         {
             _hitTimer -= Time.deltaTime;
-            if (_hitTimer > 0) return;
+            if (HitAnimationPlaying()) return;
             if (_animator.GetBool("Hit"))
             {
                 _animator.SetBool("Hit", false);
@@ -74,8 +77,14 @@ namespace InterOrbital.Combat.IA
         {
             _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
+            StartCoroutine(HitAnimation());
             if (_navMeshAgent.isStopped) return;
             EnableNavigation(false);
+        }
+
+        private bool HitAnimationPlaying()
+        {
+            return _hitTimer > 0;
         }
 
         public void SetEnemySpawner(EnemySpawner spawner)
@@ -89,6 +98,16 @@ namespace InterOrbital.Combat.IA
         public void Death()
         {
             _enemySpawner.EnemyDead();
+        }
+
+        private IEnumerator HitAnimation()
+        {
+            while (HitAnimationPlaying())
+            {
+                _hitShaderController.Hit(!_hitShaderController.HitValue());
+                yield return new WaitForSeconds(0.15f);
+            }
+            _hitShaderController.Hit(0);
         }
     }
 }
