@@ -52,7 +52,7 @@ namespace InterOrbital.Player
                 {
                     _currentHealth = Mathf.Clamp(_currentHealth - 1, 0, _maxHealth);
                     UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
-                    CameraShake.Instance.Shake(_damageCameraShakeIntensity / 2f, 0.5f);
+                    CameraShake.Instance.Shake(_damageCameraShakeIntensity / 2f);
                     ResetHealthTimer();
                     CheckHealth();
                 }
@@ -100,7 +100,7 @@ namespace InterOrbital.Player
                 Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
-                CameraShake.Instance.Shake(_damageCameraShakeIntensity, 0.5f);
+                CameraShake.Instance.Shake(_damageCameraShakeIntensity);
                 SetInvencibilityState();
             }
         }

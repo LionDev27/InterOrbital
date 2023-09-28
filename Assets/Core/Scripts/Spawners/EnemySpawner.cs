@@ -14,7 +14,7 @@ namespace InterOrbital.Combat.Spawner
         [SerializeField] private int _maxEnemiesSpawn;
         [SerializeField] private float _spawnRadius = 5f;
         [SerializeField] private float _spawnDelay = 3f;
-        [SerializeField] public float _spawnMinActivationDistance = 15f; // Distancia de activación
+        [SerializeField] public float _spawnMinActivationDistance = 15f; // Distancia de activaciÃ³n
 
         private bool _canSpawn;
         private float _playerNearSpawnTimer = -1;

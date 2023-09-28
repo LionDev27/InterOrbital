@@ -58,7 +58,7 @@ namespace InterOrbital.Player
         
         private void AttackEffects()
         {
-            CameraShake.Instance.Shake(2, 0.3f);
+            CameraShake.Instance.Shake(0.5f);
         }
         
         private bool CooldownEnded()

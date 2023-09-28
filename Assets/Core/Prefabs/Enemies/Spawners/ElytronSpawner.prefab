@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2191782574685707559}
   - component: {fileID: 784585200}
   m_Layer: 0
-  m_Name: ElitrinSpawner
+  m_Name: ElytronSpawner
   m_TagString: EnemySpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57f1fbc9281460478d652b1fb6a1341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 1176578529163937672, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+  _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
   player: {fileID: 0}
-  _maxEnemiesSpawn: 5
+  _maxEnemiesSpawn: 2
   _spawnRadius: 5
   _spawnDelay: 1
   _spawnMinActivationDistance: 15

@@ -42,8 +42,11 @@ namespace InterOrbital.Combat.IA
             Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
             DropAllItems();
             _agent.Death();
+            AfterDeath();
             Destroy(gameObject);
         }
+
+        protected virtual void AfterDeath(){}
 
         private void DropAllItems()
         {
@@ -71,7 +74,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        private Vector2 RandomDropDir()
+        protected Vector2 RandomDropDir()
         {
             float x = Random.Range(-1f, 1f);
             float y = Random.Range(-1f, 0f);
