@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
@@ -8,11 +10,14 @@ namespace InterOrbital.Player
     {
         [SerializeField] private Animator _gunAnimator;
         [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private SpriteRenderer _gunSprite;
         [SerializeField] private int _recollectionAttackDamage = 1;
+        [SerializeField] private float _recollectionAttackCooldown = 2f;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
         [SerializeField] private float _recollectionWidth = 3f;
 
+        private bool _canAttack = true;
         private bool _transitionAnimationEnded;
         private float _timer;
 
@@ -56,13 +61,22 @@ namespace InterOrbital.Player
                     return;
                 }
 
-                if (hit.collider.TryGetComponent(out Damageable damageable) && !hit.collider.CompareTag(tag))
+                if (hit.collider.TryGetComponent(out Damageable damageable) && !hit.collider.CompareTag(tag) && _canAttack)
                 {
                     damageable.GetDamage(_recollectionAttackDamage);
+                    StartCoroutine(AttackCooldown());
                     _timer = 0f;
                     return;
                 }
             }
+        }
+
+        private IEnumerator AttackCooldown()
+        {
+            _canAttack = false;
+            yield return new WaitForSeconds(_recollectionAttackCooldown);
+            _canAttack = true;
+
         }
 
         private bool CanRecollect()

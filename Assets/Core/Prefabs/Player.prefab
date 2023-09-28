@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: acb34623cf2ffd94ab8d13c0aae3490c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -930,7 +930,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunAnimator: {fileID: 4286876814580422552}
   _audioSource: {fileID: 1658537254}
+  _gunSprite: {fileID: 0}
   _recollectionAttackDamage: 1
+  _recollectionAttackCooldown: 2
   _recollectionRange: 2.5
   _recollectionCooldownInSeconds: 0.5
   _recollectionWidth: 1.5
