@@ -33,11 +33,13 @@ namespace InterOrbital.Combat.IA
             }
 
             _animator = GetComponentInChildren<Animator>();
-            _navMeshAgent = GetComponent<NavMeshAgent>();
+            if (TryGetComponent(out NavMeshAgent agent))
+                _navMeshAgent = agent;
         }
 
         protected virtual void Start()
         {
+            if (_navMeshAgent == null) return;
             _navMeshAgent.updateRotation = false;
             _navMeshAgent.updateUpAxis = false;
         }
@@ -63,12 +65,14 @@ namespace InterOrbital.Combat.IA
 
         public bool ArrivedDestination()
         {
+            if (_navMeshAgent == null) return false;
             return _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance &&
                    (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f);
         }
 
         public void EnableNavigation(bool value)
         {
+            if (_navMeshAgent == null) return;
             _navMeshAgent.velocity = value ? Vector3.one : Vector3.zero;
             _navMeshAgent.isStopped = !value;
         }
@@ -78,6 +82,7 @@ namespace InterOrbital.Combat.IA
             _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
             StartCoroutine(HitAnimation());
+            if (_navMeshAgent == null) return;
             if (_navMeshAgent.isStopped) return;
             EnableNavigation(false);
         }
