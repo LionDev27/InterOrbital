@@ -77,9 +77,6 @@ namespace InterOrbital.Item
 
         public override void Interact()
         {
-            Debug.Log(_currentCraftsAmount);
-            Debug.Log(maxCraftsAllowed);
-
             if(_currentCraftsAmount < maxCraftsAllowed)
             {
                 UIManager.Instance.ActivateOrDesactivateUI(_craftUI);

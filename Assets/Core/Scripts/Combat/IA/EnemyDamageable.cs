@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using InterOrbital.Item;
 using InterOrbital.Mission;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace InterOrbital.Combat.IA
@@ -17,6 +18,12 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _dropForce = 1.5f;
         private MissionCreator _missionCreator;
         private EnemyAgentBase _agent;
+        [SerializeField] private Image _lifeBar;
+        [SerializeField] private CanvasGroup _lifeBarCG;
+
+        private float _noHitTime = 60f;
+        private float _noHitTimer;
+        private bool _hitted;
 
         private void Awake()
         {
@@ -24,10 +31,17 @@ namespace InterOrbital.Combat.IA
             _agent = GetComponent<EnemyAgentBase>();
         }
 
+        private void Update()
+        {
+            CheckHitTimer();
+        }
+
         public override void GetDamage(int damage)
         {
             _agent.HitEnemy();
             base.GetDamage(damage);
+            HitReceived();
+            UpdateLifeBar();
         }
 
         protected override void Death()
@@ -81,6 +95,43 @@ namespace InterOrbital.Combat.IA
                 y = Random.Range(-1f, 0f);
             }
             return new Vector2(x, y).normalized;
+        }
+
+        private void UpdateLifeBar()
+        {
+            if (_currentHealth < _maxHealth)
+            {
+                _lifeBarCG.alpha = 1;
+            }
+            float lifeAmount = _currentHealth / (float)_maxHealth;
+            _lifeBar.fillAmount = lifeAmount;
+        }
+
+        private void HitReceived()
+        {
+            if (!_hitted)
+            {
+                _hitted = true;
+            }
+            _noHitTimer = _noHitTime;
+        }
+
+        private void CheckHitTimer()
+        {
+            if (_hitted)
+            {
+                if (_noHitTimer <= 0 && _currentHealth > 0)
+                {
+                    _lifeBarCG.alpha = 0;
+                    _currentHealth = _maxHealth;
+                    _hitted = false;
+                }
+
+                if (_noHitTimer > 0 && _currentHealth > 0)
+                {
+                    _noHitTimer -= Time.deltaTime;
+                }
+            }
         }
     }
 

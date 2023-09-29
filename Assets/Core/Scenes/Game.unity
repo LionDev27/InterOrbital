@@ -11176,7 +11176,11 @@ MonoBehaviour:
   musicSounds:
   - name: MainTheme
     clip: {fileID: 8300000, guid: 774d1ef4d4e10ad4fb97755983d29ac9, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: UIMenu
+    clip: {fileID: 8300000, guid: 148683daea409104b8e33e60a5e58f0c, type: 3}
+  - name: Inventory
+    clip: {fileID: 8300000, guid: 1c0a20f9ff0180243aaa5250cd8608e5, type: 3}
 --- !u!1001 &1821504538
 PrefabInstance:
   m_ObjectHideFlags: 0
