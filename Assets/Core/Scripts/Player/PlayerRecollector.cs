@@ -1,5 +1,4 @@
 using System.Collections;
-using DG.Tweening;
 using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
@@ -74,9 +73,10 @@ namespace InterOrbital.Player
         private IEnumerator AttackCooldown()
         {
             _canAttack = false;
+            _gunSprite.material.SetFloat("_AlphaValue", 0.25f);
             yield return new WaitForSeconds(_recollectionAttackCooldown);
+            _gunSprite.material.SetFloat("_AlphaValue", 1f);
             _canAttack = true;
-
         }
 
         private bool CanRecollect()

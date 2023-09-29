@@ -291,7 +291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &718687923
 Transform:
   m_ObjectHideFlags: 0
@@ -930,9 +930,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gunAnimator: {fileID: 4286876814580422552}
   _audioSource: {fileID: 1658537254}
-  _gunSprite: {fileID: 0}
+  _gunSprite: {fileID: 14428870}
   _recollectionAttackDamage: 1
-  _recollectionAttackCooldown: 2
+  _recollectionAttackCooldown: 1.5
   _recollectionRange: 2.5
   _recollectionCooldownInSeconds: 0.5
   _recollectionWidth: 1.5
