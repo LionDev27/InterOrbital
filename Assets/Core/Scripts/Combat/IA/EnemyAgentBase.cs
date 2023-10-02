@@ -1,5 +1,4 @@
 using InterOrbital.Combat.Spawner;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Others;
@@ -10,16 +9,18 @@ namespace InterOrbital.Combat.IA
 {
     public class EnemyAgentBase : MonoBehaviour
     {
+        [SerializeField] protected Vector2 _detectionRange;
         [SerializeField] protected List<EnemyStateBase> _states;
         [SerializeField] private HitShaderController _hitShaderController;
         [SerializeField] private float _hitAnimationTime;
         protected EnemyStateBase _currentState;
+        private Transform _target;
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
         private float _hitTimer;
         private EnemySpawner _enemySpawner;
-
-
+        
+        public Transform Target => _target;
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
         public List<EnemyStateBase> States => _states;
@@ -42,6 +43,7 @@ namespace InterOrbital.Combat.IA
             if (_navMeshAgent == null) return;
             _navMeshAgent.updateRotation = false;
             _navMeshAgent.updateUpAxis = false;
+            ChangeState(_states[0]);
         }
 
         protected virtual void Update()
@@ -75,6 +77,20 @@ namespace InterOrbital.Combat.IA
             if (_navMeshAgent == null) return;
             _navMeshAgent.velocity = value ? Vector3.one : Vector3.zero;
             _navMeshAgent.isStopped = !value;
+        }
+        
+        public bool IsDetectingPlayer()
+        {
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, _detectionRange, 0f);
+            foreach (var col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    if (!_target) _target = col.transform;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void HitEnemy()
@@ -113,6 +129,12 @@ namespace InterOrbital.Combat.IA
                 yield return new WaitForSeconds(0.15f);
             }
             _hitShaderController.Hit(0);
+        }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(transform.position, _detectionRange);
         }
     }
 }
