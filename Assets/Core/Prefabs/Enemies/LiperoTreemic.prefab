@@ -104,11 +104,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.z
@@ -141,6 +141,54 @@ PrefabInstance:
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: c4446f9b1aea9de419ce728e60b50f20, type: 2}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 9862451323be6ec4aa493e6bfdcae92c, type: 2}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 02d0af574372e724eaed41578ab6c4f5, type: 2}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[1].dropRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].dropRate
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[0].maxAmount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[0].minAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[1].maxAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[1].minAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].maxAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].minAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913901881404, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Sprite
@@ -217,7 +265,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 6114928345258369620, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
   _bulletTransformSpawn: {fileID: 639987461}
   _bulletDamage: 1
-  _attackAnimation: {fileID: 7400000, guid: edf211cc4f2d59246bdee8ce23744775, type: 2}
+  _attackAnimation: {fileID: 7400000, guid: 6a5261537c95c5e4ab4bc39306f53dbb, type: 2}
   _attackCooldown: 0.5
 --- !u!4 &8448911064927390185 stripped
 Transform:
