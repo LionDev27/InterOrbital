@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RubardoTreemic
+  m_Controller: {fileID: 9100000, guid: 6c11b7dec1f416041b75167b4f4663b5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 85cc333710486b74f8cf1b2449faa5c3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 06fe1e2b9afa27b4f8c2a2202bd24923, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c42de08e6f394e24d9dc091a91d0b2c6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1298f9a4bfe058d4cb42fcee4d4a59de, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 25dc2b60e69c445408292c42750c5f9b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: af90b7f5e80d1464db9666eaa262b298, type: 2}
