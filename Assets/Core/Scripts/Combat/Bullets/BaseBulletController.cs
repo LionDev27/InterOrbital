@@ -7,7 +7,7 @@ namespace InterOrbital.Combat.Bullets
     {
         [Range(0f, 10f)]
         [SerializeField] private float _speed;
-        [Range(0f, 10f)]
+        [Range(0f, 20f)]
         [SerializeField] protected float _range;
         [Range(0f, 10f)]
         [SerializeField] protected float _cooldown;

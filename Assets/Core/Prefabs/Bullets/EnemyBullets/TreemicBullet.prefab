@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _range: 9
+  _range: 10
   _cooldown: 0
 --- !u!114 &6958752880360999307
 MonoBehaviour:
@@ -206,5 +206,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3b09c71c7ad48438b8b8e8083da3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   attackerTag: 

@@ -87,12 +87,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856883, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Size.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856883, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Size.y
-      value: 2.56
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856883, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Offset.y
-      value: -0.7
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Name
@@ -104,11 +108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 36.75
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.z
@@ -202,7 +206,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 894a6d81939ed27499be6660e40d76dd, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1112519913850856880, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
 --- !u!114 &786034395165941154 stripped
 MonoBehaviour:
@@ -220,6 +225,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
   m_PrefabInstance: {fileID: 8804811251591785552}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1705740116184055976
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448911064927390184}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0315, y: -1.48}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.56, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &2128111727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,24 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2937b8849520328408514d3d5141e3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2128111728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448911064927390184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0456cb087d0e4bc7be01f8aebd7dbfb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionRange: {x: 17, y: 10}
-  _states:
-  - {fileID: 2128111727}
-  - {fileID: 2128111729}
-  _hitShaderController: {fileID: 786034395165941154}
-  _hitAnimationTime: 0.4
 --- !u!114 &2128111729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +280,24 @@ MonoBehaviour:
   _bulletDamage: 1
   _attackAnimation: {fileID: 7400000, guid: 6a5261537c95c5e4ab4bc39306f53dbb, type: 2}
   _attackCooldown: 0.5
+--- !u!114 &622073808446592886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448911064927390184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6feae853f0b694da0e0b5049db9868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionRange: {x: 17, y: 10}
+  _states:
+  - {fileID: 2128111727}
+  - {fileID: 2128111729}
+  _hitShaderController: {fileID: 786034395165941154}
+  _hitAnimationTime: 0.4
 --- !u!4 &8448911064927390185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}

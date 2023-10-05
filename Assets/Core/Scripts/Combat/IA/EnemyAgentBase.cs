@@ -40,10 +40,10 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Start()
         {
+            ChangeState(_states[0]);
             if (_navMeshAgent == null) return;
             _navMeshAgent.updateRotation = false;
             _navMeshAgent.updateUpAxis = false;
-            ChangeState(_states[0]);
         }
 
         protected virtual void Update()
@@ -93,14 +93,16 @@ namespace InterOrbital.Combat.IA
             return false;
         }
 
-        public void HitEnemy()
+        public virtual void HitEnemy()
         {
             _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
             StartCoroutine(HitAnimation());
-            if (_navMeshAgent == null) return;
-            if (_navMeshAgent.isStopped) return;
-            EnableNavigation(false);
+            if (_navMeshAgent != null)
+            {
+                if (_navMeshAgent.isStopped) return;
+                EnableNavigation(false);
+            }
         }
 
         private bool HitAnimationPlaying()
@@ -118,7 +120,8 @@ namespace InterOrbital.Combat.IA
 
         public void Death()
         {
-            _enemySpawner.EnemyDead();
+            if (_enemySpawner != null)
+                _enemySpawner.EnemyDead();
         }
 
         private IEnumerator HitAnimation()

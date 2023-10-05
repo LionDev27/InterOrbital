@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7ff4f444e73745bb0771a67294e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _detectionRange: {x: 17, y: 10}
   _states:
   - {fileID: 3386306068510686171}
   - {fileID: -7278909279050462268}
@@ -122,7 +123,6 @@ MonoBehaviour:
   - {fileID: 3581442388814949266}
   _hitShaderController: {fileID: 8069335863746401218}
   _hitAnimationTime: 0.4
-  _detectionRange: {x: 17, y: 10}
   _damageDealer: {fileID: 1176578529500669969}
   timeToIdle: 5
 --- !u!114 &3386306068510686171
