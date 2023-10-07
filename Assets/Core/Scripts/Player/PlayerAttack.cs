@@ -1,5 +1,6 @@
 using System;
 using InterOrbital.Combat.Bullets;
+using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Player
@@ -27,14 +28,14 @@ namespace InterOrbital.Player
         {
             _bulletPrefab = bullet;
             _bulletSFX = bulletSFX;
-            if (!_bulletPrefab.CompareTag("EmptyBullet"))
-            {
+            if (HasBullet())
                 _attackCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
-            }
         }
 
         private void Update()
         {
+            if (InputHandler.CurrentActionMap() == "Player")
+                CursorController.Instance.SetAlpha(!HasBullet());
             _gunSpriteObj.SetActive(canAttack);
             _timer -= Time.deltaTime;
         }
@@ -44,7 +45,7 @@ namespace InterOrbital.Player
             if (!canAttack || !CooldownEnded()) return;
             _timer = _attackCooldown;
             //Creación de la bala [TODO: MODIFICAR A OBJECT POOLING]
-            if (!_bulletPrefab.CompareTag("EmptyBullet")){ 
+            if (HasBullet()){ 
                 var tempBullet = Instantiate(_bulletPrefab, attackPoint.position, Quaternion.identity);
                 var bulletController = tempBullet.GetComponent<BaseBulletController>();
                 var bulletMoveDir = attackPoint.position - transform.position;
@@ -57,12 +58,17 @@ namespace InterOrbital.Player
         
         private void AttackEffects()
         {
-            CameraShake.Instance.Shake(2, 0.3f);
+            CameraShake.Instance.Shake(0.5f);
         }
         
         private bool CooldownEnded()
         {
             return _timer <= 0;
+        }
+
+        private bool HasBullet()
+        {
+            return !_bulletPrefab.CompareTag("EmptyBullet");
         }
 
         private void OnDestroy()

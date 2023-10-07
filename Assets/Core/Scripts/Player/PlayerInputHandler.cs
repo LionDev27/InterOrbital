@@ -109,6 +109,10 @@ namespace InterOrbital.Player
             if(value.isPressed)
             {
                 BulletsMenuSelected = !BulletsMenuSelected;
+                if (BulletsMenuSelected)
+                    BulletSelector.Instance.SelectAnimation();
+                else
+                    BulletSelector.Instance.DeselectAnimation();
             }
         }
 
@@ -160,17 +164,22 @@ namespace InterOrbital.Player
             
             Rigidbody.velocity = Vector2.zero;
         }
-
-       
+        
         public InputType CurrentInput()
         {
             return PlayerInput.currentControlScheme == "Gamepad" ? InputType.Gamepad : InputType.Keyboard;
+        }
+
+        public string CurrentActionMap()
+        {
+            return PlayerInput.currentActionMap.name;
         }
 
         public void ChangeActionMap ()
         {
             string actionMap = PlayerInput.currentActionMap.name == "Player" ? "UI" : "Player";
             PlayerInput.SwitchCurrentActionMap(actionMap);
+            CursorController.Instance.SetAlpha(actionMap == "Player");
         }
 
         private void OnCraft()
