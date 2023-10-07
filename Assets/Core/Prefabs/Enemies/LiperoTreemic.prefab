@@ -49,7 +49,7 @@ PrefabInstance:
     - target: {fileID: 920135259521577378, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2128111729}
+      objectReference: {fileID: 587051305}
     - target: {fileID: 920135259521577378, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -60,7 +60,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 920135259521577378, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InterOrbital.Combat.IA.EriolanoAttackState, Assembly-CSharp
+      value: InterOrbital.Combat.IA.LiperoAttackState, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 920135259521577378, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -251,6 +251,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &587051305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448911064927390184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40387482eef40c0842a3644a2a15b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 5362355036022186407, guid: b70e6a2cea84d9e4d96634c1529d4e7a, type: 3}
+  _bulletTransformSpawn: {fileID: 639987461}
+  _bulletDamage: 1
+  _attackAnimation: {fileID: 7400000, guid: 6a5261537c95c5e4ab4bc39306f53dbb, type: 2}
+  _attackCooldown: 0
+  _attackAngle: 45
 --- !u!114 &2128111727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,23 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2937b8849520328408514d3d5141e3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2128111729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448911064927390184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403b581158b04c699f540ff9014fe5a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 6114928345258369620, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
-  _bulletTransformSpawn: {fileID: 639987461}
-  _bulletDamage: 1
-  _attackAnimation: {fileID: 7400000, guid: 6a5261537c95c5e4ab4bc39306f53dbb, type: 2}
-  _attackCooldown: 0.5
 --- !u!114 &622073808446592886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ MonoBehaviour:
   _detectionRange: {x: 17, y: 10}
   _states:
   - {fileID: 2128111727}
-  - {fileID: 2128111729}
+  - {fileID: 587051305}
   _hitShaderController: {fileID: 786034395165941154}
   _hitAnimationTime: 0.4
 --- !u!4 &8448911064927390185 stripped
