@@ -19,7 +19,7 @@ namespace InterOrbital.Combat.IA
         {
             if (collision.CompareTag("Player") && !_isDead)
             {
-                _darkBall.Death();
+                _darkBall.DeathDarkBall();
             }
             
         }

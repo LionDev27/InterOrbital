@@ -43,11 +43,7 @@ namespace InterOrbital.Combat.IA
         {
             if (_target)
             {
-                if (!Animator.GetBool("Running") && !Animator.GetBool("Hit"))
-                {
-                    Animator.SetBool("Running", true);
-                }
-
+                
                 base.Update();
 
                 Vector3 playerDirection = _target.position - _previousPlayerPosition;
@@ -88,7 +84,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        public override void Death()
+        public void DeathDarkBall()
         {
             _explosionBall.Explode();
             ParticleSystem pt = Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation);
