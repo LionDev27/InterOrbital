@@ -14,11 +14,13 @@ namespace InterOrbital.Combat.IA
         private DarkBallExplosion _explosionBall;
         private EnemyDamageable _enemyDamageable;
         [SerializeField] private ParticleSystem _deathParticles;
+        private SpriteRenderer _spriteRenderer;
 
         public float initialSpeed = 3f;
         public float maxSpeed = 7f; 
         public float acceleration = 2f;
         public SpriteFlipper SpriteFlipper => _spriteFlipper;
+
 
 
         protected override void Awake()
@@ -28,7 +30,7 @@ namespace InterOrbital.Combat.IA
             _target = FindObjectOfType<Player.PlayerAim>().GetComponent<Transform>();
             _explosionBall = GetComponentInChildren<DarkBallExplosion>();
             _enemyDamageable = GetComponent<EnemyDamageable>();
-            
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         protected override void Start()
@@ -41,6 +43,13 @@ namespace InterOrbital.Combat.IA
         {
             if (_target)
             {
+                if (!Animator.GetBool("Running") && !Animator.GetBool("Hit"))
+                {
+                    Animator.SetBool("Running", true);
+                }
+
+                base.Update();
+
                 Vector3 playerDirection = _target.position - _previousPlayerPosition;
                 Vector3 enemyDirection = transform.position - _previousPlayerPosition;
 
@@ -67,12 +76,25 @@ namespace InterOrbital.Combat.IA
                 NavMeshAgent.SetDestination(_target.position);
 
                 _previousPlayerPosition = _target.position;
+
+                if (Mathf.Sign(_target.transform.position.x - transform.position.x) > 0)
+                {
+                    SpriteFlipper.FlipX(0);
+                }
+                else if (Mathf.Sign(_target.transform.position.x - transform.position.x) < 0)
+                {
+                    SpriteFlipper.FlipX(1);
+                }
             }
         }
 
         public override void Death()
         {
-            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
+            _explosionBall.Explode();
+            ParticleSystem pt = Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation);
+
+            _spriteRenderer.enabled = false;
+            Destroy(gameObject, pt.main .duration);
         }
 
     }

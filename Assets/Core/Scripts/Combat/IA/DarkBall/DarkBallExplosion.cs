@@ -7,6 +7,7 @@ namespace InterOrbital.Combat.IA
     public class DarkBallExplosion : DamageDealer
     {
         private DarkBall _darkBall;
+        private bool _isDead = false;
         public float radiusExplosion;
 
         private void Awake()
@@ -16,9 +17,9 @@ namespace InterOrbital.Combat.IA
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.CompareTag("Player") && !_isDead)
             {
-                Explode();
+                _darkBall.Death();
             }
             
         }
@@ -36,8 +37,6 @@ namespace InterOrbital.Combat.IA
             {
                 CheckCollision(c);
             }
-
-            _darkBall.Death();
         }
     }
 }
