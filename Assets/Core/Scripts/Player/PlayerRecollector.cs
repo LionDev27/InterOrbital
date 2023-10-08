@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
@@ -8,18 +8,17 @@ namespace InterOrbital.Player
     public class PlayerRecollector : PlayerComponents
     {
         [SerializeField] private Animator _gunAnimator;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private SpriteRenderer _gunSprite;
         [SerializeField] private int _recollectionAttackDamage = 1;
+        [SerializeField] private float _recollectionAttackCooldown = 2f;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
         [SerializeField] private float _recollectionWidth = 3f;
 
+        private bool _canAttack = true;
         private bool _transitionAnimationEnded;
         private float _timer;
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
 
         private void Update()
         {
@@ -31,10 +30,16 @@ namespace InterOrbital.Player
                 if (CanRecollect())
                     Recollect();
                 if (_gunAnimator.GetBool("Recollecting") == false)
+                {
                     _gunAnimator.SetBool("Recollecting", true);
+                    _audioSource.Play();
+                }
             }
             else if (_gunAnimator.GetBool("Recollecting"))
+            {
                 _gunAnimator.SetBool("Recollecting", false);
+                _audioSource.Stop();
+            }
         }
 
         private void Recollect()
@@ -55,13 +60,23 @@ namespace InterOrbital.Player
                     return;
                 }
 
-                if (hit.collider.TryGetComponent(out Damageable damageable) && !hit.collider.CompareTag(tag))
+                if (hit.collider.TryGetComponent(out Damageable damageable) && !hit.collider.CompareTag(tag) && _canAttack)
                 {
                     damageable.GetDamage(_recollectionAttackDamage);
+                    StartCoroutine(AttackCooldown());
                     _timer = 0f;
                     return;
                 }
             }
+        }
+
+        private IEnumerator AttackCooldown()
+        {
+            _canAttack = false;
+            _gunSprite.material.SetFloat("_AlphaValue", 0.25f);
+            yield return new WaitForSeconds(_recollectionAttackCooldown);
+            _gunSprite.material.SetFloat("_AlphaValue", 1f);
+            _canAttack = true;
         }
 
         private bool CanRecollect()

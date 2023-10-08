@@ -12,7 +12,7 @@ namespace InterOrbital.Item
         public List<ItemRequired> itemsRequired;
         public float timeToCraft;
         public int craftEnergyRequired;
-        [Range(1, 5)]
+        [Range(1, 10)]
         public int amountToCraft = 1;
     }
 

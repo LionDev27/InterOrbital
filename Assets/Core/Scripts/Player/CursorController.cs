@@ -17,12 +17,7 @@ namespace InterOrbital.Player
         private void Awake()
         {
             if (!Instance)
-            {
                 Instance = this;
-                DontDestroyOnLoad(transform.parent);
-            }
-            else
-                Destroy(transform.parent);
             
             _image = GetComponent<Image>();
         }
