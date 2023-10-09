@@ -18,9 +18,14 @@ namespace InterOrbital.Combat.IA
         {
             _canRun = false;
             _currentAgent.EnableNavigation(true);
-            _currentAgent.Animator.SetBool("Idle", false);
+            if (_currentAgent.Animator.GetBool("Idle"))
+            {
+                _currentAgent.Animator.SetBool("Idle", false);
+                StartCoroutine(EnableRunTimer());
+            }
+            else
+                _canRun = true;
             _currentAgent.Animator.SetBool("PlayerLost", false);
-            StartCoroutine(EnableRunTimer());
         }
 
         public override void Execute()

@@ -101,6 +101,7 @@ namespace InterOrbital.Player
                 base.GetDamage(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                 CameraShake.Instance.Shake(_damageCameraShakeIntensity);
+                StartCoroutine(SlowTimeEffect.Instance.Play(0.2f));
                 SetInvencibilityState();
             }
         }
