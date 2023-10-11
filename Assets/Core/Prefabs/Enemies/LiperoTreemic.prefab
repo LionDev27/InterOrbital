@@ -331,6 +331,7 @@ MonoBehaviour:
   - {fileID: 587051305}
   _hitShaderController: {fileID: 786034395165941154}
   _hitAnimationTime: 0.4
+  _useHitAnimation: 1
 --- !u!4 &8448911064927390185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}

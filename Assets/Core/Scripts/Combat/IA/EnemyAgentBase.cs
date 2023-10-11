@@ -13,6 +13,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] protected List<EnemyStateBase> _states;
         [SerializeField] private HitShaderController _hitShaderController;
         [SerializeField] private float _hitAnimationTime;
+        [SerializeField] private bool _useHitAnimation;
         protected EnemyStateBase _currentState;
         private Transform _target;
         private Animator _animator;
@@ -27,13 +28,11 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Awake()
         {
-            if (_states.Count <= 0) return;
+            _animator = GetComponentInChildren<Animator>();
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
-
-            _animator = GetComponentInChildren<Animator>();
             if (TryGetComponent(out NavMeshAgent agent))
                 _navMeshAgent = agent;
         }
@@ -50,10 +49,13 @@ namespace InterOrbital.Combat.IA
         {
             _hitTimer -= Time.deltaTime;
             if (HitAnimationPlaying()) return;
-            if (_animator.GetBool("Hit"))
+            if (_useHitAnimation)
             {
-                _animator.SetBool("Hit", false);
-                EnableNavigation(true);
+                if (_animator.GetBool("Hit"))
+                {
+                    _animator.SetBool("Hit", false);
+                    EnableNavigation(true);
+                }
             }
             if (_currentState)
                 _currentState.Execute();
