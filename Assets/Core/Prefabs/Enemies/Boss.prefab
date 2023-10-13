@@ -37,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3131315920409158342}
+  - {fileID: 5285486916708148700}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,6 +138,7 @@ MonoBehaviour:
       m_Calls: []
   _timePerRecover: 0.5
   _name: Jellypus
+  _healParticles: {fileID: 5285486916708148699}
 --- !u!114 &3131315919438408778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +159,6 @@ MonoBehaviour:
   _hitShaderController: {fileID: 3131315921032488799}
   _hitAnimationTime: 0.4
   _useHitAnimation: 0
-  bossName: Jellypus
 --- !u!114 &4419611248506299023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,3 +348,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 3131315921032488796}
+--- !u!1001 &824454390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3131315919438408785}
+    m_Modifications:
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710653
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710707
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285486916961634607, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+      propertyPath: m_Name
+      value: BossHealParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+--- !u!198 &5285486916708148699 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5285486916961634605, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+  m_PrefabInstance: {fileID: 824454390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5285486916708148700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5285486916961634602, guid: 1d0afc9735892bd4aaaa95988f4edd03, type: 3}
+  m_PrefabInstance: {fileID: 824454390}
+  m_PrefabAsset: {fileID: 0}

@@ -9,7 +9,6 @@ namespace InterOrbital.Combat.IA
         
         public override void OnStateEnter()
         {
-            Debug.Log("Alert");
             ResetTimer();
         }
 
@@ -17,6 +16,8 @@ namespace InterOrbital.Combat.IA
         {
             if (_currentAgent.IsDetectingPlayer())
             {
+                if (_losePlayerTimer < _losePlayerTime)
+                    ResetTimer();
                 //Ataques.
             }
             else

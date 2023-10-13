@@ -9,6 +9,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private UnityEvent _onDeath;
         [SerializeField] private float _timePerRecover = 0.5f;
         [SerializeField] private string _name;
+        [SerializeField] private ParticleSystem _healParticles;
 
         protected override void UpdateLifeBar()
         {
@@ -26,6 +27,7 @@ namespace InterOrbital.Combat.IA
 
         private IEnumerator Recover()
         {
+            _healParticles.Play();
             while (_hitted)
             {
                 if (_currentHealth >= _maxHealth)
@@ -37,6 +39,7 @@ namespace InterOrbital.Combat.IA
                 yield return new WaitForSeconds(_timePerRecover);
                 _currentHealth++;
             }
+            _healParticles.Stop();
         }
 
         public void DeactivateBoss()
@@ -49,7 +52,6 @@ namespace InterOrbital.Combat.IA
         public void ActivateBoss()
         {
             _hitted = false;
-            StopCoroutine(Recover());
             BossInfoBar.OnActivateBoss?.Invoke(_name, _currentHealth, _maxHealth);
         }
     }
