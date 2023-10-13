@@ -97,7 +97,8 @@ namespace InterOrbital.Combat.IA
 
         public virtual void HitEnemy()
         {
-            _animator.SetBool("Hit", true);
+            if (_useHitAnimation)
+                _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
             StartCoroutine(HitAnimation());
             if (_navMeshAgent != null)
