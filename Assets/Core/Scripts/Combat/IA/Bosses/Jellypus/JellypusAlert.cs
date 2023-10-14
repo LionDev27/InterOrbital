@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace InterOrbital.Combat.IA
@@ -5,8 +6,16 @@ namespace InterOrbital.Combat.IA
     public class JellypusAlert : JellypusStateBase
     {
         [SerializeField] private float _losePlayerTime;
+        [SerializeField] private float _closeAttackDistance;
+        private BossAttacks _bossAttacks;
         private float _losePlayerTimer;
-        
+
+        public override void Setup(EnemyAgentBase agent)
+        {
+            base.Setup(agent);
+            _bossAttacks = GetComponent<BossAttacks>();
+        }
+
         public override void OnStateEnter()
         {
             ResetTimer();
@@ -18,7 +27,11 @@ namespace InterOrbital.Combat.IA
             {
                 if (_losePlayerTimer < _losePlayerTime)
                     ResetTimer();
-                //Ataques.
+                if (_bossAttacks.Attacking) return;
+                if (Vector2.Distance(_currentAgent.Target.position, transform.position) <= _closeAttackDistance)
+                    _bossAttacks.CloseAttack();
+                else
+                    _bossAttacks.RandomAttack();
             }
             else
             {
@@ -31,6 +44,12 @@ namespace InterOrbital.Combat.IA
         private void ResetTimer()
         {
             _losePlayerTimer = _losePlayerTime;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _closeAttackDistance);
         }
     }
 }
