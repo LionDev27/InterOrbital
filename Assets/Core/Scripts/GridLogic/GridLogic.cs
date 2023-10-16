@@ -12,6 +12,12 @@ namespace InterOrbital.WorldSystem
 {
     public class GridLogic : MonoBehaviour
     {
+        private const float EASY_PERCENTAGE_AREA = 0.4f;
+        private const float MEDIUM_PERCENTAGE_AREA = 0.75f;
+        private const int BASE_WIDTH = 16;
+        private const int BASE_HEIGHT = 16;
+
+
         [SerializeField] private bool debug;
 
         [field: SerializeField] public int width { get; private set; }
@@ -115,6 +121,17 @@ namespace InterOrbital.WorldSystem
             Vector3 center = new Vector3(width / 2, height / 2, 0);
             Vector3 size = new Vector3(width, height, 0);
             Gizmos.DrawWireCube(center, size);
+
+            Gizmos.color = Color.blue;
+            Vector3 sizeEasy = new Vector3(width * EASY_PERCENTAGE_AREA, height * EASY_PERCENTAGE_AREA, 0);
+            Gizmos.DrawWireCube(center, sizeEasy);
+            
+            Gizmos.color = Color.yellow;
+            Vector3 sizeMedium= new Vector3(width * MEDIUM_PERCENTAGE_AREA, height * MEDIUM_PERCENTAGE_AREA, 0);
+            Gizmos.DrawWireCube(center, sizeMedium);
+            
+            
+
         }
 
         private void Start()
@@ -210,27 +227,60 @@ namespace InterOrbital.WorldSystem
         private void GenerateEnemySpawners()
         {
             Vector2 mapCenter = new Vector2(width/2, height/2);
-            float minCenterSpawnDistance = (width + height) * 0.05f;
+            float minCenterSpawnDistance = BASE_WIDTH / 2f;
 
-            for(int i = 0; i < _enemiesSpawners.spawnersAmount; i++)
-            {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner");
+            _enemiesSpawners.ResetSpawners();
+
+            for (int i = 0; i < _enemiesSpawners.easySpawnersAmount; i++)
+            { 
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner",DifficultyArea.Easy);
                 if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
                 {
-                    int index = UnityEngine.Random.Range(0, _enemiesSpawners._enemySpawners.Count);
+                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Easy);
+                    if (enemySpawner != null)
+                    {
+                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
+                    }
+                }
+            }
 
-                    Instantiate(_enemiesSpawners._enemySpawners[index], spawnPosition, Quaternion.identity);
+            for (int i = 0; i < _enemiesSpawners.mediumSpawnersAmount; i++)
+            {
+                Debug.Log("MEDIUM");
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Medium);
+
+                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+                {
+
+                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Medium);
+                    if (enemySpawner != null)
+                    {
+                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
+                    }
+                }
+            }
+
+            for (int i = 0; i < _enemiesSpawners.hardSpawnersAmount; i++)
+            {
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Hard);
+                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+                {
+                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Hard);
+                    if (enemySpawner != null)
+                    {
+                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
+                    }
                 }
             }
         }
         private void GenerateResourcesSpawners()
         {
             Vector2 mapCenter = new Vector2(width / 2, height / 2);
-            float minCenterSpawnDistance = (width + height) * 0.05f;
+            float minCenterSpawnDistance = BASE_WIDTH/2f;
 
             for (int i = 0; i < _resourcesSpawners.spawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner");
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Medium);
                 if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
                 {
                     string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
@@ -245,19 +295,33 @@ namespace InterOrbital.WorldSystem
         }
 
 
-        private Vector2 GetRandomSpawnerPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners, string tag)
+        private Vector2 GetRandomSpawnerPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners, string tag, DifficultyArea area)
         {
             Vector2 spawnPosition = Vector2.zero;
 
             bool positionValid = false;
 
-            for(int cont = 0; cont < 20 && !positionValid; cont++)
+            Vector3Int areaBounds = GetAreaBounds(area);
+            Vector3Int innerAreaBounds = GetInnerAreaBounds(area);
+
+            for(int cont = 0; cont < 100 && !positionValid; cont++)
             {
                 do
                 {
-                    spawnPosition = new Vector2(UnityEngine.Random.Range(0, width), UnityEngine.Random.Range(0, height));
+                    int posX = UnityEngine.Random.Range(areaBounds.x, areaBounds.y);
+                    int posY = UnityEngine.Random.Range(areaBounds.x, areaBounds.z);
+                    if (posX >= innerAreaBounds.x && posX < innerAreaBounds.y)
+                    {
+                        int posOutBottomInnerBounds = UnityEngine.Random.Range(areaBounds.x, innerAreaBounds.x);
+                        int posOutTopInnerBounds = UnityEngine.Random.Range(innerAreaBounds.z, areaBounds.z);
+                        int posOutInnerBounds = UnityEngine.Random.value < 0.5f ? posOutBottomInnerBounds : posOutTopInnerBounds;
+                        posY = posOutInnerBounds;
+                    }
+                    spawnPosition = new Vector2(posX, posY);
 
                 } while (Vector2.Distance(spawnPosition,center) <= minDistanceFromCenter);
+
+
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, minDistanceBetweenSpawners);
 
@@ -267,6 +331,9 @@ namespace InterOrbital.WorldSystem
                 {
                     if (colliders[i].CompareTag(tag))
                     {
+                        Debug.Log(spawnPosition);
+                        Debug.Log(colliders[i].name);
+
                         positionValid = false;
                         break;
                     }
@@ -280,6 +347,58 @@ namespace InterOrbital.WorldSystem
 
             return spawnPosition;
         }
+
+        private Vector3Int GetAreaBounds(DifficultyArea area)
+        {
+            Vector3Int areaBounds = new Vector3Int(0, width, height);
+            if (area == DifficultyArea.Easy)
+            {
+                float innerWidth = width * EASY_PERCENTAGE_AREA;
+                float innerHeight = height * EASY_PERCENTAGE_AREA;
+                int leftBotBound = (int) (innerWidth / 2f);
+                int rightBotBound = (int) (width - (innerWidth / 2f));
+                int leftTopBound = (int) (height - (innerHeight / 2f));
+
+                areaBounds = new Vector3Int(leftBotBound, rightBotBound, leftTopBound);
+            }
+            else if (area == DifficultyArea.Medium)
+            {
+                float innerWidth = width * MEDIUM_PERCENTAGE_AREA;
+                float innerHeight = height * MEDIUM_PERCENTAGE_AREA;
+                int leftBotBound = (int) (innerWidth / 2f);
+                int rightBotBound = (int) (width - (innerWidth / 2f));
+                int leftTopBound = (int) (height - (innerHeight / 2f));
+
+                areaBounds = new Vector3Int(leftBotBound, rightBotBound, leftTopBound);
+            }
+
+            return areaBounds;
+        }
+
+        private Vector3Int GetInnerAreaBounds(DifficultyArea area)
+        {
+            Vector3Int areaBounds = new Vector3Int(0, width, height);
+            if (area == DifficultyArea.Easy)
+            {
+                //BaseArea
+                int leftBotBound = (width / 2) - (BASE_WIDTH/2);
+                int rightBotBound = (width / 2) + (BASE_WIDTH / 2);
+                int leftTopBound = (height / 2) + (BASE_HEIGHT / 2);
+                areaBounds = new Vector3Int(leftBotBound, rightBotBound, leftTopBound);
+            }
+            else if (area == DifficultyArea.Medium)
+            {
+               areaBounds = GetAreaBounds(DifficultyArea.Easy);
+            }
+            else if(area == DifficultyArea.Hard)
+            {
+                areaBounds = GetAreaBounds(DifficultyArea.Medium);
+            }
+
+            return areaBounds;
+        }
+
+
 
         private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
         {
@@ -485,7 +604,7 @@ namespace InterOrbital.WorldSystem
                 }
             }
 
-            SpawnSpaceshipArea(2);
+            SpawnSpaceshipArea(5);
         }
 
         private void SpawnSpaceshipArea(int tier)
@@ -507,8 +626,20 @@ namespace InterOrbital.WorldSystem
                     heightArea = 6;
                     break;
                 case 2:
-                    widthArea = 16;
-                    heightArea = 10;
+                    widthArea = 8;
+                    heightArea = 6;
+                    break;
+                case 3:
+                    widthArea = 10;
+                    heightArea = 6;
+                    break;
+                case 4:
+                    widthArea = 10;
+                    heightArea = 8;
+                    break;
+                case 5:
+                    widthArea = 12;
+                    heightArea = 8;
                     break;
                 default: break;
             }

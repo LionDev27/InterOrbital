@@ -15,11 +15,13 @@ namespace InterOrbital.Combat.Bullets
         private Vector2 _parentPos;
         private Rigidbody2D _rigidbody2D;
         protected DamageDealer _damageDealer;
+        protected bool _canMove;
 
         protected virtual void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _damageDealer = GetComponent<DamageDealer>();
+            _canMove = true;
         }
 
         protected void Start()
@@ -34,12 +36,21 @@ namespace InterOrbital.Combat.Bullets
 
         protected virtual void FixedUpdate()
         {
-            Move();
+            if (_canMove)
+            {
+                Move();
+            }
         }
 
         private void Move()
         {
             _rigidbody2D.velocity = _speed * 100f * Time.deltaTime * _moveDir;
+        }
+
+        protected void StopMove()
+        {
+            _canMove = false;
+            _rigidbody2D.velocity = Vector2.zero;
         }
 
         private void Rotate()
