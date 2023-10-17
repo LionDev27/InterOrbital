@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RangeAttackAnimator
+  m_Controller: {fileID: 9100000, guid: 50e5c5c97458cac4984f85ecb5ed442b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: fc58e69a773958c4ba9455e5081082af, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cac7a9596ad489b4dba7c1003f371abe, type: 2}

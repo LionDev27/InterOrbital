@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace InterOrbital.Combat.IA
@@ -7,13 +8,15 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] private float _losePlayerTime;
         [SerializeField] private float _closeAttackDistance;
+        [Tooltip("Tiempo que tarda en atacar")]
+        [SerializeField] private float _attackTime;
         private BossAttacks _bossAttacks;
         private float _losePlayerTimer;
 
         public override void Setup(EnemyAgentBase agent)
         {
             base.Setup(agent);
-            _bossAttacks = GetComponent<BossAttacks>();
+            _bossAttacks = GetComponentInChildren<BossAttacks>();
         }
 
         public override void OnStateEnter()
@@ -28,10 +31,7 @@ namespace InterOrbital.Combat.IA
                 if (_losePlayerTimer < _losePlayerTime)
                     ResetTimer();
                 if (_bossAttacks.Attacking) return;
-                if (Vector2.Distance(_currentAgent.Target.position, transform.position) <= _closeAttackDistance)
-                    _bossAttacks.CloseAttack();
-                else
-                    _bossAttacks.RandomAttack();
+                StartCoroutine(Attack());
             }
             else
             {
@@ -39,6 +39,16 @@ namespace InterOrbital.Combat.IA
                 if (_losePlayerTimer <= 0f)
                     _currentAgent.ChangeState(_currentAgent.States[0]);
             }
+        }
+
+        private IEnumerator Attack()
+        {
+            _bossAttacks.StartAttack();
+            yield return new WaitForSeconds(_attackTime);
+            if (Vector2.Distance(_currentAgent.Target.position, transform.position) <= _closeAttackDistance)
+                _bossAttacks.CloseAttack();
+            else
+                _bossAttacks.RandomAttack();
         }
 
         private void ResetTimer()

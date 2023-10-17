@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +6,9 @@ namespace InterOrbital.Combat.IA
     public class BossAttacks : MonoBehaviour
     {
         public bool Attacking => _attacking;
-
-        [Tooltip("Tiempo que tarda en atacar")] [SerializeField]
-        private float _attackTime;
-
-        [Tooltip("Ataque que realizará cuando el jugador se encuentre cerca.")] [SerializeField]
-        private GameObject _closeAttack;
-
+        
+        [Tooltip("Ataque que realizará cuando el jugador se encuentre cerca.")]
+        [SerializeField] private GameObject _closeAttack;
         [SerializeField] private List<GameObject> _attacks;
         private bool _attacking;
 
@@ -24,27 +19,24 @@ namespace InterOrbital.Combat.IA
 
         public void RandomAttack()
         {
-            if (_attacking) return;
             var index = Random.Range(0, _attacks.Count);
-            StartCoroutine(StartAttack(_attacks[index]));
+            ActivateAttack(_attacks[index]);
+
         }
 
         public void CloseAttack()
         {
-            if (_attacking) return;
-            StartCoroutine(StartAttack(_closeAttack));
+            ActivateAttack(_closeAttack);
+        }
+
+        public void StartAttack()
+        {
+            _attacking = true;
         }
 
         public void EndAttack()
         {
             _attacking = false;
-        }
-
-        private IEnumerator StartAttack(GameObject attack)
-        {
-            _attacking = true;
-            yield return new WaitForSeconds(_attackTime);
-            ActivateAttack(attack);
         }
 
         private void ActivateAttack(GameObject attack)
