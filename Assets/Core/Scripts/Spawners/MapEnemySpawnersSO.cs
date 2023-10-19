@@ -16,12 +16,12 @@ namespace InterOrbital.Combat.Spawner
         public int mediumSpawnersAmount;
         public int hardSpawnersAmount;
         public float distanceBetweenSpawners;
-        private List<GameObject> _EasyEnemySpawners;
-        [SerializeField] private List<GameObject> _EasyEnemySpawnersSpawned;
-        private List<GameObject> _MediumEnemySpawners;
-        [SerializeField] private List<GameObject> _MediumEnemySpawnersSpawned;
-        private List<GameObject> _HardEnemySpawners;
-        [SerializeField] private List<GameObject> _HardEnemySpawnersSpawned;
+        [SerializeField] private List<GameObject> _EasyEnemySpawners;
+        private List<GameObject> _EasyEnemySpawnersSpawned;
+        [SerializeField] private List<GameObject> _MediumEnemySpawners;
+        private List<GameObject> _MediumEnemySpawnersSpawned;
+        [SerializeField] private List<GameObject> _HardEnemySpawners;
+        private List<GameObject> _HardEnemySpawnersSpawned;
 
         public void ResetSpawners()
         {
@@ -55,9 +55,6 @@ namespace InterOrbital.Combat.Spawner
 
         public GameObject GetEnemySpawnerByDifficultArea(DifficultyArea area)
         {
-            Debug.Log("area: " + area);
-            Debug.Log(_MediumEnemySpawners.Count);
-
             if (area == DifficultyArea.Easy)
             {
                 return GetEasyEnemySpawner();
