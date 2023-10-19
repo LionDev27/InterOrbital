@@ -4,7 +4,7 @@ namespace InterOrbital.Combat.IA
 {
     public class BossAttack : MonoBehaviour
     {
-        [SerializeField] private AnimationClip _attackAnimation;
+        [SerializeField] protected AnimationClip _attackAnimation;
         private BossAttacks _bossAttacks;
 
         protected virtual void Awake()
@@ -17,7 +17,7 @@ namespace InterOrbital.Combat.IA
             Invoke(nameof(DeactivateAttack), _attackAnimation.length);
         }
 
-        private void DeactivateAttack()
+        protected void DeactivateAttack()
         {
             if (_bossAttacks != null)
                 _bossAttacks.EndAttack();
