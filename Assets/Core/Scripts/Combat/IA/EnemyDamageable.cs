@@ -17,7 +17,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
         private MissionCreator _missionCreator;
-        private EnemyAgentBase _agent;
+        protected EnemyAgentBase _agent;
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
 
@@ -25,7 +25,7 @@ namespace InterOrbital.Combat.IA
         protected float _noHitTimer;
         protected bool _hitted;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _missionCreator = FindObjectOfType<MissionCreator>();
             _agent = GetComponent<EnemyAgentBase>();

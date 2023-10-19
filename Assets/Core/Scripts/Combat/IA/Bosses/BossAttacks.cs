@@ -6,6 +6,7 @@ namespace InterOrbital.Combat.IA
     public class BossAttacks : MonoBehaviour
     {
         public bool Attacking => _attacking;
+        public float attackTime;
         
         [Tooltip("Ataque que realizará cuando el jugador se encuentre cerca.")]
         [SerializeField] private GameObject _closeAttack;

@@ -48,7 +48,7 @@ namespace InterOrbital.Combat.IA
         protected virtual void Update()
         {
             _hitTimer -= Time.deltaTime;
-            if (HitAnimationPlaying()) return;
+            if (HitAnimationPlaying() && _useHitAnimation) return;
             if (_useHitAnimation)
             {
                 if (_animator.GetBool("Hit"))

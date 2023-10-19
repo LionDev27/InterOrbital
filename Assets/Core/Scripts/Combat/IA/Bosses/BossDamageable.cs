@@ -6,17 +6,30 @@ namespace InterOrbital.Combat.IA
 {
     public class BossDamageable : EnemyDamageable
     {
+        public int MaxHealth => _maxHealth;
+        public int CurrentHealth => _currentHealth;
+        
         [SerializeField] private UnityEvent _onDeath;
         [SerializeField] private float _timePerRecover = 0.5f;
         [SerializeField] private string _name;
         [SerializeField] private ParticleSystem _healParticles;
+        private BossAgent _bossAgent;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _bossAgent = _agent as BossAgent;
+        }
 
         protected override void UpdateLifeBar()
         {
             BossInfoBar.OnUpdateLifeBar?.Invoke(_currentHealth);
         }
 
-        protected override void HitReceived(){}
+        protected override void HitReceived()
+        {
+            _bossAgent.ChangePhase();
+        }
 
         protected override void CheckHitTimer(){}
 
@@ -52,6 +65,7 @@ namespace InterOrbital.Combat.IA
         public void ActivateBoss()
         {
             _hitted = false;
+            _bossAgent.ChangePhase();
             BossInfoBar.OnActivateBoss?.Invoke(_name, _currentHealth, _maxHealth);
         }
     }
