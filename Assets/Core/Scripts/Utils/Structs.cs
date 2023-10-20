@@ -67,4 +67,12 @@ namespace InterOrbital.Utils
         public int amountToRestore;
     }
 
+    [Serializable]
+    public struct Region
+    {
+        public string biome;
+        public Vector2Int startPos;
+        public int extension;
+    }
+
 }

@@ -1,3 +1,4 @@
+using InterOrbital.Recollectables.Spawner;
 using InterOrbital.Utils;
 using System;
 using System.Collections.Generic;
@@ -53,9 +54,15 @@ namespace InterOrbital.Combat.Spawner
                 if (resourcesBiomeSpawners[i].biome == biome)
                 {
                     resourcesBiomeSpawners[i]._resourcesSpawners.Add(spawner);
-                    break;
+                    return;
                 }
             }
+            ResourceBiomeSpawner aux = new ResourceBiomeSpawner
+            {
+                biome = biome,
+                _resourcesSpawners = new List<GameObject> { spawner }
+            };
+            resourcesBiomeSpawners.Add(aux);
         }
 
         public void RemoveAtBiomeList(int index, string biome, List<ResourceBiomeSpawner> resourcesBiomeSpawners)

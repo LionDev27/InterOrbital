@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using InterOrbital.Item;
 using InterOrbital.Others;
+using InterOrbital.Recollectables.Spawner;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -21,6 +22,8 @@ namespace InterOrbital.Recollectables
         [SerializeField] private float _dropForce = 3f;
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
+
+        [SerializeField] private ResourcesSpawner _spawner;
 
         private float _noHitTime = 60f;
         private float _noHitTimer;
@@ -75,6 +78,7 @@ namespace InterOrbital.Recollectables
 
         private void DestroyRecollectable()
         {
+            _spawner.ResourceObtained();
             Destroy(gameObject);
         }
         
@@ -155,6 +159,11 @@ namespace InterOrbital.Recollectables
         public Vector2 GetDimensions()
         {
             return _dimensions;
+        }
+
+        public void SetSpawnerRef(ResourcesSpawner spawner)
+        {
+            _spawner = spawner;
         }
     }
 }
