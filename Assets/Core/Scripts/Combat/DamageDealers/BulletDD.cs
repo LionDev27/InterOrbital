@@ -6,12 +6,27 @@ namespace InterOrbital.Combat
 {
     public class BulletDD : DamageDealer
     {
+        private bool _destroyAfterHit;
+
+        private void Awake()
+        {
+            _destroyAfterHit = true;
+        }
+
         protected override void AttackDamageableTarget(Collider2D other, Damageable damageable)
         {
             Debug.Log("Attacking. tag: " + attackerTag);
             base.AttackDamageableTarget(other, damageable);
             //Destruimos la bala después de atacar.
-            Destroy(gameObject);
+            if(_destroyAfterHit)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void DontDestroyAfterHit()
+        {
+            _destroyAfterHit = false;
         }
 
         // CON ESTO HACEMOS QUE SI CHOCA UNA BALA CON UNA ENEMIGA, SE DESTRUYA.

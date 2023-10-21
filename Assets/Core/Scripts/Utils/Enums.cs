@@ -49,4 +49,11 @@ namespace InterOrbital.Utils
         Hunt,
         Craft
     }
+
+    public enum DifficultyArea
+    {
+        Easy,
+        Medium,
+        Hard
+    }
 }
