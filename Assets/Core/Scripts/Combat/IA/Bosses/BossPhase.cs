@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace InterOrbital.Combat.IA
 {
     [System.Serializable]
@@ -5,5 +7,6 @@ namespace InterOrbital.Combat.IA
     {
         public BossAttacks attacks;
         public int healthToChange;
+        public Color barFillColor;
     }
 }

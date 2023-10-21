@@ -55,5 +55,10 @@ namespace InterOrbital.Combat.IA
         {
             _bossCanvas.SetActive(false);
         }
+
+        private void ChangeFillColor(Color color)
+        {
+            _lifeBarFill.color = color;
+        }
     }
 }

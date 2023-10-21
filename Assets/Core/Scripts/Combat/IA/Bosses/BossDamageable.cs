@@ -39,6 +39,11 @@ namespace InterOrbital.Combat.IA
             StartCoroutine(DeathSequence());
         }
 
+        private void ChangeFillColor()
+        {
+            
+        }
+
         private IEnumerator DeathSequence()
         {
             _agent.Death();
