@@ -218,6 +218,7 @@ MonoBehaviour:
     healthToChange: 150
   - attacks: {fileID: 1518450797415011096}
     healthToChange: 75
+  _changePhaseTime: 3
 --- !u!114 &4419611248506299023
 MonoBehaviour:
   m_ObjectHideFlags: 0

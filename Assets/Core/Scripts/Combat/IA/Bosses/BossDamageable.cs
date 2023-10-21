@@ -28,7 +28,7 @@ namespace InterOrbital.Combat.IA
 
         protected override void HitReceived()
         {
-            _bossAgent.ChangePhase();
+            _bossAgent.UpPhase();
         }
 
         protected override void CheckHitTimer(){}
@@ -51,6 +51,7 @@ namespace InterOrbital.Combat.IA
                 }
                 yield return new WaitForSeconds(_timePerRecover);
                 _currentHealth++;
+                _bossAgent.DownPhase();
             }
             _healParticles.Stop();
         }
@@ -65,7 +66,6 @@ namespace InterOrbital.Combat.IA
         public void ActivateBoss()
         {
             _hitted = false;
-            _bossAgent.ChangePhase();
             BossInfoBar.OnActivateBoss?.Invoke(_name, _currentHealth, _maxHealth);
         }
     }

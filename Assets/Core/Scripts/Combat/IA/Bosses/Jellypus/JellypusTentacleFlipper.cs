@@ -2,7 +2,7 @@ using InterOrbital.Utils;
 
 namespace InterOrbital.Combat.IA
 {
-    public class JellypusTentacleFlippler : TargetDirFlipper
+    public class JellypusTentacleFlipper : TargetDirFlipper
     {
         private JellypusTentacleAttack _attack;
 
@@ -14,7 +14,6 @@ namespace InterOrbital.Combat.IA
         private void OnEnable()
         {
             target = _attack.Agent.Target;
-            Flip();
         }
     }
 }

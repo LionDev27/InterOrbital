@@ -20,7 +20,7 @@ namespace InterOrbital.Combat.IA
             {
                 if (_losePlayerTimer < _losePlayerTime)
                     ResetTimer();
-                if (IsAttacking()) return;
+                if (!CanAttack()) return;
                 StartCoroutine(Attack(_currentAgent.CurrentAttacks()));
             }
             else
@@ -41,9 +41,9 @@ namespace InterOrbital.Combat.IA
                 attacks.RandomAttack();
         }
 
-        private bool IsAttacking()
+        private bool CanAttack()
         {
-            return _currentAgent.IsAttacking();
+            return _currentAgent.CanAttack();
         }
         
         private void ResetTimer()

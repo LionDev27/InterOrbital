@@ -45,7 +45,7 @@ namespace InterOrbital.Combat.IA
             attack.SetActive(true);
         }
 
-        private void DeactivateAttacks()
+        public void DeactivateAttacks()
         {
             _closeAttack.SetActive(false);
             foreach (var attack in _attacks)
