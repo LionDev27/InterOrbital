@@ -1,4 +1,5 @@
 using System.Collections;
+using InterOrbital.Others;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,10 +10,10 @@ namespace InterOrbital.Combat.IA
         public int MaxHealth => _maxHealth;
         public int CurrentHealth => _currentHealth;
         
-        [SerializeField] private UnityEvent _onDeath;
         [SerializeField] private float _timePerRecover = 0.5f;
         [SerializeField] private string _name;
         [SerializeField] private ParticleSystem _healParticles;
+        [SerializeField] private bool _endGame;
         private BossAgent _bossAgent;
 
         protected override void Awake()
@@ -35,7 +36,21 @@ namespace InterOrbital.Combat.IA
 
         protected override void Death()
         {
-            _onDeath?.Invoke();
+            StartCoroutine(DeathSequence());
+        }
+
+        private IEnumerator DeathSequence()
+        {
+            _agent.Death();
+            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
+            yield return StartCoroutine(SlowTimeEffect.Instance.Play(3));
+            if (_endGame)
+            {
+                var levelManager = LevelManager.Instance;
+                if (levelManager != null)
+                    levelManager.BackMenu();
+            }
+            Destroy(gameObject);
         }
 
         private IEnumerator Recover()

@@ -831,16 +831,14 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
   _dropsList: []
   _deathParticles: {fileID: 4891282835071411422, guid: 50d57341245819d44a643bef7d11e196, type: 3}
-  _deathTime: 2
+  _deathTime: 0.4
   _dropForce: 1
   _lifeBar: {fileID: 0}
   _lifeBarCG: {fileID: 0}
-  _onDeath:
-    m_PersistentCalls:
-      m_Calls: []
   _timePerRecover: 0.5
   _name: Jellypus
   _healParticles: {fileID: 5285486916708148699}
+  _endGame: 1
 --- !u!114 &3131315919438408778
 MonoBehaviour:
   m_ObjectHideFlags: 0

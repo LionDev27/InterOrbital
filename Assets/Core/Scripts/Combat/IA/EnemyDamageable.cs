@@ -13,8 +13,8 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] private GameObject _dropItemPrefab;
         [SerializeField] private List<EnemyDrops> _dropsList;
-        [SerializeField] private ParticleSystem _deathParticles;
-        [SerializeField] private float _deathTime;
+        [SerializeField] protected ParticleSystem _deathParticles;
+        [SerializeField] protected float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
         private MissionCreator _missionCreator;
         protected EnemyAgentBase _agent;

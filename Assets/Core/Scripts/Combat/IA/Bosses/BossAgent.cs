@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using InterOrbital.Player;
 using UnityEngine;
 
 namespace InterOrbital.Combat.IA
@@ -13,6 +14,7 @@ namespace InterOrbital.Combat.IA
         private int _currentAttackIndex;
         private BossDamageable _damageable;
         private bool _changingPhase;
+        private bool _dying;
 
         protected override void Awake()
         {
@@ -22,7 +24,7 @@ namespace InterOrbital.Combat.IA
 
         public bool CanAttack()
         {
-            return !CurrentAttacks().Attacking && !_changingPhase;
+            return !CurrentAttacks().Attacking && !_changingPhase && !_dying;
         }
 
         public BossAttacks CurrentAttacks()
@@ -49,6 +51,14 @@ namespace InterOrbital.Combat.IA
                 CurrentAttacks().EndAttack();
                 _currentAttackIndex++;
             }
+        }
+
+        public override void Death()
+        {
+            CameraShake.Instance.Shake(10);
+            _dying = true;
+            CurrentAttacks().DeactivateAttacks();
+            CurrentAttacks().EndAttack();
         }
 
         private IEnumerator ChangePhaseTimer()

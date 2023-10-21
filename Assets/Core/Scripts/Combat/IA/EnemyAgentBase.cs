@@ -121,7 +121,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        public void Death()
+        public virtual void Death()
         {
             if (_enemySpawner != null)
                 _enemySpawner.EnemyDead();

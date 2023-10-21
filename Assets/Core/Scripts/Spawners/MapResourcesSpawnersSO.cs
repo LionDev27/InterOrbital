@@ -15,11 +15,11 @@ namespace InterOrbital.Combat.Spawner
         public int hardSpawnersAmount;
         public float distanceBetweenSpawners;
         [SerializeField] private List<ResourceBiomeSpawner> _EasyResourceSpawners;
-        private List<ResourceBiomeSpawner> _EasyResourceSpawnersSpawned;
+        private List<ResourceBiomeSpawner> _EasyResourceSpawnersSpawned = new();
         [SerializeField] private List<ResourceBiomeSpawner> _MediumResourceSpawners;
-        private List<ResourceBiomeSpawner> _MediumResourceSpawnersSpawned;
+        private List<ResourceBiomeSpawner> _MediumResourceSpawnersSpawned = new();
         [SerializeField] private List<ResourceBiomeSpawner> _HardResourceSpawners;
-        private List<ResourceBiomeSpawner> _HardResourceSpawnersSpawned;
+        private List<ResourceBiomeSpawner> _HardResourceSpawnersSpawned = new();
 
         public List<GameObject> GetRandomResourceSpawnerFromBiome(string biome, List<ResourceBiomeSpawner> resourcesBiomeSpawners)
         {
