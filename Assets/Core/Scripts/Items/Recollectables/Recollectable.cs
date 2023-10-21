@@ -23,7 +23,7 @@ namespace InterOrbital.Recollectables
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
 
-        [SerializeField] private ResourcesSpawner _spawner;
+        private ResourcesSpawner _spawner;
 
         private float _noHitTime = 60f;
         private float _noHitTimer;
@@ -34,12 +34,12 @@ namespace InterOrbital.Recollectables
         private List<ItemScriptableObject> _dropItems => _scriptableObject.recollectableConfig.dropItems;
         private List<int> _dropRates => _scriptableObject.recollectableConfig.dropRates;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _currentHealth = _health;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             CheckHitTimer();
         }
@@ -78,11 +78,14 @@ namespace InterOrbital.Recollectables
 
         private void DestroyRecollectable()
         {
-            _spawner.ResourceObtained();
+            if(_spawner != null)
+            {
+                _spawner.ResourceObtained();
+            }
             Destroy(gameObject);
         }
         
-        public void Recollect()
+        public virtual void Recollect()
         {
             if (_dropCounter + _currentHealth == _health)
             {
