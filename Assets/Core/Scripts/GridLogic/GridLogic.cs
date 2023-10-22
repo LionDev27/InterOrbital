@@ -31,6 +31,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Sprite _spaceshipAreaSprite;
         [SerializeField] private Tilemap _spaceshipAreaTilemap;
         [SerializeField] private List<string> _biomes;
+        [SerializeField] private List<Region> _regions;
         [SerializeField] private MapEnemySpawnersSO _enemiesSpawners;
         [SerializeField] private MapResourcesSpawnersSO _resourcesSpawners;
         [SerializeField] private Tilemap _animationTilemap;
@@ -696,11 +697,16 @@ namespace InterOrbital.WorldSystem
 
         private void CreateRegions()
         {
-            RandomBiomeCreation(10, 40, _biomes[1], 450);
-            RandomBiomeCreation(20, 10, _biomes[2], 450);
-            RandomBiomeCreation(40, 10, _biomes[3], 450);
-            RandomBiomeCreation(80, 60, _biomes[2], 1000);
-            RandomBiomeCreation(80, 20, _biomes[1], 600);
+            foreach(Region region in _regions)
+            {
+                if(region.startPos.x >= 0 && region.startPos.x < width && region.startPos.y >= 0 && region.startPos.y < height)
+                {
+                    if (_biomes.Contains(region.biome))
+                    {
+                        RandomBiomeCreation(region.startPos.x, region.startPos.y, region.biome, region.extension);
+                    }
+                }
+            }  
         }
 
         private Vector2Int UpdatePosToMap(Vector2Int pos)

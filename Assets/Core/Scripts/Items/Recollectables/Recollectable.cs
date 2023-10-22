@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using InterOrbital.Item;
 using InterOrbital.Others;
+using InterOrbital.Recollectables.Spawner;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -22,6 +23,8 @@ namespace InterOrbital.Recollectables
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
 
+        private ResourcesSpawner _spawner;
+
         private float _noHitTime = 60f;
         private float _noHitTimer;
         private bool _hitted;
@@ -31,12 +34,12 @@ namespace InterOrbital.Recollectables
         private List<ItemScriptableObject> _dropItems => _scriptableObject.recollectableConfig.dropItems;
         private List<int> _dropRates => _scriptableObject.recollectableConfig.dropRates;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _currentHealth = _health;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             CheckHitTimer();
         }
@@ -75,10 +78,14 @@ namespace InterOrbital.Recollectables
 
         private void DestroyRecollectable()
         {
+            if(_spawner != null)
+            {
+                _spawner.ResourceObtained();
+            }
             Destroy(gameObject);
         }
         
-        public void Recollect()
+        public virtual void Recollect()
         {
             if (_dropCounter + _currentHealth == _health)
             {
@@ -155,6 +162,11 @@ namespace InterOrbital.Recollectables
         public Vector2 GetDimensions()
         {
             return _dimensions;
+        }
+
+        public void SetSpawnerRef(ResourcesSpawner spawner)
+        {
+            _spawner = spawner;
         }
     }
 }
