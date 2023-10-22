@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using InterOrbital.Player;
 using UnityEngine;
 
@@ -7,11 +9,14 @@ namespace InterOrbital.Combat.IA
 {
     public class BossAgent : EnemyAgentBase
     {
+        public Action ChangePhase;
         public BossDamageable Damageable => _damageable;
         
         [SerializeField] private List<BossPhase> _phases;
         [SerializeField] private float _changePhaseTime;
-        private int _currentAttackIndex;
+        [SerializeField] private Color _lastPhaseColor;
+        private SpriteRenderer _spriteRenderer;
+        private int _currentPhaseIndex;
         private BossDamageable _damageable;
         private bool _changingPhase;
         private bool _dying;
@@ -20,11 +25,12 @@ namespace InterOrbital.Combat.IA
         {
             base.Awake();
             _damageable = GetComponent<BossDamageable>();
+            _spriteRenderer = _hitShaderController.gameObject.GetComponent<SpriteRenderer>();
         }
 
         protected override void Start()
         {
-            ChangeFillColor(_phases[_currentAttackIndex]);
+            ChangeFillColor(_phases[_currentPhaseIndex]);
             base.Start();
         }
 
@@ -35,30 +41,35 @@ namespace InterOrbital.Combat.IA
 
         public BossAttacks CurrentAttacks()
         {
-            return _phases[_currentAttackIndex].attacks;
+            return _phases[_currentPhaseIndex].attacks;
         }
 
         public void DownPhase()
         {
-            if (_currentAttackIndex == 0) return;
-            var currentPhase = _phases[_currentAttackIndex];
+            if (_currentPhaseIndex == 0) return;
+            var currentPhase = _phases[_currentPhaseIndex];
             if (_damageable.CurrentHealth > currentPhase.healthToChange)
             {
-                _currentAttackIndex--;
+                if (IsLastPhase())
+                    ChangeSpriteColor(false);
+                _currentPhaseIndex--;
                 ChangeFillColor(currentPhase);
             }
         }
 
         public void UpPhase()
         {
-            if (_currentAttackIndex == _phases.Count - 1) return;
-            var nextPhase = _phases[_currentAttackIndex + 1];
+            if (IsLastPhase()) return;
+            var nextPhase = _phases[_currentPhaseIndex + 1];
             if (_damageable.CurrentHealth <= nextPhase.healthToChange)
             {
                 StartCoroutine(ChangePhaseTimer());
+                ChangePhase?.Invoke();
                 CurrentAttacks().DeactivateAttacks();
                 CurrentAttacks().EndAttack();
-                _currentAttackIndex++;
+                _currentPhaseIndex++;
+                if (IsLastPhase())
+                    ChangeSpriteColor(true);
                 ChangeFillColor(nextPhase);
             }
         }
@@ -71,9 +82,20 @@ namespace InterOrbital.Combat.IA
             CurrentAttacks().EndAttack();
         }
 
+        private bool IsLastPhase()
+        {
+            return _currentPhaseIndex == _phases.Count - 1;
+        }
+
         private void ChangeFillColor(BossPhase phase)
         {
             BossInfoBar.OnChangeFillColor?.Invoke(phase.barFillColor);
+        }
+
+        private void ChangeSpriteColor(bool lastPhase)
+        {
+            var color = lastPhase ? _lastPhaseColor : Color.white;
+            _spriteRenderer.DOColor(color, _changePhaseTime).Play();
         }
 
         private IEnumerator ChangePhaseTimer()

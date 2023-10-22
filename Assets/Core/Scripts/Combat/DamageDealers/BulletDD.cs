@@ -15,13 +15,10 @@ namespace InterOrbital.Combat
 
         protected override void AttackDamageableTarget(Collider2D other, Damageable damageable)
         {
-            Debug.Log("Attacking. tag: " + attackerTag);
             base.AttackDamageableTarget(other, damageable);
             //Destruimos la bala después de atacar.
             if(_destroyAfterHit)
-            {
                 Destroy(gameObject);
-            }
         }
 
         public void DontDestroyAfterHit()

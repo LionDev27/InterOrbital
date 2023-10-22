@@ -11,7 +11,7 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] protected Vector2 _detectionRange;
         [SerializeField] protected List<EnemyStateBase> _states;
-        [SerializeField] private HitShaderController _hitShaderController;
+        [SerializeField] protected HitShaderController _hitShaderController;
         [SerializeField] private float _hitAnimationTime;
         [SerializeField] private bool _useHitAnimation;
         protected EnemyStateBase _currentState;

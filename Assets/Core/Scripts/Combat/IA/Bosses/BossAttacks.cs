@@ -22,7 +22,6 @@ namespace InterOrbital.Combat.IA
         {
             var index = Random.Range(0, _attacks.Count);
             ActivateAttack(_attacks[index]);
-
         }
 
         public void CloseAttack()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,23 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _losePlayerTime;
         [SerializeField] private float _closeAttackDistance;
         private float _losePlayerTimer;
+
+        public override void Setup(EnemyAgentBase agent)
+        {
+            base.Setup(agent);
+            _currentAgent.ChangePhase += StopAllCoroutines;
+        }
+
+        private void OnEnable()
+        {
+            if (_currentAgent)
+                _currentAgent.ChangePhase += StopAllCoroutines;
+        }
+
+        private void OnDisable()
+        {
+            _currentAgent.ChangePhase -= StopAllCoroutines;
+        }
 
         public override void OnStateEnter()
         {
