@@ -10,6 +10,7 @@ namespace InterOrbital.Combat.IA
         public static Action<string, int, int> OnActivateBoss;
         public static Action OnDeactivateBoss;
         public static Action<int> OnUpdateLifeBar;
+        public static Action<Color> OnChangeFillColor;
 
         [SerializeField] private GameObject _bossCanvas;
         [SerializeField] private TextMeshProUGUI _name;
@@ -27,6 +28,7 @@ namespace InterOrbital.Combat.IA
             OnActivateBoss += ActivateBoss;
             OnDeactivateBoss += DeactivateBoss;
             OnUpdateLifeBar += UpdateLifeBar;
+            OnChangeFillColor += ChangeFillColor;
         }
 
         private void OnDisable()
@@ -34,6 +36,7 @@ namespace InterOrbital.Combat.IA
             OnActivateBoss -= ActivateBoss;
             OnDeactivateBoss -= DeactivateBoss;
             OnUpdateLifeBar -= UpdateLifeBar;
+            OnChangeFillColor -= ChangeFillColor;
         }
 
         private void ActivateBoss(string bossName, int currentHealth ,int maxHealth)

@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b8d864b84f4084a68d42de05471cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRange: {x: 26, y: 17}
+  _detectionRange: {x: 28, y: 18}
   _states:
   - {fileID: 4419611248506299023}
   - {fileID: 7315650794559237846}
@@ -862,8 +862,10 @@ MonoBehaviour:
   _phases:
   - attacks: {fileID: 8563429073364598138}
     healthToChange: 150
+    barFillColor: {r: 0.8431373, g: 0.62352943, b: 0.07450981, a: 1}
   - attacks: {fileID: 1518450797415011096}
     healthToChange: 75
+    barFillColor: {r: 0.84313726, g: 0.07450981, b: 0.07450982, a: 1}
   _changePhaseTime: 3
 --- !u!114 &4419611248506299023
 MonoBehaviour:
@@ -901,7 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70bf80496fb4ca0a7bf75be04a96824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _losePlayerTime: 2
+  _losePlayerTime: 5
   _closeAttackDistance: 6.25
 --- !u!1 &3131315920409158337
 GameObject:

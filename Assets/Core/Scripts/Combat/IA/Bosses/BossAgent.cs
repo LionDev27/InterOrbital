@@ -22,6 +22,12 @@ namespace InterOrbital.Combat.IA
             _damageable = GetComponent<BossDamageable>();
         }
 
+        protected override void Start()
+        {
+            ChangeFillColor(_phases[_currentAttackIndex]);
+            base.Start();
+        }
+
         public bool CanAttack()
         {
             return !CurrentAttacks().Attacking && !_changingPhase && !_dying;
@@ -37,7 +43,10 @@ namespace InterOrbital.Combat.IA
             if (_currentAttackIndex == 0) return;
             var currentPhase = _phases[_currentAttackIndex];
             if (_damageable.CurrentHealth > currentPhase.healthToChange)
+            {
                 _currentAttackIndex--;
+                ChangeFillColor(currentPhase);
+            }
         }
 
         public void UpPhase()
@@ -50,6 +59,7 @@ namespace InterOrbital.Combat.IA
                 CurrentAttacks().DeactivateAttacks();
                 CurrentAttacks().EndAttack();
                 _currentAttackIndex++;
+                ChangeFillColor(nextPhase);
             }
         }
 
@@ -59,6 +69,11 @@ namespace InterOrbital.Combat.IA
             _dying = true;
             CurrentAttacks().DeactivateAttacks();
             CurrentAttacks().EndAttack();
+        }
+
+        private void ChangeFillColor(BossPhase phase)
+        {
+            BossInfoBar.OnChangeFillColor?.Invoke(phase.barFillColor);
         }
 
         private IEnumerator ChangePhaseTimer()
