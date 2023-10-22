@@ -26,8 +26,11 @@ namespace InterOrbital.Combat.IA
 
         public override void GetDamage(int damage)
         {
-            _agent.HitEnemy();
-            base.GetDamage(damage);
+            if (!_agent.Animator.GetCurrentAnimatorStateInfo(0).IsName("Spawn"))
+            {
+                _agent.HitEnemy();
+                base.GetDamage(damage);
+            }
         }
 
         public void ExplosionDeath()

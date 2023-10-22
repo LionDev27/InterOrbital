@@ -17,9 +17,13 @@ namespace InterOrbital.Combat.IA
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player") && !_isDead)
+            if (collision.CompareTag("Player") && !_isDead && !_darkBall.Animator.GetCurrentAnimatorStateInfo(0).IsName("Spawn"))
             {
-                _darkBall.DeathDarkBall();
+                if (!collision.GetComponent<Player.PlayerDash>().IsDashing())
+                {
+                    _isDead=true;
+                    _darkBall.DeathDarkBall();
+                }
             }
             
         }

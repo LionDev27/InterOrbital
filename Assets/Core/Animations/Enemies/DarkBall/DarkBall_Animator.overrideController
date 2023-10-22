@@ -7,5 +7,11 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DarkBall_Animator
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 6c11b7dec1f416041b75167b4f4663b5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4bbea7c9659cc7a478abc8d4b7d497c8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 73031d4f092d28849bb4263d53b74db0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 25dc2b60e69c445408292c42750c5f9b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6be88a1cd445fea4abee7ac2a18ad2f2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 85cc333710486b74f8cf1b2449faa5c3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 89fc232d45f86bb40af9c3d6a2fe6bcd, type: 2}

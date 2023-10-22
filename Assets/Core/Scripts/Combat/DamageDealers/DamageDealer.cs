@@ -21,7 +21,6 @@ namespace InterOrbital.Combat
 
         protected virtual void CheckCollision(Collider2D other)
         {
-           
             //Si este DamageDealer tiene asignado un attackerTag, lo comprueba. Si no, comprueba su propio tag.
             if ((attackerTag != "" && other.CompareTag(attackerTag)) || other.CompareTag(gameObject.tag)) return;
             if (other.CompareTag("Player") && other is BoxCollider2D) return;

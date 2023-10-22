@@ -12,12 +12,12 @@ namespace InterOrbital.Combat.IA
         [SerializeField] protected Vector2 _detectionRange;
         [SerializeField] protected List<EnemyStateBase> _states;
         [SerializeField] private HitShaderController _hitShaderController;
-        [SerializeField] private float _hitAnimationTime;
+        [SerializeField] protected float _hitAnimationTime;
         protected EnemyStateBase _currentState;
         private Transform _target;
         private Animator _animator;
         private NavMeshAgent _navMeshAgent;
-        private float _hitTimer;
+        protected float _hitTimer;
         private EnemySpawner _enemySpawner;
         
         public Transform Target => _target;
@@ -27,15 +27,16 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Awake()
         {
+            _animator = GetComponentInChildren<Animator>();
+            if (TryGetComponent(out NavMeshAgent agent))
+                _navMeshAgent = agent;
+
             if (_states.Count <= 0) return;
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
 
-            _animator = GetComponentInChildren<Animator>();
-            if (TryGetComponent(out NavMeshAgent agent))
-                _navMeshAgent = agent;
         }
 
         protected virtual void Start()
@@ -105,7 +106,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        private bool HitAnimationPlaying()
+        protected bool HitAnimationPlaying()
         {
             return _hitTimer > 0;
         }
@@ -124,7 +125,7 @@ namespace InterOrbital.Combat.IA
                 _enemySpawner.EnemyDead();
         }
 
-        private IEnumerator HitAnimation()
+        public IEnumerator HitAnimation()
         {
             while (HitAnimationPlaying())
             {

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5435320028732977889}
   - component: {fileID: 5435320028732977822}
-  - component: {fileID: 5469762279505358989}
   - component: {fileID: 7046120841993966078}
+  - component: {fileID: 292193669018444389}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -86,27 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5469762279505358989
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5435320028732977888}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2ddebaf4c9e4b8f4e9d96a161bc0b247, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7046120841993966078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +99,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 5435320028732977822}
+--- !u!95 &292193669018444389
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435320028732977888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 193abfccede2f1d49a1b09edae6e299f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5435320029029347876
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,10 +175,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5435320029756944155}
   - component: {fileID: 5435320029756944146}
-  - component: {fileID: 2472950351413934529}
   - component: {fileID: 8590949916580895649}
   - component: {fileID: 1507970095602845756}
-  - component: {fileID: 4307005626402604894}
+  - component: {fileID: 6606182928868193462}
+  - component: {fileID: -7944918566267465522}
   m_Layer: 8
   m_Name: DarkBall
   m_TagString: Enemy
@@ -224,24 +224,6 @@ NavMeshAgent:
   m_BaseOffset: 0.75
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2472950351413934529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5435320029756944154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c91c7fb992bcc4eb7fa12c363b61c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 2
-  _dropItemPrefab: {fileID: 0}
-  _dropsList: []
-  _deathParticles: {fileID: 3913197648646336457, guid: a2723abe7e4981243b6157c9d15b2dbe, type: 3}
-  _deathTime: 0
-  _dropForce: 1.5
 --- !u!114 &8590949916580895649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,10 +239,10 @@ MonoBehaviour:
   _detectionRange: {x: 0, y: 0}
   _states: []
   _hitShaderController: {fileID: 7046120841993966078}
-  _hitAnimationTime: 0
+  _hitAnimationTime: 0.4
   _deathParticles: {fileID: 3913197648646336457, guid: a2723abe7e4981243b6157c9d15b2dbe, type: 3}
-  initialSpeed: 0
-  maxSpeed: 0
+  initialSpeed: 1.5
+  maxSpeed: 15
   acceleration: 2
 --- !u!114 &1507970095602845756
 MonoBehaviour:
@@ -276,8 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   attackerTag: 
-  radiusExplosion: 1.5
---- !u!58 &4307005626402604894
+  radiusExplosion: 2
+--- !u!58 &6606182928868193462
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,4 +274,23 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.63
+  m_Radius: 0.62
+--- !u!114 &-7944918566267465522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435320029756944154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52baabcf36528f34ba46293891370b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 2
+  _dropItemPrefab: {fileID: 0}
+  _dropsList: []
+  _deathParticles: {fileID: 3913197648646336457, guid: a2723abe7e4981243b6157c9d15b2dbe, type: 3}
+  _deathTime: 0
+  _dropForce: 1.5
+  _darkBall: {fileID: 8590949916580895649}

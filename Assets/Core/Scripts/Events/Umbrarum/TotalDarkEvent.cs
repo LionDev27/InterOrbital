@@ -6,9 +6,6 @@ namespace InterOrbital.Events
 {
     public class TotalDarkEvent : EventBase
     {
-        [SerializeField] private Light2D _globalLight;
-        [SerializeField] private float _lightTransitionTime;
-
         public override void StartEvent()
         {
             base.StartEvent();
