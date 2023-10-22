@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using InterOrbital.Item;
 using InterOrbital.Mission;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace InterOrbital.Combat.IA
@@ -12,16 +13,27 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] private GameObject _dropItemPrefab;
         [SerializeField] private List<EnemyDrops> _dropsList;
-        [SerializeField] private ParticleSystem _deathParticles;
-        [SerializeField] private float _deathTime;
+        [SerializeField] protected ParticleSystem _deathParticles;
+        [SerializeField] protected float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
         private MissionCreator _missionCreator;
-        private EnemyAgentBase _agent;
+        protected EnemyAgentBase _agent;
+        [SerializeField] private Image _lifeBar;
+        [SerializeField] private CanvasGroup _lifeBarCG;
 
-        private void Awake()
+        protected float _noHitTime = 60f;
+        protected float _noHitTimer;
+        protected bool _hitted;
+
+        protected virtual void Awake()
         {
             _missionCreator = FindObjectOfType<MissionCreator>();
             _agent = GetComponent<EnemyAgentBase>();
+        }
+
+        private void Update()
+        {
+            CheckHitTimer();
         }
 
         public override void GetDamage(int damage)
@@ -30,6 +42,8 @@ namespace InterOrbital.Combat.IA
             {
                 _agent.HitEnemy();
                 base.GetDamage(damage);
+                HitReceived();
+                UpdateLifeBar();
             }
         }
 
@@ -92,6 +106,47 @@ namespace InterOrbital.Combat.IA
                 y = Random.Range(-1f, 0f);
             }
             return new Vector2(x, y).normalized;
+        }
+
+        protected virtual void UpdateLifeBar()
+        {
+            float lifeAmount = _currentHealth / (float)_maxHealth;
+            if (_currentHealth < _maxHealth && HasLifeBar())
+            {
+                _lifeBarCG.alpha = 1;
+                _lifeBar.fillAmount = lifeAmount;
+            }
+        }
+
+        protected virtual void HitReceived()
+        {
+            if (!_hitted)
+                _hitted = true;
+            _noHitTimer = _noHitTime;
+        }
+
+        protected virtual void CheckHitTimer()
+        {
+            if (_hitted)
+            {
+                if (_noHitTimer <= 0 && _currentHealth > 0)
+                {
+                    if (HasLifeBar())
+                        _lifeBarCG.alpha = 0;
+                    _currentHealth = _maxHealth;
+                    _hitted = false;
+                }
+
+                if (_noHitTimer > 0 && _currentHealth > 0)
+                {
+                    _noHitTimer -= Time.deltaTime;
+                }
+            }
+        }
+
+        private bool HasLifeBar()
+        {
+            return _lifeBar != null && _lifeBarCG != null;
         }
     }
 

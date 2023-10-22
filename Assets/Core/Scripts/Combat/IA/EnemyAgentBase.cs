@@ -11,8 +11,10 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] protected Vector2 _detectionRange;
         [SerializeField] protected List<EnemyStateBase> _states;
-        [SerializeField] private HitShaderController _hitShaderController;
-        [SerializeField] protected float _hitAnimationTime;
+        [SerializeField] protected HitShaderController _hitShaderController;
+        [SerializeField] private float _hitAnimationTime;
+        [SerializeField] private bool _useHitAnimation;
+
         protected EnemyStateBase _currentState;
         private Transform _target;
         private Animator _animator;
@@ -28,15 +30,16 @@ namespace InterOrbital.Combat.IA
         protected virtual void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+
             if (TryGetComponent(out NavMeshAgent agent))
                 _navMeshAgent = agent;
 
             if (_states.Count <= 0) return;
+
             foreach (var state in _states)
             {
                 state.Setup(this);
             }
-
         }
 
         protected virtual void Start()
@@ -50,11 +53,14 @@ namespace InterOrbital.Combat.IA
         protected virtual void Update()
         {
             _hitTimer -= Time.deltaTime;
-            if (HitAnimationPlaying()) return;
-            if (_animator.GetBool("Hit"))
+            if (HitAnimationPlaying() && _useHitAnimation) return;
+            if (_useHitAnimation)
             {
-                _animator.SetBool("Hit", false);
-                EnableNavigation(true);
+                if (_animator.GetBool("Hit"))
+                {
+                    _animator.SetBool("Hit", false);
+                    EnableNavigation(true);
+                }
             }
             if (_currentState)
                 _currentState.Execute();
@@ -96,7 +102,8 @@ namespace InterOrbital.Combat.IA
 
         public virtual void HitEnemy()
         {
-            _animator.SetBool("Hit", true);
+            if (_useHitAnimation)
+                _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
             StartCoroutine(HitAnimation());
             if (_navMeshAgent != null)
@@ -119,7 +126,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        public void Death()
+        public virtual void Death()
         {
             if (_enemySpawner != null)
                 _enemySpawner.EnemyDead();

@@ -32,7 +32,7 @@ namespace InterOrbital.Combat
 
         protected virtual void AttackDamageableTarget(Collider2D other ,Damageable damageable)
         {
-            Debug.Log($"Atacando a {other.gameObject.name}");
+            //Debug.Log($"Atacando a {other.gameObject.name}");
             damageable.GetDamage(damage);
         }
     }

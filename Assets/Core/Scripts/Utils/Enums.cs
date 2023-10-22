@@ -38,6 +38,7 @@ namespace InterOrbital.Utils
     public enum TypeTableCraft
     {
         Craft,
+        TemporalFundition,
         Fundition, 
         Bullet
     }
@@ -47,5 +48,12 @@ namespace InterOrbital.Utils
         Recolection,
         Hunt,
         Craft
+    }
+
+    public enum DifficultyArea
+    {
+        Easy,
+        Medium,
+        Hard
     }
 }

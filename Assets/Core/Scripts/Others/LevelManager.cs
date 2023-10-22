@@ -73,8 +73,8 @@ namespace InterOrbital.Others
         {
             Sequence backSequence = DOTween.Sequence();
             backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
-            backSequence.Append(_endGameCanvasGroup.DOFade(0f, 1f).SetDelay(3f));
-            backSequence.Join(_blackoutCanvasGroup.DOFade(1f, 1f).OnComplete(() => LoadScene("Main Screen")));
+            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(3f).OnComplete(() => LoadScene("Main Screen")));
+            _endGameCanvasGroup.alpha = 0f;
             backSequence.Play();
         }
         

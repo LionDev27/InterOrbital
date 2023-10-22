@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,6 +83,22 @@ PrefabInstance:
       propertyPath: _dropsList.Array.data[1].minAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6469088073614097803, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469088073614097803, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168940158013748371, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168940158013748371, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
 --- !u!1 &1176578529163937672 stripped
@@ -123,6 +139,7 @@ MonoBehaviour:
   - {fileID: 3581442388814949266}
   _hitShaderController: {fileID: 8069335863746401218}
   _hitAnimationTime: 0.4
+  _useHitAnimation: 1
   _damageDealer: {fileID: 1176578529500669969}
   timeToIdle: 5
 --- !u!114 &3386306068510686171

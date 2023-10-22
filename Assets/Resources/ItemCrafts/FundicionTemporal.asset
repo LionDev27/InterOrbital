@@ -15,15 +15,15 @@ MonoBehaviour:
   itemSprite: {fileID: -491262000, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 19
   itemName: "Fundici\xF3n Temporal"
-  itemDescription: Permite fundir objetos de manera temporal (5 usos)
+  itemDescription: Permite fundir objetos de manera temporal (10 usos)
   type: 1
   consumableValues:
     consumableType: 0
     amountToRestore: 0
   isStackable: 0
   maxAmount: 0
-  buildHighlightSprite: {fileID: -491262000, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
-  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  buildHighlightSprite: {fileID: 21300000, guid: 527155732cc6cbc4b920d24983d30fc2, type: 3}
+  buildPrefab: {fileID: 6367156890596238142, guid: 210c93b61a14a254d83256959aa30e6f, type: 3}
   animator: {fileID: 0}
   itemsRequired:
   - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
@@ -34,3 +34,4 @@ MonoBehaviour:
     amountRequired: 1
   timeToCraft: 10
   craftEnergyRequired: 5
+  amountToCraft: 1

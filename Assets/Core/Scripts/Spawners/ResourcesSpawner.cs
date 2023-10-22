@@ -97,8 +97,10 @@ namespace InterOrbital.Recollectables.Spawner
                     resourceDimensions = _resourcePrefabs[resourceIndex].GetComponent<Recollectable>().GetDimensions();
                     if (IsPosibleToSpawn(spawnPositionInt.x, spawnPositionInt.y, resourceDimensions))
                     {
-                        Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt, Quaternion.identity);
+                        GameObject resource = Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt, Quaternion.identity);
+                        LockCellsOnSpawn(spawnPositionInt.x, spawnPositionInt.y);
                         currentResourcesSpawned++;
+                        resource.GetComponent<Recollectable>().SetSpawnerRef(this);    
                     }
                 }
 
@@ -120,9 +122,15 @@ namespace InterOrbital.Recollectables.Spawner
             return true;
         }
 
+        private void LockCellsOnSpawn(int x,int y)
+        {
+            GridLogic.Instance.LockCell(x,y);
+        }
+
         public void ResourceObtained()
         {
             currentResourcesSpawned--;
+            _canSpawn = false;
         }
 
     }

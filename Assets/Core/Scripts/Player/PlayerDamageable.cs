@@ -14,6 +14,7 @@ namespace InterOrbital.Player
         [SerializeField] private float _damageCameraShakeIntensity = 5f;
         [SerializeField] private float _invencibilityTime;
         [SerializeField] private float _loseHealthTimerDefaultValue;
+        [SerializeField] private GameObject _dmgPopup;
         private float _loseHealthTimer;
         private float _invencibilityTimer;
         private bool _godMode;
@@ -99,8 +100,11 @@ namespace InterOrbital.Player
             {
                 Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
+                GameObject dmgPopup = Instantiate(_dmgPopup,transform.position,Quaternion.identity);
+                dmgPopup.GetComponent<DamagePopup>().Setup(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                 CameraShake.Instance.Shake(_damageCameraShakeIntensity);
+                StartCoroutine(SlowTimeEffect.Instance.Play(0.2f));
                 SetInvencibilityState();
             }
         }

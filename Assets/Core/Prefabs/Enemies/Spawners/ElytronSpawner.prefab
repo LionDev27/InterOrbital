@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
+  _difficultyArea: 2
   player: {fileID: 0}
   _maxEnemiesSpawn: 2
   _spawnRadius: 5

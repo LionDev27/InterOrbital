@@ -7,7 +7,7 @@ namespace InterOrbital.Combat.Bullets
     {
         [Range(0f, 10f)]
         [SerializeField] private float _speed;
-        [Range(0f, 20f)]
+        [Range(0f, 25f)]
         [SerializeField] protected float _range;
         [Range(0f, 10f)]
         [SerializeField] protected float _cooldown;
@@ -15,11 +15,13 @@ namespace InterOrbital.Combat.Bullets
         private Vector2 _parentPos;
         private Rigidbody2D _rigidbody2D;
         protected DamageDealer _damageDealer;
+        protected bool _canMove;
 
         protected virtual void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _damageDealer = GetComponent<DamageDealer>();
+            _canMove = true;
         }
 
         protected void Start()
@@ -34,12 +36,21 @@ namespace InterOrbital.Combat.Bullets
 
         protected virtual void FixedUpdate()
         {
-            Move();
+            if (_canMove)
+            {
+                Move();
+            }
         }
 
         private void Move()
         {
             _rigidbody2D.velocity = _speed * 100f * Time.deltaTime * _moveDir;
+        }
+
+        protected void StopMove()
+        {
+            _canMove = false;
+            _rigidbody2D.velocity = Vector2.zero;
         }
 
         private void Rotate()

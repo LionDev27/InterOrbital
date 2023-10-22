@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1076485647804008095, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
       propertyPath: m_Name
-      value: Luminfern1
+      value: Luminfern
       objectReference: {fileID: 0}
     - target: {fileID: 1076485648370343494, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
       propertyPath: m_Sprite
@@ -121,6 +121,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3004306405413456591, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
       propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211785244621732279, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211785244621732279, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

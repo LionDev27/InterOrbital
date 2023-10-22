@@ -1,5 +1,6 @@
 using InterOrbital.Combat.IA;
 using InterOrbital.Player;
+using InterOrbital.Utils;
 using InterOrbital.WorldSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace InterOrbital.Combat.Spawner
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private GameObject _enemyPrefab;
+        [SerializeField] private DifficultyArea _difficultyArea;
         [SerializeField] private Transform player; // Referencia al transform del jugador
         [SerializeField] private int _maxEnemiesSpawn;
         [SerializeField] private float _spawnRadius = 5f;
@@ -96,6 +98,11 @@ namespace InterOrbital.Combat.Spawner
                 }
             }
             yield return null;
+        }
+
+        public DifficultyArea GetDifficultyArea()
+        {
+            return _difficultyArea;
         }
 
         public void EnemyDead()

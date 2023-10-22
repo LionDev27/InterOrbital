@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40de3be9063a384abe306ebfbed444d, type: 3}
   m_Name: BalandorEnemysSpawners
   m_EditorClassIdentifier: 
-  spawnersAmount: 6
-  distanceBetweenSpawners: 20
-  _enemySpawners:
+  easySpawnersAmount: 5
+  mediumSpawnersAmount: 4
+  hardSpawnersAmount: 3
+  distanceBetweenSpawners: 10
+  _EasyEnemySpawners:
   - {fileID: 4055717022240667952, guid: 8ecd8e64e20016a44806510a309afec3, type: 3}
-  - {fileID: 4055717022240667952, guid: 96639a73a5c8922478a6f339af60153a, type: 3}
-  - {fileID: 4055717022240667952, guid: d33284cc1aad6c4448bb8d34adbc4165, type: 3}
+  _MediumEnemySpawners:
   - {fileID: 4055717022240667952, guid: f68369b47927c0248b0db796f37b8870, type: 3}
   - {fileID: 4055717022240667952, guid: 0c63a8c74e99ba145864fa555fe99269, type: 3}
+  - {fileID: 4055717022240667952, guid: d33284cc1aad6c4448bb8d34adbc4165, type: 3}
+  _HardEnemySpawners:
+  - {fileID: 4055717022240667952, guid: 96639a73a5c8922478a6f339af60153a, type: 3}

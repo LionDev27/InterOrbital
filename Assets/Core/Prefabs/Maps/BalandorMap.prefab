@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  <width>k__BackingField: 100
-  <height>k__BackingField: 100
+  <width>k__BackingField: 500
+  <height>k__BackingField: 500
   cellSize: {x: 1, y: 1, z: 0}
   borderSize: 20
   _borderPrefab: {fileID: 3254057356427198123, guid: 488b98c8b88a54544ac89f1714735656, type: 3}
@@ -440,6 +440,16 @@ MonoBehaviour:
   - Forest
   - Rocky
   - Muddy
+  _regions:
+  - biome: Rocky
+    startPos: {x: 0, y: 0}
+    extension: 20000
+  - biome: Muddy
+    startPos: {x: 350, y: 350}
+    extension: 20000
+  - biome: Forest
+    startPos: {x: 400, y: 100}
+    extension: 20000
   _enemiesSpawners: {fileID: 11400000, guid: 81831494098994941867a059fbc00c87, type: 2}
   _resourcesSpawners: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
   _animationTilemap: {fileID: 1591103708735996734}
@@ -459,8 +469,8 @@ MonoBehaviour:
       tiles: {fileID: 11400000, guid: e7277911166064547980e875e6ace814, type: 2}
       minimapSprite: {fileID: -866257724, guid: 7bdd66847f5623e4a969a3036f32b99a, type: 3}
     - biome: Muddy
-      tiles: {fileID: 11400000, guid: ef51a25911eb0ce429c559f86fa6cfde, type: 2}
-      minimapSprite: {fileID: 530406993, guid: 1c9f483d830c1ec4ab4785e360e94182, type: 3}
+      tiles: {fileID: 11400000, guid: 62e9f0177c4c602488cbac03a622ebc8, type: 2}
+      minimapSprite: {fileID: 52238719, guid: 755def9da79fb2d4a985b1baf3f03ce8, type: 3}
     fillMode: 1
   - name: Detail
     tilemap: {fileID: 5364542926577519690}

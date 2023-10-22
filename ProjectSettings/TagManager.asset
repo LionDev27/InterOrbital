@@ -15,6 +15,7 @@ TagManager:
   - StaticObject
   - EnemySpawner
   - ResourceSpawner
+  - ResoruceMinimap
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Agent
     uniqueID: 543544073
+    locked: 0
+  - name: Top
+    uniqueID: 2346396001
     locked: 0

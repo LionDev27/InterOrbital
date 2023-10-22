@@ -14,15 +14,15 @@ namespace InterOrbital.Item
 {
     public class CraftingTable : CraftingItem
     {
-        [SerializeField] private Image _itemCraftImage;
-        [SerializeField] private Image _progressBar;
-        [SerializeField] private TextMeshProUGUI _textAmount;
-        [SerializeField] private GameObject _craftContent;
-        [SerializeField] private Transform dropPosition;
+        [SerializeField] protected Image _itemCraftImage;
+        [SerializeField] protected Image _progressBar;
+        [SerializeField] protected TextMeshProUGUI _textAmount;
+        [SerializeField] protected GameObject _craftContent;
+        [SerializeField] protected Transform dropPosition;
         [SerializeField] private TypeTableCraft typeTable;
-        private Queue<CraftAmountItem> _queueCraft;
+        protected Queue<CraftAmountItem> _queueCraft;
         private MissionCreator _missionCreator;
-        private bool _isCrafting;
+        protected bool _isCrafting;
 
 
         private void Awake()
@@ -36,6 +36,9 @@ namespace InterOrbital.Item
             {
                 case TypeTableCraft.Craft:
                     _craftUI = UIManager.Instance.craftUI;
+                    break;
+                case TypeTableCraft.TemporalFundition:
+                    _craftUI = UIManager.Instance.temporalFunditionUI;
                     break;
                 case TypeTableCraft.Fundition:
                     _craftUI = UIManager.Instance.funditionUI;
@@ -59,7 +62,7 @@ namespace InterOrbital.Item
             }
         }
 
-        public IEnumerator CreateItem()
+        public virtual IEnumerator CreateItem()
         {
             _craftContent.SetActive(true);
             _isCrafting = true;
@@ -90,13 +93,13 @@ namespace InterOrbital.Item
             _isCrafting = false;
         }
 
-        public void Interact()
+        public virtual void Interact()
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
             ProccessSelection();
         }
 
-        public void EndInteraction()
+        public virtual void EndInteraction()
         {
             UIManager.Instance.ActivateOrDesactivateUI(_craftUI);
         }

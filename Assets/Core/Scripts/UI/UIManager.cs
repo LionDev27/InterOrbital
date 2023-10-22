@@ -28,6 +28,7 @@ namespace InterOrbital.UI
         public GameObject bagUI;
         public GameObject craftUI;
         public GameObject funditionUI;
+        public GameObject temporalFunditionUI;
         public GameObject bulletUI;
         public GameObject spaceshipUI;
         public GameObject storageUI;
@@ -47,6 +48,7 @@ namespace InterOrbital.UI
        
         public void ActivateOrDesactivateUI(GameObject ui)
         {
+            AudioManager.Instance.PlaySFX("UIMenu");
             if (ui.transform.localScale == Vector3.one)
             {
                 animating = true;
@@ -70,8 +72,8 @@ namespace InterOrbital.UI
 
         public void OpenInventory(bool openChest)
         {
-
-            if(PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
+            AudioManager.Instance.PlaySFX("Inventory");
+            if (PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
             {
                 _fastCraft.ProccessSelection();
                 if (!_openInventory.IsActive())
