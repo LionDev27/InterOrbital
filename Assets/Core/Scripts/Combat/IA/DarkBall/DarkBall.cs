@@ -102,7 +102,7 @@ namespace InterOrbital.Combat.IA
 
             _spriteRenderer.enabled = false;
             _darkBallEvent.RestEnemy();
-            Destroy(gameObject, pt.main.duration);
+            Destroy(gameObject);
             Destroy(pt, pt.main.duration);
         }
 
