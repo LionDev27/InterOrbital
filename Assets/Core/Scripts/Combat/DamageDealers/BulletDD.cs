@@ -18,9 +18,7 @@ namespace InterOrbital.Combat
             base.AttackDamageableTarget(other, damageable);
             //Destruimos la bala después de atacar.
             if(_destroyAfterHit)
-            {
                 Destroy(gameObject);
-            }
         }
 
         public void DontDestroyAfterHit()

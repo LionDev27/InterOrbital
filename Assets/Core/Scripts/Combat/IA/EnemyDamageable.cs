@@ -13,19 +13,19 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] private GameObject _dropItemPrefab;
         [SerializeField] private List<EnemyDrops> _dropsList;
-        [SerializeField] private ParticleSystem _deathParticles;
-        [SerializeField] private float _deathTime;
+        [SerializeField] protected ParticleSystem _deathParticles;
+        [SerializeField] protected float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
         private MissionCreator _missionCreator;
-        private EnemyAgentBase _agent;
+        protected EnemyAgentBase _agent;
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
 
-        private float _noHitTime = 60f;
-        private float _noHitTimer;
-        private bool _hitted;
+        protected float _noHitTime = 60f;
+        protected float _noHitTimer;
+        protected bool _hitted;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _missionCreator = FindObjectOfType<MissionCreator>();
             _agent = GetComponent<EnemyAgentBase>();
@@ -100,32 +100,31 @@ namespace InterOrbital.Combat.IA
             return new Vector2(x, y).normalized;
         }
 
-        private void UpdateLifeBar()
+        protected virtual void UpdateLifeBar()
         {
-            if (_currentHealth < _maxHealth)
+            float lifeAmount = _currentHealth / (float)_maxHealth;
+            if (_currentHealth < _maxHealth && HasLifeBar())
             {
                 _lifeBarCG.alpha = 1;
+                _lifeBar.fillAmount = lifeAmount;
             }
-            float lifeAmount = _currentHealth / (float)_maxHealth;
-            _lifeBar.fillAmount = lifeAmount;
         }
 
-        private void HitReceived()
+        protected virtual void HitReceived()
         {
             if (!_hitted)
-            {
                 _hitted = true;
-            }
             _noHitTimer = _noHitTime;
         }
 
-        private void CheckHitTimer()
+        protected virtual void CheckHitTimer()
         {
             if (_hitted)
             {
                 if (_noHitTimer <= 0 && _currentHealth > 0)
                 {
-                    _lifeBarCG.alpha = 0;
+                    if (HasLifeBar())
+                        _lifeBarCG.alpha = 0;
                     _currentHealth = _maxHealth;
                     _hitted = false;
                 }
@@ -135,6 +134,11 @@ namespace InterOrbital.Combat.IA
                     _noHitTimer -= Time.deltaTime;
                 }
             }
+        }
+
+        private bool HasLifeBar()
+        {
+            return _lifeBar != null && _lifeBarCG != null;
         }
     }
 

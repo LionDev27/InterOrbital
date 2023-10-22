@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 1712896181}
   _hitShaderController: {fileID: 786034395165941154}
   _hitAnimationTime: 0.4
+  _useHitAnimation: 1
 --- !u!114 &1712896181
 MonoBehaviour:
   m_ObjectHideFlags: 0

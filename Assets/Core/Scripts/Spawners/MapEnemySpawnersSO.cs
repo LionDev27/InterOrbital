@@ -17,11 +17,11 @@ namespace InterOrbital.Combat.Spawner
         public int hardSpawnersAmount;
         public float distanceBetweenSpawners;
         [SerializeField] private List<GameObject> _EasyEnemySpawners;
-        private List<GameObject> _EasyEnemySpawnersSpawned;
+        private List<GameObject> _EasyEnemySpawnersSpawned = new();
         [SerializeField] private List<GameObject> _MediumEnemySpawners;
-        private List<GameObject> _MediumEnemySpawnersSpawned;
+        private List<GameObject> _MediumEnemySpawnersSpawned = new();
         [SerializeField] private List<GameObject> _HardEnemySpawners;
-        private List<GameObject> _HardEnemySpawnersSpawned;
+        private List<GameObject> _HardEnemySpawnersSpawned = new();
 
         public void ResetSpawners()
         {
