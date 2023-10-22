@@ -95,7 +95,8 @@ namespace InterOrbital.Combat.IA
         private void ChangeSpriteColor(bool lastPhase)
         {
             var color = lastPhase ? _lastPhaseColor : Color.white;
-            _spriteRenderer.DOColor(color, _changePhaseTime).Play();
+            _spriteRenderer.DOColor(color, _changePhaseTime).SetEase(Ease.InOutCubic).Play();
+            transform.DOShakePosition(_changePhaseTime,0.5f, 20).SetEase(Ease.InOutCubic).Play();
         }
 
         private IEnumerator ChangePhaseTimer()
