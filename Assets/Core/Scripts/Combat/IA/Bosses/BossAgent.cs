@@ -53,7 +53,7 @@ namespace InterOrbital.Combat.IA
                 if (IsLastPhase())
                     ChangeSpriteColor(false);
                 _currentPhaseIndex--;
-                ChangeFillColor(currentPhase);
+                ChangeFillColor(_phases[_currentPhaseIndex]);
             }
         }
 
@@ -96,6 +96,7 @@ namespace InterOrbital.Combat.IA
         {
             var color = lastPhase ? _lastPhaseColor : Color.white;
             _spriteRenderer.DOColor(color, _changePhaseTime).SetEase(Ease.InOutCubic).Play();
+            if (!lastPhase) return;
             transform.DOShakePosition(_changePhaseTime,0.5f, 20).SetEase(Ease.InOutCubic).Play();
         }
 

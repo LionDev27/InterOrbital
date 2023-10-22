@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6114928345258369620, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: m_Name
-      value: JellypusBullet
+      value: JellypusRageBullet
       objectReference: {fileID: 0}
     - target: {fileID: 6114928345258369621, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: m_RootOrder
@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8672473894810682728, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: _range
-      value: 22.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8672473894810682728, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: _speed
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
