@@ -194,6 +194,8 @@ MonoBehaviour:
   _speed: 4
   _range: 10
   _cooldown: 0
+  _bulletStartGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
+  _bulletFinalGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
 --- !u!114 &6958752880360999307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,3 +210,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   attackerTag: 
+  _bulletFinalGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}

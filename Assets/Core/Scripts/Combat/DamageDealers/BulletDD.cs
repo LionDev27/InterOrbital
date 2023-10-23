@@ -1,3 +1,4 @@
+using InterOrbital.Combat.Bullets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace InterOrbital.Combat
     public class BulletDD : DamageDealer
     {
         private bool _destroyAfterHit;
+        [SerializeField] private GameObject _bulletFinalGlow;
 
         private void Awake()
         {
@@ -17,8 +19,11 @@ namespace InterOrbital.Combat
         {
             base.AttackDamageableTarget(other, damageable);
             //Destruimos la bala después de atacar.
-            if(_destroyAfterHit)
+            if (_destroyAfterHit)
+            {
+                Instantiate(_bulletFinalGlow, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            }
         }
 
         public void DontDestroyAfterHit()

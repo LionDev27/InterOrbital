@@ -11,6 +11,8 @@ namespace InterOrbital.Combat.Bullets
         [SerializeField] protected float _range;
         [Range(0f, 10f)]
         [SerializeField] protected float _cooldown;
+        [SerializeField] private GameObject _bulletStartGlow;
+        [SerializeField] private GameObject _bulletFinalGlow;
         protected Vector2 _moveDir;
         private Vector2 _parentPos;
         private Rigidbody2D _rigidbody2D;
@@ -26,6 +28,7 @@ namespace InterOrbital.Combat.Bullets
 
         protected void Start()
         {
+            Instantiate(_bulletStartGlow, transform.position, Quaternion.identity);
             Rotate();
         }
 
@@ -61,7 +64,10 @@ namespace InterOrbital.Combat.Bullets
         private void CheckDistanceToParent()
         {
             if (_range <= Vector2.Distance(transform.position, _parentPos))
+            {
+                Instantiate(_bulletFinalGlow, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            }
         }
 
         public float GetBulletAttackCooldown()
