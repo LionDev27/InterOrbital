@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6958752880360999307, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
+      propertyPath: _bulletFinalGlow
+      value: 
+      objectReference: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
     - target: {fileID: 8672473894810682728, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: _range
       value: 25
@@ -87,5 +91,13 @@ PrefabInstance:
       propertyPath: _speed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8672473894810682728, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
+      propertyPath: _bulletFinalGlow
+      value: 
+      objectReference: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
+    - target: {fileID: 8672473894810682728, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
+      propertyPath: _bulletStartGlow
+      value: 
+      objectReference: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}

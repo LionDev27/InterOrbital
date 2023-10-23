@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ClusterBulletGlow
+  m_Controller: {fileID: 9100000, guid: 867053dfb8b9e3744896a35d48856f3e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f96a18dcebbaaa542bc4b5e7d833d041, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4a5c9953528aea24b90a7dff4e1e8aa8, type: 2}
