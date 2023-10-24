@@ -50,9 +50,9 @@ MonoBehaviour:
   - {fileID: 5492228128081625232, guid: 92b8384122f40fb43aeba7d0520a98a5, type: 3}
   - {fileID: 5492228128081625232, guid: 60618b0320d2e3542aab7665475b6ca0, type: 3}
   player: {fileID: 0}
-  _maxResourcesSpawn: 5
+  _maxResourcesSpawn: 8
   _spawnRadius: 6
-  _spawnDelay: 0.5
+  _spawnDelay: 0
   _spawnMinActivationDistance: 20
 --- !u!58 &3551865245305052741
 CircleCollider2D:

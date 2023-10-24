@@ -48,9 +48,9 @@ MonoBehaviour:
   _resourcePrefabs:
   - {fileID: 5492228128081625232, guid: 844099def6a59a8408dbcc22764d6ec5, type: 3}
   player: {fileID: 0}
-  _maxResourcesSpawn: 5
+  _maxResourcesSpawn: 8
   _spawnRadius: 6
-  _spawnDelay: 0.5
+  _spawnDelay: 0
   _spawnMinActivationDistance: 20
 --- !u!58 &3551865245305052741
 CircleCollider2D:
