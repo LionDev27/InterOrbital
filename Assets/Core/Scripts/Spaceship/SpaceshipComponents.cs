@@ -20,5 +20,10 @@ namespace InterOrbital.Spaceship
 
             SpaceshipEnergy = GetComponent<SpaceshipEnergy>();
         }
+
+        public void MoveTo(Vector3Int pos)
+        {
+            transform.position = pos;
+        }
     }
 }

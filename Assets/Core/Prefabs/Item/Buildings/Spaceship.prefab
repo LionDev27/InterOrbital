@@ -303,10 +303,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6558903707097043907}
   - component: {fileID: 8436287282508783150}
-  - component: {fileID: 9017380284343530235}
   m_Layer: 6
   m_Name: MinimapSprite
-  m_TagString: PlayerMinimap
+  m_TagString: SpaceshipMinimap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,22 +377,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &9017380284343530235
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4715190148694226327}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 25
 --- !u!1 &5769846936361690345
 GameObject:
   m_ObjectHideFlags: 0

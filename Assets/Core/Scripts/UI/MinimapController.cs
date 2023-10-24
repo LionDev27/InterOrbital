@@ -11,12 +11,14 @@ namespace InterOrbital.UI
     public class MinimapController : MonoBehaviour
     {
         [SerializeField] private Camera _minimapCamera;
+        [SerializeField] private List<GameObject> _minimapSprites;
         private RectTransform _minimapFrameRect;
         private bool _minimapIsOpen;
 
         private float _animationDuration = 0.5f;
         private float _orthographicOpenSize;
         private float _orthographicMinimizedSize;
+        private float _scaleMinimapIcons;
 
         private void Awake()
         {
@@ -27,6 +29,7 @@ namespace InterOrbital.UI
         private void Start()
         {
             GetMinimapCameraSizes();
+            _scaleMinimapIcons = GridLogic.Instance.width / 100;
         }
 
         public void ToggleMinimap()
@@ -34,6 +37,7 @@ namespace InterOrbital.UI
             if (!_minimapIsOpen)
             {
                 DOTween.To(() => _minimapFrameRect.offsetMin, x => _minimapFrameRect.offsetMin = x, new Vector2(36, 36), _animationDuration).SetEase(Ease.Linear);
+                ChangeMinimapSpriteSize(false, _animationDuration, _scaleMinimapIcons);
                 _minimapCamera.GetComponent<CameraFollow>().OpenMinimap();
                 DOTween.To(() => _minimapCamera.orthographicSize, x => _minimapCamera.orthographicSize = x, _orthographicOpenSize, _animationDuration).SetEase(Ease.Linear);
                 Vector3 centerMapPos = new Vector3(GridLogic.Instance.width / 2, GridLogic.Instance.height / 2, _minimapCamera.transform.position.z);
@@ -45,6 +49,7 @@ namespace InterOrbital.UI
             {
                 DOTween.To(() => _minimapFrameRect.offsetMin, x => _minimapFrameRect.offsetMin = x, new Vector2(636, 636), _animationDuration).SetEase(Ease.Linear);
                 DOTween.To(() => _minimapCamera.orthographicSize, x => _minimapCamera.orthographicSize = x, _orthographicMinimizedSize, _animationDuration).SetEase(Ease.Linear);
+                ChangeMinimapSpriteSize(true, _animationDuration, _scaleMinimapIcons);
                 Vector3 playerPos = PlayerComponents.Instance.GetPlayerPosition();
                 float posX = Mathf.Clamp(playerPos.x, _orthographicMinimizedSize, GridLogic.Instance.width - _orthographicMinimizedSize);
                 float posY = Mathf.Clamp(playerPos.y, _orthographicMinimizedSize, GridLogic.Instance.width - _orthographicMinimizedSize);
@@ -64,5 +69,35 @@ namespace InterOrbital.UI
             _orthographicOpenSize = GridLogic.Instance.width / 2;
         }
 
+        private void ChangeMinimapSpriteSize(bool minimize, float duration, float scale)
+        {
+            if (minimize)
+            {
+                for (int i = 0; i < _minimapSprites.Count; i++)
+                {
+                    GameObject minimapSprite = _minimapSprites[i];
+                    minimapSprite.transform.DOScale(Vector3.one, duration).OnComplete(() =>
+                    {
+                        if (minimapSprite.GetComponent<CircleCollider2D>() != null)
+                        {
+                            minimapSprite.GetComponent<CircleCollider2D>().radius *= scale;
+                        }
+                    });
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _minimapSprites.Count; i++)
+                {
+                    if (_minimapSprites[i].GetComponent<CircleCollider2D>() != null)
+                    {
+                        _minimapSprites[i].GetComponent<CircleCollider2D>().radius /= scale;
+                    }
+                    _minimapSprites[i].transform.DOScale(new Vector3(scale, scale, 1), duration);
+                        
+                }
+            }
+            
+        }
     }
 }

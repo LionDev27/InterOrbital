@@ -1,6 +1,7 @@
 using InterOrbital.Combat.Spawner;
 using InterOrbital.Item;
 using InterOrbital.Player;
+using InterOrbital.Spaceship;
 using InterOrbital.Utils;
 using System;
 using System.Collections;
@@ -615,28 +616,8 @@ namespace InterOrbital.WorldSystem
 
         private void SpawnSpaceship()
         {
-            Instantiate(_spaceship,new Vector3(width/2, height/2, 0), Quaternion.identity);
-            int spaceshipTilesWidth = 6;
-            int spaceshipTilesHeight = 6;
-            int spaceshipWidth = width / 2 - spaceshipTilesWidth / 2;
-            int spaceshipHeight = height / 2;
-
-            Tile spaceshipAreaTile = ScriptableObject.CreateInstance<Tile>();
-            spaceshipAreaTile.sprite = _spaceshipAreaSprite;
-
-            for (int y = 0; y < spaceshipTilesHeight; y++)
-            {
-                for (int x = 0; x < spaceshipTilesWidth; x++)
-                {
-                    if (y == 0)
-                    {
-                        Vector3Int position = new Vector3Int(x + spaceshipWidth, y + spaceshipHeight, 0);
-                        _spaceshipAreaTilemap.SetTile(position, spaceshipAreaTile);
-                    }
-                    LockCell(x + spaceshipWidth, y + spaceshipHeight);
-                }
-            }
-
+            //GameObject spaceship = Instantiate(_spaceship,new Vector3(width/2, height/2, 0), Quaternion.identity);
+            SpaceshipComponents.Instance.MoveTo(new Vector3Int(width / 2, height / 2, 0));
             SpawnSpaceshipArea(5);
         }
 
