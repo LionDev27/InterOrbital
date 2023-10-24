@@ -30,6 +30,12 @@ namespace InterOrbital.Player
         {
             _impulseSource.GenerateImpulse(intensity);
         }
+        
+        [ContextMenu("Shake")]
+        public void TestShake()
+        {
+            Shake(10f);
+        }
 
         // OLD SHAKE
         // private void Update()
