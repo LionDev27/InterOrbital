@@ -167,7 +167,8 @@ namespace InterOrbital.WorldSystem
             GenerateEnemySpawners();
             GenerateResourcesSpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
-            LevelManager.Instance.PlayGame();
+            if (LevelManager.Instance != null)
+                LevelManager.Instance.PlayGame();
         }
 
         private void CreateMapBorders()
