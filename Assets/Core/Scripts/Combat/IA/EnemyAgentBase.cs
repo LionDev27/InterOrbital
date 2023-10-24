@@ -16,11 +16,11 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private bool _useHitAnimation;
         protected EnemyStateBase _currentState;
         private Transform _target;
-        private Animator _animator;
+        protected Animator _animator;
         private NavMeshAgent _navMeshAgent;
         private float _hitTimer;
         private EnemySpawner _enemySpawner;
-        
+
         public Transform Target => _target;
         public Animator Animator => _animator;
         public NavMeshAgent NavMeshAgent => _navMeshAgent;
@@ -33,6 +33,7 @@ namespace InterOrbital.Combat.IA
             {
                 state.Setup(this);
             }
+
             if (TryGetComponent(out NavMeshAgent agent))
                 _navMeshAgent = agent;
         }
@@ -52,11 +53,9 @@ namespace InterOrbital.Combat.IA
             if (_useHitAnimation)
             {
                 if (_animator.GetBool("Hit"))
-                {
-                    _animator.SetBool("Hit", false);
-                    EnableNavigation(true);
-                }
+                    EndHit();
             }
+
             if (_currentState)
                 _currentState.Execute();
         }
@@ -80,7 +79,7 @@ namespace InterOrbital.Combat.IA
             _navMeshAgent.velocity = value ? Vector3.one : Vector3.zero;
             _navMeshAgent.isStopped = !value;
         }
-        
+
         public bool IsDetectingPlayer()
         {
             Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, _detectionRange, 0f);
@@ -92,6 +91,7 @@ namespace InterOrbital.Combat.IA
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -101,7 +101,7 @@ namespace InterOrbital.Combat.IA
                 _animator.SetBool("Hit", true);
             _hitTimer = _hitAnimationTime;
             StartCoroutine(HitAnimation());
-            if (_navMeshAgent != null)
+            if (_navMeshAgent != null && _useHitAnimation)
             {
                 if (_navMeshAgent.isStopped) return;
                 EnableNavigation(false);
@@ -115,7 +115,7 @@ namespace InterOrbital.Combat.IA
 
         public void SetEnemySpawner(EnemySpawner spawner)
         {
-            if(spawner != null && _enemySpawner == null)
+            if (spawner != null && _enemySpawner == null)
             {
                 _enemySpawner = spawner;
             }
@@ -127,6 +127,12 @@ namespace InterOrbital.Combat.IA
                 _enemySpawner.EnemyDead();
         }
 
+        protected virtual void EndHit()
+        {
+            _animator.SetBool("Hit", false);
+            EnableNavigation(true);
+        }
+
         private IEnumerator HitAnimation()
         {
             while (HitAnimationPlaying())
@@ -134,9 +140,10 @@ namespace InterOrbital.Combat.IA
                 _hitShaderController.Hit(!_hitShaderController.HitValue());
                 yield return new WaitForSeconds(0.15f);
             }
+
             _hitShaderController.Hit(0);
         }
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;

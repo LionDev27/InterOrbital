@@ -55,5 +55,15 @@ namespace InterOrbital.Combat.IA
         {
             return _timer < timeToIdle;
         }
+
+        protected override void EndHit()
+        {
+            if (!_animator.GetBool("Running"))
+            {
+                _animator.SetBool("Running", true);
+                ChangeState(_states[1]);
+            }
+            base.EndHit();
+        }
     }
 }
