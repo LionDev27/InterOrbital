@@ -131,7 +131,6 @@ namespace InterOrbital.Combat.IA
                 _enemySpawner.EnemyDead();
         }
 
-        public IEnumerator HitAnimation()
 
         protected virtual void EndHit()
         {
@@ -139,7 +138,7 @@ namespace InterOrbital.Combat.IA
             EnableNavigation(true);
         }
 
-        private IEnumerator HitAnimation()
+        public IEnumerator HitAnimation()
         {
             while (HitAnimationPlaying())
             {
