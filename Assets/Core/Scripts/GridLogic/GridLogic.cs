@@ -6,6 +6,7 @@ using InterOrbital.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using InterOrbital.Others;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -166,6 +167,7 @@ namespace InterOrbital.WorldSystem
             GenerateEnemySpawners();
             GenerateResourcesSpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
+            LevelManager.Instance.PlayGame();
         }
 
         private void CreateMapBorders()

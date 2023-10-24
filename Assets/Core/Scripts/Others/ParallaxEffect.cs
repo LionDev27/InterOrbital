@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace InterOrbital.Others
@@ -15,9 +12,25 @@ namespace InterOrbital.Others
             _material = GetComponent<SpriteRenderer>().material;
         }
 
+        private void Start()
+        {
+            ResetOffset();
+        }
+
         private void Update()
         {
             _material.mainTextureOffset += (_speed * Time.deltaTime * Vector2.right);
+        }
+
+        private void OnDisable()
+        {
+            ResetOffset();
+        }
+
+        [ContextMenu("Reset Offset")]
+        public void ResetOffset()
+        {
+            _material.mainTextureOffset = Vector2.zero;
         }
     }
 }
