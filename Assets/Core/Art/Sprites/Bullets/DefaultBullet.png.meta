@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8234a00f56815d45bc7779f4c7044f0
+guid: 5d26edd5e13f8fe4da5df9c9f6b55d80
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,35 +101,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunFireAlt_0
+      name: GunFireAlt3 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6edaabbafcba7ca4cbcf7479fbfde038
-      internalID: 1343923106
+      spriteID: e4548f24a3115104387b2a49f031e59f
+      internalID: -803970084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt_1
+      name: GunFireAlt3 1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -164,35 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de073b562a752164c90546f6ec06a57f
-      internalID: -1445879335
+      spriteID: 98da5ab3b99ccc8459052dec103f6f0a
+      internalID: 1871552294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GunFireAlt_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 951474cfccb6210409bf50a91a426e02
-      internalID: 1440789952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunFireAlt_3
+      name: GunFireAlt3 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -206,50 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 259626e320dbb3b4b885cc299b53ab59
-      internalID: 228634526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunFireAlt_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 184493cc76659bd4e88c6f170c24b756
-      internalID: -1419075268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GunFireAlt_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6138e3c1cb99b74448263524c1ebcc02
-      internalID: 1548010938
+      spriteID: ec708b2d703b31740a754847103cb1f9
+      internalID: 359541112
       vertices: []
       indices: 
       edges: []
@@ -265,12 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunFireAlt_0: 1343923106
-      GunFireAlt_1: -1445879335
-      GunFireAlt_2: 1440789952
-      GunFireAlt_3: 228634526
-      GunFireAlt_4: -1419075268
-      GunFireAlt_5: 1548010938
+      GunFireAlt3 1_0: -803970084
+      GunFireAlt3 1_1: 1871552294
+      GunFireAlt3 1_2: 359541112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

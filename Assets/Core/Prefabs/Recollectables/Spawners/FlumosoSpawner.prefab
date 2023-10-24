@@ -50,7 +50,7 @@ MonoBehaviour:
   player: {fileID: 0}
   _maxResourcesSpawn: 3
   _spawnRadius: 20
-  _spawnDelay: 0.5
+  _spawnDelay: 0
   _spawnMinActivationDistance: 20
 --- !u!58 &3551865245305052741
 CircleCollider2D:

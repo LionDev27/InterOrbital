@@ -191,9 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fa2e8b26ad49d4ab5ba21d331f94ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _range: 10
+  _speed: 5
+  _range: 15
   _cooldown: 0
+  _bulletStartGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
+  _bulletFinalGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}
 --- !u!114 &6958752880360999307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,5 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3b09c71c7ad48438b8b8e8083da3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 2
   attackerTag: 
+  _bulletFinalGlow: {fileID: 8507987451363851064, guid: 1c3b2474281e0a049b9ac0aab2018595, type: 3}

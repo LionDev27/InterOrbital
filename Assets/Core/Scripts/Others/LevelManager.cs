@@ -1,10 +1,7 @@
-using System;
 using System.Threading.Tasks;
 using DG.Tweening;
-using InterOrbital.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace InterOrbital.Others
 {
@@ -12,6 +9,7 @@ namespace InterOrbital.Others
     {
         [SerializeField] private CanvasGroup _blackoutCanvasGroup;
         [SerializeField] private CanvasGroup _endGameCanvasGroup;
+        [SerializeField] private CanvasGroup _backgroundCanvasGroup;
         [SerializeField] private GameObject _loadingPanel;
         [SerializeField] private GameObject _playPanel;
 
@@ -38,6 +36,7 @@ namespace InterOrbital.Others
             EnableCanvasGroup(_blackoutCanvasGroup, true);
             EnableCanvasGroup(_loadingCanvasGroup, false);
             EnableCanvasGroup(_endGameCanvasGroup, false);
+            EnableCanvasGroup(_backgroundCanvasGroup, false);
             _playPanel.SetActive(false);
             _blackoutCanvasGroup.DOFade(0f, 1f).OnComplete((() => EnableCanvasGroup(_blackoutCanvasGroup, false)));
         }
@@ -55,16 +54,20 @@ namespace InterOrbital.Others
             if (_fillAmount >= 1f)
             {
                 _loading = false;
-                _loadingPanel.SetActive(false);
-                _playPanel.SetActive(true);
+                EnableCanvasGroup(_backgroundCanvasGroup, true);
+                AllowSceneActivation();
             }
         }
 
         public void PlayGame()
         {
             Sequence playSequence = DOTween.Sequence();
-            playSequence.Append(_loadingCanvasGroup.DOFade(0f, 0.5f).OnComplete(() => EnableCanvasGroup(_loadingCanvasGroup, false)));
-            playSequence.Join(_blackoutCanvasGroup.DOFade(1f, 1f).OnComplete(AllowSceneActivation));
+            playSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f));
+            playSequence.Append(_loadingCanvasGroup.DOFade(0f, 0.1f).OnComplete(() =>
+            {
+                EnableCanvasGroup(_loadingCanvasGroup, false);
+                EnableCanvasGroup(_backgroundCanvasGroup, false);
+            }));
             playSequence.Append(_blackoutCanvasGroup.DOFade(0f, 2f));
             playSequence.Play();
         }

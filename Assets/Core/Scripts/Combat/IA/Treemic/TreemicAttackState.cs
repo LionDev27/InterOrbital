@@ -9,6 +9,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private int _bulletDamage;
         [SerializeField] private AnimationClip _attackAnimation;
         [SerializeField] private float _attackCooldown;
+        [SerializeField] private float _animationSpeed;
         private EnemyAgentBase _agent;
         private float _timer;
         
@@ -22,6 +23,7 @@ namespace InterOrbital.Combat.IA
         {
             SetAttack();
             _agent.Animator.SetBool("Idle", false);
+            _agent.Animator.speed = _animationSpeed;
         }
 
         public override void Execute()
@@ -32,13 +34,16 @@ namespace InterOrbital.Combat.IA
                 if (_agent.IsDetectingPlayer())
                     SetAttack();
                 else
+                {
+                    _agent.Animator.speed = 1;
                     _agent.ChangeState(_agent.States[0]);
+                }
             }
         }
 
         private void SetAttack()
         {
-            _timer = _attackAnimation.length + _attackCooldown;
+            _timer = (_attackAnimation.length / _animationSpeed) + _attackCooldown;
             _agent.Animator.SetTrigger("Attack");
         }
 
