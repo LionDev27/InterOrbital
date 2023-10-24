@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5170623660185265452, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2dc6b1d5c702cd14d9488798f7be72b8, type: 2}
+    - target: {fileID: 6114928345242031575, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 63821856, guid: f5997e3186bb6124ea36ede09b9c32c1, type: 3}
     - target: {fileID: 6114928345258369620, guid: e5bcc97da9454f6409857ae1caa9bb0d, type: 3}
       propertyPath: m_Name
       value: JellypusRageBullet
