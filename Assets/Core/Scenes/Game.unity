@@ -2148,14 +2148,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
-      propertyPath: <width>k__BackingField
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451232444733730306, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
-      propertyPath: <height>k__BackingField
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 2451232444733730311, guid: 70bc9e6cea271dd469f3ff7860b3943d, type: 3}
       propertyPath: m_Name
       value: BalandorMap
@@ -2648,11 +2640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 430
+      value: 455
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 430
+      value: 406
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.z

@@ -47,11 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resourcePrefabs:
   - {fileID: 5492228128081625232, guid: 00dcf85c077b7464b8a025535e23ddab, type: 3}
+  - {fileID: 5492228128081625232, guid: f0c68205433b0f84da4fb3301859c9f0, type: 3}
   player: {fileID: 0}
   _layer:
     serializedVersion: 2
     m_Bits: 512
-  _maxResourcesSpawn: 20
+  _maxResourcesSpawn: 40
   _distanceBetween: 3
   _spawnRadius: 20
   _spawnDelay: 600

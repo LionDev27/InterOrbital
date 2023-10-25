@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  <width>k__BackingField: 100
-  <height>k__BackingField: 100
+  <width>k__BackingField: 500
+  <height>k__BackingField: 500
   cellSize: {x: 1, y: 1, z: 0}
   borderSize: 20
   _borderPrefab: {fileID: 3254057356427198123, guid: 488b98c8b88a54544ac89f1714735656, type: 3}
@@ -504,6 +504,7 @@ MonoBehaviour:
       tiles: {fileID: 11400000, guid: 2383928783cdbe043aeb90f5265b38cb, type: 2}
       minimapSprite: {fileID: 6325617476035518318, guid: 8f7721151de80dd409b163dcb4d558bd, type: 3}
     fillMode: 2
+  minCenterSpawnDistance: 30
 --- !u!114 &2451232444733730305
 MonoBehaviour:
   m_ObjectHideFlags: 0

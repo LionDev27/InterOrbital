@@ -888,7 +888,7 @@ MonoBehaviour:
   _currentEnergy: 0
   _maxEnergy: 100
   _loseEnergyValue: 1
-  _loseEnergyTimerDefaultValue: 2
+  _loseEnergyTimerDefaultValue: 3
 --- !u!114 &3227855540391739932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +904,7 @@ MonoBehaviour:
   _dashForce: 400
   _dashTime: 0.4
   _dashInvulnerabilityExtraTime: 0.1
+  _dashExtraCooldown: 0.5
 --- !u!114 &1346188536
 MonoBehaviour:
   m_ObjectHideFlags: 0
