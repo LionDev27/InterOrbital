@@ -126,7 +126,10 @@ namespace InterOrbital.Recollectables
             }
             if(_currentHealth <= 0)
             {
-                _lifeBarCG.DOFade(0f, 0.95f);
+                if(_lifeBarCG != null)
+                {
+                    _lifeBarCG.DOFade(0f, 0.095f);
+                }
             }
             float lifeAmount = _currentHealth / (float)_health;
             _lifeBar.fillAmount = lifeAmount;

@@ -444,12 +444,27 @@ MonoBehaviour:
   - biome: Rocky
     startPos: {x: 0, y: 0}
     extension: 20000
+  - biome: Rocky
+    startPos: {x: 0, y: 200}
+    extension: 20000
   - biome: Muddy
-    startPos: {x: 350, y: 350}
+    startPos: {x: 499, y: 499}
+    extension: 30000
+  - biome: Forest
+    startPos: {x: 280, y: 100}
     extension: 20000
   - biome: Forest
-    startPos: {x: 400, y: 100}
+    startPos: {x: 420, y: 100}
     extension: 20000
+  - biome: Forest
+    startPos: {x: 350, y: 50}
+    extension: 5000
+  - biome: Forest
+    startPos: {x: 350, y: 170}
+    extension: 5000
+  - biome: Forest
+    startPos: {x: 150, y: 400}
+    extension: 7000
   _enemiesSpawners: {fileID: 11400000, guid: 81831494098994941867a059fbc00c87, type: 2}
   _resourcesSpawners: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
   _animationTilemap: {fileID: 1591103708735996734}
