@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3551865245305052741}
   m_Layer: 0
   m_Name: FlumosoSpawner
-  m_TagString: Untagged
+  m_TagString: ResourceSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,10 +48,9 @@ MonoBehaviour:
   _resourcePrefabs:
   - {fileID: 4280824526844467642, guid: c8af891dadeff574db21a89344fed946, type: 3}
   player: {fileID: 0}
-  _maxResourcesSpawn: 3
+  _maxResourcesSpawn: 20
   _spawnRadius: 20
   _spawnDelay: 0
-  _spawnMinActivationDistance: 20
 --- !u!58 &3551865245305052741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -67,4 +66,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 30
+  m_Radius: 38

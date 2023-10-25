@@ -282,7 +282,7 @@ namespace InterOrbital.WorldSystem
         private void GenerateResourcesSpawners()
         {
             Vector2 mapCenter = new Vector2(width / 2, height / 2);
-            float minCenterSpawnDistance = BASE_WIDTH/2f;
+            float minCenterSpawnDistance = 38f;
 
             _resourcesSpawners.ResetSpawners();
 
@@ -344,7 +344,7 @@ namespace InterOrbital.WorldSystem
             Vector3Int areaBounds = GetAreaBounds(area);
             Vector3Int innerAreaBounds = GetInnerAreaBounds(area);
 
-            for(int cont = 0; cont < 100 && !positionValid; cont++)
+            for(int cont = 0; cont < 10000 && !positionValid; cont++)
             {
                 do
                 {
@@ -360,12 +360,10 @@ namespace InterOrbital.WorldSystem
                     spawnPosition = new Vector2(posX, posY);
 
                 } while (Vector2.Distance(spawnPosition,center) <= minDistanceFromCenter);
-
-
+                
+                positionValid = true;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, minDistanceBetweenSpawners);
-
-                positionValid = true;
 
                 for (int i = 0; i < colliders.Length; i++)
                 {

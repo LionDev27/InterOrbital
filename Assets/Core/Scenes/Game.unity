@@ -5071,6 +5071,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1375cd44bf968df499d10076fa754546, type: 2}
   - {fileID: 11400000, guid: 813341a15dc0d2146b59c8c578efe290, type: 2}
   - {fileID: 11400000, guid: 93197dbe2eb50d34999d23db5bde28a0, type: 2}
+  - {fileID: 11400000, guid: d149eb7a3fac2e7429466f8f47bd38cd, type: 2}
 --- !u!1 &885674623
 GameObject:
   m_ObjectHideFlags: 0
@@ -10437,7 +10438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10839,7 +10840,7 @@ MonoBehaviour:
   _eventsPool:
   - {fileID: 764512588}
   - {fileID: 462657598}
-  _timeBetweenEvents: 10
+  _timeBetweenEvents: 420
   _endRotation: {fileID: 86601378}
   _startRotation: {fileID: 603841653}
   _rotationPoint: {fileID: 1690824428}
@@ -13446,7 +13447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

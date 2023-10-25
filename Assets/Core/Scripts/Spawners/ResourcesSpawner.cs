@@ -1,9 +1,11 @@
+using System;
 using InterOrbital.Combat.IA;
 using InterOrbital.Player;
 using InterOrbital.WorldSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 namespace InterOrbital.Recollectables.Spawner
@@ -15,7 +17,6 @@ namespace InterOrbital.Recollectables.Spawner
         [SerializeField] private int _maxResourcesSpawn;
         [SerializeField] private float _spawnRadius = 15f;
         [SerializeField] private float _spawnDelay = 2f;
-        [SerializeField] public float _spawnMinActivationDistance = 20f; // Distancia de activación
 
         private bool _canSpawn;
         private float _playerNearSpawnTimer = -1;
@@ -28,6 +29,7 @@ namespace InterOrbital.Recollectables.Spawner
         {
             player = PlayerComponents.Instance.transform;
         }
+
         private void Update()
         {
             SpawnResources();
@@ -57,23 +59,17 @@ namespace InterOrbital.Recollectables.Spawner
         {
             if (_canSpawn && _playerNearSpawnTimer < 0)
             {
-                float distance = Vector3.Distance(transform.position, player.position);
-                playerInRangeToSpawn = distance > _spawnMinActivationDistance;
-
-                if (playerInRangeToSpawn)
+                if (_spawnTimer >= 0)
                 {
-                    if (_spawnTimer >= 0)
-                    {
-                        _spawnTimer -= Time.deltaTime;
-                    }
+                    _spawnTimer -= Time.deltaTime;
+                }
 
-                    if (_spawnTimer < 0)
+                if (_spawnTimer < 0)
+                {
+                    if (currentResourcesSpawned < _maxResourcesSpawn)
                     {
-                        if (currentResourcesSpawned < _maxResourcesSpawn)
-                        {
-                            StartCoroutine(SpawnResource());
-                            _spawnTimer = _spawnDelay;
-                        }
+                        StartCoroutine(SpawnResource());
+                        _spawnTimer = _spawnDelay;
                     }
                 }
             }
@@ -89,22 +85,24 @@ namespace InterOrbital.Recollectables.Spawner
             if (currentResourcesSpawned < _maxResourcesSpawn)
             {
                 Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
-                Vector3Int spawnPositionInt = new Vector3Int((int)spawnPosition.x, (int)spawnPosition.y,0);
+                Vector3Int spawnPositionInt = new Vector3Int((int)spawnPosition.x, (int)spawnPosition.y, 0);
 
-                if (spawnPositionInt.x >= 0 && spawnPositionInt.x < GridLogic.Instance.width && spawnPositionInt.y >= 0 && spawnPositionInt.y < GridLogic.Instance.height)
+                if (spawnPositionInt.x >= 0 && spawnPositionInt.x < GridLogic.Instance.width &&
+                    spawnPositionInt.y >= 0 && spawnPositionInt.y < GridLogic.Instance.height)
                 {
                     int resourceIndex = UnityEngine.Random.Range(0, _resourcePrefabs.Count);
                     resourceDimensions = _resourcePrefabs[resourceIndex].GetComponent<Recollectable>().GetDimensions();
                     if (IsPosibleToSpawn(spawnPositionInt.x, spawnPositionInt.y, resourceDimensions))
                     {
-                        GameObject resource = Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt, Quaternion.identity);
+                        GameObject resource = Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt,
+                            Quaternion.identity);
                         LockCellsOnSpawn(spawnPositionInt.x, spawnPositionInt.y);
                         currentResourcesSpawned++;
-                        resource.GetComponent<Recollectable>().SetSpawnerRef(this);    
+                        resource.GetComponent<Recollectable>().SetSpawnerRef(this);
                     }
                 }
-
             }
+
             yield return null;
         }
 
@@ -119,12 +117,13 @@ namespace InterOrbital.Recollectables.Spawner
             {
                 return false;
             }
+
             return true;
         }
 
-        private void LockCellsOnSpawn(int x,int y)
+        private void LockCellsOnSpawn(int x, int y)
         {
-            GridLogic.Instance.LockCell(x,y);
+            GridLogic.Instance.LockCell(x, y);
         }
 
         public void ResourceObtained()
@@ -133,5 +132,10 @@ namespace InterOrbital.Recollectables.Spawner
             _canSpawn = false;
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _spawnRadius);
+        }
     }
 }

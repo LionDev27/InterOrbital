@@ -20,8 +20,9 @@ MonoBehaviour:
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
-  maxAmount: 50
+  maxAmount: 80
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
   animator: {fileID: 0}
@@ -29,7 +30,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: c3cb2633c158b34419100d9693bc7485, type: 2}
     amountRequired: 1
   - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
-    amountRequired: 1
+    amountRequired: 2
   timeToCraft: 0
   craftEnergyRequired: 2
   amountToCraft: 10
