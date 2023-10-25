@@ -16,7 +16,6 @@ namespace InterOrbital.Combat.IA
         [SerializeField] protected ParticleSystem _deathParticles;
         [SerializeField] protected float _deathTime;
         [SerializeField] private float _dropForce = 1.5f;
-        private MissionCreator _missionCreator;
         protected EnemyAgentBase _agent;
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
@@ -27,7 +26,6 @@ namespace InterOrbital.Combat.IA
 
         protected virtual void Awake()
         {
-            _missionCreator = FindObjectOfType<MissionCreator>();
             _agent = GetComponent<EnemyAgentBase>();
         }
 
@@ -54,7 +52,6 @@ namespace InterOrbital.Combat.IA
 
         protected override void Death()
         {
-            _missionCreator.UpdateMission(1, null);
             StartCoroutine(nameof(DeathSequence));
         }
 
