@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97207702a3f228049b4db2f701a428fc, type: 3}
   m_Name: BalandorResourcesSpawners
   m_EditorClassIdentifier: 
-  easySpawnersAmount: 10
+  easySpawnersAmount: 12
   mediumSpawnersAmount: 15
   hardSpawnersAmount: 15
   distanceBetweenSpawners: 30
   _EasyResourceSpawners:
   - biome: Neutral
     _resourcesSpawners:
-    - {fileID: 3000195985902945075, guid: 36e69645198d67b45a44754ff2c2e5c9, type: 3}
     - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
     - {fileID: 3000195985902945075, guid: 186a7069e17612a408c6358e48ae7d65, type: 3}
   - biome: Forest
@@ -36,6 +35,7 @@ MonoBehaviour:
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
     - {fileID: 3000195985902945075, guid: 36e69645198d67b45a44754ff2c2e5c9, type: 3}
+    - {fileID: 3000195985902945075, guid: 186a7069e17612a408c6358e48ae7d65, type: 3}
   - biome: Forest
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: d9168bf8b1e0f2646acc9e16a002691f, type: 3}
