@@ -33,7 +33,7 @@ namespace InterOrbital.Mission
             _actualProgress = 0;
         }
 
-        public void UpdateMission(int amountGet, string name = null)
+        public void UpdateMission(int amountGet, string name = null, string nameEnemie = null)
         {
             if (_missionCompleted) return;
             if (name != null && _actualMission is MissionItemScriptableObject childObject)
@@ -46,7 +46,7 @@ namespace InterOrbital.Mission
                     }
                 }
             }
-            else if (name == null)
+            else if (name == null && _actualMission.typeMission == Utils.TypeMission.Hunt)
             {
                 _actualProgress += amountGet;
             }

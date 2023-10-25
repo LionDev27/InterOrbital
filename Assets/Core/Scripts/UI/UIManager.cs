@@ -18,6 +18,7 @@ namespace InterOrbital.UI
         [SerializeField] private CanvasGroup _tagButtonsInventory;
         [SerializeField] private GameObject _fastingCraft;
         [SerializeField] private GameObject _bulletSelector;
+        [SerializeField] private GameObject _clockTime;
         private bool _somethingOpen;
         
         public static UIManager Instance = null;
@@ -175,6 +176,11 @@ namespace InterOrbital.UI
         public void ChangeActionUI(ItemScriptableObject item)
         {
             _itemActionController.ChangeActionImage(item);
+        }
+
+        public void ToggleClockTime(bool show)
+        {
+            _clockTime.SetActive(show);
         }
     }
 }

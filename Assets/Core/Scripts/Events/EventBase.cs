@@ -1,17 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 namespace InterOrbital.Events
 {
     public class EventBase : MonoBehaviour
-    {
+    {  
+        [SerializeField] private string _name;
+        [SerializeField] private string _description;
+        [SerializeField] private Sprite _planetSprite;
+        [SerializeField] private int _duration;
+        [SerializeField] protected Light2D _globalLight;
+        [SerializeField] protected float _lightTransitionTime;
+
+        public int Duration => _duration;
+
         public virtual void StartEvent()
         {
+            DOTween.To(() => _globalLight.intensity, x => _globalLight.intensity = x, 0.15f, _lightTransitionTime).Play();
         }
         public virtual void EndEvent()
         {
+            DOTween.To(() => _globalLight.intensity, x => _globalLight.intensity = x, 1f, _lightTransitionTime).Play();
         }
+
+        public Sprite GetPlanetSprite()
+        {
+            return _planetSprite;
+        }
+
     }
 
 }

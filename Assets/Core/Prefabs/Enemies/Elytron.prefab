@@ -4882,6 +4882,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7400000, guid: 9d97160854b0e6340ac4ef9d936e05da, type: 2}
     - target: {fileID: -691609122267526343, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+      propertyPath: _useHitAnimation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -691609122267526343, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+      propertyPath: _detectionRange.x
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: -691609122267526343, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+      propertyPath: _detectionRange.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -691609122267526343, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: _hitShaderController
       value: 
       objectReference: {fileID: 817610612137534067}
@@ -4892,6 +4904,10 @@ PrefabInstance:
     - target: {fileID: 1079489822288413382, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: damage
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176578529163937664, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+      propertyPath: m_Speed
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529163937672, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_Name
