@@ -156,6 +156,7 @@ MonoBehaviour:
   _hitShaderController: {fileID: 8966638294756950502}
   _health: 5
   _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
+  _deathParticles: {fileID: 2654630309178519690, guid: 50edcdf778ed040498797dc9c15a1a41, type: 3}
   _dropForce: 2
   _lifeBar: {fileID: 1069062214141501533}
   _lifeBarCG: {fileID: 6826982155250965040}
