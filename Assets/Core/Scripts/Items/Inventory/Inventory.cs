@@ -125,9 +125,8 @@ namespace InterOrbital.Player
 
             for(int i=0; i < _sizeInventory; i++)
             {
-                
-                 if (_items[i].itemSo == item.itemSo && _items[i].itemSo.isStackable && _items[i].amount <= _items[i].itemSo.maxAmount)
-                 {
+                if (_items[i].itemSo == item.itemSo && _items[i].itemSo.isStackable && _items[i].amount <= _items[i].itemSo.maxAmount)
+                {
                    
                     int sum = _items[i].amount + item.amount;
                     if(sum <= _items[i].itemSo.maxAmount)
@@ -153,7 +152,7 @@ namespace InterOrbital.Player
                         _missionCreator.UpdateMission(item.amount - rest, item.itemSo.itemName);
                         item.amount = rest;
                     }
-                 }
+                }
             }
 
             for (int i=0; i< _sizeInventory; i++)

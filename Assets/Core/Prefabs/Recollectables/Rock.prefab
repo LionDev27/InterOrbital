@@ -24,6 +24,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8638660037572006599, guid: 431e703159ddcf647ac12198145a6b26, type: 3}
     - target: {fileID: 1076485647804008092, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
+      propertyPath: _dropForce
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076485647804008092, guid: de83cf9b7ae632d4bb1330624b3c35c8, type: 3}
       propertyPath: _dimensions.x
       value: 1
       objectReference: {fileID: 0}

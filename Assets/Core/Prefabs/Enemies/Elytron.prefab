@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946926032726913044}
   m_LocalRotation: {x: -0.2588186, y: -0, z: -0, w: 0.965926}
-  m_LocalPosition: {x: -2.25, y: -0.15, z: 0}
+  m_LocalPosition: {x: -3, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -748,7 +748,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 1.5
       mode: 0
       spread: 0
       speed:
@@ -4919,7 +4919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529163937673, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 11.75
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529163937673, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4975,11 +4975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529500669968, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529500669969, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.25
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 1176578529500669970, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: damage
@@ -5013,6 +5013,7 @@ PrefabInstance:
     - {fileID: 1176578529500669971, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
     - {fileID: 3581442388814949266, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
     - {fileID: 1176578529163937674, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+    - {fileID: 5541217961979773705, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
 --- !u!114 &817610612137534067 stripped
 MonoBehaviour:
@@ -5050,7 +5051,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.25}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!1 &8426442995448657465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1176578529163937672, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
