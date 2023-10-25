@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 805190538, guid: 01189b94e1a12234287bdbebfb8f2113, type: 3}
   id: 40
-  itemName: Bala Racimo
-  itemDescription: Bala que se divide en 3
+  itemName: Bala Sniper
+  itemDescription: "Bala m\xE1s grande, m\xE1s r\xE1pida y que inflinge m\xE1s da\xF1o,
+    pero con un alto enfriamiento."
   type: 2
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
   maxAmount: 50
   buildHighlightSprite: {fileID: 0}

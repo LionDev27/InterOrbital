@@ -2077,6 +2077,7 @@ MonoBehaviour:
   gridRequires: {fileID: 6960739196250732624}
   amountToCraftText: {fileID: 6732265514224393964}
   energyRequiredText: {fileID: 7669230404456017534}
+  craftsRemaining: {fileID: 0}
 --- !u!1 &6960739195115677040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,6 +2430,10 @@ MonoBehaviour:
   gridPrefab: {fileID: 481760642261103904, guid: 573c346b0a16ee84daf9de06f6274d85, type: 3}
   itemsCraft:
   - {fileID: 11400000, guid: f25c7125d8c369748aae7d95d3c03386, type: 2}
+  - {fileID: 11400000, guid: 0bc785fee4aaec146b42c703a038bbe2, type: 2}
+  - {fileID: 11400000, guid: c9e32bba23dce134dbcabed3e743d20b, type: 2}
+  - {fileID: 11400000, guid: 11a11bfb8c2312548b70ffa8b3310fd3, type: 2}
+  - {fileID: 11400000, guid: 1be6e04ea11c4be4c8db0a91ceaed049, type: 2}
   currentCraftingItem: {fileID: 0}
 --- !u!1 &6960739195673871732
 GameObject:

@@ -116,6 +116,13 @@ namespace InterOrbital.Player
             ResetHealthTimer();
         }
 
+        public override void UpgradeHealth(int healthAmount)
+        {
+            base.UpgradeHealth(healthAmount);
+            UIManager.Instance.UpgradeLifeUI();
+            UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
+        }
+
         protected override void Death()
         {
             _playerComponents.InputHandler.DeactivateControls();

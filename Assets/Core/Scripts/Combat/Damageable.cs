@@ -1,3 +1,4 @@
+using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Combat
@@ -23,7 +24,7 @@ namespace InterOrbital.Combat
             _currentHealth = Mathf.Clamp(_currentHealth + healthAmount, 0, _maxHealth);
         }
 
-        public void UpgradeHealth(int healthAmount)
+        public virtual void UpgradeHealth(int healthAmount)
         {
             _maxHealth += healthAmount;
         }

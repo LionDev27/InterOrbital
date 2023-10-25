@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 805190538, guid: 01189b94e1a12234287bdbebfb8f2113, type: 3}
   id: 39
-  itemName: Bala Racimo
-  itemDescription: Bala que se divide en 3
+  itemName: "Bala L\xE1ser"
+  itemDescription: "Bala que avanza lentamente mientras carga un rayo l\xE1ser que
+    inglingir\xE1 da\xF1o en area a los enemigos que golpee."
   type: 2
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
   maxAmount: 50
   buildHighlightSprite: {fileID: 0}

@@ -104,6 +104,19 @@ namespace InterOrbital.Player
                 case ItemType.Bullet:
                     //TODO equipar al menu de balas si hay huecos libres
                     break;
+                case ItemType.Upgrade:
+                    if (_items[index].itemSo.upgradeType == UpgradeType.Elytrum)
+                    {
+                        PlayerComponents.Instance.GetComponent<PlayerEnergy>().UpgradeEnergy(20);
+                        SubstractUsedItem();
+                    }
+
+                    if (_items[index].itemSo.upgradeType == UpgradeType.Health)
+                    {
+                        PlayerComponents.Instance.GetComponent<PlayerDamageable>().UpgradeHealth(8);
+                        SubstractUsedItem();
+                    }
+                    break;
                 case ItemType.None:
                     //No se puede usar item
                     break;

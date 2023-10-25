@@ -776,11 +776,13 @@ namespace InterOrbital.WorldSystem
             {
                 Vector2Int neighborPos = pos + offset;
 
-                neighborPos = UpdatePosToMap(neighborPos);
-
-                if (_gridCells[neighborPos.x, neighborPos.y].biomeType != biome)
+                //neighborPos = UpdatePosToMap(neighborPos);
+                if(neighborPos.x < width && neighborPos.x >= 0 && neighborPos.y < height && neighborPos.y >= 0)
                 {
-                    directions.Add(offset);
+                    if (_gridCells[neighborPos.x, neighborPos.y].biomeType != biome)
+                    {
+                        directions.Add(offset);
+                    }
                 }
             }
 

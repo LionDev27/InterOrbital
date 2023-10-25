@@ -37,7 +37,19 @@ public class ItemActionController : MonoBehaviour
             _actionImage.sprite = _emptyImage;
         }
 
-        if(item.type == ItemType.None)
+        if (item.type == ItemType.Upgrade)
+        {
+            if (item.upgradeType == UpgradeType.Elytrum)
+            {
+                _actionImage.sprite = _energyRestoreItem;
+            }
+            if (item.upgradeType == UpgradeType.Health)
+            {
+                _actionImage.sprite = _healthRestoreItem;
+            }
+        }
+
+        if (item.type == ItemType.None)
         {
             _actionImage.sprite = _emptyImage;
         }

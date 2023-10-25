@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
+  m_Name: Mejora de Vida
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 1227362912, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 42
+  itemName: Mejora de Vida
+  itemDescription: Aumenta en 1 tus contenedores de vida
+  type: 3
+  consumableValues:
+    consumableType: 1
+    amountToRestore: 4
+  upgradeType: 1
+  isStackable: 0
+  maxAmount: 20
+  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
+    amountRequired: 10
+  - item: {fileID: 11400000, guid: b231abf8dfcf8374a9a876f86bd79ee7, type: 2}
+    amountRequired: 5
+  - item: {fileID: 11400000, guid: 25ca1dbad0e3bce4e8023a5a42a7ed65, type: 2}
+    amountRequired: 1
+  timeToCraft: 5
+  craftEnergyRequired: 20
+  amountToCraft: 1

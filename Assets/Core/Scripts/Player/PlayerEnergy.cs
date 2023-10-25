@@ -26,13 +26,13 @@ namespace InterOrbital.Player
         private void Update()
         {
             LoseEnergyOverTime();
-            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
         }
 
 
         public void RestoreEnergy(int energyAmount)
         {
             _currentEnergy = Mathf.Clamp(_currentEnergy + energyAmount, 0, _maxEnergy);
+            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
             ResetTimer();
             CheckEnergy();
         }
@@ -40,6 +40,7 @@ namespace InterOrbital.Player
         public void LoseEnergy(int energyAmount)
         {
             _currentEnergy = Mathf.Clamp(_currentEnergy - energyAmount, 0, _maxEnergy);
+            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
             ResetTimer();
             CheckEnergy();
         }
@@ -67,6 +68,8 @@ namespace InterOrbital.Player
         public void UpgradeEnergy(int energyAmount)
         {
             _maxEnergy += energyAmount;
+            UIManager.Instance.UpgradeEnergyUI();
+            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
         }
 
         private void LoseEnergyOverTime()

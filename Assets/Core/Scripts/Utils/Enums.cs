@@ -2,10 +2,15 @@ namespace InterOrbital.Utils
 {
     public enum ItemType
     {
-        Consumable, Build, Bullet, None
+        Consumable, Build, Bullet, Upgrade, None
     }
 
     public enum ConsumableType
+    {
+        Elytrum, Health
+    }
+
+    public enum UpgradeType
     {
         Elytrum, Health
     }

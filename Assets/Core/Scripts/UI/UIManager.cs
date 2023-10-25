@@ -127,9 +127,19 @@ namespace InterOrbital.UI
             _energyUIController.GetEnergyTierBarsUIController().UpdateEnergy(maxEnergy,currentEnergy);
         }
         
+        public void UpgradeEnergyUI()
+        {
+            _energyUIController.UpgradeEnergyTier();
+        }
+        
         public void UpdateLifeUI(int maxLife,int currentLife)
         {
             _lifeUIController.GetLifeTierBarUIController().UpdateLife(maxLife,currentLife);
+        }
+
+        public void UpgradeLifeUI()
+        {
+            _lifeUIController.UpgradeLifeTier();
         }
 
         public void OpenFastCraft()
