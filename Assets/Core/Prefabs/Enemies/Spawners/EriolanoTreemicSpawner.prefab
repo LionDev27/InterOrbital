@@ -48,10 +48,13 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8448911064927390184, guid: 5d1495ce8da7d1848a9cecd129fb3642, type: 3}
   _difficultyArea: 1
   player: {fileID: 0}
-  _maxEnemiesSpawn: 3
-  _spawnRadius: 8
-  _spawnDelay: 0
-  _spawnMinActivationDistance: 20
+  _layer:
+    serializedVersion: 2
+    m_Bits: 256
+  _maxEnemiesSpawn: 4
+  _distanceBetween: 3
+  _spawnRadius: 10
+  _spawnDelay: 600
 --- !u!58 &784585200
 CircleCollider2D:
   m_ObjectHideFlags: 0

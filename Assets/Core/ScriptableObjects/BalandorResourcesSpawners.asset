@@ -23,8 +23,8 @@ MonoBehaviour:
     - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
   - biome: Forest
     _resourcesSpawners:
-    - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
     - {fileID: 3000195985902945075, guid: d9168bf8b1e0f2646acc9e16a002691f, type: 3}
+    - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
   - biome: Rocky
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: 186a7069e17612a408c6358e48ae7d65, type: 3}
@@ -34,9 +34,10 @@ MonoBehaviour:
   - biome: Neutral
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: 6958bd756c26e6344ae0438f1ab9f0a8, type: 3}
-    - {fileID: 3000195985902945075, guid: 6b065f3fc7f54344992a8a66d8056698, type: 3}
+    - {fileID: 3000195985902945075, guid: 36e69645198d67b45a44754ff2c2e5c9, type: 3}
   - biome: Forest
     _resourcesSpawners:
+    - {fileID: 3000195985902945075, guid: d9168bf8b1e0f2646acc9e16a002691f, type: 3}
     - {fileID: 3000195985902945075, guid: 50738c492be5ea644bb549d6e22d249f, type: 3}
   - biome: Rocky
     _resourcesSpawners:
@@ -52,7 +53,7 @@ MonoBehaviour:
     - {fileID: 3000195985902945075, guid: d9168bf8b1e0f2646acc9e16a002691f, type: 3}
   - biome: Forest
     _resourcesSpawners:
-    - {fileID: 3000195985902945075, guid: 50738c492be5ea644bb549d6e22d249f, type: 3}
+    - {fileID: 3000195985902945075, guid: 6b065f3fc7f54344992a8a66d8056698, type: 3}
   - biome: Rocky
     _resourcesSpawners:
     - {fileID: 3000195985902945075, guid: 3772cad5749b1654394b90c4579d45ea, type: 3}

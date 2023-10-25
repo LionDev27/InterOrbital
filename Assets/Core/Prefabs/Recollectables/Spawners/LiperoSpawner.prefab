@@ -51,9 +51,13 @@ MonoBehaviour:
   - {fileID: 5492228128081625232, guid: f0c68205433b0f84da4fb3301859c9f0, type: 3}
   - {fileID: 5492228128081625232, guid: a1dd850fc99b5e34088f9205cab6bea0, type: 3}
   player: {fileID: 0}
+  _layer:
+    serializedVersion: 2
+    m_Bits: 512
   _maxResourcesSpawn: 20
+  _distanceBetween: 3
   _spawnRadius: 20
-  _spawnDelay: 0
+  _spawnDelay: 600
 --- !u!58 &3551865245305052741
 CircleCollider2D:
   m_ObjectHideFlags: 0

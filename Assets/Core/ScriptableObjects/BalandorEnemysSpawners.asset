@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BalandorEnemysSpawners
   m_EditorClassIdentifier: 
   easySpawnersAmount: 10
-  mediumSpawnersAmount: 12
-  hardSpawnersAmount: 14
+  mediumSpawnersAmount: 15
+  hardSpawnersAmount: 20
   distanceBetweenSpawners: 10
   _EasyEnemySpawners:
   - {fileID: 4055717022240667952, guid: 8ecd8e64e20016a44806510a309afec3, type: 3}

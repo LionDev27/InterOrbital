@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 535388571124332740}
   - component: {fileID: 7220335016761188710}
   - component: {fileID: 3381132129193951616}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: LifeBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2724217304358364089}
   - component: {fileID: 7171871165557746286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ToastResourceNeeded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1076485647804008094}
   - component: {fileID: 1076485647804008093}
   - component: {fileID: 7778941425986832372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RecollectableRestricted
   m_TagString: StaticObject
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1076485648370343495}
   - component: {fileID: 1076485648370343494}
   - component: {fileID: 8966638294756950502}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 5211785244621732279}
   - component: {fileID: 4001980569292513027}
   - component: {fileID: 103298807950683500}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: MinimapSprite
   m_TagString: ResoruceMinimap
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6541198994567036066}
   - component: {fileID: 4391026247757600211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ItemNeeded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 114826709853767652}
   - component: {fileID: 434402459408169225}
   - component: {fileID: 6826982155250965040}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 3570936452117081353}
   - component: {fileID: 1716866244579383296}
   - component: {fileID: 1069062214141501533}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: LifeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 8283831536329651777}
   - component: {fileID: 3004306405413456591}
   - component: {fileID: 6416200636546560098}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMeshObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
