@@ -39,6 +39,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Tilemap _animationTilemap;
         [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
+        [SerializeField] private float minCenterSpawnDistance = 38f;
 
         private Cell[,] _gridCells;
         private int _chunkSize = 5;
@@ -232,7 +233,6 @@ namespace InterOrbital.WorldSystem
         private void GenerateEnemySpawners()
         {
             Vector2 mapCenter = new Vector2(width/2, height/2);
-            float minCenterSpawnDistance = BASE_WIDTH / 2f;
 
             _enemiesSpawners.ResetSpawners();
 
@@ -282,7 +282,6 @@ namespace InterOrbital.WorldSystem
         private void GenerateResourcesSpawners()
         {
             Vector2 mapCenter = new Vector2(width / 2, height / 2);
-            float minCenterSpawnDistance = 38f;
 
             _resourcesSpawners.ResetSpawners();
 

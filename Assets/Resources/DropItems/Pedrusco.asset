@@ -16,10 +16,11 @@ MonoBehaviour:
   id: 11
   itemName: Pedrusco
   itemDescription: "Peque\xF1o trozo de piedra de Balandor"
-  type: 3
+  type: 4
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}

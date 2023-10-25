@@ -16,8 +16,13 @@ MonoBehaviour:
   id: 5
   itemName: Hojas de Lipero
   itemDescription: Hojas de lipero
-  type: 3
+  type: 4
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}

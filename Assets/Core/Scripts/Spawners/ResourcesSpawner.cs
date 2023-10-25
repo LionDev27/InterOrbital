@@ -119,7 +119,6 @@ namespace InterOrbital.Recollectables.Spawner
                 {
                     spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
                     Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, _distanceBetween, _layer.value);
-                    Debug.Log(colliders.Length);
                     if (colliders.Length > 1)
                         continue;
                     break;

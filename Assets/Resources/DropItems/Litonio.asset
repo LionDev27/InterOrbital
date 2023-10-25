@@ -16,10 +16,11 @@ MonoBehaviour:
   id: 13
   itemName: Litonio
   itemDescription: Metal maleable y muy conductor del Elytrum
-  type: 3
+  type: 4
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: 0}

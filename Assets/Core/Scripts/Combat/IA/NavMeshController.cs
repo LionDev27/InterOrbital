@@ -30,7 +30,8 @@ namespace InterOrbital.Combat.IA
         
         private void OnDisable()
         {
-            GridLogic.Instance.OnTilemapFilled -= BakeNavMesh;
+            if (GridLogic.Instance != null)
+                GridLogic.Instance.OnTilemapFilled -= BakeNavMesh;
         }
         
         public void UpdateNavMesh()
