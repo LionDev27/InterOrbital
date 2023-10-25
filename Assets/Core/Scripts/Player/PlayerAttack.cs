@@ -51,9 +51,13 @@ namespace InterOrbital.Player
                 var bulletMoveDir = attackPoint.position - transform.position;
                 bulletController.SetupBullet(gameObject.tag, bulletMoveDir, transform.position);
                 AttackEffects();
+                AudioManager.Instance.PlaySFX(_bulletSFX);
                 BulletSelector.Instance.SubstractBullet();
             }
-            AudioManager.Instance.PlaySFX(_bulletSFX);
+            else
+            {
+                AudioManager.Instance.PlaySFX(_bulletSFX);
+            }
         }
         
         private void AttackEffects()

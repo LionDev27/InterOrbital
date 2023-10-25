@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class LaserBulletController : BaseBulletController
 {
-    private float _timerToBringLaser = 1f;
-    private float _laserDuration = 2f;
+    private float _timerToBringLaser = 0.45f;
+    private float _laserDuration = 1.05f;
     private bool _laserActivated;
     [SerializeField] private Collider2D _laserCollider;
-    [SerializeField] private GameObject _placeholder;
 
     private new void Update()
     {
@@ -28,7 +27,6 @@ public class LaserBulletController : BaseBulletController
         {
             _laserActivated = true;
             _laserCollider.enabled = true;
-            _placeholder.SetActive(true);
             StopMove();
             GetComponent<BulletDD>().DontDestroyAfterHit();
             StartCoroutine(FinishLaser());
