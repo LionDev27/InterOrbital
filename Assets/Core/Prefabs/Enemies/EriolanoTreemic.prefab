@@ -155,6 +155,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _maxHealth
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -184,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[0].minAmount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[1].maxAmount

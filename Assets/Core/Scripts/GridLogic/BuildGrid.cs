@@ -201,6 +201,7 @@ public class BuildGrid : MonoBehaviour
 
     public void ActivateBuildMode(ItemScriptableObject item)
     {
+        PlayerComponents.Instance.PlayerAttack.canAttack = false;
         _itemToBuild = item;
         _buildMode = true;
     }
@@ -210,6 +211,7 @@ public class BuildGrid : MonoBehaviour
         _itemToBuild = null;
         _buildMode = false;
         highlightBuildLayer.SetTile(_highlightedTilePos, null);
+        PlayerComponents.Instance.PlayerAttack.canAttack = true;
     }
 
     public bool IsBuilding()

@@ -22,7 +22,6 @@ namespace InterOrbital.Combat.Spawner
         private float _playerNearSpawnTimer = -1;
         private float _spawnTimer;
         private int currentEnemiesSpawned = 0; // Contador de enemigos actual
-        private bool playerInRangeToSpawn = false;
 
         private void Start()
         {

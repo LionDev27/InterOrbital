@@ -36,6 +36,7 @@ namespace InterOrbital.UI
         {
             if (!_minimapIsOpen)
             {
+                AudioManager.Instance.PlaySFX("UIMenu");
                 DOTween.To(() => _minimapFrameRect.offsetMin, x => _minimapFrameRect.offsetMin = x, new Vector2(36, 36), _animationDuration).SetEase(Ease.Linear);
                 ChangeMinimapSpriteSize(false, _animationDuration, _scaleMinimapIcons);
                 _minimapCamera.GetComponent<CameraFollow>().OpenMinimap();
@@ -47,6 +48,7 @@ namespace InterOrbital.UI
             }
             else
             {
+                AudioManager.Instance.PlaySFX("UIMenuReverse");
                 DOTween.To(() => _minimapFrameRect.offsetMin, x => _minimapFrameRect.offsetMin = x, new Vector2(636, 636), _animationDuration).SetEase(Ease.Linear);
                 DOTween.To(() => _minimapCamera.orthographicSize, x => _minimapCamera.orthographicSize = x, _orthographicMinimizedSize, _animationDuration).SetEase(Ease.Linear);
                 ChangeMinimapSpriteSize(true, _animationDuration, _scaleMinimapIcons);

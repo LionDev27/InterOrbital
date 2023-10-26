@@ -33,12 +33,14 @@ namespace InterOrbital.Player
                 {
                     _gunAnimator.SetBool("Recollecting", true);
                     _audioSource.Play();
+                    PlayerAttack.canAttack = false;
                 }
             }
             else if (_gunAnimator.GetBool("Recollecting"))
             {
                 _gunAnimator.SetBool("Recollecting", false);
                 _audioSource.Stop();
+                PlayerAttack.canAttack = true;
             }
         }
 

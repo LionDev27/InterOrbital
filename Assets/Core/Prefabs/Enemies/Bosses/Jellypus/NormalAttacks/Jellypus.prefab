@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df761c1201d31c44ca487273bcac57ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 150
+  _maxHealth: 200
   _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
   _dropsList: []
   _deathParticles: {fileID: 4891282835071411422, guid: 50d57341245819d44a643bef7d11e196, type: 3}
@@ -861,10 +861,10 @@ MonoBehaviour:
   _useHitAnimation: 0
   _phases:
   - attacks: {fileID: 8563429073364598138}
-    healthToChange: 150
+    healthToChange: 200
     barFillColor: {r: 0.8431373, g: 0.62352943, b: 0.07450981, a: 1}
   - attacks: {fileID: 1518450797415011096}
-    healthToChange: 75
+    healthToChange: 100
     barFillColor: {r: 0.84313726, g: 0.07450981, b: 0.07450982, a: 1}
   _changePhaseTime: 3
   _lastPhaseColor: {r: 1, g: 0.6901961, b: 0.6862745, a: 1}

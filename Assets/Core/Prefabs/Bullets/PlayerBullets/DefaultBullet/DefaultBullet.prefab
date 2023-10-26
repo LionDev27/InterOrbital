@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _range: 12
-  _cooldown: 0
+  _cooldown: 1
   _bulletStartGlow: {fileID: 8507987451363851064, guid: 2e4b5f242ba0ce84e915006073b430fd, type: 3}
   _bulletFinalGlow: {fileID: 8507987451363851064, guid: 2e4b5f242ba0ce84e915006073b430fd, type: 3}
 --- !u!114 &-5463402361183923173

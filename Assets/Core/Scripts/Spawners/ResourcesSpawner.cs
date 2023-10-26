@@ -24,7 +24,6 @@ namespace InterOrbital.Recollectables.Spawner
         private float _playerNearSpawnTimer = -1;
         private float _spawnTimer;
         private int currentResourcesSpawned = 0; // Contador de enemigos actual
-        private bool playerInRangeToSpawn = false;
         private Vector2 resourceDimensions;
 
         private void Start()

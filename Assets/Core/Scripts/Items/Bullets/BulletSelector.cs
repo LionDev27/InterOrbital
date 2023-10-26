@@ -116,6 +116,7 @@ namespace InterOrbital.UI
 
         public void SelectAnimation()
         {
+            AudioManager.Instance.PlaySFX("UIMenu");
             _rectTransform.DOKill();
             _rectTransform.DOMove(_selectAnimation.position, _animationDuration).SetEase(Ease.OutBack);
             _rectTransform.DOScale(_selectAnimation.scale, _animationDuration).SetEase(Ease.OutBack);
@@ -123,6 +124,7 @@ namespace InterOrbital.UI
 
         public void DeselectAnimation()
         {
+            AudioManager.Instance.PlaySFX("UIMenuReverse");
             _rectTransform.DOKill();
             _rectTransform.DOMove(_deselectAnimation.position, _animationDuration).SetEase(Ease.OutBack);
             _rectTransform.DOScale(_deselectAnimation.scale, _animationDuration).SetEase(Ease.OutBack);

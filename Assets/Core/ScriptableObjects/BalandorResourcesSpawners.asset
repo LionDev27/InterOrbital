@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97207702a3f228049b4db2f701a428fc, type: 3}
   m_Name: BalandorResourcesSpawners
   m_EditorClassIdentifier: 
-  easySpawnersAmount: 12
-  mediumSpawnersAmount: 15
-  hardSpawnersAmount: 15
+  easySpawnersAmount: 14
+  mediumSpawnersAmount: 18
+  hardSpawnersAmount: 20
   distanceBetweenSpawners: 30
   _EasyResourceSpawners:
   - biome: Neutral
