@@ -65,7 +65,7 @@ namespace InterOrbital.UI
                 ItemObject itemInInventory = PlayerComponents.Instance.Inventory.GetItemObjectByIndex(index);
                 if (itemInInventory.itemSo != PlayerComponents.Instance.Inventory.itemVoid)
                 {
-                    bulletsItems[i] = (ItemBulletScriptableObject)itemInInventory.itemSo;
+                    bulletsItems[i] = itemInInventory.itemSo as ItemBulletScriptableObject;
                 }
                 else
                 {

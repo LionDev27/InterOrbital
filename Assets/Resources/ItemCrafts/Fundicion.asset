@@ -21,6 +21,7 @@ MonoBehaviour:
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 0
   maxAmount: 0
   buildHighlightSprite: {fileID: 21300000, guid: 0fa70e1392ab6dd439fca3057304a80d, type: 3}
@@ -30,8 +31,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
     amountRequired: 5
   - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
-    amountRequired: 1
+    amountRequired: 3
   - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
-    amountRequired: 1
+    amountRequired: 2
   timeToCraft: 10
   craftEnergyRequired: 5
+  amountToCraft: 1

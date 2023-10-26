@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1076485647804008094}
   - component: {fileID: 1076485647804008093}
   - component: {fileID: 7778941425986832372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RecollectableRestricted
   m_TagString: StaticObject
   m_Icon: {fileID: 0}
@@ -242,6 +242,7 @@ MonoBehaviour:
   _hitShaderController: {fileID: 8966638294756950502}
   _health: 1
   _dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
+  _deathParticles: {fileID: 2654630309178519690, guid: 50edcdf778ed040498797dc9c15a1a41, type: 3}
   _dropForce: 2
   _lifeBar: {fileID: 1069062214141501533}
   _lifeBarCG: {fileID: 6826982155250965040}

@@ -16,7 +16,7 @@ namespace InterOrbital.Combat.IA
         private EnemyDamageable _enemyDamageable;
         [SerializeField] private ParticleSystem _deathParticles;
         private SpriteRenderer _spriteRenderer;
-        private DarkBall_Event _darkBallEvent;
+        private DarkBallEvent _darkBallEvent;
 
         public float initialSpeed = 3f;
         public float maxSpeed = 7f; 
@@ -89,7 +89,7 @@ namespace InterOrbital.Combat.IA
             }
         }
 
-        public void SetEventSpawner(DarkBall_Event newEvent)
+        public void SetEventSpawner(DarkBallEvent newEvent)
         {
             _darkBallEvent = newEvent;
         }

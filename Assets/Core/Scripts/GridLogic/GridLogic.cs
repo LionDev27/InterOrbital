@@ -39,6 +39,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private Tilemap _animationTilemap;
         [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
+        [SerializeField] private float minCenterSpawnDistance = 38f;
 
         private Cell[,] _gridCells;
         private int _chunkSize = 5;
@@ -232,7 +233,6 @@ namespace InterOrbital.WorldSystem
         private void GenerateEnemySpawners()
         {
             Vector2 mapCenter = new Vector2(width/2, height/2);
-            float minCenterSpawnDistance = BASE_WIDTH / 2f;
 
             _enemiesSpawners.ResetSpawners();
 
@@ -282,7 +282,6 @@ namespace InterOrbital.WorldSystem
         private void GenerateResourcesSpawners()
         {
             Vector2 mapCenter = new Vector2(width / 2, height / 2);
-            float minCenterSpawnDistance = BASE_WIDTH/2f;
 
             _resourcesSpawners.ResetSpawners();
 
@@ -344,7 +343,7 @@ namespace InterOrbital.WorldSystem
             Vector3Int areaBounds = GetAreaBounds(area);
             Vector3Int innerAreaBounds = GetInnerAreaBounds(area);
 
-            for(int cont = 0; cont < 100 && !positionValid; cont++)
+            for(int cont = 0; cont < 10000 && !positionValid; cont++)
             {
                 do
                 {
@@ -360,12 +359,10 @@ namespace InterOrbital.WorldSystem
                     spawnPosition = new Vector2(posX, posY);
 
                 } while (Vector2.Distance(spawnPosition,center) <= minDistanceFromCenter);
-
-
+                
+                positionValid = true;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, minDistanceBetweenSpawners);
-
-                positionValid = true;
 
                 for (int i = 0; i < colliders.Length; i++)
                 {

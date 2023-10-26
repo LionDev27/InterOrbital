@@ -7,9 +7,8 @@ using InterOrbital.Combat.IA;
 
 namespace InterOrbital.Events
 {
-    public class DarkBall_Event : EventBase
+    public class DarkBallEvent : EventBase
     {
-
         [SerializeField] private float _raidusSpawn;
         [SerializeField] private GameObject _darkBallPrefab;
         [SerializeField] private float _timeToSpawn;

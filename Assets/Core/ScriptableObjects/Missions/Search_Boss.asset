@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
-  m_Name: Craft_Crafting_Table
+  m_Name: Search_Boss
   m_EditorClassIdentifier: 
-  typeMission: 2
-  missionDescription: Craftea una Mesa de Crafteo
+  typeMission: 0
+  missionDescription: Derrota a Jellypus
   amountToReach: 1
-  imageMission: {fileID: 21300000, guid: 903596d7398e2de49bbfa19bc815eb3f, type: 3}
+  imageMission: {fileID: 21300000, guid: 8b5583aa2a52b4f418c1fee70fe5ade6, type: 3}
   itemsGoalList:
-  - {fileID: 11400000, guid: fb08277f5f25c0244945210d39f7fd19, type: 2}
+  - {fileID: 11400000, guid: 198173a60874433458efda4c32115a0e, type: 2}

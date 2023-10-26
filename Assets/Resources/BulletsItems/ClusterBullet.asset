@@ -20,8 +20,9 @@ MonoBehaviour:
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 1
-  maxAmount: 50
+  maxAmount: 80
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
   animator: {fileID: 0}
@@ -33,7 +34,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
     amountRequired: 2
   timeToCraft: 0
-  craftEnergyRequired: 0
+  craftEnergyRequired: 5
   amountToCraft: 10
   bulletPrefab: {fileID: 27296961458175940, guid: fb0e13a266203794eb5102f4c02ae9d5, type: 3}
   shotSFX: {fileID: 8300000, guid: 51d1d03e25f301a40a2c6752792a1a03, type: 3}

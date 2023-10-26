@@ -14,9 +14,12 @@ namespace InterOrbital.Player
         [Tooltip("Tiempo en segundos de invencibilidad mientras realiza el dash. Se sumará al tiempo del dash.")]
         [Range(0f, 0.5f)]
         [SerializeField] private float _dashInvulnerabilityExtraTime;
+        [SerializeField] private float _dashExtraCooldown;
         private float _dashTimer;
         private float _dashInvulnerabilityTimer;
-        private float _dashTotalTime => _dashTime + _dashInvulnerabilityExtraTime;
+        private float _dashTotalTimer;
+        private float _dashTotalInvulnerabilityTime => _dashTime + _dashInvulnerabilityExtraTime;
+        private float _dashTotalTime => _dashTotalInvulnerabilityTime + _dashExtraCooldown;
         private float _dashAnimationSpeed;
 
         protected override void Awake()
@@ -37,7 +40,7 @@ namespace InterOrbital.Player
                 }
             }
 
-            _dashAnimationSpeed = dashAnimationDuration / _dashTotalTime;
+            _dashAnimationSpeed = dashAnimationDuration / _dashTotalInvulnerabilityTime;
         }
 
         private void Update()
@@ -54,19 +57,22 @@ namespace InterOrbital.Player
                 Animator.speed = 1;
             else
                 _dashInvulnerabilityTimer -= Time.deltaTime;
+            if (_dashTotalTimer > 0)
+                _dashTotalTimer -= Time.deltaTime;
             if (IsDashing() && InputHandler.MoveDirection != Vector2.zero)
                 HandleSprites();
         }
 
         private void Dash()
         {
-            if (IsDashing() || PlayerEnergy.EnergyEmpty) return;
+            if (IsDashing() || PlayerEnergy.EnergyEmpty || !CanDash()) return;
             PlayerMovement.EnableMovement(false);
             PlayerAttack.canAttack = false;
             PlayerAim.ShowGun(false);
             
             _dashTimer = _dashTime;
-            _dashInvulnerabilityTimer = _dashTotalTime;
+            _dashInvulnerabilityTimer = _dashTotalInvulnerabilityTime;
+            _dashTotalTimer = _dashTotalTime;
             //Si no se está moviendo, hará el dash a la dirección a la que apunta. Si se mueve, lo hará hacia la que se mueve.
             Vector3 direction = InputHandler.MoveDirection != Vector2.zero ? InputHandler.MoveDirection : PlayerAttack.attackPoint.position - transform.position;
             Rigidbody.AddForce(direction * _dashForce);
@@ -91,6 +97,11 @@ namespace InterOrbital.Player
         public bool IsDashing()
         {
             return _dashInvulnerabilityTimer > 0;
+        }
+
+        private bool CanDash()
+        {
+            return _dashTotalTimer <= 0;
         }
     }
 }

@@ -20,18 +20,19 @@ MonoBehaviour:
   consumableValues:
     consumableType: 1
     amountToRestore: 12
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
   animator: {fileID: 0}
   itemsRequired:
-  - item: {fileID: 11400000, guid: c4446f9b1aea9de419ce728e60b50f20, type: 2}
-    amountRequired: 4
-  - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
+  - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
     amountRequired: 2
+  - item: {fileID: 11400000, guid: 27c84439b62321a499f072585af4b54b, type: 2}
+    amountRequired: 4
   - item: {fileID: 11400000, guid: a1da45e419447754a873c1f6b60b04eb, type: 2}
-    amountRequired: 1
+    amountRequired: 2
   timeToCraft: 10
   craftEnergyRequired: 1
   amountToCraft: 1

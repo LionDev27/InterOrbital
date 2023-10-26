@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[0].item
@@ -159,7 +159,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 02d0af574372e724eaed41578ab6c4f5, type: 2}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[1].dropRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].dropRate
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
@@ -176,6 +184,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[1].minAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].maxAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: _dropsList.Array.data[2].minAmount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913901881404, guid: d86503b320fb0d6448729a5030d0d853, type: 3}

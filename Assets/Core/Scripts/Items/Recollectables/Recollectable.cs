@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -19,6 +18,7 @@ namespace InterOrbital.Recollectables
         [Tooltip("How many times can the player recollect from this recollectable.")]
         [SerializeField] private int _health;
         [SerializeField] private GameObject _dropItemPrefab;
+        [SerializeField] protected ParticleSystem _deathParticles;
         [SerializeField] private float _dropForce = 3f;
         [SerializeField] private Image _lifeBar;
         [SerializeField] private CanvasGroup _lifeBarCG;
@@ -78,10 +78,12 @@ namespace InterOrbital.Recollectables
 
         private void DestroyRecollectable()
         {
+            var pos = transform.position;
+            pos.x += _dimensions.x / 2;
+            pos.y += _dimensions.y / 2;
+            Instantiate(_deathParticles, pos, _deathParticles.transform.rotation).Play();
             if(_spawner != null)
-            {
                 _spawner.ResourceObtained();
-            }
             Destroy(gameObject);
         }
         

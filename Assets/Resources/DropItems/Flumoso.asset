@@ -16,10 +16,11 @@ MonoBehaviour:
   id: 35
   itemName: Flumoso
   itemDescription: Elemento viscoso y pegajoso
-  type: 3
+  type: 4
   consumableValues:
     consumableType: 0
     amountToRestore: 0
+  upgradeType: 0
   isStackable: 0
   maxAmount: 0
   buildHighlightSprite: {fileID: 0}
