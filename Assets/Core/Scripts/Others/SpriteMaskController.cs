@@ -60,8 +60,8 @@ namespace InterOrbital.Others
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            SpriteRenderer spriteRenderer = collision.GetComponentInChildren<SpriteRenderer>();
-            if (spriteRenderer != null && collision.CompareTag("StaticObject"))
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null && collision.CompareTag("ColliderMask"))
             {
                 _otherRenderers.Add(spriteRenderer);
                 //checking = true;
