@@ -9,7 +9,10 @@ namespace InterOrbital.Others
     public class SpriteMaskController : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _playerSpriteRenderer;
+        [SerializeField] private SpriteRenderer _gunSpriteRenderer;
         [SerializeField] private SpriteMask _spriteMask;
+        [SerializeField] private OrderInLayerController _olControllerPlayer;
+        [SerializeField] private OrderInLayerController _olControllerGun;
         private Collider2D _spriteMaskCollider;
         private List<SpriteRenderer> _otherRenderers;
 
@@ -26,10 +29,14 @@ namespace InterOrbital.Others
         {
             if (_otherRenderers.Count > 0)
             {
+                _olControllerPlayer.SetCanChange(false);
+                _olControllerGun.SetCanChange(false);
                 foreach (var renderer in _otherRenderers)
                 {
                     if (_playerSpriteRenderer.transform.position.y > renderer.transform.position.y)
                     {
+                        _playerSpriteRenderer.sortingOrder = renderer.sortingOrder - 1;
+                        _gunSpriteRenderer.sortingOrder = renderer.sortingOrder - 1 ;
                         renderer.ChangueSpriteAlphaColor(0.4f);
                     }
                     else
@@ -55,6 +62,11 @@ namespace InterOrbital.Others
                 //         //_playerSpriteRenderer.maskInteraction = SpriteMaskInteraction.None;
                 //     }
                 // }
+            }
+            else
+            {
+                _olControllerPlayer.SetCanChange(true);
+                _olControllerGun.SetCanChange(true);
             }
         }
 

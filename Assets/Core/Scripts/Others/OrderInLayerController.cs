@@ -6,7 +6,9 @@ public class OrderInLayerController : MonoBehaviour
 {
 
     [SerializeField] private bool isStatic;
+    private bool _canChange;
     private SpriteRenderer _spriteRenderer;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -15,15 +17,22 @@ public class OrderInLayerController : MonoBehaviour
     }
     void Start()
     {
-        _spriteRenderer.sortingOrder = (int) transform.position.y;   
+         _canChange = true;
+         _spriteRenderer.sortingOrder = (int) transform.position.y;   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isStatic)
+        if (!isStatic && _canChange)
         {
             _spriteRenderer.sortingOrder = (int)transform.position.y;
         }
     }
+
+    public void SetCanChange(bool v)
+    {
+        _canChange = v;
+    }
+
 }
