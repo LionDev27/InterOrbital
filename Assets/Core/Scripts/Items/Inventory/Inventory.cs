@@ -152,6 +152,7 @@ namespace InterOrbital.Player
                         _missionCreator.UpdateMission(item.amount - rest, item.itemSo.itemName);
                         item.amount = rest;
                     }
+                    AudioManager.Instance.PlaySFX("ObtainItem");
                 }
             }
 
@@ -161,6 +162,7 @@ namespace InterOrbital.Player
                 {
                     _items[i] = item;
                     SetAmount(i, item.amount);
+                    AudioManager.Instance.PlaySFX("ObtainItem");
                     if (item.itemSo.type == ItemType.Bullet)
                     {
                         BulletSelector.Instance.UpdateBulletSelectorUI();

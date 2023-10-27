@@ -5,6 +5,7 @@ public class ClusterBulletController : BaseBulletController
 {
     private float _timerToBroke = 0.5f;
     [SerializeField] private GameObject _miniClusterBulletPrefab;
+    [SerializeField] private AudioClip _miniClusterBulletSFX;
 
 
     private new void Update()
@@ -22,6 +23,7 @@ public class ClusterBulletController : BaseBulletController
 
         if(_timerToBroke <= 0)
         {
+            AudioManager.Instance.PlaySFX(_miniClusterBulletSFX);
             InstantiateClusterBullet(0);
             InstantiateClusterBullet(45);
             InstantiateClusterBullet(-45);
