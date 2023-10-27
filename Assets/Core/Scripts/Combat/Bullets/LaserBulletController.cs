@@ -1,6 +1,7 @@
 using InterOrbital.Combat;
 using InterOrbital.Combat.Bullets;
 using System.Collections;
+using InterOrbital.Player;
 using UnityEngine;
 
 public class LaserBulletController : BaseBulletController
@@ -27,6 +28,7 @@ public class LaserBulletController : BaseBulletController
         {
             _laserActivated = true;
             _laserCollider.enabled = true;
+            CameraShake.Instance.Shake(8f);
             StopMove();
             GetComponent<BulletDD>().DontDestroyAfterHit();
             StartCoroutine(FinishLaser());

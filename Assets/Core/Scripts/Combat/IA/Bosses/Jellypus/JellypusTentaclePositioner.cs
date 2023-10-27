@@ -27,6 +27,7 @@ namespace InterOrbital.Combat.IA
             {
                 tentacle.transform.position = target.position;
                 tentacle.gameObject.SetActive(true);
+                AudioManager.Instance.PlaySFX("BossTentacleAttack");
                 yield return new WaitForSeconds(waitPerTentacle);
             }
         }

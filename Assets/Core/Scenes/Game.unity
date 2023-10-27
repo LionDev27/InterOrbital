@@ -2790,6 +2790,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 277306446, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817862743}
+    - target: {fileID: 281901156, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817862743}
+    - target: {fileID: 565808071, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817862743}
+    - target: {fileID: 624991976, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817862743}
+    - target: {fileID: 955233292, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 66102837}
+    - target: {fileID: 1353367652, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817862743}
     - target: {fileID: 3131315919438408784, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_Name
       value: Jellypus
@@ -2800,11 +2824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 455
+      value: 456
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 406
+      value: 424
       objectReference: {fileID: 0}
     - target: {fileID: 3131315919438408785, guid: 6079ab0a4623e15418ec0f48376fb8e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13172,6 +13196,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1c0a20f9ff0180243aaa5250cd8608e5, type: 3}
   - name: ObtainItem
     clip: {fileID: 8300000, guid: 1d1196279798f5e40bf13a612c3b0bda, type: 3}
+  - name: BossTentacleAttack
+    clip: {fileID: 8300000, guid: a61fc555d3488284bbdf4ba479bc0c66, type: 3}
+  - name: BossTentacleAppear
+    clip: {fileID: 8300000, guid: 6be004f6ff4226943b15f44cfbb7280e, type: 3}
 --- !u!1001 &1821504538
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ namespace InterOrbital.Combat.IA
             foreach (var instantiator in _instantiators)
                 instantiator.target = _agent.Target;
             base.OnEnable();
+            AudioManager.Instance.PlaySFX("BossTentacleAppear");
         }
     }
 }
