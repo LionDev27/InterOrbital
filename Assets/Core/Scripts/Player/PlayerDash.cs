@@ -69,6 +69,7 @@ namespace InterOrbital.Player
             PlayerMovement.EnableMovement(false);
             PlayerAttack.canAttack = false;
             PlayerAim.ShowGun(false);
+            AudioManager.Instance.PlaySFX("Dash");
             
             _dashTimer = _dashTime;
             _dashInvulnerabilityTimer = _dashTotalInvulnerabilityTime;
