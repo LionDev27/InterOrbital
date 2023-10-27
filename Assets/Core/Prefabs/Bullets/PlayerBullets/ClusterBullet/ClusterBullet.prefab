@@ -208,7 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   _range: 10
-  _cooldown: 2
+  _cooldown: 1
   _bulletStartGlow: {fileID: 8507987451363851064, guid: cfe1ffecbe51dca4bbb52ffecd1f6e1f, type: 3}
   _bulletFinalGlow: {fileID: 8507987451363851064, guid: cfe1ffecbe51dca4bbb52ffecd1f6e1f, type: 3}
   _miniClusterBulletPrefab: {fileID: 27296961458175940, guid: 8d630f2ea2ce7bf4e99f718b149bfd48, type: 3}
+  _miniClusterBulletSFX: {fileID: 8300000, guid: 51d1d03e25f301a40a2c6752792a1a03, type: 3}

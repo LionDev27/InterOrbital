@@ -27,7 +27,6 @@ namespace InterOrbital.Player
         // Start is called before the first frame update
         void Start()
         {
-           
             _level = 1;
             _actualItemEquiped = 2;
             InitSlots();
