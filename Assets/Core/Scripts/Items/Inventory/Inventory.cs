@@ -127,7 +127,7 @@ namespace InterOrbital.Player
             {
                 if (_items[i].itemSo == item.itemSo && _items[i].itemSo.isStackable && _items[i].amount <= _items[i].itemSo.maxAmount)
                 {
-                   
+                    AudioManager.Instance.PlaySFX("ObtainItem");
                     int sum = _items[i].amount + item.amount;
                     if(sum <= _items[i].itemSo.maxAmount)
                     {
@@ -152,7 +152,6 @@ namespace InterOrbital.Player
                         _missionCreator.UpdateMission(item.amount - rest, item.itemSo.itemName);
                         item.amount = rest;
                     }
-                    AudioManager.Instance.PlaySFX("ObtainItem");
                 }
             }
 
