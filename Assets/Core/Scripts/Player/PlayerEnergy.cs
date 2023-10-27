@@ -68,8 +68,10 @@ namespace InterOrbital.Player
         public void UpgradeEnergy(int energyAmount)
         {
             _maxEnergy += energyAmount;
+            _currentEnergy = _maxEnergy;
             UIManager.Instance.UpgradeEnergyUI();
             UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
+            ResetTimer();
         }
 
         private void LoseEnergyOverTime()

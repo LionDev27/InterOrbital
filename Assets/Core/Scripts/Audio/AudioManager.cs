@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
@@ -15,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource, sfxSource;
     public Sound[] musicSounds, sfxSounds;
 
+    private float _musicVolume;
 
     private void Awake()
     {
@@ -27,30 +29,30 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }*/
-
     }
 
     private void Start()
     {
-        PlayMusic("MainTheme",true);
+        _musicVolume = musicSource.volume;
+        PlayMusic("MainTheme", true);
     }
 
-    public void PlayMusic(string name,bool loop)
+    public void PlayMusic(string name, bool loop)
     {
         Sound sound = Array.Find(musicSounds, s => s.name == name);
 
         if (sound != null)
         {
-            musicSource.clip = sound.clip;
-            musicSource.Play();
-            if (loop)
+            var sequence = DOTween.Sequence();
+            sequence.Append(musicSource.DOFade(0f, 1f).OnComplete(() =>
             {
-                musicSource.loop = true;
-            }
-            else
-            {
-                musicSource.loop = false;
-            }
+                musicSource.clip = sound.clip;
+                musicSource.Play();
+            }));
+            sequence.Append(musicSource.DOFade(_musicVolume, 1f));
+            sequence.Play();
+
+            musicSource.loop = loop;
         }
     }
 

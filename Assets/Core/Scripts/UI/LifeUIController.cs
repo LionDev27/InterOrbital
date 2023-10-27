@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LifeUIController : MonoBehaviour
 {
+    public int RemainingTiers => lifePrefabs.Count - lifeTier;
+    
     [SerializeField] List<GameObject> lifePrefabs;
     private int lifeTier = 0;
 

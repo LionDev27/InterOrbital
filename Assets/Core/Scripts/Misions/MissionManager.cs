@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using InterOrbital.Others;
 using InterOrbital.Player;
+using InterOrbital.UI;
 using UnityEngine;
 
 namespace InterOrbital.Mission
@@ -34,6 +35,11 @@ namespace InterOrbital.Mission
             if (_indexActualMission < missionsToDo.Count)
             {
                 _missionCreator.CreateMission(missionsToDo[_indexActualMission]);
+                if (_indexActualMission != missionsToDo.Count - 1) return;
+                for (int i = 0; i < UIManager.Instance.RemainingEnergyTiers; i++)
+                    PlayerComponents.Instance.PlayerEnergy.UpgradeEnergy(20);
+                for (int i = 0; i < UIManager.Instance.RemainingLifeTiers; i++)
+                    PlayerComponents.Instance.PlayerDamageable.UpgradeHealth(8);
             }
             else
             {

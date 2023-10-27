@@ -17,6 +17,7 @@ namespace InterOrbital.Combat.IA
         {
             _rotator.target = _agent.Target;
             base.OnEnable();
+            AudioManager.Instance.PlaySFX("BossTentacleAttack");
         }
     }
 }

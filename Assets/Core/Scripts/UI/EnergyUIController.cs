@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnergyUIController : MonoBehaviour
 {
+    public int RemainingTiers => energyPrefabs.Count - energyTier;
+    
     [SerializeField] List<GameObject> energyPrefabs;
     private int energyTier = 0;
 

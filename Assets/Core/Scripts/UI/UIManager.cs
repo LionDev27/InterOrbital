@@ -132,6 +132,8 @@ namespace InterOrbital.UI
         {
             _energyUIController.UpgradeEnergyTier();
         }
+
+        public int RemainingEnergyTiers => _energyUIController.RemainingTiers;
         
         public void UpdateLifeUI(int maxLife,int currentLife)
         {
@@ -142,6 +144,8 @@ namespace InterOrbital.UI
         {
             _lifeUIController.UpgradeLifeTier();
         }
+        
+        public int RemainingLifeTiers => _lifeUIController.RemainingTiers;
 
         public void OpenFastCraft()
         {

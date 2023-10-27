@@ -81,12 +81,14 @@ namespace InterOrbital.Combat.IA
             _hitted = true;
             BossInfoBar.OnDeactivateBoss.Invoke();
             StartCoroutine(Recover());
+            AudioManager.Instance.PlayMusic("MainTheme", true);
         }
 
         public void ActivateBoss()
         {
             _hitted = false;
             BossInfoBar.OnActivateBoss?.Invoke(_name, _currentHealth, _maxHealth);
+            AudioManager.Instance.PlayMusic("BossTheme", true);
         }
     }
 }

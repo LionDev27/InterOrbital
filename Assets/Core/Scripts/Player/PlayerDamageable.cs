@@ -119,6 +119,7 @@ namespace InterOrbital.Player
         public override void UpgradeHealth(int healthAmount)
         {
             base.UpgradeHealth(healthAmount);
+            _currentHealth = _maxHealth;
             UIManager.Instance.UpgradeLifeUI();
             UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
         }
