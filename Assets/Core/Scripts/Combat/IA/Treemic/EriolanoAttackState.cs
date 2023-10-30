@@ -9,6 +9,7 @@ namespace InterOrbital.Combat.IA
         
         public override void Attack()
         {
+            base.Attack();
             var currentAngle = _attackAngle;
 
             for (int i = 0; i < 3; i++)

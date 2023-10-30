@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 02d0af574372e724eaed41578ab6c4f5, type: 2}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[1].dropRate
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.data[2].dropRate
@@ -332,6 +332,7 @@ MonoBehaviour:
   _attackAnimation: {fileID: 7400000, guid: edf211cc4f2d59246bdee8ce23744775, type: 2}
   _attackCooldown: 0.25
   _animationSpeed: 1.25
+  _sfx: {fileID: 8300000, guid: 73fe31dae668f2e489ab78ea66a4ed32, type: 3}
   _attackAngle: 10
 --- !u!114 &2128111727
 MonoBehaviour:

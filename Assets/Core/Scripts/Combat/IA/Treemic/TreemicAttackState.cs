@@ -10,6 +10,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private AnimationClip _attackAnimation;
         [SerializeField] private float _attackCooldown;
         [SerializeField] private float _animationSpeed;
+        [SerializeField] private AudioClip _sfx;
         private EnemyAgentBase _agent;
         private float _timer;
         
@@ -52,6 +53,10 @@ namespace InterOrbital.Combat.IA
             return (_agent.Target.position - _bulletTransformSpawn.position).normalized;
         }
 
-        public virtual void Attack(){}
+        public virtual void Attack()
+        {
+            if (_sfx != null)
+                AudioManager.Instance.PlaySFX(_sfx);
+        }
     }
 }

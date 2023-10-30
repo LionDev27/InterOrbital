@@ -9,14 +9,15 @@ namespace InterOrbital.Combat.IA
         
         public override void Attack()
         {
-            var currentAngle = 0f;
+            base.Attack();
+            var currentAngle = _attackAngle * 2f;
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var tempBullet = Instantiate(_bulletPrefab, _bulletTransformSpawn.position, Quaternion.identity);
                 var bulletController = tempBullet.GetComponent<BaseBulletController>();
                 bulletController.SetupBullet(gameObject.tag, GetAngleDir(currentAngle).normalized, transform.position);
-                currentAngle += _attackAngle;
+                currentAngle -= _attackAngle;
             }
         }
 

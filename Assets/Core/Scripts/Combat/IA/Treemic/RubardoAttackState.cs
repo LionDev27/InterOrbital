@@ -7,6 +7,7 @@ namespace InterOrbital.Combat.IA
     {
         public override void Attack()
         {
+            base.Attack();
             var tempBullet = Instantiate(_bulletPrefab, _bulletTransformSpawn.position, Quaternion.identity);
             var bulletController = tempBullet.GetComponent<BaseBulletController>();
             bulletController.SetupBullet(gameObject.tag, TargetDir(), transform.position);
