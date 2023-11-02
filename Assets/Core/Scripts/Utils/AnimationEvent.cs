@@ -5,7 +5,7 @@ namespace InterOrbital.Utils
 {
     public class AnimationEvent : MonoBehaviour
     {
-        [SerializeField] private UnityEvent _event;
+        [SerializeField] protected UnityEvent _event;
 
         public void PlayEvent()
         {

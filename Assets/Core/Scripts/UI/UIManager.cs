@@ -8,6 +8,8 @@ namespace InterOrbital.UI
 {
     public class UIManager : MonoBehaviour
     {
+        public bool SomethingOpen => _somethingOpen;
+        
         [SerializeField] private Transform _inventoryInitPosition;
         private Tween _openInventory;
         [SerializeField] private EnergyUIController _energyUIController;
@@ -20,6 +22,7 @@ namespace InterOrbital.UI
         [SerializeField] private GameObject _bulletSelector;
         [SerializeField] private GameObject _clockTime;
         private bool _somethingOpen;
+        private GameObject _currentUI;
         
         public static UIManager Instance = null;
         [HideInInspector] public bool isChestOpen;
@@ -33,8 +36,7 @@ namespace InterOrbital.UI
         public GameObject spaceshipUI;
         public GameObject storageUI;
         public GameObject blackout;
-        
-        
+
         private void Awake()
         {
             if(Instance == null) 
@@ -44,25 +46,27 @@ namespace InterOrbital.UI
 
             _tagButtonsInventory = bagUI.GetComponentInChildren<CanvasGroup>();
         }
-
-       
+        
         public void ActivateOrDesactivateUI(GameObject ui)
         {
-            AudioManager.Instance.PlaySFX("UIMenu");
             if (ui.transform.localScale == Vector3.one)
             {
                 animating = true;
+                AudioManager.Instance.PlaySFX("UIMenuReverse");
                 blackout.SetActive(false);
                 PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     _somethingOpen = false;
                     animating = false;
+                    _currentUI = null;
                 });  
             }
             else if(!_somethingOpen)
             {
                 animating = true;
+                AudioManager.Instance.PlaySFX("UIMenu");
+                _currentUI = ui;
                 blackout.SetActive(true);
                 PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
@@ -72,9 +76,10 @@ namespace InterOrbital.UI
 
         public void OpenInventory(bool openChest)
         {
-            AudioManager.Instance.PlaySFX("Inventory");
             if (PlayerComponents.Instance.Inventory.isHide && !_somethingOpen)
             {
+                animating = true;
+                AudioManager.Instance.PlaySFX("Inventory");
                 _fastCraft.ProccessSelection();
                 if (!_openInventory.IsActive())
                 {
@@ -95,6 +100,7 @@ namespace InterOrbital.UI
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
                     {
                         PlayerComponents.Instance.Inventory.isHide = false;
+                        animating = false;
                     });
                     
                 }    
@@ -103,6 +109,8 @@ namespace InterOrbital.UI
             {
                 if (!_openInventory.IsActive())
                 {
+                    animating = true;
+                    AudioManager.Instance.PlaySFX("Inventory");
                     _somethingOpen = false;
                     if (!openChest)
                     {
@@ -118,6 +126,7 @@ namespace InterOrbital.UI
                             storageUI.SetActive(false);
                             isChestOpen = false;
                         }
+                        animating = false;
                     });
                 }
             }

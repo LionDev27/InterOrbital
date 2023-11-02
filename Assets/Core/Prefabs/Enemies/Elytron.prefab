@@ -4993,6 +4993,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1923099734, guid: d2ecee02c2597f04da2aeb17dfc1a5d7, type: 3}
+    - target: {fileID: 1240536443959889786, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+      propertyPath: _clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b4f87f9bb969a940b7fa32ddb72715c, type: 3}
     - target: {fileID: 5107834403496665019, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5012,7 +5016,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1176578529500669971, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
     - {fileID: 3581442388814949266, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
-    - {fileID: 1176578529163937674, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+    - {fileID: 0}
     - {fileID: 5541217961979773705, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
 --- !u!114 &817610612137534067 stripped
@@ -5139,6 +5143,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8472383470361345739}
+        m_TargetAssemblyTypeName: InterOrbital.Utils.SfxPlayer, Assembly-CSharp
+        m_MethodName: PlaySfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8472383470361345739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1240536443959889786, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}
+  m_PrefabInstance: {fileID: 7252122175977599409}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8426442996042296071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c82bb7ff460442ab4a50eed02d05cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9101156419773593773 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1939216599894346012, guid: 57fd1ef2b2ab3b04c9ae69308569995f, type: 3}

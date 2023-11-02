@@ -155,13 +155,23 @@ namespace InterOrbital.Player
             BulletsMenuSelected = false;
             OnInteractPerformed();
         }
+
+        private void OnExitMenu()
+        {
+            var ui = UIManager.Instance;
+            if ((ui.SomethingOpen && Inventory.isHide) || (!Inventory.isHide && ui.isChestOpen))
+            {
+                PlayerInteraction.Interact();
+                return;
+            }
+            if (!Inventory.isHide)
+                ui.OpenInventory(false);
+        }
         
         public void DeactivateControls()
         {
             PlayerInput.enabled = false;
             enabled = false;
-           
-            
             Rigidbody.velocity = Vector2.zero;
         }
         

@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using InterOrbital.Player;
 using InterOrbital.UI;
 using UnityEngine.UI;
 using TMPro;
 using InterOrbital.Item;
 using InterOrbital.Utils;
-using System;
 
 namespace InterOrbital.Player
 {
@@ -24,7 +20,6 @@ namespace InterOrbital.Player
         public ItemScriptableObject itemTest2;
         public ItemScriptableObject itemTest3;
 
-        // Start is called before the first frame update
         void Start()
         {
             _level = 1;
@@ -34,15 +29,14 @@ namespace InterOrbital.Player
             _sizeInventory += gridBullets.transform.childCount;
         }
 
-        // Update is called once per frame
         void Update()
         {
             Vector3 direction = PlayerComponents.Instance.PlayerAttack.attackPoint.position - transform.position;
-            Vector3 pointToDraw = (direction.normalized * dropForce) + PlayerComponents.Instance.PlayerAttack.attackPoint.position;
+            Vector3 pointToDraw = (direction.normalized * dropForce) +
+                                  PlayerComponents.Instance.PlayerAttack.attackPoint.position;
             Debug.DrawRay(transform.position, pointToDraw, Color.yellow);
 
             ScrollFastInventory();
-
         }
 
         public void UpdateLevel()
@@ -88,17 +82,20 @@ namespace InterOrbital.Player
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
                     break;
                 case ItemType.Consumable:
-                    if(_items[index].itemSo.consumableValues.consumableType == ConsumableType.Elytrum)
+                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Elytrum)
                     {
-                        PlayerComponents.Instance.GetComponent<PlayerEnergy>().RestoreEnergy(_items[index].itemSo.consumableValues.amountToRestore);
+                        PlayerComponents.Instance.GetComponent<PlayerEnergy>()
+                            .RestoreEnergy(_items[index].itemSo.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
 
                     if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Health)
                     {
-                        PlayerComponents.Instance.GetComponent<PlayerDamageable>().RestoreHealth(_items[index].itemSo.consumableValues.amountToRestore);
+                        PlayerComponents.Instance.GetComponent<PlayerDamageable>()
+                            .RestoreHealth(_items[index].itemSo.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
+
                     break;
                 case ItemType.Bullet:
                     //TODO equipar al menu de balas si hay huecos libres
@@ -115,12 +112,12 @@ namespace InterOrbital.Player
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>().UpgradeHealth(8);
                         SubstractUsedItem();
                     }
+
                     break;
                 case ItemType.None:
                     //No se puede usar item
                     break;
             }
-
         }
 
         public override void InitSlots()
@@ -168,7 +165,6 @@ namespace InterOrbital.Player
             return _items[index].amount;
         }
 
-        
 
         public bool CanCraft(ItemCraftScriptableObject itemCraft, int amount)
         {
@@ -207,6 +203,7 @@ namespace InterOrbital.Player
                     }
                 }
             }
+
             UpdateActionUI();
         }
 
@@ -214,7 +211,7 @@ namespace InterOrbital.Player
         {
             int index = GetStartIndexBulletSlot() + indexInBulletSelector;
             _items[index].amount--;
-            if(_items[index].amount <= 0)
+            if (_items[index].amount <= 0)
             {
                 _items[index].itemSo = itemVoid;
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
@@ -243,6 +240,7 @@ namespace InterOrbital.Player
                 _items[i].amount -= 1;
                 _textAmount[i].text = _items[i].amount.ToString();
             }
+
             UpdateActionUI();
         }
 
@@ -252,4 +250,3 @@ namespace InterOrbital.Player
         }
     }
 }
-  
