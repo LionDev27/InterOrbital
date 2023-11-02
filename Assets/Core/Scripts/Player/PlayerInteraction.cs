@@ -53,6 +53,8 @@ namespace InterOrbital.Player
         {
             if (interactable)
             {
+                if (_currentInteractable != null && _currentInteractable != interactable)
+                    _currentInteractable.ShowInteraction(false);
                 _currentInteractable = interactable;
                 _currentInteractable.ShowInteraction(true);
             }
