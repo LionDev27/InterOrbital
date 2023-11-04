@@ -59,14 +59,12 @@ namespace InterOrbital.UI
                 {
                     _somethingOpen = false;
                     animating = false;
-                    _currentUI = null;
-                });  
+                });
             }
             else if(!_somethingOpen)
             {
                 animating = true;
                 AudioManager.Instance.PlaySFX("UIMenu");
-                _currentUI = ui;
                 blackout.SetActive(true);
                 PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
@@ -87,12 +85,23 @@ namespace InterOrbital.UI
                     {
                         storageUI.SetActive(true);
                         isChestOpen = true;
+                        if (_fastingCraft.transform.localScale != Vector3.zero)
+                        {
+                            CloseFastCraft();
+                            _currentUI = _fastingCraft;
+                        }
+                        else
+                        {
+                            CloseBulletSelector();
+                            _currentUI = _bulletSelector;
+                        }
                     }
                     else
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                         storageUI.SetActive(false);
                         isChestOpen = false;
+                        OpenLastUI();
                     }
                     blackout.SetActive(true);
                     PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
@@ -125,11 +134,26 @@ namespace InterOrbital.UI
                         {
                             storageUI.SetActive(false);
                             isChestOpen = false;
+                            OpenLastUI();
                         }
                         animating = false;
                     });
                 }
             }
+        }
+
+        private void OpenLastUI()
+        {
+            if (_currentUI == null)
+            {
+                OpenFastCraft();
+                _currentUI = _fastingCraft;
+                return;
+            }
+            if (_currentUI == _fastingCraft)
+                OpenFastCraft();
+            else
+                OpenBulletSelector();
         }
 
         public void UpdateEnergyUI(int maxEnergy,int currentEnergy)

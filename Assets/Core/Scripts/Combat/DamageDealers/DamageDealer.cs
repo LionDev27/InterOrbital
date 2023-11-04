@@ -14,11 +14,6 @@ namespace InterOrbital.Combat
             CheckCollision(other);
         }
 
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            
-        }
-
         protected virtual void CheckCollision(Collider2D other)
         {
             //Si este DamageDealer tiene asignado un attackerTag, lo comprueba. Si no, comprueba su propio tag.
