@@ -91,13 +91,24 @@ namespace InterOrbital.Player
 
         private void CheckEnergy()
         {
+            if(_currentEnergy <= (_maxEnergy * 0.2f))
+            {
+                UIManager.Instance.EnergyBlink(true);
+            }
+            else
+            {
+                UIManager.Instance.EnergyBlink(false);
+            }
+
             if (_currentEnergy <= 0)
             {
                 EnergyEmpty = true;
                 ResetTimer();
             }
             else
+            {
                 EnergyEmpty = false;
+            }
         }
 
         private void ResetTimer()

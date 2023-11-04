@@ -51,9 +51,7 @@ namespace InterOrbital.Player
                 }
                 else
                 {
-                    _currentHealth = Mathf.Clamp(_currentHealth - 1, 0, _maxHealth);
-                    UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
-                    CameraShake.Instance.Shake(_damageCameraShakeIntensity / 2f);
+                    GetDamage(1);
                     ResetHealthTimer();
                     CheckHealth();
                 }
@@ -104,6 +102,7 @@ namespace InterOrbital.Player
                 dmgPopup.GetComponent<DamagePopup>().Setup(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                 CameraShake.Instance.Shake(_damageCameraShakeIntensity);
+                AudioManager.Instance.PlaySFX("LoseLife");
                 StartCoroutine(SlowTimeEffect.Instance.Play(0.2f));
                 SetInvencibilityState();
             }

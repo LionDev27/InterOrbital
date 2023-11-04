@@ -16,10 +16,21 @@ public class BulletSlot : MonoBehaviour
         _backgroundImage.sprite = sprite;
     }
 
-    public void SetBulletSprite(Sprite sprite) 
+    public void SetBulletSprite(Sprite sprite)
     {
         _bulletImage.sprite = sprite;
     }
+
+    public void SetBulletAsNoSelected()
+    {
+        _bulletImage.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    public void SetBulletAsSelected()
+    {
+        _bulletImage.color = new Color(1, 1, 1, 1);
+    }
+
 
     public void SetBulletAmount(int amount)
     {

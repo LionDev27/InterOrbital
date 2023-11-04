@@ -52,7 +52,23 @@ namespace InterOrbital.UI
             }
 
             bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ResetSelectedBulletsTransparency();
             ChangePlayerBullet();
+        }
+
+        private void ResetSelectedBulletsTransparency()
+        {
+            for (int i = 0; i < bulletsSlots.Count; i++)
+            {
+                if (i == _selectedBulletIndex)
+                {
+                    bulletsSlots[i].SetBulletAsSelected();
+                }
+                else
+                {
+                    bulletsSlots[i].SetBulletAsNoSelected();
+                }
+            }
         }
 
         public void UpdateBulletSelectorUI()
@@ -75,7 +91,7 @@ namespace InterOrbital.UI
                 bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
                 bulletsSlots[i].SetBulletAmount(itemInInventory.amount);
             }
-
+            ResetSelectedBulletsTransparency();
             ChangePlayerBullet();
         }
 
@@ -94,6 +110,7 @@ namespace InterOrbital.UI
 
             bulletsSlots[lastSelectedBulletIndex].SetBackgroundSprite(bulletSlotNoSelectedImage);
             bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ResetSelectedBulletsTransparency();
             ChangePlayerBullet();
         }
 

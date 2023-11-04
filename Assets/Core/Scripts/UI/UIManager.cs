@@ -142,6 +142,18 @@ namespace InterOrbital.UI
             _energyUIController.UpgradeEnergyTier();
         }
 
+        public void EnergyBlink(bool blink)
+        {
+            if (blink)
+            {
+                _energyUIController.GetEnergyTierBarsUIController().StartBlink();
+            }
+            else
+            {
+                _energyUIController.GetEnergyTierBarsUIController().StopBlink();
+            }
+        }
+
         public int RemainingEnergyTiers => _energyUIController.RemainingTiers;
         
         public void UpdateLifeUI(int maxLife,int currentLife)

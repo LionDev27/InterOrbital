@@ -185,7 +185,7 @@ namespace InterOrbital.Player
             (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
             (_itemsSlot[indexB], _itemsSlot[indexA]) = (_itemsSlot[indexA], _itemsSlot[indexB]);
             (_items[indexB], _items[indexA]) = (_items[indexA], _items[indexB]);
-            
+            UpdateActionUI();
         }
 
 
@@ -195,6 +195,7 @@ namespace InterOrbital.Player
             (UIManager.Instance.chestInventory._textAmount[indexChest], PlayerComponents.Instance.Inventory._textAmount[indexInventory]) = (PlayerComponents.Instance.Inventory._textAmount[indexInventory], UIManager.Instance.chestInventory._textAmount[indexChest]);
             (UIManager.Instance.chestInventory._itemsSlot[indexChest], PlayerComponents.Instance.Inventory._itemsSlot[indexInventory]) = (PlayerComponents.Instance.Inventory._itemsSlot[indexInventory], UIManager.Instance.chestInventory._itemsSlot[indexChest]);
             (UIManager.Instance.chestInventory._items[indexChest], PlayerComponents.Instance.Inventory._items[indexInventory]) = (PlayerComponents.Instance.Inventory._items[indexInventory], UIManager.Instance.chestInventory._items[indexChest]);
+            UpdateActionUI();
         }
 
         public void DropItem(Vector3 spawnPosition, Vector3 droperPosition, int index=-1, ItemScriptableObject item=null)
@@ -223,7 +224,7 @@ namespace InterOrbital.Player
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
             }
-
+            UpdateActionUI();
             BulletSelector.Instance.UpdateBulletSelectorUI();
         }
 
