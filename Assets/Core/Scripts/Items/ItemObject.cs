@@ -21,7 +21,6 @@ namespace InterOrbital.Item
         [SerializeField] private float _timeToDespawn;
         private float _currentTimeToDespawn;
         private bool _blink;
-        private float _blinkSpeed = 2f;
 
         private Rigidbody2D _rigidbody;
         private SpriteRenderer _spriteRenderer;
@@ -42,6 +41,7 @@ namespace InterOrbital.Item
         {
              MoveToPlayer();
         }
+
 
         private void MoveToPlayer()
         {
@@ -129,7 +129,7 @@ namespace InterOrbital.Item
             {
                 DropingItem = false;
                 _sequenceIdleItem = DOTween.Sequence();
-                _sequenceIdleItem.Append(transform.DOMoveY(transform.position.y + 0.1f, 1).SetEase(Ease.InOutSine).SetLoops(int.MaxValue, LoopType.Yoyo)).Play();
+                _sequenceIdleItem.Append(transform.DOMoveY(transform.position.y + 0.2f, 1).SetEase(Ease.InOutSine).SetLoops(int.MaxValue, LoopType.Yoyo)).Play();
             });
         }
 

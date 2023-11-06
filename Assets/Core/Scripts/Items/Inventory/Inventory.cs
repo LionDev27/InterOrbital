@@ -119,6 +119,58 @@ namespace InterOrbital.Player
             PlayerComponents.Instance.Inventory.AddItem(itemAux);
         }
 
+
+        public ItemObject AddToBulletSelector(ItemObject bullet)
+        {
+            var rest = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                int index = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + i;
+                if (_items[index].itemSo == bullet.itemSo && _items[index].itemSo.isStackable && _items[index].amount <= _items[index].itemSo.maxAmount)
+                {
+                    int sum = _items[index].amount + bullet.amount;
+                    if (sum <= _items[index].itemSo.maxAmount)
+                    {
+                        SetAmount(index, sum);
+                        BulletSelector.Instance.UpdateBulletSelectorUI();
+                        UpdateActionUI();
+
+                        return null;
+                    }
+                    else
+                    {
+                        rest = sum - _items[index].itemSo.maxAmount;
+                        SetAmount(i, _items[index].itemSo.maxAmount);
+                        BulletSelector.Instance.UpdateBulletSelectorUI();
+
+                        bullet.amount = rest;
+                    }
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                int index = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + i;
+                if (_items[index].itemSo == itemVoid)
+                {
+                    _items[index] = bullet;
+                    SetAmount(index, bullet.amount);
+                    BulletSelector.Instance.UpdateBulletSelectorUI();
+
+                    _itemsSlot[index].sprite = null;
+                    _itemsSlot[index].sprite = _items[index].itemSo.itemSprite;
+                    UpdateActionUI();
+                    return null;
+
+                }
+
+
+            }
+
+            return bullet;
+        }
+        
+
         public void AddItem(ItemObject item)
         {
             var rest = 0;
