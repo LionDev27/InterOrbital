@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4286876814580422552}
   - component: {fileID: 362464889}
   - component: {fileID: 6083226099475186129}
+  - component: {fileID: 1182338533947037452}
   m_Layer: 0
   m_Name: GunSprite
   m_TagString: Untagged
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 543544073
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 109135131, guid: ae7fe68edafcd9641aa251c48c14735c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -132,6 +133,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3b88f244c7a5a459456e0d3d9f715e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1182338533947037452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14428868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80daa859cc9f81458e2733204bfbc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
 --- !u!1 &228081136
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +529,7 @@ GameObject:
   - component: {fileID: 3227855541346394483}
   - component: {fileID: 2091602762}
   - component: {fileID: 2807397109884973279}
+  - component: {fileID: 6264760416278887467}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -575,9 +590,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 543544073
-  m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1266666162, guid: 46ee79a5a5427804f9104da31305eaec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -623,6 +638,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 3227855541346394483}
+--- !u!114 &6264760416278887467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227855541346394493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80daa859cc9f81458e2733204bfbc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
 --- !u!1 &3227855542068895825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1104,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpriteRenderer: {fileID: 3227855541346394483}
+  _gunSpriteRenderer: {fileID: 14428870}
   _spriteMask: {fileID: 6837466388630486922}
+  _olControllerPlayer: {fileID: 6264760416278887467}
+  _olControllerGun: {fileID: 1182338533947037452}
   checking: 0
 --- !u!1001 &5039784841043459449
 PrefabInstance:

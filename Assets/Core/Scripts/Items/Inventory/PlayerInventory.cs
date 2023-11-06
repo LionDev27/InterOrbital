@@ -98,7 +98,21 @@ namespace InterOrbital.Player
 
                     break;
                 case ItemType.Bullet:
-                    //TODO equipar al menu de balas si hay huecos libres
+
+                    
+                    ItemObject restItem = PlayerComponents.Instance.Inventory.AddToBulletSelector(_items[index]);
+                    /*if (restItem != null)
+                    {
+                        _items[index].amount = restItem.amount;
+                        _textAmount[index].text = _items[index].amount.ToString();
+                    }
+                    else
+                    {
+                        _items[index].itemSo = itemVoid;
+                        _itemsSlot[index].sprite = itemVoid.itemSprite;
+                        _items[index].amount = 0;
+                        _textAmount[index].text = "";
+                    }*/
                     break;
                 case ItemType.Upgrade:
                     if (_items[index].itemSo.upgradeType == UpgradeType.Elytrum)
