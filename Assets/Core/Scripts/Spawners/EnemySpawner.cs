@@ -9,6 +9,7 @@ namespace InterOrbital.Combat.Spawner
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [HideInInspector] public bool canSpawn;
         [SerializeField] private GameObject _enemyPrefab;
         [SerializeField] private DifficultyArea _difficultyArea;
         [SerializeField] private Transform player; // Referencia al transform del jugador
@@ -16,9 +17,9 @@ namespace InterOrbital.Combat.Spawner
         [SerializeField] private int _maxEnemiesSpawn;
         [SerializeField] private float _distanceBetween = 3f;
         [SerializeField] private float _spawnRadius = 5f;
-        [SerializeField] private float _spawnDelay = 3f;
+        [SerializeField] private float _visibleDistance = 15f;
 
-        private bool _canSpawn;
+        private bool _playerInRadius;
         private float _playerNearSpawnTimer = -1;
         private float _spawnTimer;
         private int currentEnemiesSpawned = 0; // Contador de enemigos actual
@@ -26,6 +27,7 @@ namespace InterOrbital.Combat.Spawner
         private void Start()
         {
             player = PlayerComponents.Instance.transform;
+            canSpawn = true;
         }
 
         private void Update()
@@ -37,7 +39,7 @@ namespace InterOrbital.Combat.Spawner
         {
             if (collision.CompareTag("Player"))
             {
-                _canSpawn = true;
+                _playerInRadius = true;
             }
         }
 
@@ -45,7 +47,7 @@ namespace InterOrbital.Combat.Spawner
         {
             if (collision.CompareTag("Player"))
             {
-                _canSpawn = false;
+                _playerInRadius = false;
                 if (_playerNearSpawnTimer < 0)
                 {
                     _playerNearSpawnTimer = 20f;
@@ -53,23 +55,25 @@ namespace InterOrbital.Combat.Spawner
             }
         }
 
+        private bool CanSpawn()
+        {
+            return canSpawn && _playerNearSpawnTimer < 0 && NotVisibleInCamera();
+        }
+
+        private bool NotVisibleInCamera()
+        {
+            return (Vector3.Distance(transform.position, player.position) >= _spawnRadius + _visibleDistance) &&
+                   _playerInRadius;
+        }
+
         private void SpawnEnemies()
         {
-            if (_canSpawn && _playerNearSpawnTimer < 0)
+            if (CanSpawn())
             {
-                if (_spawnTimer >= 0)
-                {
-                    _spawnTimer -= Time.deltaTime;
-                }
-
-                if (_spawnTimer < 0)
-                {
-                    if (currentEnemiesSpawned < _maxEnemiesSpawn)
-                    {
-                        SpawnAllEnemies();
-                        _spawnTimer = _spawnDelay;
-                    }
-                }
+                if (currentEnemiesSpawned < _maxEnemiesSpawn)
+                    SpawnAllEnemies();
+                else
+                    canSpawn = false;
             }
 
             if (_playerNearSpawnTimer >= 0)
@@ -78,25 +82,26 @@ namespace InterOrbital.Combat.Spawner
             }
         }
 
-        private IEnumerator SpawnEnemy()
-        {
-            if (currentEnemiesSpawned < _maxEnemiesSpawn)
-            {
-                Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
-                if (spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 &&
-                    spawnPosition.y < GridLogic.Instance.height)
-                {
-                    GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
-                    enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
-                    currentEnemiesSpawned++;
-                }
-            }
-
-            yield return null;
-        }
+        // private IEnumerator SpawnEnemy()
+        // {
+        //     if (currentEnemiesSpawned < _maxEnemiesSpawn)
+        //     {
+        //         Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * _spawnRadius;
+        //         if (spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 &&
+        //             spawnPosition.y < GridLogic.Instance.height)
+        //         {
+        //             GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+        //             enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
+        //             currentEnemiesSpawned++;
+        //         }
+        //     }
+        //
+        //     yield return null;
+        // }
 
         private void SpawnAllEnemies()
         {
+            canSpawn = false;
             var canSpawnCount = _maxEnemiesSpawn - currentEnemiesSpawned;
             if (canSpawnCount <= 0) return;
             for (int i = 0; i < canSpawnCount; i++)
@@ -132,7 +137,7 @@ namespace InterOrbital.Combat.Spawner
         {
             currentEnemiesSpawned--;
         }
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;

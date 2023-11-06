@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ffe0deca205604aa3dd808d49df556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSpawn: 0
   _resourcePrefabs:
   - {fileID: 5492228128081625232, guid: 00dcf85c077b7464b8a025535e23ddab, type: 3}
   - {fileID: 5492228128081625232, guid: f0c68205433b0f84da4fb3301859c9f0, type: 3}
@@ -55,7 +56,7 @@ MonoBehaviour:
   _maxResourcesSpawn: 40
   _distanceBetween: 3
   _spawnRadius: 20
-  _spawnDelay: 600
+  _visibleDistance: 15
 --- !u!58 &3551865245305052741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -71,4 +72,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 38
+  m_Radius: 40

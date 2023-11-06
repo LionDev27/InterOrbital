@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Others;
+using InterOrbital.Recollectables.Spawner;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,7 +24,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private bool debug;
 
         [field: SerializeField] public int width { get; private set; }
-        [field: SerializeField]public int height { get; private set; }
+        [field: SerializeField] public int height { get; private set; }
 
         [SerializeField] private Vector3 cellSize = new Vector3(1, 1, 0);
         [SerializeField] private int borderSize;
@@ -41,16 +42,18 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private TilemapLayer[] _tilemapLayers;
         [SerializeField] private float minCenterSpawnDistance = 38f;
 
+        private List<EnemySpawner> _enemiesSpawnersList = new();
+        private List<ResourcesSpawner> _resourcesSpawnersList = new();
         private Cell[,] _gridCells;
         private int _chunkSize = 5;
         private Grid _grid;
-        private Dictionary<Vector2Int,Chunk> _chunks;
-        private Dictionary<Tilemap,Sprite[,]> _tilemapSprites;
+        private Dictionary<Vector2Int, Chunk> _chunks;
+        private Dictionary<Tilemap, Sprite[,]> _tilemapSprites;
 
         public static GridLogic Instance;
 
         public Action OnTilemapFilled;
-        
+
         #region Unity Methods
 
         protected virtual void Awake()
@@ -65,7 +68,7 @@ namespace InterOrbital.WorldSystem
 
         private void OnValidate()
         {
-            if(width % _chunkSize != 0)
+            if (width % _chunkSize != 0)
             {
                 width += _chunkSize - (width % _chunkSize);
             }
@@ -108,15 +111,17 @@ namespace InterOrbital.WorldSystem
 
             foreach (var tilemapLayer in _tilemapLayers)
             {
-                for (int i = tilemapLayer.biomesTiles.Count - 1; i >= 0; i--) // Recorrer la lista de biomas con tiles de reglas
+                for (int i = tilemapLayer.biomesTiles.Count - 1;
+                     i >= 0;
+                     i--) // Recorrer la lista de biomas con tiles de reglas
                 {
-                    if (!_biomes.Contains(tilemapLayer.biomesTiles[i].biome)) // Verificar si el bioma ya no est� en la lista de biomas
+                    if (!_biomes.Contains(tilemapLayer.biomesTiles[i]
+                            .biome)) // Verificar si el bioma ya no est� en la lista de biomas
                     {
                         tilemapLayer.biomesTiles.RemoveAt(i); // Eliminar el elemento de biomasConTilesDeReglas
                     }
                 }
             }
-
         }
 
         private void OnDrawGizmos()
@@ -129,13 +134,10 @@ namespace InterOrbital.WorldSystem
             Gizmos.color = Color.blue;
             Vector3 sizeEasy = new Vector3(width * EASY_PERCENTAGE_AREA, height * EASY_PERCENTAGE_AREA, 0);
             Gizmos.DrawWireCube(center, sizeEasy);
-            
-            Gizmos.color = Color.yellow;
-            Vector3 sizeMedium= new Vector3(width * MEDIUM_PERCENTAGE_AREA, height * MEDIUM_PERCENTAGE_AREA, 0);
-            Gizmos.DrawWireCube(center, sizeMedium);
-            
-            
 
+            Gizmos.color = Color.yellow;
+            Vector3 sizeMedium = new Vector3(width * MEDIUM_PERCENTAGE_AREA, height * MEDIUM_PERCENTAGE_AREA, 0);
+            Gizmos.DrawWireCube(center, sizeMedium);
         }
 
         private void Start()
@@ -176,7 +178,7 @@ namespace InterOrbital.WorldSystem
         {
             for (int x = -1; x < width + 1; x++)
             {
-                Vector3 positionBot = new Vector3(x, -1f, 0); 
+                Vector3 positionBot = new Vector3(x, -1f, 0);
                 Instantiate(_borderPrefab, positionBot, Quaternion.identity);
                 Vector3 positionTop = new Vector3(x, height, 0);
                 Instantiate(_borderPrefab, positionTop, Quaternion.identity);
@@ -184,12 +186,13 @@ namespace InterOrbital.WorldSystem
 
             for (int y = 0; y < height; y++)
             {
-                Vector3 positionLeft = new Vector3(-1, y, 0); 
+                Vector3 positionLeft = new Vector3(-1, y, 0);
                 Instantiate(_borderPrefab, positionLeft, Quaternion.identity);
-                Vector3 positionRight = new Vector3(width, y, 0); 
+                Vector3 positionRight = new Vector3(width, y, 0);
                 Instantiate(_borderPrefab, positionRight, Quaternion.identity);
             }
         }
+
         private void CreateMapChunks()
         {
             _chunks = new Dictionary<Vector2Int, Chunk>();
@@ -206,15 +209,16 @@ namespace InterOrbital.WorldSystem
                     int chunkPosY = y * _chunkSize;
 
                     // Crear un nuevo chunk
-                    GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0), Quaternion.identity, transform);
+                    GameObject chunk = Instantiate(_mapChunkPrefab, new Vector3(chunkPosX, chunkPosY, 0),
+                        Quaternion.identity, transform);
 
                     // Ajustar el tama�o del Box Collider 2D al tama�o del chunk
                     chunk.GetComponent<BoxCollider2D>().size = new Vector2(_chunkSize, _chunkSize);
                     chunk.GetComponent<BoxCollider2D>().offset = new Vector2(_chunkSize / 2f, _chunkSize / 2f);
                     chunk.GetComponent<Chunk>().SetChunkPos(chunkPosX, chunkPosY);
 
-                    _chunks.Add(new Vector2Int(chunkPosX,chunkPosY),chunk.GetComponent<Chunk>());
-                }   
+                    _chunks.Add(new Vector2Int(chunkPosX, chunkPosY), chunk.GetComponent<Chunk>());
+                }
             }
         }
 
@@ -232,53 +236,59 @@ namespace InterOrbital.WorldSystem
 
         private void GenerateEnemySpawners()
         {
-            Vector2 mapCenter = new Vector2(width/2, height/2);
+            Vector2 mapCenter = new Vector2(width / 2, height / 2);
 
             _enemiesSpawners.ResetSpawners();
 
             for (int i = 0; i < _enemiesSpawners.easySpawnersAmount; i++)
-            { 
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner",DifficultyArea.Easy);
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Easy);
-                    if (enemySpawner != null)
-                    {
-                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+            {
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Easy);
+                InstantiateEnemySpawner(_enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Easy), spawnPosition);
             }
 
             for (int i = 0; i < _enemiesSpawners.mediumSpawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Medium);
-
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-
-                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Medium);
-                    if (enemySpawner != null)
-                    {
-                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Medium);
+                InstantiateEnemySpawner(_enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Medium), spawnPosition);
             }
 
             for (int i = 0; i < _enemiesSpawners.hardSpawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Hard);
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-                    GameObject enemySpawner = _enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Hard);
-                    if (enemySpawner != null)
-                    {
-                        Instantiate(enemySpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _enemiesSpawners.distanceBetweenSpawners, "EnemySpawner", DifficultyArea.Hard);
+                InstantiateEnemySpawner(_enemiesSpawners.GetEnemySpawnerByDifficultArea(DifficultyArea.Hard), spawnPosition);
             }
 
             _enemiesSpawners.ResetSpawners();
         }
+
+        private void InstantiateEnemySpawner(GameObject spawner, Vector2 spawnPosition)
+        {
+            if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+            {
+                if (spawner == null) return;
+                var spawnerObject = Instantiate(spawner, spawnPosition, Quaternion.identity);
+                if (spawnerObject.TryGetComponent(out EnemySpawner enemySpawner))
+                    _enemiesSpawnersList.Add(enemySpawner);
+            }
+        }
+
+        private void InstantiateResourcesSpawner(Vector2 spawnPosition, DifficultyArea area)
+        {
+            if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
+            {
+                string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
+                GameObject spawner =
+                    _resourcesSpawners.GetResourceSpawnerByDifficultArea(area, currentBiome);
+                if (spawner == null) return;
+                var spawnerObject = Instantiate(spawner, spawnPosition, Quaternion.identity);
+                if (spawnerObject.TryGetComponent(out ResourcesSpawner resourcesSpawner))
+                    _resourcesSpawnersList.Add(resourcesSpawner);
+            }
+        }
+
         private void GenerateResourcesSpawners()
         {
             Vector2 mapCenter = new Vector2(width / 2, height / 2);
@@ -287,54 +297,31 @@ namespace InterOrbital.WorldSystem
 
             for (int i = 0; i < _resourcesSpawners.easySpawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Easy);
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-                    string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
-
-                    GameObject resourceSpawner = _resourcesSpawners.GetResourceSpawnerByDifficultArea(DifficultyArea.Easy,currentBiome); 
-                    if (resourceSpawner != null)
-                    {
-                        Instantiate(resourceSpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Easy);
+                InstantiateResourcesSpawner(spawnPosition, DifficultyArea.Easy);
             }
 
             for (int i = 0; i < _resourcesSpawners.mediumSpawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Medium);
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-                    string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
-
-                    GameObject resourceSpawner = _resourcesSpawners.GetResourceSpawnerByDifficultArea(DifficultyArea.Medium, currentBiome);
-                    if (resourceSpawner != null)
-                    {
-                        Instantiate(resourceSpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Medium);
+                InstantiateResourcesSpawner(spawnPosition, DifficultyArea.Medium);
             }
 
             for (int i = 0; i < _resourcesSpawners.hardSpawnersAmount; i++)
             {
-                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance, _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Hard);
-                if (spawnPosition.x >= 0 && spawnPosition.y >= 0)
-                {
-                    string currentBiome = _gridCells[(int)spawnPosition.x, (int)spawnPosition.y].biomeType;
-
-                    GameObject resourceSpawner = _resourcesSpawners.GetResourceSpawnerByDifficultArea(DifficultyArea.Hard, currentBiome);
-                    if (resourceSpawner != null)
-                    {
-                        Instantiate(resourceSpawner, spawnPosition, Quaternion.identity);
-                    }
-                }
+                Vector2 spawnPosition = GetRandomSpawnerPosition(mapCenter, minCenterSpawnDistance,
+                    _resourcesSpawners.distanceBetweenSpawners, "ResourceSpawner", DifficultyArea.Hard);
+                InstantiateResourcesSpawner(spawnPosition, DifficultyArea.Hard);
             }
 
             _resourcesSpawners.ResetSpawners();
         }
 
 
-        private Vector2 GetRandomSpawnerPosition(Vector2 center, float minDistanceFromCenter, float minDistanceBetweenSpawners, string tag, DifficultyArea area)
+        private Vector2 GetRandomSpawnerPosition(Vector2 center, float minDistanceFromCenter,
+            float minDistanceBetweenSpawners, string tag, DifficultyArea area)
         {
             Vector2 spawnPosition = Vector2.zero;
 
@@ -343,7 +330,7 @@ namespace InterOrbital.WorldSystem
             Vector3Int areaBounds = GetAreaBounds(area);
             Vector3Int innerAreaBounds = GetInnerAreaBounds(area);
 
-            for(int cont = 0; cont < 10000 && !positionValid; cont++)
+            for (int cont = 0; cont < 10000 && !positionValid; cont++)
             {
                 do
                 {
@@ -353,13 +340,15 @@ namespace InterOrbital.WorldSystem
                     {
                         int posOutBottomInnerBounds = UnityEngine.Random.Range(areaBounds.x, innerAreaBounds.x);
                         int posOutTopInnerBounds = UnityEngine.Random.Range(innerAreaBounds.z, areaBounds.z);
-                        int posOutInnerBounds = UnityEngine.Random.value < 0.5f ? posOutBottomInnerBounds : posOutTopInnerBounds;
+                        int posOutInnerBounds = UnityEngine.Random.value < 0.5f
+                            ? posOutBottomInnerBounds
+                            : posOutTopInnerBounds;
                         posY = posOutInnerBounds;
                     }
-                    spawnPosition = new Vector2(posX, posY);
 
-                } while (Vector2.Distance(spawnPosition,center) <= minDistanceFromCenter);
-                
+                    spawnPosition = new Vector2(posX, posY);
+                } while (Vector2.Distance(spawnPosition, center) <= minDistanceFromCenter);
+
                 positionValid = true;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, minDistanceBetweenSpawners);
@@ -374,9 +363,9 @@ namespace InterOrbital.WorldSystem
                 }
             }
 
-            if (!positionValid) 
+            if (!positionValid)
             {
-                spawnPosition = new Vector2(-1,-1);
+                spawnPosition = new Vector2(-1, -1);
             }
 
             return spawnPosition;
@@ -390,8 +379,8 @@ namespace InterOrbital.WorldSystem
                 float innerWidth = width * EASY_PERCENTAGE_AREA;
                 float innerHeight = height * EASY_PERCENTAGE_AREA;
                 int leftBotBound = (int)((width / 2) - (innerWidth / 2f));
-                int rightBotBound = (int) ((width / 2) + (innerWidth / 2f));
-                int leftTopBound = (int) ((height / 2) + (innerHeight / 2f));
+                int rightBotBound = (int)((width / 2) + (innerWidth / 2f));
+                int leftTopBound = (int)((height / 2) + (innerHeight / 2f));
 
                 areaBounds = new Vector3Int(leftBotBound, rightBotBound, leftTopBound);
             }
@@ -415,23 +404,22 @@ namespace InterOrbital.WorldSystem
             if (area == DifficultyArea.Easy)
             {
                 //BaseArea
-                int leftBotBound = (width / 2) - (BASE_WIDTH/2);
+                int leftBotBound = (width / 2) - (BASE_WIDTH / 2);
                 int rightBotBound = (width / 2) + (BASE_WIDTH / 2);
                 int leftTopBound = (height / 2) + (BASE_HEIGHT / 2);
                 areaBounds = new Vector3Int(leftBotBound, rightBotBound, leftTopBound);
             }
             else if (area == DifficultyArea.Medium)
             {
-               areaBounds = GetAreaBounds(DifficultyArea.Easy);
+                areaBounds = GetAreaBounds(DifficultyArea.Easy);
             }
-            else if(area == DifficultyArea.Hard)
+            else if (area == DifficultyArea.Hard)
             {
                 areaBounds = GetAreaBounds(DifficultyArea.Medium);
             }
 
             return areaBounds;
         }
-
 
 
         private void FillTilemap(Tilemap tilemap, List<BiomeRuleTile> tiles, FillMode fillMode)
@@ -520,9 +508,10 @@ namespace InterOrbital.WorldSystem
                         if (tiles[biomeIndex].tiles != null)
                         {
                             tilemap.SetTile(position, tiles[biomeIndex].tiles);
-                            if(_gridCells[x, y].HaveAnimationTile())
+                            if (_gridCells[x, y].HaveAnimationTile())
                             {
-                                _animationTilemap.SetTile(position, _animationTiles.GetRandomTileFromBiome(currentBiome));
+                                _animationTilemap.SetTile(position,
+                                    _animationTiles.GetRandomTileFromBiome(currentBiome));
                             }
                         }
                     }
@@ -530,16 +519,12 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-    
-
-
 
         #region Minimap Generation
 
-
-        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, List<BiomeRuleTile> tiles, int chunkXPos, int chunkYPos)
+        private void GenerateMinimapTilemap(Tilemap origin, Tilemap minimap, List<BiomeRuleTile> tiles, int chunkXPos,
+            int chunkYPos)
         {
-
             for (int j = chunkYPos; j < (chunkYPos + _chunkSize); j++)
             {
                 for (int i = chunkXPos; i < (chunkXPos + _chunkSize); i++)
@@ -550,7 +535,8 @@ namespace InterOrbital.WorldSystem
                     if (sourceTile != null)
                     {
                         Vector2Int mapCoordinates = BorderIntoMapCoordinates(i, j);
-                        int biomeIndex = tiles.FindIndex(tiles => tiles.biome == _gridCells[mapCoordinates.x, mapCoordinates.y].biomeType);
+                        int biomeIndex = tiles.FindIndex(tiles =>
+                            tiles.biome == _gridCells[mapCoordinates.x, mapCoordinates.y].biomeType);
 
                         if (tiles[biomeIndex].minimapSprite != null)
                         {
@@ -560,14 +546,12 @@ namespace InterOrbital.WorldSystem
                         }
                     }
                 }
-
             }
-
         }
 
         private Vector2Int BorderIntoMapCoordinates(int x, int y)
         {
-            Vector2Int mapCoordinates = new Vector2Int(x,y);
+            Vector2Int mapCoordinates = new Vector2Int(x, y);
             if (x < 0)
             {
                 mapCoordinates.x += width;
@@ -601,16 +585,16 @@ namespace InterOrbital.WorldSystem
             {
                 foreach (var tilemapLayer in _tilemapLayers)
                 {
-                    GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles, chunkXPos, chunkYPos);
+                    GenerateMinimapTilemap(tilemapLayer.tilemap, tilemapLayer.minimapTilemap, tilemapLayer.biomesTiles,
+                        chunkXPos, chunkYPos);
                 }
             }
-            chunkFound.SetRevealed(true);
 
+            chunkFound.SetRevealed(true);
         }
 
         #endregion
 
-       
 
         #region Spaceship
 
@@ -658,18 +642,17 @@ namespace InterOrbital.WorldSystem
                 default: break;
             }
 
-            int startWidthArea = width / 2 - widthArea/2;
+            int startWidthArea = width / 2 - widthArea / 2;
             int startHeightArea = height / 2 - heightArea;
 
             for (int y = 0; y < heightArea; y++)
             {
                 for (int x = 0; x < widthArea; x++)
                 {
-
                     Vector3Int position = new Vector3Int(x + startWidthArea, y + startHeightArea, 0);
 
-                    _spaceshipAreaTilemap.SetTile(position,spaceshipAreaTile);
-                    MakeSpaceshipArea(x + startWidthArea,y + startHeightArea);
+                    _spaceshipAreaTilemap.SetTile(position, spaceshipAreaTile);
+                    MakeSpaceshipArea(x + startWidthArea, y + startHeightArea);
                 }
             }
         }
@@ -678,16 +661,17 @@ namespace InterOrbital.WorldSystem
 
         private void CreateRegions()
         {
-            foreach(Region region in _regions)
+            foreach (Region region in _regions)
             {
-                if(region.startPos.x >= 0 && region.startPos.x < width && region.startPos.y >= 0 && region.startPos.y < height)
+                if (region.startPos.x >= 0 && region.startPos.x < width && region.startPos.y >= 0 &&
+                    region.startPos.y < height)
                 {
                     if (_biomes.Contains(region.biome))
                     {
                         RandomBiomeCreation(region.startPos.x, region.startPos.y, region.biome, region.extension);
                     }
                 }
-            }  
+            }
         }
 
         private Vector2Int UpdatePosToMap(Vector2Int pos)
@@ -760,24 +744,24 @@ namespace InterOrbital.WorldSystem
             }
         }
 
-        private List<Vector2Int> GetValidDirections(Vector2Int pos,string biome)
+        private List<Vector2Int> GetValidDirections(Vector2Int pos, string biome)
         {
             List<Vector2Int> directions = new List<Vector2Int>();
 
             Vector2Int[] offsets =
             {
-        new Vector2Int(0, 1), // Arriba
-        new Vector2Int(0, -1), // Abajo
-        new Vector2Int(1, 0), // Derecha
-        new Vector2Int(-1, 0) // Izquierda
-    };
+                new Vector2Int(0, 1), // Arriba
+                new Vector2Int(0, -1), // Abajo
+                new Vector2Int(1, 0), // Derecha
+                new Vector2Int(-1, 0) // Izquierda
+            };
 
             foreach (Vector2Int offset in offsets)
             {
                 Vector2Int neighborPos = pos + offset;
 
                 //neighborPos = UpdatePosToMap(neighborPos);
-                if(neighborPos.x < width && neighborPos.x >= 0 && neighborPos.y < height && neighborPos.y >= 0)
+                if (neighborPos.x < width && neighborPos.x >= 0 && neighborPos.y < height && neighborPos.y >= 0)
                 {
                     if (_gridCells[neighborPos.x, neighborPos.y].biomeType != biome)
                     {
@@ -795,11 +779,11 @@ namespace InterOrbital.WorldSystem
 
             Vector2Int[] offsets =
             {
-        new Vector2Int(0, 1), // Arriba
-        new Vector2Int(0, -1), // Abajo
-        new Vector2Int(1, 0), // Derecha
-        new Vector2Int(-1, 0) // Izquierda
-    };
+                new Vector2Int(0, 1), // Arriba
+                new Vector2Int(0, -1), // Abajo
+                new Vector2Int(1, 0), // Derecha
+                new Vector2Int(-1, 0) // Izquierda
+            };
 
             foreach (Vector2Int offset in offsets)
             {
@@ -812,6 +796,7 @@ namespace InterOrbital.WorldSystem
                     directions.Add(offset);
                 }
             }
+
             return directions;
         }
 
@@ -848,7 +833,7 @@ namespace InterOrbital.WorldSystem
                     visited.Add(newPos);
                     _gridCells[newPos.x, newPos.y].AddDetail();
 
-                    if(UnityEngine.Random.value < 0.05f)
+                    if (UnityEngine.Random.value < 0.05f)
                     {
                         _gridCells[newPos.x, newPos.y].AddAnimationTile();
                     }
@@ -866,16 +851,24 @@ namespace InterOrbital.WorldSystem
 
         #region Public Methods
 
+        public void RespawnSpawners()
+        {
+            foreach (var spawner in _enemiesSpawnersList)
+                spawner.canSpawn = true;
+            foreach (var spawner in _resourcesSpawnersList)
+                spawner.canSpawn = true;
+        }
+        
         public void LockCell(int x, int y)
         {
-            if(x >= 0 && x < width && y >= 0 && y < height)
+            if (x >= 0 && x < width && y >= 0 && y < height)
                 _gridCells[x, y].LockCell();
         }
 
         public bool IsCellLocked(int x, int y)
         {
             if (x >= 0 && x < width && y >= 0 && y < height)
-                return _gridCells[x,y].IsLocked();
+                return _gridCells[x, y].IsLocked();
             else return false;
         }
 
@@ -890,7 +883,6 @@ namespace InterOrbital.WorldSystem
         {
             if (x >= 0 && x < width && y >= 0 && y < height)
                 _gridCells[x, y].MakeSpaceshipArea();
-            
         }
 
         public int GetChunkSize()
@@ -904,7 +896,7 @@ namespace InterOrbital.WorldSystem
             {
                 for (int j = 0; j < dimensions.y; j++)
                 {
-                    if (IsCellLocked(x + i,y + j))
+                    if (IsCellLocked(x + i, y + j))
                     {
                         return true;
                     }
@@ -913,14 +905,14 @@ namespace InterOrbital.WorldSystem
 
             return false;
         }
-        
+
         public bool IsCellAreaSpaceshipArea(int x, int y, Vector2 dimensions)
         {
-            for(int i = 0; i < dimensions.x; i++)
+            for (int i = 0; i < dimensions.x; i++)
             {
-                for(int j = 0; j < dimensions.y; j++)
+                for (int j = 0; j < dimensions.y; j++)
                 {
-                    if(IsCellSpaceshipArea(x + i,y + j))
+                    if (IsCellSpaceshipArea(x + i, y + j))
                     {
                         return true;
                     }
@@ -931,8 +923,5 @@ namespace InterOrbital.WorldSystem
         }
 
         #endregion
-
     }
 }
-
-

@@ -2,6 +2,7 @@ using DG.Tweening;
 using InterOrbital.UI;
 using System.Collections;
 using System.Collections.Generic;
+using InterOrbital.WorldSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,6 @@ namespace InterOrbital.Events
         [SerializeField] private TextMeshProUGUI _timeText;
         public static EventsManager Instance = null;
         [HideInInspector] public int currentTime;
-        
-
-
 
         private void Awake()
         {
@@ -31,7 +29,6 @@ namespace InterOrbital.Events
             else if (Instance != this)
                 Destroy(gameObject);
         }
-
 
         private void Start()
         {
@@ -42,7 +39,6 @@ namespace InterOrbital.Events
 
         private IEnumerator StartOrbit()
         {
-
             while(true)
             {
                 if (_actualIndex == _eventsPool.Count)
@@ -74,8 +70,8 @@ namespace InterOrbital.Events
                 _eventsPool[_actualIndex].EndEvent();
                 _rotationPoint.rotation = _startRotation.rotation;
                 _actualIndex++;
+                GridLogic.Instance.RespawnSpawners();
             }
-          
         }
 
 
