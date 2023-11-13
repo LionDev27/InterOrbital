@@ -20,13 +20,16 @@ namespace InterOrbital.Others
 
         public CanvasGroup _loadingCanvasGroup;
         public LoadingBarsController loadingBarsController;
-        
+
         public static LevelManager Instance;
-        
+
         private void Awake()
         {
             if (Instance)
+            {
                 Destroy(Instance.gameObject);
+                return;
+            }
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -40,17 +43,17 @@ namespace InterOrbital.Others
             _playPanel.SetActive(false);
             _blackoutCanvasGroup.DOFade(0f, 1f).OnComplete((() => EnableCanvasGroup(_blackoutCanvasGroup, false)));
         }
-        
+
         private void Update()
         {
             if (_loading)
                 UpdateLoadingBar();
         }
-        
+
         private void UpdateLoadingBar()
         {
             _fillAmount = Mathf.MoveTowards(_fillAmount, _loadingProgress, Time.deltaTime);
-            loadingBarsController.UpdateBarFills(1f,_fillAmount);
+            loadingBarsController.UpdateBarFills(1f, _fillAmount);
             if (_fillAmount >= 1f)
             {
                 _loading = false;
@@ -76,11 +79,12 @@ namespace InterOrbital.Others
         {
             Sequence backSequence = DOTween.Sequence();
             backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
-            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(3f).OnComplete(() => LoadScene("Main Screen")));
+            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(3f)
+                .OnComplete(() => LoadScene("Main Screen")));
             _endGameCanvasGroup.alpha = 0f;
             backSequence.Play();
         }
-        
+
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);

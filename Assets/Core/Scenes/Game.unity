@@ -15120,18 +15120,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 526232476}
     m_Modifications:
-    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
-      propertyPath: sfxSounds.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0226e1dbf78ba2b469978af62453b694, type: 3}
-    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
-      propertyPath: sfxSounds.Array.data[7].name
-      value: LoseLife
-      objectReference: {fileID: 0}
     - target: {fileID: 3019189259411764317, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
       propertyPath: m_RootOrder
       value: 2

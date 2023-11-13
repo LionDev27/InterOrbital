@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class Sound
@@ -24,21 +25,14 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
-        /*else
-        {
-            Destroy(gameObject);
-        }*/
+        Instance = this;
     }
 
     private void Start()
     {
         _musicVolume = musicSource.volume;
-        PlayMusic("MainTheme", true);
+        if (SceneManager.GetActiveScene().name == "Game")
+            PlayMusic("MainTheme", true);
         mixer.GetFloat("MasterVol", out var vol);
         _defaultMainVolume = vol;
     }
