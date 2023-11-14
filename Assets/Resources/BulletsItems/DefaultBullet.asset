@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -803970084, guid: 5d26edd5e13f8fe4da5df9c9f6b55d80, type: 3}
   id: 38
-  itemName: Bala normal
-  itemDescription: La bala mas sencilla del juego
+  itemName: Bullet
+  itemDescription: Simple bullet to hit enemies from distance
   type: 2
   consumableValues:
     consumableType: 0
     amountToRestore: 0
   upgradeType: 0
   isStackable: 1
-  maxAmount: 80
+  maxAmount: 90
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
   animator: {fileID: 0}

@@ -16,10 +16,10 @@ MonoBehaviour:
   id: 3
   itemName: Liophyta
   itemDescription: Planta curativa
-  type: 4
+  type: 0
   consumableValues:
-    consumableType: 0
-    amountToRestore: 0
+    consumableType: 1
+    amountToRestore: 1
   upgradeType: 0
   isStackable: 1
   maxAmount: 30

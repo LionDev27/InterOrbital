@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 805190538, guid: 01189b94e1a12234287bdbebfb8f2113, type: 3}
   id: 37
-  itemName: Bala Racimo
-  itemDescription: Bala que se divide en 3
+  itemName: Cluster Bullet
+  itemDescription: Bullet that splits into 3
   type: 2
   consumableValues:
     consumableType: 0
     amountToRestore: 0
   upgradeType: 0
   isStackable: 1
-  maxAmount: 80
+  maxAmount: 90
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
   animator: {fileID: 0}

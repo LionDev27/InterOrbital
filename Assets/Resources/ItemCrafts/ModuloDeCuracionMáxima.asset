@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -920909410, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 28
-  itemName: Modulo de Curacion Grande
-  itemDescription: Cura 24 de Vida
+  itemName: Big healing module
+  itemDescription: Restore a lot of life
   type: 0
   consumableValues:
     consumableType: 1
     amountToRestore: 24
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
