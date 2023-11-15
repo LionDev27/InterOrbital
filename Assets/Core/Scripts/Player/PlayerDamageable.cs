@@ -99,7 +99,7 @@ namespace InterOrbital.Player
                 Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
                 GameObject dmgPopup = Instantiate(_dmgPopup,transform.position,Quaternion.identity);
-                dmgPopup.GetComponent<DamagePopup>().Setup(damage);
+                dmgPopup.GetComponent<NumberPopup>().Setup(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                 CameraShake.Instance.Shake(_damageCameraShakeIntensity);
                 AudioManager.Instance.PlaySFX("LoseLife");

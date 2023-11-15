@@ -7,7 +7,7 @@ namespace InterOrbital.Utils
 
     public enum ConsumableType
     {
-        Elytrum, Health
+        Elytrum, Health, Recollector
     }
 
     public enum UpgradeType

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
+  m_Name: Mejora Recollector 2
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 1227362912, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 44
+  itemName: Elytrum Recollector
+  itemDescription: Allows to collect all resources of Balandor
+  type: 0
+  consumableValues:
+    consumableType: 2
+    amountToRestore: 2
+  upgradeType: 2
+  isStackable: 0
+  maxAmount: 20
+  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
+    amountRequired: 4
+  - item: {fileID: 11400000, guid: b41ae8c185efd1246927e7f914a5b40a, type: 2}
+    amountRequired: 2
+  - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
+    amountRequired: 1
+  timeToCraft: 5
+  craftEnergyRequired: 20
+  amountToCraft: 1

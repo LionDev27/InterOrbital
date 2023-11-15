@@ -1,7 +1,5 @@
 using InterOrbital.Item;
 using InterOrbital.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +8,7 @@ public class ItemActionController : MonoBehaviour
     public Sprite _buildableItem;
     public Sprite _energyRestoreItem;
     public Sprite _healthRestoreItem;
+    public Sprite _recollectUpgrade;
     public Sprite _emptyImage;
     public Image _actionImage;
 
@@ -29,6 +28,11 @@ public class ItemActionController : MonoBehaviour
             if (item.consumableValues.consumableType == ConsumableType.Health)
             {
                 _actionImage.sprite = _healthRestoreItem;
+            }
+
+            if (item.consumableValues.consumableType == ConsumableType.Recollector)
+            {
+                _actionImage.sprite = _recollectUpgrade;
             }
         }
 

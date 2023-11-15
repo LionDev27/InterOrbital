@@ -72,8 +72,9 @@ namespace InterOrbital.Player
         public void UseItem()
         {
             int index = PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1;
+            var itemData = _items[index].itemSo;
 
-            switch (_items[index].itemSo.type)
+            switch (itemData.type)
             {
                 case ItemType.Build:
                     if (BuildGrid.Instance.IsBuilding())
@@ -82,17 +83,23 @@ namespace InterOrbital.Player
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
                     break;
                 case ItemType.Consumable:
-                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Elytrum)
+                    if (itemData.consumableValues.consumableType == ConsumableType.Elytrum)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerEnergy>()
-                            .RestoreEnergy(_items[index].itemSo.consumableValues.amountToRestore);
+                            .RestoreEnergy(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
 
-                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Health)
+                    if (itemData.consumableValues.consumableType == ConsumableType.Health)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>()
-                            .RestoreHealth(_items[index].itemSo.consumableValues.amountToRestore);
+                            .RestoreHealth(itemData.consumableValues.amountToRestore);
+                        SubstractUsedItem();
+                    }
+                    
+                    if (itemData.consumableValues.consumableType == ConsumableType.Recollector)
+                    {
+                        RecollectorUpgrades.OnUpgradeRecollector?.Invoke(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
 
@@ -115,13 +122,13 @@ namespace InterOrbital.Player
                     }*/
                     break;
                 case ItemType.Upgrade:
-                    if (_items[index].itemSo.upgradeType == UpgradeType.Elytrum)
+                    if (itemData.upgradeType == UpgradeType.Elytrum)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerEnergy>().UpgradeEnergy(20);
                         SubstractUsedItem();
                     }
 
-                    if (_items[index].itemSo.upgradeType == UpgradeType.Health)
+                    if (itemData.upgradeType == UpgradeType.Health)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>().UpgradeHealth(8);
                         SubstractUsedItem();

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9857a906d1afc24aabdaf2295e4b7e4, type: 3}
+  m_Name: Mejora Recollector 1
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 1227362912, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  id: 43
+  itemName: Fire Recollector
+  itemDescription: Allows to collect more resources
+  type: 0
+  consumableValues:
+    consumableType: 2
+    amountToRestore: 1
+  upgradeType: 2
+  isStackable: 0
+  maxAmount: 20
+  buildHighlightSprite: {fileID: -1733584327, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  buildPrefab: {fileID: 1845576799697945159, guid: ded2c598b6db4c24ba0c5941ef3c7f54, type: 3}
+  animator: {fileID: 0}
+  itemsRequired:
+  - item: {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}
+    amountRequired: 2
+  - item: {fileID: 11400000, guid: c3cb2633c158b34419100d9693bc7485, type: 2}
+    amountRequired: 3
+  - item: {fileID: 11400000, guid: 5700854ad47618d4983d1909186f7ee3, type: 2}
+    amountRequired: 1
+  timeToCraft: 5
+  craftEnergyRequired: 20
+  amountToCraft: 1
