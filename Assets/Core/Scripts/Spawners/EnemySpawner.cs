@@ -2,85 +2,16 @@ using InterOrbital.Combat.IA;
 using InterOrbital.Player;
 using InterOrbital.Utils;
 using InterOrbital.WorldSystem;
+using InterOrbital.Spawners;
 using System.Collections;
 using UnityEngine;
 
 namespace InterOrbital.Combat.Spawner
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : InterOrbital.Spawners.Spawner
     {
-        [HideInInspector] public bool canSpawn;
         [SerializeField] private GameObject _enemyPrefab;
-        [SerializeField] private DifficultyArea _difficultyArea;
-        [SerializeField] private Transform player; // Referencia al transform del jugador
-        [SerializeField] private LayerMask _layer;
-        [SerializeField] private int _maxEnemiesSpawn;
-        [SerializeField] private float _distanceBetween = 3f;
-        [SerializeField] private float _spawnRadius = 5f;
-        [SerializeField] private float _visibleDistance = 15f;
-
-        private bool _playerInRadius;
-        private float _playerNearSpawnTimer = -1;
-        private float _spawnTimer;
-        private int currentEnemiesSpawned = 0; // Contador de enemigos actual
-
-        private void Start()
-        {
-            player = PlayerComponents.Instance.transform;
-            canSpawn = true;
-        }
-
-        private void Update()
-        {
-            SpawnEnemies();
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                _playerInRadius = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                _playerInRadius = false;
-                if (_playerNearSpawnTimer < 0)
-                {
-                    _playerNearSpawnTimer = 20f;
-                }
-            }
-        }
-
-        private bool CanSpawn()
-        {
-            return canSpawn && _playerNearSpawnTimer < 0 && NotVisibleInCamera();
-        }
-
-        private bool NotVisibleInCamera()
-        {
-            return (Vector3.Distance(transform.position, player.position) >= _spawnRadius + _visibleDistance) &&
-                   _playerInRadius;
-        }
-
-        private void SpawnEnemies()
-        {
-            if (CanSpawn())
-            {
-                if (currentEnemiesSpawned < _maxEnemiesSpawn)
-                    SpawnAllEnemies();
-                else
-                    canSpawn = false;
-            }
-
-            if (_playerNearSpawnTimer >= 0)
-            {
-                _playerNearSpawnTimer -= Time.deltaTime;
-            }
-        }
+        [SerializeField] private DifficultyArea _difficultyArea;   
 
         // private IEnumerator SpawnEnemy()
         // {
@@ -99,10 +30,10 @@ namespace InterOrbital.Combat.Spawner
         //     yield return null;
         // }
 
-        private void SpawnAllEnemies()
+        protected override void SpawnAllEntities()
         {
             canSpawn = false;
-            var canSpawnCount = _maxEnemiesSpawn - currentEnemiesSpawned;
+            var canSpawnCount = _maxEntitiesSpawn - currentEntitiesSpawned;
             if (canSpawnCount <= 0) return;
             for (int i = 0; i < canSpawnCount; i++)
             {
@@ -123,7 +54,7 @@ namespace InterOrbital.Combat.Spawner
                 {
                     GameObject enemySpawned = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
                     enemySpawned.GetComponent<EnemyAgentBase>().SetEnemySpawner(this);
-                    currentEnemiesSpawned++;
+                    currentEntitiesSpawned++;
                 }
             }
         }
@@ -135,13 +66,9 @@ namespace InterOrbital.Combat.Spawner
 
         public void EnemyDead()
         {
-            currentEnemiesSpawned--;
+            currentEntitiesSpawned--;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _spawnRadius);
-        }
+        
     }
 }
