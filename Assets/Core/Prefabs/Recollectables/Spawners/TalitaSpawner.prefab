@@ -46,18 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 0
-  _resourcePrefabs:
-  - {fileID: 5492228128081625232, guid: cd97feaf1fa7af1419c07ad46517a2dc, type: 3}
-  - {fileID: 5492228128081625232, guid: 7f7852af13bc6a44e846b633feb48ebd, type: 3}
-  - {fileID: 5492228128081625232, guid: f035788e678dc3b468d7657be47d8883, type: 3}
   player: {fileID: 0}
   _layer:
     serializedVersion: 2
     m_Bits: 512
-  _maxResourcesSpawn: 20
   _distanceBetween: 3
   _spawnRadius: 20
   _visibleDistance: 15
+  _maxEntitiesSpawn: 7
+  _resourcePrefabs:
+  - {fileID: 5492228128081625232, guid: cd97feaf1fa7af1419c07ad46517a2dc, type: 3}
+  - {fileID: 5492228128081625232, guid: 7f7852af13bc6a44e846b633feb48ebd, type: 3}
+  - {fileID: 5492228128081625232, guid: f035788e678dc3b468d7657be47d8883, type: 3}
 --- !u!58 &3551865245305052741
 CircleCollider2D:
   m_ObjectHideFlags: 0

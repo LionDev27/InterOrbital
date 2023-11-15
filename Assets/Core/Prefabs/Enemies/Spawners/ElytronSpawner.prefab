@@ -46,16 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 0
-  _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
-  _difficultyArea: 2
   player: {fileID: 0}
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _maxEnemiesSpawn: 3
   _distanceBetween: 3
   _spawnRadius: 10
   _visibleDistance: 15
+  _maxEntitiesSpawn: 4
+  _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
+  _difficultyArea: 2
 --- !u!58 &784585200
 CircleCollider2D:
   m_ObjectHideFlags: 0

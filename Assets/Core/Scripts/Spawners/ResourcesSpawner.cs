@@ -9,78 +9,10 @@ using Random = UnityEngine.Random;
 
 namespace InterOrbital.Recollectables.Spawner
 {
-    public class ResourcesSpawner : MonoBehaviour
+    public class ResourcesSpawner : InterOrbital.Spawners.Spawner
     {
-        [HideInInspector] public bool canSpawn;
         [SerializeField] private List<GameObject> _resourcePrefabs;
-        [SerializeField] private Transform player; // Referencia al transform del jugador
-        [SerializeField] private LayerMask _layer;
-        [SerializeField] private int _maxResourcesSpawn;
-        [SerializeField] private float _distanceBetween = 3f;
-        [SerializeField] private float _spawnRadius = 15f;
-        [SerializeField] private float _visibleDistance = 15f;
-
-        private bool _playerInRadius;
-        private float _playerNearSpawnTimer = -1;
-        private float _spawnTimer;
-        private int currentResourcesSpawned = 0; // Contador de enemigos actual
         private Vector2 resourceDimensions;
-
-        private void Start()
-        {
-            player = PlayerComponents.Instance.transform;
-            canSpawn = true;
-        }
-
-        private void Update()
-        {
-            SpawnResources();
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                _playerInRadius = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                _playerInRadius = false;
-                if (_playerNearSpawnTimer < 0)
-                    _playerNearSpawnTimer = 20f;
-            }
-        }
-
-        private bool CanSpawn()
-        {
-            return canSpawn && _playerNearSpawnTimer < 0 && NotVisibleInCamera();
-        }
-
-        private bool NotVisibleInCamera()
-        {
-            return (Vector3.Distance(transform.position, player.position) >= _spawnRadius + _visibleDistance) &&
-                   _playerInRadius;
-        }
-
-        private void SpawnResources()
-        {
-            if (CanSpawn())
-            {
-                if (currentResourcesSpawned < _maxResourcesSpawn)
-                    SpawnAllResources();
-                else
-                    canSpawn = false;
-            }
-
-            if (_playerNearSpawnTimer >= 0)
-            {
-                _playerNearSpawnTimer -= Time.deltaTime;
-            }
-        }
 
         // private IEnumerator SpawnResource()
         // {
@@ -108,10 +40,10 @@ namespace InterOrbital.Recollectables.Spawner
         //     yield return null;
         // }
 
-        private void SpawnAllResources()
+        protected override void SpawnAllEntities()
         {
             canSpawn = false;
-            var canSpawnCount = _maxResourcesSpawn - currentResourcesSpawned;
+            var canSpawnCount = _maxEntitiesSpawn - currentEntitiesSpawned;
             if (canSpawnCount <= 0) return;
             for (int i = 0; i < canSpawnCount; i++)
             {
@@ -137,7 +69,7 @@ namespace InterOrbital.Recollectables.Spawner
                         GameObject resource = Instantiate(_resourcePrefabs[resourceIndex], spawnPositionInt,
                             Quaternion.identity);
                         LockCellsOnSpawn(spawnPositionInt.x, spawnPositionInt.y);
-                        currentResourcesSpawned++;
+                        currentEntitiesSpawned++;
                         resource.GetComponent<Recollectable>().SetSpawnerRef(this);
                     }
                 }
@@ -166,13 +98,9 @@ namespace InterOrbital.Recollectables.Spawner
 
         public void ResourceObtained()
         {
-            currentResourcesSpawned--;
+            currentEntitiesSpawned--;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _spawnRadius);
-        }
+       
     }
 }
