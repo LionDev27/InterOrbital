@@ -12,6 +12,8 @@ namespace InterOrbital.Recollectables
 {
     public class Recollectable : MonoBehaviour
     {
+        public int Tier => _scriptableObject.recollectableConfig.tier;
+        
         [SerializeField] private Vector2 _dimensions;
         [SerializeField] private RecollectableScriptableObject _scriptableObject;
         [SerializeField] private HitShaderController _hitShaderController;

@@ -9,6 +9,8 @@ namespace InterOrbital.Player
 {
     public class PlayerRecollector : PlayerComponents
     {
+        public int Usages => _currentUsages;
+        
         [SerializeField] private Animator _gunAnimator;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _gunSprite;
@@ -61,6 +63,8 @@ namespace InterOrbital.Player
             Vector2 dir = PlayerAim.AimDir();
             Vector2 boxcastSize = new Vector2(0.05f, _recollectionWidth);
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxcastSize, 0f, dir, _recollectionRange);
+            if (_gunSprite.material.GetFloat("_AlphaValue") < 1f)
+                _gunSprite.material.SetFloat("_AlphaValue", 1f);
             
             if(hits.Length <= 0) return;
 
@@ -69,9 +73,19 @@ namespace InterOrbital.Player
                 Recollectable recollectable = hit.collider.GetComponent<Recollectable>();
                 if (recollectable != null)
                 {
-                    recollectable.Recollect();
-                    CheckUsages();
-                    _timer = 0f;
+                    if (_currentTier >= recollectable.Tier)
+                    {
+                        recollectable.Recollect();
+                        CheckUsages();
+                        _timer = 0f;
+                    }
+                    else
+                    {
+                        AudioManager.Instance.PlaySFX("Error");
+                        if (_gunSprite.material.GetFloat("_AlphaValue") > 0.25f)
+                            _gunSprite.material.SetFloat("_AlphaValue", 0.25f);
+                        _timer = -1f;
+                    }
                     return;
                 }
 

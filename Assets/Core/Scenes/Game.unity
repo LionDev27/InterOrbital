@@ -13203,10 +13203,6 @@ PrefabInstance:
       propertyPath: gridRightPocket
       value: 
       objectReference: {fileID: 1360426636}
-    - target: {fileID: 7249411784442534518, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299b43f6260b70844a1ef0d3b895e2b1, type: 3}
 --- !u!4 &1821504539 stripped
@@ -14066,10 +14062,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tiers:
   - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+    upgradeData: {fileID: 0}
     usages: -1
   - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+    upgradeData: {fileID: 11400000, guid: fce145b70c8da184ca2357a1a76eef8b, type: 2}
     usages: 100
   - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+    upgradeData: {fileID: 11400000, guid: e4cfa421e11349b4b91b01b6f4fb4208, type: 2}
     usages: 200
 --- !u!1 &1915188125
 GameObject:

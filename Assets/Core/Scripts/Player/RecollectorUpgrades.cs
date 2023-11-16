@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using InterOrbital.Item;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ namespace InterOrbital.Player
         public static Action OnEndUpgrade;
 
         [SerializeField] private List<RecollectorTier> _tiers;
-        private int _currentTier;
+        private List<RecollectorTier> _currentTiers = new();
+        private int _currentTierIndex;
 
         private void OnEnable()
         {
@@ -28,6 +30,7 @@ namespace InterOrbital.Player
         private void Start()
         {
             EndUpgrade();
+            _currentTiers = _tiers;
         }
 
         private void Upgrade(int tier)
@@ -43,9 +46,39 @@ namespace InterOrbital.Player
 
         private void ChangeTier(int tier)
         {
-            _currentTier = tier;
-            RecollectorTier current = _tiers[tier];
-            PlayerComponents.Instance.PlayerRecollector.ChangeTier(current, _currentTier);
+            RecollectorTier newTier = _tiers[tier];
+            var components = PlayerComponents.Instance;
+            var currentUsages = components.PlayerRecollector.Usages;
+            //Si es el mismo upgrade, añadimos los usos.
+            if (_currentTierIndex == tier)
+                newTier.usages += currentUsages;
+            //Si es un upgrade distinto al que ya tenemos.
+            else
+            {
+                //Si tenemos usos aún, los guardamos e instanciamos un objeto..
+                if (currentUsages > 0)
+                {
+                    var currentTier = _currentTiers[_currentTierIndex];
+                    currentTier.usages = currentUsages;
+                    _currentTiers[_currentTierIndex] = currentTier;
+                    if (currentTier.upgradeData != null)
+                        components.Inventory.DropItem(components.PlayerAttack.attackPoint.position,
+                            components.transform.position, -1, currentTier.upgradeData);
+                }
+                else
+                    _currentTiers[_currentTierIndex] = _tiers[_currentTierIndex];
+
+                //Si el upgrade que vamos a hacer ya tenía usos, los asignamos.
+                newTier.usages = _currentTiers[tier].usages;
+            }
+            SetTier(tier, newTier);
+        }
+
+        private void SetTier(int tier, RecollectorTier current)
+        {
+            _currentTierIndex = tier;
+            PlayerComponents.Instance.PlayerRecollector.ChangeTier(current, _currentTierIndex);
+            Debug.Log($"Tier {tier} - Usages {current.usages}");
         }
     }
 
@@ -53,6 +86,7 @@ namespace InterOrbital.Player
     public struct RecollectorTier
     {
         public AnimatorController controller;
+        public ItemCraftScriptableObject upgradeData;
         public int usages;
     }
 }

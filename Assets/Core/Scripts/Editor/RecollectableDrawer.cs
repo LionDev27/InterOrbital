@@ -13,6 +13,7 @@ namespace InterOrbital.EditorTools
             var itemsProperty = property.FindPropertyRelative("dropItems");
             var ratesProperty = property.FindPropertyRelative("dropRates");
             var itemSelectors = property.FindPropertyRelative("itemSelectors");
+            var tierProperty = property.FindPropertyRelative("tier");
 
             EditorGUI.BeginProperty(position, label, property);
 
@@ -95,6 +96,8 @@ namespace InterOrbital.EditorTools
             EditorGUILayout.EndHorizontal();
             
             EditorGUILayout.HelpBox("Si el conjunto de DropRate supera 100, se igualará el valor de todos.", MessageType.Info);
+
+            EditorGUILayout.PropertyField(tierProperty);
 
             property.serializedObject.ApplyModifiedProperties();
 
