@@ -85,8 +85,10 @@ namespace InterOrbital.Player
     [Serializable]
     public struct RecollectorTier
     {
-        public AnimatorController controller;
+        public AnimatorOverrideController controller;
         public ItemCraftScriptableObject upgradeData;
+        public AudioClip sfx;
+        public int damage;
         public int usages;
     }
 }

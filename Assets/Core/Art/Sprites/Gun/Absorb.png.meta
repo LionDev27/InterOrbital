@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e705580179211c4e94167818f97ac60
+guid: 9341d2ef35d98284ab747769ecad05e0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_0
+      name: Absorb_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1beeb4ad26893c94c9414da796bcb877
-      internalID: -61912406
+      spriteID: 7aa3c30e8befd1541a89656cd03f2f7b
+      internalID: -1953146237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_1
+      name: Absorb_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e603197e9ffb544ea728d9a02e49ba7
-      internalID: -1806919675
+      spriteID: fd50be3177b6e3441839747191b8e5cf
+      internalID: 1408522568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_2
+      name: Absorb_2
       rect:
         serializedVersion: 2
         x: 64
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a0a248b5829da546925758f7aa84330
-      internalID: -537629379
+      spriteID: 0b48c9c0631e96c43a7ada6cbda92439
+      internalID: 558479762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_3
+      name: Absorb_3
       rect:
         serializedVersion: 2
         x: 0
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11cb39d4948dfb4448577f9f0aeb905e
-      internalID: -1541257184
+      spriteID: 56bb5b5d8be5cae4db759e95d18d3ce1
+      internalID: -1197592059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_4
+      name: Absorb_4
       rect:
         serializedVersion: 2
         x: 32
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 815a59c844e467b40a88bef9661005c7
-      internalID: -884159334
+      spriteID: e8eccfef8a2d6f441a7225d0dca49f9a
+      internalID: -606706122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FinalGunRecollectAnimation_5
+      name: Absorb_5
       rect:
         serializedVersion: 2
         x: 64
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0647ef792ec9bfa4bacf10010f8e88ea
-      internalID: 1025698189
+      spriteID: caec8435c6c51d941a0726bd052ad916
+      internalID: -1792117843
       vertices: []
       indices: 
       edges: []
@@ -239,16 +239,14 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 1af2d710ace78ae419db25dcef8d2f43, type: 3}
-      name: _AlphaT
+    secondaryTextures: []
     nameFileIdTable:
-      FinalGunRecollectAnimation_0: -61912406
-      FinalGunRecollectAnimation_1: -1806919675
-      FinalGunRecollectAnimation_2: -537629379
-      FinalGunRecollectAnimation_3: -1541257184
-      FinalGunRecollectAnimation_4: -884159334
-      FinalGunRecollectAnimation_5: 1025698189
+      Absorb_0: -1953146237
+      Absorb_1: 1408522568
+      Absorb_2: 558479762
+      Absorb_3: -1197592059
+      Absorb_4: -606706122
+      Absorb_5: -1792117843
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

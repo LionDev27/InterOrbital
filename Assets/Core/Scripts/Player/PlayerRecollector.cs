@@ -15,12 +15,12 @@ namespace InterOrbital.Player
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _gunSprite;
         [SerializeField] private TextMeshProUGUI _usagesText;
-        [SerializeField] private int _recollectionAttackDamage = 1;
         [SerializeField] private float _recollectionAttackCooldown = 2f;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
         [SerializeField] private float _recollectionWidth = 3f;
 
+        private int _recollectionAttackDamage;
         private int _currentUsages;
         private int _currentTier;
         private bool _canAttack = true;
@@ -44,7 +44,6 @@ namespace InterOrbital.Player
                 if (_gunAnimator.GetBool("Recollecting") == false)
                 {
                     _gunAnimator.SetBool("Recollecting", true);
-                    _audioSource.Play();
                     _usagesText.DOFade(1f, 0.5f);
                     PlayerAttack.canAttack = false;
                 }
@@ -119,12 +118,27 @@ namespace InterOrbital.Player
             if (_currentUsages < 0) return;
             _currentUsages--;
             _usagesText.SetText(_currentUsages.ToString());
-            if (_currentUsages <= 0)
-                RecollectorUpgrades.OnEndUpgrade?.Invoke();
+            switch (_currentUsages)
+            {
+                case <= 0:
+                    RecollectorUpgrades.OnEndUpgrade?.Invoke();
+                    break;
+                case 10:
+                    _usagesText.color = Color.red;
+                    break;
+                case < 10 and > 3:
+                    _usagesText.transform.DOShakeScale(0.2f).SetEase(Ease.OutBack).Play();
+                    break;
+                case <= 3:
+                    _usagesText.transform.DOShakeScale(0.2f, vibrato: 20).SetEase(Ease.OutElastic).Play();
+                    break;
+            }
         }
 
         public void SetTransitionStatus(bool value)
         {
+            if (value)
+                _audioSource.Play();
             _transitionAnimationEnded = value;
         }
 
@@ -133,7 +147,10 @@ namespace InterOrbital.Player
             _gunAnimator.runtimeAnimatorController = tier.controller;
             _currentUsages = tier.usages;
             _usagesText.SetText(tierIndex > 0 ? _currentUsages.ToString() : "");
+            _usagesText.color = _currentUsages <= 10 ? Color.red : Color.white;
             _currentTier = tierIndex;
+            _audioSource.clip = tier.sfx;
+            _recollectionAttackDamage = tier.damage;
         }
     }
 }

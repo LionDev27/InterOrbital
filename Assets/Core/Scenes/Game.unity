@@ -14061,14 +14061,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tiers:
-  - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+  - controller: {fileID: 22100000, guid: 90fca443024d739439228a9a2eec3a52, type: 2}
     upgradeData: {fileID: 0}
+    sfx: {fileID: 8300000, guid: 050742a7150c21a43ac46b30b61bc128, type: 3}
+    damage: 1
     usages: -1
-  - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+  - controller: {fileID: 22100000, guid: 470586545808a304d8696e112519828e, type: 2}
     upgradeData: {fileID: 11400000, guid: fce145b70c8da184ca2357a1a76eef8b, type: 2}
-    usages: 100
-  - controller: {fileID: 9100000, guid: d49c8ec169688ed4392f4a50dc125e6c, type: 2}
+    sfx: {fileID: 8300000, guid: 08dafcd2278c4d047afe09b311682faf, type: 3}
+    damage: 2
+    usages: 80
+  - controller: {fileID: 22100000, guid: 26f63f857ed232345a46106fdbcf9a38, type: 2}
     upgradeData: {fileID: 11400000, guid: e4cfa421e11349b4b91b01b6f4fb4208, type: 2}
+    sfx: {fileID: 8300000, guid: a98c31eb03bd6b643b48924ae345ab90, type: 3}
+    damage: 4
     usages: 200
 --- !u!1 &1915188125
 GameObject:
