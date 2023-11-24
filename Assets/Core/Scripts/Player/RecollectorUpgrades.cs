@@ -78,7 +78,6 @@ namespace InterOrbital.Player
         {
             _currentTierIndex = tier;
             PlayerComponents.Instance.PlayerRecollector.ChangeTier(current, _currentTierIndex);
-            Debug.Log($"Tier {tier} - Usages {current.usages}");
         }
     }
 

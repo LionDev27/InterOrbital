@@ -26,10 +26,7 @@ namespace InterOrbital.Others
         private void Awake()
         {
             if (Instance)
-            {
                 Destroy(Instance.gameObject);
-                return;
-            }
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
