@@ -174,6 +174,12 @@ namespace InterOrbital.Player
             enabled = false;
             Rigidbody.velocity = Vector2.zero;
         }
+
+        public void ActivateControls()
+        {
+            enabled = true;
+            PlayerInput.enabled = true;
+        }
         
         public InputType CurrentInput()
         {
@@ -185,7 +191,7 @@ namespace InterOrbital.Player
             return PlayerInput.currentActionMap.name;
         }
 
-        public void ChangeActionMap ()
+        public void ChangeActionMap()
         {
             string actionMap = PlayerInput.currentActionMap.name == "Player" ? "UI" : "Player";
             PlayerInput.SwitchCurrentActionMap(actionMap);

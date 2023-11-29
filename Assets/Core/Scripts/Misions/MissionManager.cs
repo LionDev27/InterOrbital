@@ -10,7 +10,7 @@ namespace InterOrbital.Mission
     {
         [SerializeField] private List<MissionScriptableObject> missionsToDo;
         private int _indexActualMission;
-        private  MissionCreator _missionCreator;
+        private MissionCreator _missionCreator;
         public static MissionManager Instance = null;
 
         private void Awake()

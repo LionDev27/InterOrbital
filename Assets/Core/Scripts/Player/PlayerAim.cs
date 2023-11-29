@@ -77,15 +77,16 @@ namespace InterOrbital.Player
 
         public void ShowGun(bool show)
         {
-            if (show)
+            switch (show)
             {
-                _gunSpriteT.gameObject.SetActive(true);
-                _gunSpriteT.transform.DOScale(Vector2.one, 0.1f).Play();
-            }
-            else
-            {
-                _gunSpriteT.transform.DOScale(Vector2.zero, 0.1f).
-                    OnComplete(() => _gunSpriteT.gameObject.SetActive(false)).Play();
+                case true when !_gunSpriteT.gameObject.activeInHierarchy:
+                    _gunSpriteT.gameObject.SetActive(true);
+                    _gunSpriteT.transform.DOScale(Vector2.one, 0.1f).Play();
+                    break;
+                case false when _gunSpriteT.gameObject.activeInHierarchy:
+                    _gunSpriteT.transform.DOScale(Vector2.zero, 0.1f).
+                        OnComplete(() => _gunSpriteT.gameObject.SetActive(false)).Play();
+                    break;
             }
         }
     }
