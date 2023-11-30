@@ -6,6 +6,7 @@ Shader "HologramShader"
         _HologramTex("HologramTex", 2D) = "white" {}
         _HologramSpeed("HologramSpeed", Float) = 0.5
         _Color("Color", Color) = (0.5230064, 0.6813684, 0.6886792, 0)
+        _UnscaledTime("UnscaledTime", Float) = 0
         [HideInInspector][NoScaleOffset]unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset]unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset]unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
@@ -119,7 +120,6 @@ Shader "HologramShader"
         struct SurfaceDescriptionInputs
         {
              float4 uv0;
-             float3 TimeParameters;
         };
         struct VertexDescriptionInputs
         {
@@ -203,6 +203,7 @@ Shader "HologramShader"
         float4 _HologramTex_ST;
         float _HologramSpeed;
         float4 _Color;
+        float _UnscaledTime;
         CBUFFER_END
         
         // Object and Global properties
@@ -295,14 +296,16 @@ Shader "HologramShader"
             float4 _Property_c2b97d22135a4b03bfef14c08dfca3f5_Out_0 = _Color;
             float4 _Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2;
             Unity_Multiply_float4_float4(_SampleTexture2D_781486b3a49e4dc8b9d8d366d57585d6_RGBA_0, _Property_c2b97d22135a4b03bfef14c08dfca3f5_Out_0, _Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2);
+            float _Property_34d70ca2a9924326a932a1e6d673d0e9_Out_0 = _UnscaledTime;
             float _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3;
-            Unity_RandomRange_float((IN.TimeParameters.x.xx), 0.85, 1, _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3);
+            Unity_RandomRange_float((_Property_34d70ca2a9924326a932a1e6d673d0e9_Out_0.xx), 0.85, 1, _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3);
             float4 _Multiply_c81f7bed3cec433789f5704b215748d2_Out_2;
             Unity_Multiply_float4_float4(_Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2, (_RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3.xxxx), _Multiply_c81f7bed3cec433789f5704b215748d2_Out_2);
             UnityTexture2D _Property_4d0b6310937c47198ead2162977d2411_Out_0 = UnityBuildTexture2DStruct(_HologramTex);
+            float _Property_e4186ac8e31743e1a1492730ccbce1f1_Out_0 = _UnscaledTime;
             float _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0 = _HologramSpeed;
             float _Multiply_637093f6b4704c8c8e62796a87804237_Out_2;
-            Unity_Multiply_float_float(IN.TimeParameters.x, _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0, _Multiply_637093f6b4704c8c8e62796a87804237_Out_2);
+            Unity_Multiply_float_float(_Property_e4186ac8e31743e1a1492730ccbce1f1_Out_0, _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0, _Multiply_637093f6b4704c8c8e62796a87804237_Out_2);
             float2 _TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3;
             Unity_TilingAndOffset_float(IN.uv0.xy, float2 (1, 1), (_Multiply_637093f6b4704c8c8e62796a87804237_Out_2.xx), _TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3);
             float4 _SampleTexture2D_fc7eb90f1aad4f7cb41eeb46d78b8768_RGBA_0 = SAMPLE_TEXTURE2D(_Property_4d0b6310937c47198ead2162977d2411_Out_0.tex, _Property_4d0b6310937c47198ead2162977d2411_Out_0.samplerstate, _Property_4d0b6310937c47198ead2162977d2411_Out_0.GetTransformedUV(_TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3));
@@ -343,7 +346,6 @@ Shader "HologramShader"
         
         
             output.uv0 =                                        input.texCoord0;
-            output.TimeParameters =                             _TimeParameters.xyz; // This is mainly for LW as HD overwrite this value
         #if defined(SHADER_STAGE_FRAGMENT) && defined(VARYINGS_NEED_CULLFACE)
         #define BUILD_SURFACE_DESCRIPTION_INPUTS_OUTPUT_FACESIGN                output.FaceSign =                                   IS_FRONT_VFACE(input.cullFace, true, false);
         #else
@@ -460,7 +462,6 @@ Shader "HologramShader"
         struct SurfaceDescriptionInputs
         {
              float4 uv0;
-             float3 TimeParameters;
         };
         struct VertexDescriptionInputs
         {
@@ -544,6 +545,7 @@ Shader "HologramShader"
         float4 _HologramTex_ST;
         float _HologramSpeed;
         float4 _Color;
+        float _UnscaledTime;
         CBUFFER_END
         
         // Object and Global properties
@@ -636,14 +638,16 @@ Shader "HologramShader"
             float4 _Property_c2b97d22135a4b03bfef14c08dfca3f5_Out_0 = _Color;
             float4 _Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2;
             Unity_Multiply_float4_float4(_SampleTexture2D_781486b3a49e4dc8b9d8d366d57585d6_RGBA_0, _Property_c2b97d22135a4b03bfef14c08dfca3f5_Out_0, _Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2);
+            float _Property_34d70ca2a9924326a932a1e6d673d0e9_Out_0 = _UnscaledTime;
             float _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3;
-            Unity_RandomRange_float((IN.TimeParameters.x.xx), 0.85, 1, _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3);
+            Unity_RandomRange_float((_Property_34d70ca2a9924326a932a1e6d673d0e9_Out_0.xx), 0.85, 1, _RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3);
             float4 _Multiply_c81f7bed3cec433789f5704b215748d2_Out_2;
             Unity_Multiply_float4_float4(_Multiply_d8d836fabcec4a139945dedd9c50bce4_Out_2, (_RandomRange_204c89a0b601428d897ac15c42a43c18_Out_3.xxxx), _Multiply_c81f7bed3cec433789f5704b215748d2_Out_2);
             UnityTexture2D _Property_4d0b6310937c47198ead2162977d2411_Out_0 = UnityBuildTexture2DStruct(_HologramTex);
+            float _Property_e4186ac8e31743e1a1492730ccbce1f1_Out_0 = _UnscaledTime;
             float _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0 = _HologramSpeed;
             float _Multiply_637093f6b4704c8c8e62796a87804237_Out_2;
-            Unity_Multiply_float_float(IN.TimeParameters.x, _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0, _Multiply_637093f6b4704c8c8e62796a87804237_Out_2);
+            Unity_Multiply_float_float(_Property_e4186ac8e31743e1a1492730ccbce1f1_Out_0, _Property_1a35d3bee0f94720bfaa6403db2dc794_Out_0, _Multiply_637093f6b4704c8c8e62796a87804237_Out_2);
             float2 _TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3;
             Unity_TilingAndOffset_float(IN.uv0.xy, float2 (1, 1), (_Multiply_637093f6b4704c8c8e62796a87804237_Out_2.xx), _TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3);
             float4 _SampleTexture2D_fc7eb90f1aad4f7cb41eeb46d78b8768_RGBA_0 = SAMPLE_TEXTURE2D(_Property_4d0b6310937c47198ead2162977d2411_Out_0.tex, _Property_4d0b6310937c47198ead2162977d2411_Out_0.samplerstate, _Property_4d0b6310937c47198ead2162977d2411_Out_0.GetTransformedUV(_TilingAndOffset_a579c8c1b3604339afbeaa423fd049f0_Out_3));
@@ -684,7 +688,6 @@ Shader "HologramShader"
         
         
             output.uv0 =                                        input.texCoord0;
-            output.TimeParameters =                             _TimeParameters.xyz; // This is mainly for LW as HD overwrite this value
         #if defined(SHADER_STAGE_FRAGMENT) && defined(VARYINGS_NEED_CULLFACE)
         #define BUILD_SURFACE_DESCRIPTION_INPUTS_OUTPUT_FACESIGN                output.FaceSign =                                   IS_FRONT_VFACE(input.cullFace, true, false);
         #else
