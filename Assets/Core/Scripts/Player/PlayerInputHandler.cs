@@ -2,12 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using InterOrbital.UI;
+using UnityEngine.EventSystems;
 
 namespace InterOrbital.Player
 {
     public class PlayerInputHandler : PlayerComponents
     {
         private bool BulletsMenuSelected = false;
+        private bool _uiOpened;
         public enum InputType {Keyboard, Gamepad}
         
         public Vector2 MoveDirection { get; private set; }
@@ -180,6 +182,24 @@ namespace InterOrbital.Player
             enabled = true;
             PlayerInput.enabled = true;
         }
+
+        public void OnConversationStart()
+        {
+            if (PlayerInput.currentActionMap.name == "UI")
+            {
+                _uiOpened = true;
+                ChangeActionMap();
+            }
+            DeactivateControls();
+        }
+
+        public void OnConversationEnd()
+        {
+            ActivateControls();
+            if (!_uiOpened) return;
+            ChangeActionMap();
+            _uiOpened = false;
+        }
         
         public InputType CurrentInput()
         {
@@ -202,7 +222,6 @@ namespace InterOrbital.Player
         {
             OnOpenCraft();
         }
-
     }
     
 }

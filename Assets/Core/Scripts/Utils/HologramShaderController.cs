@@ -21,5 +21,10 @@ namespace InterOrbital.Utils
         {
             _image.material.SetFloat("_UnscaledTime", Time.unscaledTime);
         }
+
+        private void OnDisable()
+        {
+            _image.material.SetFloat("_UnscaledTime", 0);
+        }
     }
 }

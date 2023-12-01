@@ -285,10 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputDevice: 2
-  joystickKeyCodesToCheck: 4a0100004b0100004c01000051010000
+  joystickKeyCodesToCheck: 
   joystickButtonsToCheck: []
   joystickAxesToCheck: []
-  joystickAxisThreshold: 0.5
+  joystickAxisThreshold: 0
   keyButtonsToCheck: []
   keyCodesToCheck: 1b00000020000000
   keyInputSwitchesModeTo: 1
@@ -298,7 +298,7 @@ MonoBehaviour:
   controlCursorState: 1
   enforceCursorOnPause: 0
   controlGraphicRaycasters: 0
-  backKeyCodes: 4b010000
+  backKeyCodes: 
   backButtons:
   - Cancel
   submitButton: Submit
