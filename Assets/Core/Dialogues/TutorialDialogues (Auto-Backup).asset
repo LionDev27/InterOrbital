@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935899b62f48ae5498594680ed17d133, type: 3}
-  m_Name: TutorialDialogues
+  m_Name: TutorialDialogues (Auto-Backup)
   m_EditorClassIdentifier: 
   version: 
   author: 
@@ -117,7 +117,49 @@ MonoBehaviour:
     spritePortrait: {fileID: 21300000, guid: 464095a7f21ee524389f05e025d1f9c0, type: 3}
     alternatePortraits: []
     spritePortraits: []
-  items: []
+  items:
+  - id: 1
+    fields:
+    - title: Name
+      value: Move with WASD
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Success Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Failure Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: State
+      value: unassigned
+      type: 0
+      typeString: CustomFieldType_QuestState
+    - title: Is Item
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Entry Count
+      value: 1
+      type: 1
+      typeString: CustomFieldType_Number
+    - title: Entry 1 State
+      value: active
+      type: 0
+      typeString: 
+    - title: Entry 1
+      value: Move with WASD
+      type: 0
+      typeString: 
   locations: []
   variables:
   - id: 1
@@ -134,20 +176,6 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
-  - id: 2
-    fields:
-    - title: Name
-      value: StartedQuests
-      type: 0
-      typeString: CustomFieldType_Text
-    - title: Initial Value
-      value: False
-      type: 2
-      typeString: CustomFieldType_Boolean
-    - title: Description
-      value: 
-      type: 0
-      typeString: CustomFieldType_Text
   conversations:
   - id: 1
     fields:
@@ -1076,14 +1104,17 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["StartedQuests"] = true
+      userScript: 'ShowAlert("Move with WASD");
+
+        SetQuestState("Move with
+        WASD", "active")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 157
-        y: 80
+        y: 81
         width: 160
         height: 30
     entryGroups: []

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using InterOrbital.Others;
 using InterOrbital.Player;
 using InterOrbital.UI;
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using LevelManager = InterOrbital.Others.LevelManager;
 
 namespace InterOrbital.Mission
 {
@@ -26,12 +27,14 @@ namespace InterOrbital.Mission
 
         private void Start()
         {
-            NextMission();    
+            NextMission();
         }
 
         public void NextMission()
         {
+            if (!DialogueLua.GetVariable("StartedQuests").asBool) return;
             _indexActualMission++;
+            DialogueManager.ShowAlert(missionsToDo[_indexActualMission].missionDescription);
             if (_indexActualMission < missionsToDo.Count)
             {
                 _missionCreator.CreateMission(missionsToDo[_indexActualMission]);
@@ -46,9 +49,6 @@ namespace InterOrbital.Mission
                 PlayerComponents.Instance.InputHandler.DeactivateControls();
                 LevelManager.Instance.BackMenu();
             }
-            
         }
-
     }
 }
-   

@@ -11,6 +11,7 @@ namespace InterOrbital.Mission
     {
         public TypeMission typeMission;
         public string missionDescription;
+        public string questName;
         public int amountToReach;
         public Sprite imageMission;
     }

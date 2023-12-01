@@ -1919,9 +1919,9 @@ MonoBehaviour:
     alertText:
       m_uiText: {fileID: 0}
       m_textMeshProUGUI: {fileID: 8358127972609590296}
-    queueAlerts: 0
+    queueAlerts: 1
     dontQueueDuplicates: 0
-    waitForHideAnimation: 0
+    waitForHideAnimation: 1
     allowForceImmediate: 0
   conversationUIElements:
     mainPanel: {fileID: 8358127972594487178}
