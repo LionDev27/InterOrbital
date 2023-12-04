@@ -21,7 +21,6 @@ namespace InterOrbital.Player
         private float _dashTotalInvulnerabilityTime => _dashTime + _dashInvulnerabilityExtraTime;
         private float _dashTotalTime => _dashTotalInvulnerabilityTime + _dashExtraCooldown;
         private float _dashAnimationSpeed;
-        private bool _runningTimer;
 
         protected override void Awake()
         {
@@ -46,12 +45,11 @@ namespace InterOrbital.Player
 
         private void Update()
         {
-            if (_dashTimer <= 0 && _runningTimer)
+            if (_dashTimer <= 0)
             {
                 PlayerMovement.EnableMovement(true);
                 PlayerAttack.canAttack = true;
                 PlayerAim.ShowGun(true);
-                _runningTimer = false;
             }
             else if (_dashTimer > 0)
                 _dashTimer -= Time.deltaTime;
@@ -76,7 +74,6 @@ namespace InterOrbital.Player
             _dashTimer = _dashTime;
             _dashInvulnerabilityTimer = _dashTotalInvulnerabilityTime;
             _dashTotalTimer = _dashTotalTime;
-            _runningTimer = true;
             //Si no se está moviendo, hará el dash a la dirección a la que apunta. Si se mueve, lo hará hacia la que se mueve.
             Vector3 direction = InputHandler.MoveDirection != Vector2.zero ? InputHandler.MoveDirection : PlayerAttack.attackPoint.position - transform.position;
             Rigidbody.AddForce(direction * _dashForce);
