@@ -55,6 +55,7 @@ namespace InterOrbital.Player
                 _gunSprite.flipX = true;
                 _gunSpriteT.right = -lookAtPos - _gunSpriteT.localPosition;
             }
+
             //Rotacion del sprite del jugador.
             if (PlayerDash.IsDashing()) return;
             if (_aimDir.x > 0)
@@ -77,17 +78,14 @@ namespace InterOrbital.Player
 
         public void ShowGun(bool show)
         {
-            switch (show)
+            if (show)
             {
-                case true when !_gunSpriteT.gameObject.activeInHierarchy:
-                    _gunSpriteT.gameObject.SetActive(true);
-                    _gunSpriteT.transform.DOScale(Vector2.one, 0.1f).Play();
-                    break;
-                case false when _gunSpriteT.gameObject.activeInHierarchy:
-                    _gunSpriteT.transform.DOScale(Vector2.zero, 0.1f).
-                        OnComplete(() => _gunSpriteT.gameObject.SetActive(false)).Play();
-                    break;
+                _gunSpriteT.gameObject.SetActive(true);
+                _gunSpriteT.transform.DOScale(Vector2.one, 0.1f).Play();
             }
+            else
+                _gunSpriteT.transform.DOScale(Vector2.zero, 0.1f)
+                    .OnComplete(() => _gunSpriteT.gameObject.SetActive(false)).Play();
         }
     }
 }
