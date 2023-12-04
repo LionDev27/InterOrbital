@@ -52,7 +52,8 @@ namespace InterOrbital.Utils
     {
         Recolection,
         Hunt,
-        Craft
+        Craft,
+        Button
     }
 
     public enum DifficultyArea

@@ -5770,7 +5770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionsToDo:
-  - {fileID: 11400000, guid: f6eaa86ab9db3ad4599bbed7647d2751, type: 2}
+  - {fileID: 11400000, guid: b8a99ae6ccaba2641b609e42c2e63487, type: 2}
   - {fileID: 11400000, guid: ca7ed914f13a181418260e5ea5381ad9, type: 2}
   - {fileID: 11400000, guid: 1bcaef4f31c9af14cb570379db5e6ce4, type: 2}
   - {fileID: 11400000, guid: 1375cd44bf968df499d10076fa754546, type: 2}
@@ -12428,6 +12428,7 @@ GameObject:
   - component: {fileID: 1507572647}
   - component: {fileID: 1507572646}
   - component: {fileID: 1507572645}
+  - component: {fileID: 1507572648}
   m_Layer: 5
   m_Name: MissionPanel
   m_TagString: Untagged
@@ -12510,6 +12511,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507572643}
   m_CullTransparentMesh: 1
+--- !u!114 &1507572648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507572643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab14d34ca724aa1a3fa3287735207a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1523116773
 GameObject:
   m_ObjectHideFlags: 0

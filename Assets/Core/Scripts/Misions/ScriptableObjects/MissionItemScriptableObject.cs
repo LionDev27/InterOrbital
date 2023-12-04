@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 namespace InterOrbital.Mission
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/MissionItemScriptableObject", order = 0)]
-    public class MissionItemScriptableObject : MissionScriptableObject
+    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Missions/ItemMission", order = 0)]
+    public class MissionItemScriptableObject : MissionRecollectScriptableObject
     {
         public List<ItemScriptableObject> itemsGoalList;
     }

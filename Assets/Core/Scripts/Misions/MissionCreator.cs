@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,10 +18,17 @@ namespace InterOrbital.Mission
         private int _actualProgress = 0;
         private MissionScriptableObject _actualMission;
         private bool _missionCompleted;
+        private ButtonMissionController _buttonMissions;
+
+        private void Awake()
+        {
+            _buttonMissions = GetComponent<ButtonMissionController>();
+        }
 
         private IEnumerator WaitForNextMission()
         {
-            yield return new WaitForSeconds(1);
+            _feedbackText.color = Color.green;
+            yield return new WaitForSeconds(2);
             _missionCompleted = false;
             _tutorialManager.StartDialogue(_actualMission.nextConversationName);
         }
@@ -28,10 +36,18 @@ namespace InterOrbital.Mission
         public void CreateMission(MissionScriptableObject mission)
         {
             _actualMission = mission;
-            _missionImage.sprite = mission.imageMission;
+            _missionImage.sprite = mission.imageMission != null ? mission.imageMission : null;
             _missionText.text = mission.missionDescription;
             _feedbackText.color = Color.red;
-            _feedbackText.text = "0/" +mission.amountToReach.ToString();
+            switch (mission)
+            {
+                case MissionRecollectScriptableObject recollectMission:
+                    _feedbackText.text = "0/" +recollectMission.amountToReach;
+                    break;
+                case MissionButtonScriptableObject buttonMission:
+                    _buttonMissions.Initialize(buttonMission);
+                    break;
+            }
             _actualProgress = 0;
         }
 
@@ -52,13 +68,29 @@ namespace InterOrbital.Mission
             {
                 _actualProgress += amountGet;
             }
-            _feedbackText.color = _actualProgress >= _actualMission.amountToReach ? Color.green : Color.red;
-            _feedbackText.text = _actualProgress.ToString() + "/" + _actualMission.amountToReach.ToString();
-            if (_actualProgress >= _actualMission.amountToReach)
+
+            if (_actualMission is MissionRecollectScriptableObject recollectMission)
+                _feedbackText.text = _actualProgress + "/" + recollectMission.amountToReach;
+            
+            CheckEndMission(amountGet);
+        }
+
+        private void CheckEndMission(int amountGet)
+        {
+            var ended = false;
+            switch (_actualMission)
             {
-                _missionCompleted = true;
-                StartCoroutine(WaitForNextMission());
+                case MissionRecollectScriptableObject recollectMission:
+                    ended = _actualProgress >= recollectMission.amountToReach;
+                    break;
+                case MissionButtonScriptableObject:
+                    ended = amountGet > 0;
+                    break;
             }
+
+            if (!ended) return;
+            _missionCompleted = true;
+            StartCoroutine(WaitForNextMission());
         }
     }
 }
