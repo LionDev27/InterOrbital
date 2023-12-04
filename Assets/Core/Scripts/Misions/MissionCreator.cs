@@ -12,6 +12,7 @@ namespace InterOrbital.Mission
 {
     public class MissionCreator : MonoBehaviour
     {
+        [SerializeField] private GameObject _visuals;
         [SerializeField] private Image _missionImage;
         [SerializeField] private TextMeshProUGUI _missionText;
         [SerializeField] private TextMeshProUGUI _feedbackText;
@@ -26,6 +27,11 @@ namespace InterOrbital.Mission
             _buttonMissions = GetComponent<ButtonMissionController>();
         }
 
+        private void Start()
+        {
+            _visuals.SetActive(false);
+        }
+
         private IEnumerator WaitForNextMission()
         {
             _missionText.color = Color.green;
@@ -37,6 +43,8 @@ namespace InterOrbital.Mission
     
         public void CreateMission(MissionScriptableObject mission)
         {
+            if (!_visuals.activeInHierarchy)
+                _visuals.SetActive(true);
             _actualMission = mission;
             if (mission.imageMission != null)
             {
@@ -63,7 +71,7 @@ namespace InterOrbital.Mission
 
         public void UpdateMission(int amountGet, string name = null)
         {
-            if (_missionCompleted) return;
+            if (_missionCompleted || _actualMission == null) return;
             if (name != null && _actualMission is MissionItemScriptableObject childObject)
             {
                 foreach (var item in childObject.itemsGoalList)

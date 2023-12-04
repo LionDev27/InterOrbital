@@ -90,6 +90,36 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
+      value: TuthoImage
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Display Name
+      value: Tutho
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: AudioClip
+      value: NormalTalk
+      type: 0
+      typeString: CustomFieldType_Text
+    portrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 464095a7f21ee524389f05e025d1f9c0, type: 3}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 4
+    fields:
+    - title: Name
       value: HelperWithImage
       type: 0
       typeString: CustomFieldType_Text
@@ -106,15 +136,37 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Display Name
-      value: Tutoh
+      value: ???
       type: 0
-      typeString: CustomFieldType_Text
-    - title: AudioClip
-      value: NormalTalk
-      type: 0
-      typeString: CustomFieldType_Text
+      typeString: 
     portrait: {fileID: 0}
     spritePortrait: {fileID: 21300000, guid: 464095a7f21ee524389f05e025d1f9c0, type: 3}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 5
+    fields:
+    - title: Name
+      value: Tutho
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Display Name
+      value: Tutho
+      type: 0
+      typeString: 
+    portrait: {fileID: 0}
+    spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
   items: []
@@ -375,8 +427,8 @@ MonoBehaviour:
             m_CallState: 2
       canvasRect:
         serializedVersion: 2
-        x: 161.43286
-        y: 411.72845
+        x: 162.92542
+        y: 468.44485
         width: 160
         height: 30
     - id: 3
@@ -430,8 +482,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 28.878143
-        y: 476.1048
+        x: 30.370697
+        y: 532.8207
         width: 160
         height: 30
     - id: 4
@@ -485,8 +537,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 347.4028
-        y: 473.11414
+        x: 348.89536
+        y: 529.82996
         width: 160
         height: 30
     - id: 5
@@ -541,8 +593,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 28.878143
-        y: 527.32416
+        x: 30.370697
+        y: 584.0403
         width: 160
         height: 30
     - id: 6
@@ -597,8 +649,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 347.4028
-        y: 523.114
+        x: 348.89536
+        y: 579.8302
         width: 160
         height: 30
     - id: 7
@@ -667,7 +719,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 4
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -734,8 +786,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Hey, buddy! Looks like you made it in one piece to "ELYSIUS". Specifically
-          (according to this machine's data), it seems you are on the planet "BALANDOR".
+        value: Hey, buddy! I'm Tutho, part-time worker in the Space Patrol control
+          station. I'm here to help you out as much as I can before my shift ends
+          (if they don't ask me for overtime, God forbid).
         type: 0
         typeString: 
       - title: Sequence
@@ -753,7 +806,7 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 9
         destinationConversationID: 1
-        destinationDialogueID: 10
+        destinationDialogueID: 13
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -764,7 +817,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160.91742
-        y: 254.7952
+        y: 253.30267
         width: 160
         height: 30
     - id: 10
@@ -820,8 +873,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160.91742
-        y: 304.7952
+        x: 162.40997
+        y: 361.5116
         width: 160
         height: 30
     - id: 11
@@ -876,8 +929,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160.91742
-        y: 354.7952
+        x: 162.40997
+        y: 411.5116
         width: 160
         height: 30
     - id: 12
@@ -891,7 +944,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -925,13 +978,69 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 348.57925
-        y: 573.114
+        x: 350.0718
+        y: 629.8302
+        width: 160
+        height: 30
+    - id: 13
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: Looks like you made it in one piece to "ELYSIUS". Specifically (according
+          to this machine's data), it seems you are on the planet "BALANDOR".
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 13
+        destinationConversationID: 1
+        destinationDialogueID: 10
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 160.91742
+        y: 304.7952
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 184.82019}
-    canvasZoom: 0.8200002
+    canvasScrollPosition: {x: 0, y: 44.776093}
+    canvasZoom: 0.6700003
   - id: 2
     fields:
     - title: Title
@@ -3015,7 +3124,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 3
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
