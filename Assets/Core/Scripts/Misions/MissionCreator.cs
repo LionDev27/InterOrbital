@@ -27,7 +27,7 @@ namespace InterOrbital.Mission
 
         private IEnumerator WaitForNextMission()
         {
-            _feedbackText.color = Color.green;
+            _missionText.color = Color.green;
             yield return new WaitForSeconds(2);
             _missionCompleted = false;
             _tutorialManager.StartDialogue(_actualMission.nextConversationName);
@@ -36,18 +36,26 @@ namespace InterOrbital.Mission
         public void CreateMission(MissionScriptableObject mission)
         {
             _actualMission = mission;
-            _missionImage.sprite = mission.imageMission != null ? mission.imageMission : null;
-            _missionText.text = mission.missionDescription;
-            _feedbackText.color = Color.red;
-            switch (mission)
+            if (mission.imageMission != null)
             {
-                case MissionRecollectScriptableObject recollectMission:
-                    _feedbackText.text = "0/" +recollectMission.amountToReach;
-                    break;
-                case MissionButtonScriptableObject buttonMission:
-                    _buttonMissions.Initialize(buttonMission);
-                    break;
+                _missionImage.gameObject.SetActive(true);
+                _missionImage.sprite = mission.imageMission;
             }
+            else
+                _missionImage.gameObject.SetActive(false);
+            _missionText.text = mission.missionDescription;
+            _missionText.color = Color.white;
+            if (mission is MissionRecollectScriptableObject recollectMission)
+            {
+                _feedbackText.gameObject.SetActive(true);
+                _feedbackText.text = "0/" + recollectMission.amountToReach;
+                _feedbackText.color = Color.red;
+            }
+            else
+                _feedbackText.gameObject.SetActive(false);
+            if (mission is MissionButtonScriptableObject buttonMission)
+                _buttonMissions.Initialize(buttonMission);
+
             _actualProgress = 0;
         }
 
@@ -65,12 +73,13 @@ namespace InterOrbital.Mission
                 }
             }
             else if (name == null && _actualMission.typeMission == Utils.TypeMission.Hunt)
-            {
                 _actualProgress += amountGet;
-            }
 
             if (_actualMission is MissionRecollectScriptableObject recollectMission)
+            {
+                _feedbackText.color = _actualProgress >= recollectMission.amountToReach ? Color.green : Color.red;
                 _feedbackText.text = _actualProgress + "/" + recollectMission.amountToReach;
+            }
             
             CheckEndMission(amountGet);
         }

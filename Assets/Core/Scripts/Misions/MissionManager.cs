@@ -27,12 +27,14 @@ namespace InterOrbital.Mission
 
         private void Start()
         {
-            NextMission();
+            _missionCreator.gameObject.SetActive(false);
         }
 
         public void NextMission()
         {
             if (!DialogueLua.GetVariable("StartedQuests").asBool) return;
+            if (!_missionCreator.gameObject.activeInHierarchy)
+                _missionCreator.gameObject.SetActive(true);
             _indexActualMission++;
             DialogueManager.ShowAlert(missionsToDo[_indexActualMission].missionDescription);
             if (_indexActualMission < missionsToDo.Count)

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90977bae00f5418ba5ff27db3ff3ee3c, type: 3}
+  m_Name: 1_Move
+  m_EditorClassIdentifier: 
+  typeMission: 3
+  missionDescription: Move wirh WASD
+  nextConversationName: Dash
+  imageMission: {fileID: 0}
+  buttons: 77000000610000007300000064000000
