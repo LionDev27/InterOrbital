@@ -1,6 +1,7 @@
 using InterOrbital.Player;
 using InterOrbital.WorldSystem;
 using InterOrbital.Item;
+using InterOrbital.Mission;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,11 +18,13 @@ public class BuildGrid : MonoBehaviour
     private Vector3Int _playerPos;
     private Vector3Int _highlightedTilePos;
     private bool _buildMode;
+    private MissionCreator _missionCreator;
 
     protected virtual void Awake()
     {
         if (Instance == null)
             Instance = this;
+        _missionCreator = FindObjectOfType<MissionCreator>();
     }
 
     private void Update()
@@ -194,6 +197,7 @@ public class BuildGrid : MonoBehaviour
             LockCellsOnBuild(coords);
 
             PlayerComponents.Instance.Inventory.SubstractUsedItem();
+            _missionCreator.UpdateMission(1, "Build");
             if(!PlayerComponents.Instance.Inventory.CanUseMore())
                 DesactivateBuildMode();
         }

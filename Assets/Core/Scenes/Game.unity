@@ -5771,11 +5771,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionsToDo:
   - {fileID: 11400000, guid: b8a99ae6ccaba2641b609e42c2e63487, type: 2}
-  - {fileID: 11400000, guid: ca7ed914f13a181418260e5ea5381ad9, type: 2}
-  - {fileID: 11400000, guid: 1bcaef4f31c9af14cb570379db5e6ce4, type: 2}
-  - {fileID: 11400000, guid: 1375cd44bf968df499d10076fa754546, type: 2}
-  - {fileID: 11400000, guid: 813341a15dc0d2146b59c8c578efe290, type: 2}
-  - {fileID: 11400000, guid: d149eb7a3fac2e7429466f8f47bd38cd, type: 2}
+  - {fileID: 11400000, guid: 5f8445f0ab329f548b3074bff711923c, type: 2}
+  - {fileID: 11400000, guid: f6eaa86ab9db3ad4599bbed7647d2751, type: 2}
+  - {fileID: 11400000, guid: 8f82b2a8028868e40b7fd5f9666b75f8, type: 2}
+  - {fileID: 11400000, guid: 34c934ef86362c14bb8e7d9bd04e6438, type: 2}
+  - {fileID: 11400000, guid: 8753886030fa18345a7a2df3bf3b2e42, type: 2}
+  - {fileID: 11400000, guid: c01c55efee3de504996f6f93e581ad97, type: 2}
+  - {fileID: 11400000, guid: fd058f79e540544429bcdb48b699a8dd, type: 2}
+  - {fileID: 11400000, guid: 9eeb92b3088af954dbeccfaede86240b, type: 2}
 --- !u!1 &885674623
 GameObject:
   m_ObjectHideFlags: 0
@@ -6453,6 +6456,7 @@ MonoBehaviour:
   - {fileID: 1129706080}
   bulletsItems: []
   emptyBullet: {fileID: 11400000, guid: 0d4f829f117159e4190360f792017ab9, type: 2}
+  _defaultBullet: {fileID: 11400000, guid: b4cd5eaa372cea84e84c015cc8a78a62, type: 2}
   bulletSlotSelectedImage: {fileID: -1716873357, guid: fc05e999b7051d64a8b1e787fbdcf5a9, type: 3}
   bulletSlotNoSelectedImage: {fileID: -1677933, guid: fc05e999b7051d64a8b1e787fbdcf5a9, type: 3}
   _selectAnimation:
@@ -11610,10 +11614,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
-      propertyPath: displaySettings.alertSettings.allowAlertsDuringConversations
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
 --- !u!4 &1364755132 stripped
@@ -15275,7 +15275,7 @@ MonoBehaviour:
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 30
+  m_fontSizeMin: 28
   m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2

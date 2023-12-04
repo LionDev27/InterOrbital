@@ -50,10 +50,10 @@ namespace InterOrbital.Utils
 
     public enum TypeMission
     {
-        Recolection,
         Hunt,
-        Craft,
-        Button
+        Build,
+        Equip,
+        None
     }
 
     public enum DifficultyArea

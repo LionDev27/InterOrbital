@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace InterOrbital.Mission
 
         private void CheckButtons()
         {
-            if (_buttons.Count > 1)
+            if (_buttons.Count > 0)
             {
                 foreach (var key in _buttons.Where(Input.GetKeyDown))
                 {

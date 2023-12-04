@@ -2113,7 +2113,7 @@ MonoBehaviour:
       - title: Dialogue Text
         value: Move the Table to the first row of your backpack if it's not there
           already and press E with the cursor on it to USE the item. You'll see a
-          projection of the table created by your pistol. Press E again to build
+          projection of the table created by your pistol. Press Left Click to build
           it.
         type: 0
         typeString: CustomFieldType_Text
@@ -3015,7 +3015,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 2
+        value: 3
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant

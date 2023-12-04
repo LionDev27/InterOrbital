@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using InterOrbital.Item;
+using InterOrbital.Utils;
 using PixelCrushers.DialogueSystem;
 
 namespace InterOrbital.Mission
@@ -30,7 +31,8 @@ namespace InterOrbital.Mission
             _missionText.color = Color.green;
             yield return new WaitForSeconds(2);
             _missionCompleted = false;
-            _tutorialManager.StartDialogue(_actualMission.nextConversationName);
+            if (_actualMission.nextConversationName != "")
+                _tutorialManager.StartDialogue(_actualMission.nextConversationName);
         }
     
         public void CreateMission(MissionScriptableObject mission)
@@ -59,7 +61,7 @@ namespace InterOrbital.Mission
             _actualProgress = 0;
         }
 
-        public void UpdateMission(int amountGet, string name = null, string nameEnemie = null)
+        public void UpdateMission(int amountGet, string name = null)
         {
             if (_missionCompleted) return;
             if (name != null && _actualMission is MissionItemScriptableObject childObject)
@@ -67,12 +69,10 @@ namespace InterOrbital.Mission
                 foreach (var item in childObject.itemsGoalList)
                 {
                     if(item.itemName == name)
-                    {
                         _actualProgress += amountGet;
-                    }
                 }
             }
-            else if (name == null && _actualMission.typeMission == Utils.TypeMission.Hunt)
+            else if (name == null && _actualMission.typeMission == TypeMission.Hunt)
                 _actualProgress += amountGet;
 
             if (_actualMission is MissionRecollectScriptableObject recollectMission)
@@ -80,22 +80,25 @@ namespace InterOrbital.Mission
                 _feedbackText.color = _actualProgress >= recollectMission.amountToReach ? Color.green : Color.red;
                 _feedbackText.text = _actualProgress + "/" + recollectMission.amountToReach;
             }
+
+            if (_actualMission.typeMission == TypeMission.None)
+            {
+                bool defaultMission = _actualMission is not MissionRecollectScriptableObject &&
+                                      _actualMission is not MissionButtonScriptableObject;
+                if (defaultMission && name != _actualMission.typeMission.ToString())
+                    amountGet = 0;
+            }
             
             CheckEndMission(amountGet);
         }
 
         private void CheckEndMission(int amountGet)
         {
-            var ended = false;
-            switch (_actualMission)
-            {
-                case MissionRecollectScriptableObject recollectMission:
-                    ended = _actualProgress >= recollectMission.amountToReach;
-                    break;
-                case MissionButtonScriptableObject:
-                    ended = amountGet > 0;
-                    break;
-            }
+            bool ended;
+            if (_actualMission is MissionRecollectScriptableObject recollectMission)
+                ended = _actualProgress >= recollectMission.amountToReach;
+            else
+                ended = amountGet > 0;
 
             if (!ended) return;
             _missionCompleted = true;
