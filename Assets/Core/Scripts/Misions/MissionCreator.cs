@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using InterOrbital.Item;
+using PixelCrushers.DialogueSystem;
 
 namespace InterOrbital.Mission
 {
@@ -12,6 +13,7 @@ namespace InterOrbital.Mission
         [SerializeField] private Image _missionImage;
         [SerializeField] private TextMeshProUGUI _missionText;
         [SerializeField] private TextMeshProUGUI _feedbackText;
+        [SerializeField] private TutorialManager _tutorialManager;
         private int _actualProgress = 0;
         private MissionScriptableObject _actualMission;
         private bool _missionCompleted;
@@ -19,8 +21,8 @@ namespace InterOrbital.Mission
         private IEnumerator WaitForNextMission()
         {
             yield return new WaitForSeconds(1);
-            MissionManager.Instance.NextMission();
             _missionCompleted = false;
+            _tutorialManager.StartDialogue(_actualMission.nextConversationName);
         }
     
         public void CreateMission(MissionScriptableObject mission)

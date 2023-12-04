@@ -32,5 +32,11 @@ namespace InterOrbital.Mission
         {
             Time.timeScale = 1f;
         }
+
+        public void StartDialogue(string conversation)
+        {
+            _trigger.conversation = conversation;
+            _trigger.OnUse();
+        }
     }
 }
