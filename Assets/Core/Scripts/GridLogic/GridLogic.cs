@@ -20,9 +20,8 @@ namespace InterOrbital.WorldSystem
         private const int BASE_WIDTH = 16;
         private const int BASE_HEIGHT = 16;
 
-
         [SerializeField] private bool debug;
-
+        [SerializeField] private bool filled;
         [field: SerializeField] public int width { get; private set; }
         [field: SerializeField] public int height { get; private set; }
 
@@ -41,6 +40,7 @@ namespace InterOrbital.WorldSystem
         [SerializeField] private TileAnimationSO _animationTiles;
         [SerializeField] private TilemapLayer[] _tilemapLayers;
         [SerializeField] private float minCenterSpawnDistance = 38f;
+        
 
         private List<EnemySpawner> _enemiesSpawnersList = new();
         private List<ResourcesSpawner> _resourcesSpawnersList = new();
@@ -158,10 +158,14 @@ namespace InterOrbital.WorldSystem
             CreateMapBorders();
             InitializeGrid();
             CreateRegions();
+            
 
             foreach (var tilemapLayer in _tilemapLayers)
             {
-                FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
+                if(!filled)
+                {
+                    FillTilemap(tilemapLayer.tilemap, tilemapLayer.biomesTiles, tilemapLayer.fillMode);
+                }
             }
 
             SpawnSpaceship();
@@ -435,6 +439,7 @@ namespace InterOrbital.WorldSystem
                     FillTilemapRandom(tilemap, tiles);
                     break;
             }
+            Debug.Log("Tamaño: " + tilemap.size);
         }
 
         private void FillTilemapAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
