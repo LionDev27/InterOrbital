@@ -6,6 +6,7 @@ namespace InterOrbital.Item
     public abstract class BaseInteractable : MonoBehaviour
     {
         [SerializeField] private GameObject _interactVisuals;
+        [SerializeField] private bool _interactionShowUI;
 
         protected virtual void Start()
         {
@@ -19,6 +20,8 @@ namespace InterOrbital.Item
                 _interactVisuals.SetActive(value);
         }
 
+        public bool InteractioShowUI() { return _interactionShowUI; }
+    
         public abstract void Interact();
 
         public abstract void EndInteraction();

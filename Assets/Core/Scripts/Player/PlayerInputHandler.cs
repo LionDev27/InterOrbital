@@ -167,7 +167,14 @@ namespace InterOrbital.Player
             if (!Inventory.isHide)
                 ui.OpenInventory(false);
         }
-        
+
+        public void ActivateControls()
+        {
+            PlayerInput.enabled = true;
+            enabled = true;
+            Rigidbody.velocity = Vector2.zero;
+        }
+
         public void DeactivateControls()
         {
             PlayerInput.enabled = false;
