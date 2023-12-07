@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 namespace InterOrbital.Utils
 {
     [Serializable]
-    public struct ItemRequired
+    public struct Items
     {
         public ItemScriptableObject item;
         public int amountRequired;

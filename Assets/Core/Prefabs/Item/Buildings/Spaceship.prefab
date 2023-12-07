@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStatic: 1
+  _offset: 0
 --- !u!1 &2973492852322416020
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactVisuals: {fileID: 661728771610618211}
+  _interactionShowUI: 1
 --- !u!114 &4541710877663844553
 MonoBehaviour:
   m_ObjectHideFlags: 0

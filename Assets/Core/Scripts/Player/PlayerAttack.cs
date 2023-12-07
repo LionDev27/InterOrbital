@@ -34,7 +34,7 @@ namespace InterOrbital.Player
 
         private void Update()
         {
-            if (InputHandler != null && InputHandler.enabled && InputHandler.CurrentActionMap() == "Player")
+            if (InputHandler != null && InputHandler.enabled && InputHandler.CurrentActionMap() == "Player" )
                 CursorController.Instance.SetAlpha(!HasBullet());
             _gunSpriteObj.SetActive(canAttack);
             _timer -= Time.deltaTime;

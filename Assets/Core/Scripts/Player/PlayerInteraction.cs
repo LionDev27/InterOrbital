@@ -69,12 +69,20 @@ namespace InterOrbital.Player
         {
             if (!CanInteract()) return;
             
-            InputHandler.ChangeActionMap();
-            if (_isInteracting)
-                _currentInteractable.EndInteraction();
+            if (_currentInteractable.InteractioShowUI())
+            {
+                InputHandler.ChangeActionMap();
+                if (_isInteracting)
+                    _currentInteractable.EndInteraction();
+                else
+                    _currentInteractable.Interact();
+                _isInteracting = !_isInteracting;
+            }
             else
+            {
                 _currentInteractable.Interact();
-            _isInteracting = !_isInteracting;
+            }
+            
         }
 
         private bool CanInteract()
