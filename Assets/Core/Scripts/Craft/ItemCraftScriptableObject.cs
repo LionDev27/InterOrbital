@@ -9,7 +9,7 @@ namespace InterOrbital.Item
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemCraftScriptableObject", order = 1)]
     public class ItemCraftScriptableObject : ItemScriptableObject
     {
-        public List<ItemRequired> itemsRequired;
+        public List<Items> itemsRequired;
         public float timeToCraft;
         public int craftEnergyRequired;
         [Range(1, 10)]

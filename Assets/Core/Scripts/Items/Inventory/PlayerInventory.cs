@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using InterOrbital.Item;
 using InterOrbital.Utils;
+using System.Collections.Generic;
 
 namespace InterOrbital.Player
 {
@@ -37,6 +38,11 @@ namespace InterOrbital.Player
             Debug.DrawRay(transform.position, pointToDraw, Color.yellow);
 
             ScrollFastInventory();
+        }
+
+        public new void ResetInventory()
+        {
+            base.ResetInventory();
         }
 
         public void UpdateLevel()
@@ -268,6 +274,20 @@ namespace InterOrbital.Player
         public int GetStartIndexBulletSlot()
         {
             return gridMain.transform.childCount;
+        }
+
+        public void FillDeathBag(DeathBag deathBag)
+        {
+            foreach (var item in _items)
+            {
+                if (item.itemSo != itemVoid)
+                {
+                    Items itemFromPlayer = new Items();
+                    itemFromPlayer.item = item.itemSo;
+                    itemFromPlayer.amountRequired = item.amount;
+                    deathBag.playerItems.Add(itemFromPlayer);
+                }
+            }
         }
     }
 }

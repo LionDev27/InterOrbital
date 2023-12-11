@@ -53,6 +53,17 @@ namespace InterOrbital.Player
             isHide = true;
         }
 
+        protected void ResetInventory()
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                _items[i].itemSo = itemVoid;
+                _items[i].amount = 0;
+                _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
+                _textAmount[i].text = "";
+            }
+        }
+
 
         protected void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot, bool relateAmounts)
         {
@@ -116,6 +127,17 @@ namespace InterOrbital.Player
             Destroy(obj);
             itemAux.SetItem(item);
             itemAux.amount = 1;
+            PlayerComponents.Instance.Inventory.AddItem(itemAux);
+        }
+
+        public void AddOneItemSOwithAmount(ItemScriptableObject item,int amount)
+        {
+            GameObject obj = Instantiate(dropItemPrefab);
+            ItemObject itemAux = obj.AddComponent<ItemObject>();
+            itemAux.ObtainComponents();
+            Destroy(obj);
+            itemAux.SetItem(item);
+            itemAux.amount = amount;
             PlayerComponents.Instance.Inventory.AddItem(itemAux);
         }
 

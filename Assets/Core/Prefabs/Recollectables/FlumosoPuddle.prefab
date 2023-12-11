@@ -53,7 +53,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1076485647804008095, guid: 195b6ef43fadee24ea4fcab88d5d07f1, type: 3}
       propertyPath: m_Name
-      value: RecollectableRestricted
+      value: FlumosoPuddle
       objectReference: {fileID: 0}
+    - target: {fileID: 1076485648370343494, guid: 195b6ef43fadee24ea4fcab88d5d07f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 976967943, guid: 08923d506fdce154aa3b8bbc62fdc5d1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 195b6ef43fadee24ea4fcab88d5d07f1, type: 3}
+--- !u!1 &4280824526295105885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1076485648370343544, guid: 195b6ef43fadee24ea4fcab88d5d07f1, type: 3}
+  m_PrefabInstance: {fileID: 3862112416153345829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &41343727765090799
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280824526295105885}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 395ca63bfa8e83942a9c4efa5c0c304d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
