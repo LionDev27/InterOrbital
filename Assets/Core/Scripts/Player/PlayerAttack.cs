@@ -4,6 +4,7 @@ using InterOrbital.Combat.Bullets;
 using InterOrbital.Item;
 using InterOrbital.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace InterOrbital.Player
 {
@@ -40,12 +41,15 @@ namespace InterOrbital.Player
                 cd.Run();
         }
 
-        public void SetupCooldowns(List<ItemBulletScriptableObject> bulletsData)
+        public void SetupCooldowns(List<ItemBulletScriptableObject> bulletsData, List<BulletSlot> slots)
         {
             _changingCooldowns = true;
             _cooldowns.Clear();
-            for (int i = 0; i < bulletsData.Count; i++)
+            for (var i = 0; i < bulletsData.Count; i++)
+            {
                 _cooldowns.Add(new BulletCooldown());
+                _cooldowns[i].SetImage(slots[i].BulletImage);
+            }
             _changingCooldowns = false;
         }
         
@@ -53,14 +57,12 @@ namespace InterOrbital.Player
         {
             _bulletPrefab = bullet;
             _bulletSFX = bulletSFX;
-            if (HasBullet())
-            {
-                _currentCooldownIndex = index;
-                var newCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
-                //Si el cooldown que estamos poniendo es distinto, setupeamos.
-                if (Math.Abs(newCooldown - _cooldowns[index].Cooldown) > 0.005f)
-                    _cooldowns[index].Setup(newCooldown);
-            }
+            if (!HasBullet()) return;
+            _currentCooldownIndex = index;
+            var newCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
+            //Si el cooldown que estamos poniendo es distinto, setupeamos.
+            if (Math.Abs(newCooldown - _cooldowns[index].Cooldown) > 0.005f)
+                _cooldowns[index].Setup(newCooldown);
         }
 
         private void Attack()

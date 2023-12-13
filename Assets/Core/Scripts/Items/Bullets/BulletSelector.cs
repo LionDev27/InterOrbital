@@ -77,7 +77,7 @@ namespace InterOrbital.UI
 
         private void SetupCooldowns()
         {
-            _playerAttack.SetupCooldowns(bulletsItems);
+            _playerAttack.SetupCooldowns(bulletsItems, bulletsSlots);
         }
 
         private void ResetSelectedBulletsTransparency()
