@@ -1,11 +1,9 @@
-using System;
 using InterOrbital.Item;
 using InterOrbital.Player;
 using System.Collections.Generic;
 using DG.Tweening;
 using InterOrbital.Mission;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace InterOrbital.UI
 {
@@ -30,6 +28,7 @@ namespace InterOrbital.UI
         private int _selectedBulletIndex = 0;
         private bool _equipMissionCompleted;
         private MissionCreator _missionCreator;
+        private PlayerAttack _playerAttack;
 
         private void Awake()
         {
@@ -44,10 +43,16 @@ namespace InterOrbital.UI
 
         private void Start()
         {
+            _playerAttack = PlayerComponents.Instance.PlayerAttack;
             InitializeBulletSelector();
         }
 
         private void Update()
+        {
+            CheckBulletMission();
+        }
+
+        private void CheckBulletMission()
         {
             if (_equipMissionCompleted || !bulletsItems.Contains(_defaultBullet)) return;
             _equipMissionCompleted = true;
@@ -66,7 +71,13 @@ namespace InterOrbital.UI
 
             bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
             ResetSelectedBulletsTransparency();
+            SetupCooldowns();
             ChangePlayerBullet();
+        }
+
+        private void SetupCooldowns()
+        {
+            _playerAttack.SetupCooldowns(bulletsItems);
         }
 
         private void ResetSelectedBulletsTransparency()
@@ -131,14 +142,13 @@ namespace InterOrbital.UI
         {
             if (_selectedBulletIndex < bulletsItems.Count)
             {
-                PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab,
-                    bulletsItems[_selectedBulletIndex].shotSFX);
+                _playerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab,
+                    bulletsItems[_selectedBulletIndex].shotSFX, _selectedBulletIndex);
             }
         }
 
         public void SubstractBullet()
         {
-
             int j = _selectedBulletIndex;
             PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
             UpdateBulletSelectorUI();
