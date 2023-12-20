@@ -85,13 +85,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e3ec8aefc14e4aa95471d714963834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRange: {x: 28, y: 16}
+  _detectionRange: {x: 29, y: 17}
   _states:
   - {fileID: 2067578835080342650}
-  - {fileID: 2067578835080342650}
+  - {fileID: 1076033873}
+  - {fileID: 1076033872}
+  - {fileID: 1076033881}
   _hitShaderController: {fileID: 3477616065487360705}
   _hitAnimationTime: 0.4
   _useHitAnimation: 0
+  _attackRange: {x: 20, y: 10}
 --- !u!114 &2067578835080342650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +108,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waitTime: 3
-  _speed: 3
+  _speed: 2.5
   _minMoveRadius: 6
   _maxMoveRadius: 12
+--- !u!114 &1076033872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e652fad98b7140b6b376a3877287a331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1.5
+  _lostTime: 6
+  _moveRate: 2
+--- !u!114 &1076033873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c83c31920d4ea9949a12c745eb1832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4.5
+--- !u!114 &1076033881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd37467950a428d8432112fbd7d81ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackStartTime: 0.5
+  _attackTime: 0.2
+  _attackEndTime: 1
+  _attackDistanceMultiplier: 1.5

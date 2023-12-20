@@ -18,6 +18,7 @@ namespace InterOrbital.Combat.IA
 
         public override void OnStateEnter()
         {
+            _currentAgent.EnableNavigation(true);
             _currentAgent.NavMeshAgent.speed = _speed;
             StartCoroutine(MoveEveryRatePassed());
         }
