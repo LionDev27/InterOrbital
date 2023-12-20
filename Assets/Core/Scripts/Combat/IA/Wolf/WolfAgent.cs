@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InterOrbital.Combat.IA.Wolf
+namespace InterOrbital.Combat.IA
 {
     public class WolfAgent : EnemyAgentBase
     {
@@ -11,11 +11,6 @@ namespace InterOrbital.Combat.IA.Wolf
         {
             base.Awake();
             _spriteFlipper = GetComponentInChildren<SpriteFlipper>();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
         }
         
         public void FlipSprite()

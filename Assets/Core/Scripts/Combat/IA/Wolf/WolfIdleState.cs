@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace InterOrbital.Combat.IA.Wolf
+namespace InterOrbital.Combat.IA
 {
     public class WolfIdleState : EnemyStateBase
     {
@@ -28,7 +26,9 @@ namespace InterOrbital.Combat.IA.Wolf
         public override void Execute()
         {
             _currentAgent.FlipSprite();
-            if (_currentAgent.ArrivedDestination() && _moving)
+            if (_currentAgent.IsDetectingPlayer())
+                _currentAgent.ChangeState(_currentAgent.States[1]);
+            else if (_currentAgent.ArrivedDestination() && _moving)
             {
                 _moving = false;
                 StartCoroutine(MoveWait());
