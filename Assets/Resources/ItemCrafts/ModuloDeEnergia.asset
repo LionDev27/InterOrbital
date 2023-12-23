@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 2017772461, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 30
-  itemName: "Modulo de Energ\xEDa"
-  itemDescription: "Restaura gran cantidad energ\xEDa"
+  itemName: Energy module
+  itemDescription: Restore more energy
   type: 0
   consumableValues:
     consumableType: 0
     amountToRestore: 40
+  upgradeType: 0
   isStackable: 1
   maxAmount: 20
   buildHighlightSprite: {fileID: -1267330642, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}

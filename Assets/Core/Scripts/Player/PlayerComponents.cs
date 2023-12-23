@@ -25,6 +25,7 @@ namespace InterOrbital.Player
         public PlayerEnergy PlayerEnergy { get; private set; }
         public PlayerDash PlayerDash { get; private set; }
         public PlayerDamageable PlayerDamageable { get; private set; }
+        public PlayerRecollector PlayerRecollector { get; private set; }
 
         public static PlayerComponents Instance;
 
@@ -47,6 +48,7 @@ namespace InterOrbital.Player
             PlayerDash = GetComponent<PlayerDash>();
             PlayerDamageable = GetComponent<PlayerDamageable>();
             PlayerInteraction = GetComponent<PlayerInteraction>();
+            PlayerRecollector = GetComponent<PlayerRecollector>();
         }
 
         public Vector3 GetPlayerPosition()

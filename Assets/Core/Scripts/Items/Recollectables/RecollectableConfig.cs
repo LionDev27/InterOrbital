@@ -11,5 +11,6 @@ namespace InterOrbital.Recollectables
         public List<ItemScriptableObject> dropItems;
         public List<ItemSelector> itemSelectors;
         public List<int> dropRates;
+        public int tier;
     }
 }

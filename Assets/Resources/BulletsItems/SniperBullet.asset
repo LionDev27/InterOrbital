@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 21300000, guid: d74cb048c9454644b969df05403cc1e7, type: 3}
   id: 40
-  itemName: Bala Sniper
-  itemDescription: "Bala m\xE1s grande, m\xE1s r\xE1pida y que inflinge m\xE1s da\xF1o,
-    pero con un alto enfriamiento."
+  itemName: Sniper Bullet
+  itemDescription: Larger, faster bullet that inflicts more damage, but with a high
+    cooldown.
   type: 2
   consumableValues:
     consumableType: 0
     amountToRestore: 0
   upgradeType: 0
   isStackable: 1
-  maxAmount: 80
+  maxAmount: 90
   buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
   animator: {fileID: 0}

@@ -2,8 +2,8 @@ using InterOrbital.Item;
 using InterOrbital.Player;
 using System.Collections.Generic;
 using DG.Tweening;
+using InterOrbital.Mission;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace InterOrbital.UI
 {
@@ -14,6 +14,7 @@ namespace InterOrbital.UI
         [SerializeField] private List<BulletSlot> bulletsSlots;
         [SerializeField] private List<ItemBulletScriptableObject> bulletsItems;
         [SerializeField] private ItemBulletScriptableObject emptyBullet;
+        [SerializeField] private ItemBulletScriptableObject _defaultBullet;
 
         [SerializeField] private Sprite bulletSlotSelectedImage;
         [SerializeField] private Sprite bulletSlotNoSelectedImage;
@@ -25,6 +26,9 @@ namespace InterOrbital.UI
 
         private RectTransform _rectTransform;
         private int _selectedBulletIndex = 0;
+        private bool _equipMissionCompleted;
+        private MissionCreator _missionCreator;
+        private PlayerAttack _playerAttack;
 
         public int SelectedBulletIndex => _selectedBulletIndex;
 
@@ -36,11 +40,25 @@ namespace InterOrbital.UI
             }
 
             _rectTransform = GetComponent<RectTransform>();
+            _missionCreator = FindObjectOfType<MissionCreator>();
         }
 
         private void Start()
         {
+            _playerAttack = PlayerComponents.Instance.PlayerAttack;
             InitializeBulletSelector();
+        }
+
+        private void Update()
+        {
+            CheckBulletMission();
+        }
+
+        private void CheckBulletMission()
+        {
+            if (_equipMissionCompleted || !bulletsItems.Contains(_defaultBullet)) return;
+            _equipMissionCompleted = true;
+            _missionCreator.UpdateMission(1, "Equip");
         }
 
         private void InitializeBulletSelector()
@@ -54,7 +72,29 @@ namespace InterOrbital.UI
             }
 
             bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ResetSelectedBulletsTransparency();
+            SetupCooldowns();
             ChangePlayerBullet();
+        }
+
+        private void SetupCooldowns()
+        {
+            _playerAttack.SetupCooldowns(bulletsItems, bulletsSlots);
+        }
+
+        private void ResetSelectedBulletsTransparency()
+        {
+            for (int i = 0; i < bulletsSlots.Count; i++)
+            {
+                if (i == _selectedBulletIndex)
+                {
+                    bulletsSlots[i].SetBulletAsSelected();
+                }
+                else
+                {
+                    bulletsSlots[i].SetBulletAsNoSelected();
+                }
+            }
         }
 
         public void UpdateBulletSelectorUI()
@@ -77,7 +117,7 @@ namespace InterOrbital.UI
                 bulletsSlots[i].SetBulletSprite(bulletsItems[i].itemSprite);
                 bulletsSlots[i].SetBulletAmount(itemInInventory.amount);
             }
-
+            ResetSelectedBulletsTransparency();
             ChangePlayerBullet();
         }
 
@@ -96,6 +136,7 @@ namespace InterOrbital.UI
 
             bulletsSlots[lastSelectedBulletIndex].SetBackgroundSprite(bulletSlotNoSelectedImage);
             bulletsSlots[_selectedBulletIndex].SetBackgroundSprite(bulletSlotSelectedImage);
+            ResetSelectedBulletsTransparency();
             ChangePlayerBullet();
         }
 
@@ -103,14 +144,13 @@ namespace InterOrbital.UI
         {
             if (_selectedBulletIndex < bulletsItems.Count)
             {
-                PlayerComponents.Instance.PlayerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab,
-                    bulletsItems[_selectedBulletIndex].shotSFX);
+                _playerAttack.ChangeBullet(bulletsItems[_selectedBulletIndex].bulletPrefab,
+                    bulletsItems[_selectedBulletIndex].shotSFX, _selectedBulletIndex);
             }
         }
 
         public void SubstractBullet()
         {
-
             int j = _selectedBulletIndex;
             PlayerComponents.Instance.Inventory.SubstractBulletInInventory(j);
             UpdateBulletSelectorUI();

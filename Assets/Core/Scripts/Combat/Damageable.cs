@@ -24,6 +24,11 @@ namespace InterOrbital.Combat
             _currentHealth = Mathf.Clamp(_currentHealth + healthAmount, 0, _maxHealth);
         }
 
+        public virtual void ResetHealth()
+        {
+            _currentHealth = _maxHealth;
+        }
+
         public virtual void UpgradeHealth(int healthAmount)
         {
             _maxHealth += healthAmount;

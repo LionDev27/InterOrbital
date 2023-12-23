@@ -53,6 +53,17 @@ namespace InterOrbital.Player
             isHide = true;
         }
 
+        protected void ResetInventory()
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                _items[i].itemSo = itemVoid;
+                _items[i].amount = 0;
+                _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
+                _textAmount[i].text = "";
+            }
+        }
+
 
         protected void RelateSlots(GameObject grid,int startSize, int size, Image[] imagesSlot, bool relateAmounts)
         {
@@ -116,6 +127,17 @@ namespace InterOrbital.Player
             Destroy(obj);
             itemAux.SetItem(item);
             itemAux.amount = 1;
+            PlayerComponents.Instance.Inventory.AddItem(itemAux);
+        }
+
+        public void AddOneItemSOwithAmount(ItemScriptableObject item,int amount)
+        {
+            GameObject obj = Instantiate(dropItemPrefab);
+            ItemObject itemAux = obj.AddComponent<ItemObject>();
+            itemAux.ObtainComponents();
+            Destroy(obj);
+            itemAux.SetItem(item);
+            itemAux.amount = amount;
             PlayerComponents.Instance.Inventory.AddItem(itemAux);
         }
 
@@ -238,8 +260,10 @@ namespace InterOrbital.Player
             }
             (_items[indexB], _items[indexA]) = (_items[indexA], _items[indexB]);
 
+
             //Debug.Log("Ahora el indice" + indexA + " es "+ _textAmount[indexA].text +" y el de indice "+indexB+" es "+ _textAmount[indexB].text);
 
+            UpdateActionUI();
         }
 
         public void SwitchItemOnlyChest(int indexChestA, int indexChestB, bool fastAsign)
@@ -262,6 +286,7 @@ namespace InterOrbital.Player
                 (UIManager.Instance.chestInventory._itemsSlot[indexChest], PlayerComponents.Instance.Inventory._itemsSlot[indexInventory]) = (PlayerComponents.Instance.Inventory._itemsSlot[indexInventory], UIManager.Instance.chestInventory._itemsSlot[indexChest]);
             }
             (UIManager.Instance.chestInventory._items[indexChest], PlayerComponents.Instance.Inventory._items[indexInventory]) = (PlayerComponents.Instance.Inventory._items[indexInventory], UIManager.Instance.chestInventory._items[indexChest]);
+            UpdateActionUI();
         }
 
         public void DropItem(Vector3 spawnPosition, Vector3 droperPosition, int index=-1, ItemScriptableObject item=null)
@@ -290,7 +315,7 @@ namespace InterOrbital.Player
                 _itemsSlot[index].sprite = itemVoid.itemSprite;
                 _textAmount[index].text = "";
             }
-
+            UpdateActionUI();
             BulletSelector.Instance.UpdateBulletSelectorUI();
         }
 

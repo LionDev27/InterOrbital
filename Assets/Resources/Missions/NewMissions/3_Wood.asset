@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
+  m_Name: 3_Wood
+  m_EditorClassIdentifier: 
+  typeMission: 0
+  missionDescription: Get Wood (hold Right click)
+  nextConversationName: Inventory
+  imageMission: {fileID: 2065678237, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
+  amountToReach: 5
+  itemsGoalList:
+  - {fileID: 11400000, guid: 807eae4239d81ee4e8cc45235d694407, type: 2}
+  - {fileID: 11400000, guid: c4446f9b1aea9de419ce728e60b50f20, type: 2}
+  - {fileID: 11400000, guid: 090c3c9dc3d07ac4ab9579172676316b, type: 2}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using InterOrbital.Combat;
 using InterOrbital.Others;
+using InterOrbital.Spaceship;
 using InterOrbital.UI;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace InterOrbital.Player
         [SerializeField] private float _invencibilityTime;
         [SerializeField] private float _loseHealthTimerDefaultValue;
         [SerializeField] private GameObject _dmgPopup;
+        [SerializeField] private GameObject _deathBag;
         private float _loseHealthTimer;
         private float _invencibilityTimer;
         private bool _godMode;
@@ -51,9 +53,7 @@ namespace InterOrbital.Player
                 }
                 else
                 {
-                    _currentHealth = Mathf.Clamp(_currentHealth - 1, 0, _maxHealth);
-                    UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
-                    CameraShake.Instance.Shake(_damageCameraShakeIntensity / 2f);
+                    GetDamage(1);
                     ResetHealthTimer();
                     CheckHealth();
                 }
@@ -98,12 +98,12 @@ namespace InterOrbital.Player
         {
             if (CanTakeDamage())
             {
-                Debug.Log("Recibiendo daño");
                 base.GetDamage(damage);
                 GameObject dmgPopup = Instantiate(_dmgPopup,transform.position,Quaternion.identity);
-                dmgPopup.GetComponent<DamagePopup>().Setup(damage);
+                dmgPopup.GetComponent<NumberPopup>().Setup(damage);
                 UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
                 CameraShake.Instance.Shake(_damageCameraShakeIntensity);
+                AudioManager.Instance.PlaySFX("LoseLife");
                 StartCoroutine(SlowTimeEffect.Instance.Play(0.2f));
                 SetInvencibilityState();
             }
@@ -112,6 +112,13 @@ namespace InterOrbital.Player
         public override void RestoreHealth(int healthAmount)
         {
             base.RestoreHealth(healthAmount);
+            UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
+            ResetHealthTimer();
+        }
+
+        public override void ResetHealth()
+        {
+            base.ResetHealth();
             UIManager.Instance.UpdateLifeUI(_maxHealth, _currentHealth);
             ResetHealthTimer();
         }
@@ -134,8 +141,10 @@ namespace InterOrbital.Player
         {
             yield return new WaitForSeconds(_invencibilityTime);
             Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
-            LevelManager.Instance.BackMenu();
-            gameObject.SetActive(false);
+            Instantiate(_deathBag,transform.position,transform.rotation);
+            transform.position = SpaceshipComponents.Instance.transform.position;
+            ResetHealth();
+            _playerComponents.InputHandler.ActivateControls();
         }
 
         private IEnumerator HitAnimation()

@@ -16,10 +16,10 @@ MonoBehaviour:
   id: 2
   itemName: Luminfern
   itemDescription: Planta que ilumina
-  type: 4
+  type: 0
   consumableValues:
     consumableType: 0
-    amountToRestore: 0
+    amountToRestore: 1
   upgradeType: 0
   isStackable: 1
   maxAmount: 30

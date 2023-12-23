@@ -1,24 +1,36 @@
 using System.Collections;
+using DG.Tweening;
 using InterOrbital.Combat;
 using UnityEngine;
 using InterOrbital.Recollectables;
+using TMPro;
 
 namespace InterOrbital.Player
 {
     public class PlayerRecollector : PlayerComponents
     {
+        public int Usages => _currentUsages;
+        
         [SerializeField] private Animator _gunAnimator;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _gunSprite;
-        [SerializeField] private int _recollectionAttackDamage = 1;
+        [SerializeField] private TextMeshProUGUI _usagesText;
         [SerializeField] private float _recollectionAttackCooldown = 2f;
         [SerializeField] private float _recollectionRange = 5f;
         [SerializeField] private float _recollectionCooldownInSeconds = 1f;
         [SerializeField] private float _recollectionWidth = 3f;
 
+        private int _recollectionAttackDamage;
+        private int _currentUsages;
+        private int _currentTier;
         private bool _canAttack = true;
         private bool _transitionAnimationEnded;
         private float _timer;
+
+        private void Start()
+        {
+            _usagesText.DOFade(0f, 0f);
+        }
 
         private void Update()
         {
@@ -32,7 +44,7 @@ namespace InterOrbital.Player
                 if (_gunAnimator.GetBool("Recollecting") == false)
                 {
                     _gunAnimator.SetBool("Recollecting", true);
-                    _audioSource.Play();
+                    _usagesText.DOFade(1f, 0.5f);
                     PlayerAttack.canAttack = false;
                 }
             }
@@ -40,6 +52,7 @@ namespace InterOrbital.Player
             {
                 _gunAnimator.SetBool("Recollecting", false);
                 _audioSource.Stop();
+                _usagesText.DOFade(0f, 0.5f);
                 PlayerAttack.canAttack = true;
             }
         }
@@ -49,6 +62,8 @@ namespace InterOrbital.Player
             Vector2 dir = PlayerAim.AimDir();
             Vector2 boxcastSize = new Vector2(0.05f, _recollectionWidth);
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxcastSize, 0f, dir, _recollectionRange);
+            if (_gunSprite.material.GetFloat("_AlphaValue") < 1f)
+                _gunSprite.material.SetFloat("_AlphaValue", 1f);
             
             if(hits.Length <= 0) return;
 
@@ -57,8 +72,19 @@ namespace InterOrbital.Player
                 Recollectable recollectable = hit.collider.GetComponent<Recollectable>();
                 if (recollectable != null)
                 {
-                    recollectable.Recollect();
-                    _timer = 0f;
+                    if (_currentTier >= recollectable.Tier)
+                    {
+                        recollectable.Recollect();
+                        CheckUsages();
+                        _timer = 0f;
+                    }
+                    else
+                    {
+                        AudioManager.Instance.PlaySFX("Error");
+                        if (_gunSprite.material.GetFloat("_AlphaValue") > 0.25f)
+                            _gunSprite.material.SetFloat("_AlphaValue", 0.25f);
+                        _timer = -1f;
+                    }
                     return;
                 }
 
@@ -66,6 +92,7 @@ namespace InterOrbital.Player
                 {
                     damageable.GetDamage(_recollectionAttackDamage);
                     StartCoroutine(AttackCooldown());
+                    CheckUsages();
                     _timer = 0f;
                     return;
                 }
@@ -86,9 +113,44 @@ namespace InterOrbital.Player
             return _timer >= _recollectionCooldownInSeconds && _transitionAnimationEnded;
         }
 
+        private void CheckUsages()
+        {
+            if (_currentUsages < 0) return;
+            _currentUsages--;
+            _usagesText.SetText(_currentUsages.ToString());
+            switch (_currentUsages)
+            {
+                case <= 0:
+                    RecollectorUpgrades.OnEndUpgrade?.Invoke();
+                    break;
+                case 10:
+                    _usagesText.color = Color.red;
+                    break;
+                case < 10 and > 3:
+                    _usagesText.transform.DOShakeScale(0.2f).SetEase(Ease.OutBack).Play();
+                    break;
+                case <= 3:
+                    _usagesText.transform.DOShakeScale(0.2f, vibrato: 20).SetEase(Ease.OutElastic).Play();
+                    break;
+            }
+        }
+
         public void SetTransitionStatus(bool value)
         {
+            if (value)
+                _audioSource.Play();
             _transitionAnimationEnded = value;
+        }
+
+        public void ChangeTier(RecollectorTier tier, int tierIndex)
+        {
+            _gunAnimator.runtimeAnimatorController = tier.controller;
+            _currentUsages = tier.usages;
+            _usagesText.SetText(tierIndex > 0 ? _currentUsages.ToString() : "");
+            _usagesText.color = _currentUsages <= 10 ? Color.red : Color.white;
+            _currentTier = tierIndex;
+            _audioSource.clip = tier.sfx;
+            _recollectionAttackDamage = tier.damage;
         }
     }
 }

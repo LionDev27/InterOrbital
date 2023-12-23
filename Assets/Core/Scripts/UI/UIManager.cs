@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using InterOrbital.Item;
 using InterOrbital.Player;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace InterOrbital.UI
@@ -35,7 +36,8 @@ namespace InterOrbital.UI
         public GameObject bulletUI;
         public GameObject spaceshipUI;
         public GameObject storageUI;
-        public GameObject blackout;
+        public GameObject tablesBlackout;
+        public GameObject inventoryBlackout;
 
         private void Awake()
         {
@@ -53,21 +55,19 @@ namespace InterOrbital.UI
             {
                 animating = true;
                 AudioManager.Instance.PlaySFX("UIMenuReverse");
-                blackout.SetActive(false);
+                tablesBlackout.SetActive(false);
                 PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                 ui.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.Linear).Play().OnComplete(() =>
                 {
                     _somethingOpen = false;
                     animating = false;
-                    _currentUI = null;
-                });  
+                });
             }
             else if(!_somethingOpen)
             {
                 animating = true;
                 AudioManager.Instance.PlaySFX("UIMenu");
-                _currentUI = ui;
-                blackout.SetActive(true);
+                tablesBlackout.SetActive(true);
                 PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                 _somethingOpen = true;
                 ui.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).Play().OnComplete(() => { animating = false; });
@@ -87,14 +87,25 @@ namespace InterOrbital.UI
                     {
                         storageUI.SetActive(true);
                         isChestOpen = true;
+                        if (_fastingCraft.transform.localScale != Vector3.zero)
+                        {
+                            CloseFastCraft();
+                            _currentUI = _fastingCraft;
+                        }
+                        else
+                        {
+                            CloseBulletSelector();
+                            _currentUI = _bulletSelector;
+                        }
                     }
                     else
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                         storageUI.SetActive(false);
                         isChestOpen = false;
+                        OpenLastUI();
                     }
-                    blackout.SetActive(true);
+                    inventoryBlackout.SetActive(true);
                     PlayerComponents.Instance.PlayerEnergy.StopLoseEnergyOverTime();
                     _somethingOpen = true;
                     _openInventory = bagUI.transform.DOMoveY(Screen.height / 2, 0.5f).Play().OnComplete(() =>
@@ -116,7 +127,7 @@ namespace InterOrbital.UI
                     {
                         PlayerComponents.Instance.InputHandler.ChangeActionMap();
                     }
-                    blackout.SetActive(false);
+                    inventoryBlackout.SetActive(false);
                     PlayerComponents.Instance.PlayerEnergy.ResumeLoseEnergyOverTime();
                     _openInventory = bagUI.transform.DOMoveY(_inventoryInitPosition.transform.position.y , 0.5f).Play().OnComplete(() =>
                     {
@@ -125,11 +136,26 @@ namespace InterOrbital.UI
                         {
                             storageUI.SetActive(false);
                             isChestOpen = false;
+                            OpenLastUI();
                         }
                         animating = false;
                     });
                 }
             }
+        }
+
+        private void OpenLastUI()
+        {
+            if (_currentUI == null)
+            {
+                OpenFastCraft();
+                _currentUI = _fastingCraft;
+                return;
+            }
+            if (_currentUI == _fastingCraft)
+                OpenFastCraft();
+            else
+                OpenBulletSelector();
         }
 
         public void UpdateEnergyUI(int maxEnergy,int currentEnergy)
@@ -140,6 +166,18 @@ namespace InterOrbital.UI
         public void UpgradeEnergyUI()
         {
             _energyUIController.UpgradeEnergyTier();
+        }
+
+        public void EnergyBlink(bool blink)
+        {
+            if (blink)
+            {
+                _energyUIController.GetEnergyTierBarsUIController().StartBlink();
+            }
+            else
+            {
+                _energyUIController.GetEnergyTierBarsUIController().StopBlink();
+            }
         }
 
         public int RemainingEnergyTiers => _energyUIController.RemainingTiers;

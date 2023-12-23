@@ -2,6 +2,7 @@ using UnityEngine;
 using Cinemachine;
 using InterOrbital.WorldSystem;
 using InterOrbital.Player;
+using InterOrbital.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class CameraController : MonoBehaviour
 
     private void AimBetweenPlayerAndCursor(Vector3 playerPos)
     {
-        _followTarget.position = UpdateTargetPos(playerPos);
+        _followTarget.position = UIManager.Instance.SomethingOpen? playerPos : UpdateTargetPos(playerPos);
     }
 
     private Vector2 GetMousePos()

@@ -5,6 +5,8 @@ using TMPro;
 using InterOrbital.Item;
 using InterOrbital.Utils;
 using DG.Tweening;
+using System.Collections.Generic;
+
 
 namespace InterOrbital.Player
 {
@@ -49,6 +51,11 @@ namespace InterOrbital.Player
             ScrollFastInventory();
         }
 
+        public new void ResetInventory()
+        {
+            base.ResetInventory();
+        }
+
         public void UpdateLevel()
         {
             if (_level < 3)
@@ -83,8 +90,9 @@ namespace InterOrbital.Player
         public void UseItem()
         {
             int index = PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1;
+            var itemData = _items[index].itemSo;
 
-            switch (_items[index].itemSo.type)
+            switch (itemData.type)
             {
                 case ItemType.Build:
                     if (BuildGrid.Instance.IsBuilding())
@@ -93,17 +101,23 @@ namespace InterOrbital.Player
                         BuildGrid.Instance.ActivateBuildMode(_items[index].itemSo);
                     break;
                 case ItemType.Consumable:
-                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Elytrum)
+                    if (itemData.consumableValues.consumableType == ConsumableType.Elytrum)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerEnergy>()
-                            .RestoreEnergy(_items[index].itemSo.consumableValues.amountToRestore);
+                            .RestoreEnergy(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
 
-                    if (_items[index].itemSo.consumableValues.consumableType == ConsumableType.Health)
+                    if (itemData.consumableValues.consumableType == ConsumableType.Health)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>()
-                            .RestoreHealth(_items[index].itemSo.consumableValues.amountToRestore);
+                            .RestoreHealth(itemData.consumableValues.amountToRestore);
+                        SubstractUsedItem();
+                    }
+                    
+                    if (itemData.consumableValues.consumableType == ConsumableType.Recollector)
+                    {
+                        RecollectorUpgrades.OnUpgradeRecollector?.Invoke(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
                     }
 
@@ -122,13 +136,13 @@ namespace InterOrbital.Player
 
                     break;
                 case ItemType.Upgrade:
-                    if (_items[index].itemSo.upgradeType == UpgradeType.Elytrum)
+                    if (itemData.upgradeType == UpgradeType.Elytrum)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerEnergy>().UpgradeEnergy(20);
                         SubstractUsedItem();
                     }
 
-                    if (_items[index].itemSo.upgradeType == UpgradeType.Health)
+                    if (itemData.upgradeType == UpgradeType.Health)
                     {
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>().UpgradeHealth(8);
                         SubstractUsedItem();
@@ -270,6 +284,7 @@ namespace InterOrbital.Player
             return gridMain.transform.childCount;
         }
 
+
         public void ClickSwapInventory(int index, bool isChest)
         {
             if (!isChest)
@@ -379,5 +394,20 @@ namespace InterOrbital.Player
             _slotChestClicked1 = -1;
             _slotChestClicked2 = -1;
         }
+
+        public void FillDeathBag(DeathBag deathBag)
+        {
+            foreach (var item in _items)
+            {
+                if (item.itemSo != itemVoid)
+                {
+                    Items itemFromPlayer = new Items();
+                    itemFromPlayer.item = item.itemSo;
+                    itemFromPlayer.amountRequired = item.amount;
+                    deathBag.playerItems.Add(itemFromPlayer);
+                }
+            }
+        }
+
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 1787261617, guid: 6404fc7912aff8d48bed70b1ecf9d642, type: 3}
   id: 21
-  itemName: Laboratorio de Equipamiento
-  itemDescription: Estructura que permite crear complejos artilugios para la supervivencia.
+  itemName: Laboratory
+  itemDescription: Structure that allows the creation of complex gadgets for survival.
   type: 1
   consumableValues:
     consumableType: 0
@@ -28,9 +28,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   itemsRequired:
   - item: {fileID: 11400000, guid: 030e798f8c216474d81d83108c64e5b5, type: 2}
-    amountRequired: 0
+    amountRequired: 2
   - item: {fileID: 11400000, guid: 6e3274b409fd8d945b17a5bc43443f3d, type: 2}
-    amountRequired: 0
+    amountRequired: 3
   timeToCraft: 10
   craftEnergyRequired: 5
   amountToCraft: 1

@@ -45,16 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57f1fbc9281460478d652b1fb6a1341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
-  _difficultyArea: 2
+  canSpawn: 0
   player: {fileID: 0}
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _maxEnemiesSpawn: 3
   _distanceBetween: 3
   _spawnRadius: 10
-  _spawnDelay: 600
+  _visibleDistance: 15
+  _maxEntitiesSpawn: 4
+  _enemyPrefab: {fileID: 8426442995448657465, guid: 846aa67e00c8de94bb2205ed684bf458, type: 3}
+  _difficultyArea: 2
 --- !u!58 &784585200
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -70,4 +71,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 30
+  m_Radius: 40

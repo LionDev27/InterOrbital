@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7d037d5134b5b48a493185dc94dd98, type: 3}
+  m_Name: Craft_Laboratory
+  m_EditorClassIdentifier: 
+  typeMission: 2
+  missionDescription: Craft a Laboratory
+  amountToReach: 1
+  imageMission: {fileID: 21300000, guid: 66b5851b2ce30814a88302e77666de0c, type: 3}
+  itemsGoalList:
+  - {fileID: 11400000, guid: 18e1f5b46156692499e361e4309a5adf, type: 2}

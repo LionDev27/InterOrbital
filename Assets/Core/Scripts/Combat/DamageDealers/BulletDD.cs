@@ -9,6 +9,7 @@ namespace InterOrbital.Combat
     {
         private bool _destroyAfterHit;
         [SerializeField] private GameObject _bulletFinalGlow;
+        private bool _canDamage = true;
 
         private void Awake()
         {
@@ -17,6 +18,8 @@ namespace InterOrbital.Combat
 
         protected override void AttackDamageableTarget(Collider2D other, Damageable damageable)
         {
+            if (!_canDamage) return;
+            _canDamage = false;
             base.AttackDamageableTarget(other, damageable);
             //Destruimos la bala después de atacar.
             if (_destroyAfterHit)

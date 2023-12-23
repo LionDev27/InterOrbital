@@ -51,7 +51,7 @@ namespace InterOrbital.Player
                 PlayerAttack.canAttack = true;
                 PlayerAim.ShowGun(true);
             }
-            else
+            else if (_dashTimer > 0)
                 _dashTimer -= Time.deltaTime;
             if (_dashInvulnerabilityTimer <= 0)
                 Animator.speed = 1;

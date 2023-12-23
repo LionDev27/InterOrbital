@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  filled: 0
   <width>k__BackingField: 500
   <height>k__BackingField: 500
   cellSize: {x: 1, y: 1, z: 0}
@@ -442,29 +443,68 @@ MonoBehaviour:
   - Muddy
   _regions:
   - biome: Rocky
-    startPos: {x: 0, y: 0}
-    extension: 20000
+    startPos: {x: 40, y: 180}
+    extension: 15500
   - biome: Rocky
-    startPos: {x: 0, y: 200}
-    extension: 20000
+    startPos: {x: 0, y: 80}
+    extension: 3000
+  - biome: Muddy
+    startPos: {x: 40, y: 320}
+    extension: 17500
+  - biome: Forest
+    startPos: {x: 60, y: 40}
+    extension: 13000
+  - biome: Rocky
+    startPos: {x: 100, y: 250}
+    extension: 5000
+  - biome: Rocky
+    startPos: {x: 120, y: 180}
+    extension: 2000
+  - biome: Rocky
+    startPos: {x: 120, y: 115}
+    extension: 6000
+  - biome: Rocky
+    startPos: {x: 200, y: 110}
+    extension: 5000
+  - biome: Muddy
+    startPos: {x: 180, y: 30}
+    extension: 13000
+  - biome: Forest
+    startPos: {x: 195, y: 173}
+    extension: 10000
+  - biome: Forest
+    startPos: {x: 310, y: 150}
+    extension: 15000
+  - biome: Forest
+    startPos: {x: 250, y: 190}
+    extension: 800
+  - biome: Forest
+    startPos: {x: 390, y: 130}
+    extension: 8000
+  - biome: Forest
+    startPos: {x: 240, y: 130}
+    extension: 1000
   - biome: Muddy
     startPos: {x: 499, y: 499}
-    extension: 30000
+    extension: 25000
+  - biome: Muddy
+    startPos: {x: 499, y: 250}
+    extension: 10000
+  - biome: Muddy
+    startPos: {x: 499, y: 140}
+    extension: 10000
+  - biome: Rocky
+    startPos: {x: 480, y: 20}
+    extension: 10000
   - biome: Forest
-    startPos: {x: 280, y: 100}
-    extension: 20000
-  - biome: Forest
-    startPos: {x: 420, y: 100}
-    extension: 20000
-  - biome: Forest
-    startPos: {x: 350, y: 50}
-    extension: 5000
-  - biome: Forest
-    startPos: {x: 350, y: 170}
-    extension: 5000
-  - biome: Forest
-    startPos: {x: 150, y: 400}
-    extension: 7000
+    startPos: {x: 320, y: 480}
+    extension: 10000
+  - biome: Rocky
+    startPos: {x: 390, y: 280}
+    extension: 10000
+  - biome: Rocky
+    startPos: {x: 390, y: 340}
+    extension: 10000
   _enemiesSpawners: {fileID: 11400000, guid: 81831494098994941867a059fbc00c87, type: 2}
   _resourcesSpawners: {fileID: 11400000, guid: 9e5dad31016f5fe4c87ca44c0039cb5a, type: 2}
   _animationTilemap: {fileID: 1591103708735996734}
