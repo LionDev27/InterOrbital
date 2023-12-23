@@ -16,7 +16,13 @@ MonoBehaviour:
   id: 0
   itemName: Hueco vacio
   itemDescription: No hay ningun elemento
-  type: 2
+  type: 4
+  consumableValues:
+    consumableType: 0
+    amountToRestore: 0
+  upgradeType: 0
   isStackable: 0
   maxAmount: 0
+  buildHighlightSprite: {fileID: 0}
   buildPrefab: {fileID: 0}
+  animator: {fileID: 0}

@@ -26,6 +26,8 @@ namespace InterOrbital.UI
         private RectTransform _rectTransform;
         private int _selectedBulletIndex = 0;
 
+        public int SelectedBulletIndex => _selectedBulletIndex;
+
         private void Awake()
         {
             if (!Instance)

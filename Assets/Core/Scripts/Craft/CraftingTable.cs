@@ -54,7 +54,6 @@ namespace InterOrbital.Item
 
         public override void Craft(ItemCraftScriptableObject itemCraft, int amount)
         {
-            Debug.Log("PULSAAAA");
             _queueCraft.Enqueue(new CraftAmountItem(itemCraft, amount));
             _missionCreator.UpdateMission(amount, itemCraft.itemName);
             if (!_isCrafting)

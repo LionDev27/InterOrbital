@@ -15,13 +15,13 @@ namespace InterOrbital.Player
     {
         private MissionCreator _missionCreator;
         protected int _totalNumberOfSlots;
-        protected ItemObject [] _items;
-        protected Image[] _itemsSlotBackGround;
-        protected Image[] _itemsSlot;
-        protected TextMeshProUGUI[] _textAmount;
+        [HideInInspector] public ItemObject [] _items;
+        [HideInInspector] public Image[] _itemsSlotBackGround;
+        [HideInInspector] public Image[] _itemsSlot;
+        [HideInInspector] public TextMeshProUGUI[] _textAmount;
         protected int _sizeInventory;
         protected Sprite _backgroundDefaultImage;
-        
+
         public GameObject gridMain;
         public ItemScriptableObject itemVoid;
         
@@ -161,10 +161,7 @@ namespace InterOrbital.Player
                     _itemsSlot[index].sprite = _items[index].itemSo.itemSprite;
                     UpdateActionUI();
                     return null;
-
                 }
-
-
             }
 
             return bullet;
@@ -231,21 +228,39 @@ namespace InterOrbital.Player
            
         }
 
-        public void SwitchItems(int indexA, int indexB)
+        public void SwitchItems(int indexA, int indexB, bool fastAsign)
         {
-            //Debug.Log("Intercambiamos inventario" + indexA + "por inventario" + indexB);
-            (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
-            (_itemsSlot[indexB], _itemsSlot[indexA]) = (_itemsSlot[indexA], _itemsSlot[indexB]);
+            Debug.Log("Intercambiamos inventario" + indexB + "por inventario" + indexA);
+            if (!fastAsign)
+            {
+                (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
+                (_itemsSlot[indexB], _itemsSlot[indexA]) = (_itemsSlot[indexA], _itemsSlot[indexB]);
+            }
             (_items[indexB], _items[indexA]) = (_items[indexA], _items[indexB]);
-            
+
+            //Debug.Log("Ahora el indice" + indexA + " es "+ _textAmount[indexA].text +" y el de indice "+indexB+" es "+ _textAmount[indexB].text);
+
         }
 
+        public void SwitchItemOnlyChest(int indexChestA, int indexChestB, bool fastAsign)
+        {
+            //Debug.Log("Intercambiamos cofre" + indexChestA + "por cofre" + indexChestB);
+            if (!fastAsign)
+            {
+                (UIManager.Instance.chestInventory._textAmount[indexChestA], UIManager.Instance.chestInventory._textAmount[indexChestB]) = (UIManager.Instance.chestInventory._textAmount[indexChestB], UIManager.Instance.chestInventory._textAmount[indexChestA]);
+                (UIManager.Instance.chestInventory._itemsSlot[indexChestA], UIManager.Instance.chestInventory._itemsSlot[indexChestB]) = (UIManager.Instance.chestInventory._itemsSlot[indexChestB], UIManager.Instance.chestInventory._itemsSlot[indexChestA]);
+            }
+            (UIManager.Instance.chestInventory._items[indexChestA], UIManager.Instance.chestInventory._items[indexChestB]) = (UIManager.Instance.chestInventory._items[indexChestB], UIManager.Instance.chestInventory._items[indexChestA]);
+        }
 
-        public void SwitchItemWithChest(int indexInventory, int indexChest)
+        public void SwitchItemWithChest(int indexInventory, int indexChest, bool fastAsign)
         {
             //Debug.Log("Intercambiamos cofre" + indexChest + "por inventario" + indexInventory);
-            (UIManager.Instance.chestInventory._textAmount[indexChest], PlayerComponents.Instance.Inventory._textAmount[indexInventory]) = (PlayerComponents.Instance.Inventory._textAmount[indexInventory], UIManager.Instance.chestInventory._textAmount[indexChest]);
-            (UIManager.Instance.chestInventory._itemsSlot[indexChest], PlayerComponents.Instance.Inventory._itemsSlot[indexInventory]) = (PlayerComponents.Instance.Inventory._itemsSlot[indexInventory], UIManager.Instance.chestInventory._itemsSlot[indexChest]);
+            if (!fastAsign)
+            {
+                (UIManager.Instance.chestInventory._textAmount[indexChest], PlayerComponents.Instance.Inventory._textAmount[indexInventory]) = (PlayerComponents.Instance.Inventory._textAmount[indexInventory], UIManager.Instance.chestInventory._textAmount[indexChest]);
+                (UIManager.Instance.chestInventory._itemsSlot[indexChest], PlayerComponents.Instance.Inventory._itemsSlot[indexInventory]) = (PlayerComponents.Instance.Inventory._itemsSlot[indexInventory], UIManager.Instance.chestInventory._itemsSlot[indexChest]);
+            }
             (UIManager.Instance.chestInventory._items[indexChest], PlayerComponents.Instance.Inventory._items[indexInventory]) = (PlayerComponents.Instance.Inventory._items[indexInventory], UIManager.Instance.chestInventory._items[indexChest]);
         }
 
@@ -283,8 +298,93 @@ namespace InterOrbital.Player
         {
             return _items[index];
         }
-        
 
+        public void ChangeSlots(GameObject dropped, GameObject affectedSlot, bool isFastAssign , bool isOnlyChest= false)
+        {
+            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+
+            DraggableItem switchItem = affectedSlot.GetComponentInChildren<DraggableItem>();
+
+            if (dropped.GetComponent<Image>().sprite != PlayerComponents.Instance.Inventory.itemVoid.itemSprite || isFastAssign)
+            {
+                //Debug.Log(PlayerComponents.Instance.Inventory.GetTypeItemByIndex(draggableItem.inventoryIndex).ToString() + "----------" + switchItem.transform.parent.tag);
+                //Debug.Log(draggableItem.parentAfterDrag.tag + "----------" + PlayerComponents.Instance.Inventory.GetTypeItemByIndex(switchItem.inventoryIndex).ToString());
+
+                bool cantSwitch = false;
+
+                if (switchItem != null && !isFastAssign)
+                {
+                    if (PlayerComponents.Instance.Inventory.GetItemObjectByIndex(draggableItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && switchItem.transform.parent.CompareTag("BulletSlot"))
+                    {
+                        cantSwitch = true;
+                    }
+                    else if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet")
+                    {
+                        cantSwitch = true;
+                    }
+                }
+                if (affectedSlot.transform.childCount != 0 && !cantSwitch)
+                {
+                    if (!isFastAssign)
+                    {
+                        Transform aux = draggableItem.parentAfterDrag;
+                        int auxIndex = draggableItem.inventoryIndex;
+                        draggableItem.parentAfterDrag = affectedSlot.transform;
+                        draggableItem.inventoryIndex = switchItem.inventoryIndex;
+                        switchItem.transform.SetParent(aux);
+                        switchItem.inventoryIndex = auxIndex;
+                    }
+                    string auxTag = switchItem.tag;
+                    switchItem.tag = dropped.tag;
+                    dropped.tag = auxTag;
+                    if (dropped.CompareTag("Chest"))
+                    {
+                        if (isOnlyChest)
+                        {
+                            if (!isFastAssign)
+                                PlayerComponents.Instance.Inventory.SwitchItemOnlyChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                            else
+                                PlayerComponents.Instance.Inventory.SwitchItemOnlyChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                        }
+                        else
+                        {
+                            if (!isFastAssign)
+                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                            else
+                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                        }
+                    }
+                    else if (!affectedSlot.gameObject.CompareTag("BulletSlot"))
+                    {
+                        if (isOnlyChest)
+                        {
+                            if (!isFastAssign)
+                                PlayerComponents.Instance.Inventory.SwitchItemOnlyChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                            else
+                                PlayerComponents.Instance.Inventory.SwitchItemOnlyChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                        }
+                        else
+                        {
+                            if (!isFastAssign)
+                            {
+                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                            }
+                            else
+                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                        }
+
+                    }
+                    else
+                    {
+                        if (!isFastAssign)
+                            PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                        else
+                            PlayerComponents.Instance.Inventory.SwitchItems(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                        BulletSelector.Instance.UpdateBulletSelectorUI();
+                    }
+                }
+            }
+        }
     }
 }
 
