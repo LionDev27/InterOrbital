@@ -9,7 +9,9 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _attackStartTime;
         [SerializeField] private float _attackTime;
         [SerializeField] private float _attackEndTime;
+        [Tooltip("Multiplicador para saber a qué distancia del jugador se queda después del ataque.")]
         [Range(1f, 2f)] [SerializeField] private float _attackDistanceMultiplier;
+        [SerializeField] private float _minAttackDistance = 8f;
         private WolfAgent _currentAgent;
         private Rigidbody2D _rigidbody;
 
@@ -33,10 +35,9 @@ namespace InterOrbital.Combat.IA
         {
             yield return new WaitForSeconds(_attackStartTime);
             var currentPos = transform.position;
-            var distance = Vector2.Distance(_currentAgent.Target.position, currentPos);
             var dir = _currentAgent.Target.position - currentPos;
             dir.Normalize();
-            _rigidbody.DOMove(currentPos + (dir * distance * _attackDistanceMultiplier), _attackTime)
+            _rigidbody.DOMove(currentPos + (dir * (GetDistance() * _attackDistanceMultiplier)), _attackTime)
                 .OnComplete(() => StartCoroutine(EndAttack()));
             StartCoroutine(_currentAgent.AttackCooldown());
         }
@@ -46,6 +47,12 @@ namespace InterOrbital.Combat.IA
             yield return new WaitForSeconds(_attackEndTime);
             _rigidbody.Sleep();
             _currentAgent.ChangeState(_currentAgent.States[1]);
+        }
+
+        private float GetDistance()
+        {
+            var distance = Vector2.Distance(_currentAgent.Target.position, transform.position);
+            return distance < _minAttackDistance ? _minAttackDistance : distance;
         }
     }
 }

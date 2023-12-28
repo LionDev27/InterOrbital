@@ -73,44 +73,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
   m_PrefabInstance: {fileID: 4655189648567935795}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1772459665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5758688463957739147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e3ec8aefc14e4aa95471d714963834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionRange: {x: 29, y: 17}
-  _states:
-  - {fileID: 2067578835080342650}
-  - {fileID: 1076033873}
-  - {fileID: 1076033872}
-  - {fileID: 1076033881}
-  _hitShaderController: {fileID: 3477616065487360705}
-  _hitAnimationTime: 0.4
-  _useHitAnimation: 0
-  _attackRange: {x: 20, y: 10}
---- !u!114 &2067578835080342650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5758688463957739147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af671963a534a208b55f7a859ac426e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waitTime: 3
-  _speed: 2.5
-  _minMoveRadius: 6
-  _maxMoveRadius: 12
 --- !u!114 &1076033872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +113,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd37467950a428d8432112fbd7d81ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackStartTime: 0.5
-  _attackTime: 0.2
+  _attackStartTime: 0.2
+  _attackTime: 0.5
   _attackEndTime: 1
-  _attackDistanceMultiplier: 1.5
+  _attackDistanceMultiplier: 1.25
+  _minAttackDistance: 8
+--- !u!114 &1772459665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e3ec8aefc14e4aa95471d714963834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionRange: {x: 29, y: 17}
+  _states:
+  - {fileID: 2067578835080342650}
+  - {fileID: 1076033873}
+  - {fileID: 1076033872}
+  - {fileID: 1076033881}
+  _hitShaderController: {fileID: 3477616065487360705}
+  _hitAnimationTime: 0.4
+  _useHitAnimation: 0
+  _attackRange: {x: 18, y: 10}
+  _attackCooldown: 2.5
+--- !u!114 &2067578835080342650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af671963a534a208b55f7a859ac426e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waitTime: 3
+  _speed: 2.5
+  _minMoveRadius: 6
+  _maxMoveRadius: 12
+--- !u!50 &1076033882
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
