@@ -55,6 +55,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1112519913901881404, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -488524687, guid: 1f217a86ae3ed3e44b3da68a10451751, type: 3}
+    - target: {fileID: 1112519913901881411, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519914180491393, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e018a132ab696424f95bf4b3af106d11, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
 --- !u!114 &3477616065487360705 stripped
@@ -73,6 +85,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
   m_PrefabInstance: {fileID: 4655189648567935795}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1076033882
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5758688463957739147}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &1076033872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,24 +190,3 @@ MonoBehaviour:
   _speed: 2.5
   _minMoveRadius: 6
   _maxMoveRadius: 12
---- !u!50 &1076033882
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5758688463957739147}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
