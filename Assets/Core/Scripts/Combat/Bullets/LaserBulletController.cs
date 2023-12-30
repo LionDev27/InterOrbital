@@ -31,6 +31,7 @@ public class LaserBulletController : BaseBulletController
             CameraShake.Instance.Shake(8f);
             StopMove();
             GetComponent<BulletDD>().DontDestroyAfterHit();
+            GetComponent<BulletDD>().MaintainDmg();
             StartCoroutine(FinishLaser());
         }
     }
