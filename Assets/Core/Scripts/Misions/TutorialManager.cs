@@ -6,6 +6,7 @@ namespace InterOrbital.Mission
 {
     public class TutorialManager : MonoBehaviour
     {
+        [SerializeField] private bool _playTutorial;
         private DialogueSystemTrigger _trigger;
 
         private void Awake()
@@ -15,6 +16,7 @@ namespace InterOrbital.Mission
 
         private void Start()
         {
+            if (!_playTutorial) return;
             Invoke(nameof(StartDialogue), 4f);
         }
 

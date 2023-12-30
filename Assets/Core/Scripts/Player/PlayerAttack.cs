@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using InterOrbital.Combat.Bullets;
+using InterOrbital.Item;
 using InterOrbital.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace InterOrbital.Player
 {
@@ -11,10 +14,9 @@ namespace InterOrbital.Player
         [SerializeField] private GameObject _gunSpriteObj;
         private GameObject _bulletPrefab;
         private AudioClip _bulletSFX;
-
-        [Header("Weapon Upgrades")]
-        [SerializeField] private float _attackCooldown;
-        private float _timer;
+        private List<BulletCooldown> _cooldowns = new();
+        private bool _changingCooldowns;
+        private int _currentCooldownIndex;
 
         [HideInInspector] public bool canAttack = true;
 
@@ -24,26 +26,49 @@ namespace InterOrbital.Player
             InputHandler.OnAttack += Attack;
         }
 
-        public void ChangeBullet(GameObject bullet,AudioClip bulletSFX) 
+        private void Update()
+        {
+            if (InputHandler != null && InputHandler.enabled && InputHandler.CurrentActionMap() == "Player")
+                CursorController.Instance.SetAlpha(!HasBullet());
+            _gunSpriteObj.SetActive(canAttack);
+            if (_changingCooldowns) return;
+            CheckCooldowns();
+        }
+
+        private void CheckCooldowns()
+        {
+            foreach (var cd in _cooldowns)
+                cd.Run();
+        }
+
+        public void SetupCooldowns(List<ItemBulletScriptableObject> bulletsData, List<BulletSlot> slots)
+        {
+            _changingCooldowns = true;
+            _cooldowns.Clear();
+            for (var i = 0; i < bulletsData.Count; i++)
+            {
+                _cooldowns.Add(new BulletCooldown());
+                _cooldowns[i].SetImage(slots[i].BulletImage);
+            }
+            _changingCooldowns = false;
+        }
+        
+        public void ChangeBullet(GameObject bullet, AudioClip bulletSFX, int index) 
         {
             _bulletPrefab = bullet;
             _bulletSFX = bulletSFX;
-            if (HasBullet())
-                _attackCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
-        }
-
-        private void Update()
-        {
-            if (InputHandler != null && InputHandler.enabled && InputHandler.CurrentActionMap() == "Player" )
-                CursorController.Instance.SetAlpha(!HasBullet());
-            _gunSpriteObj.SetActive(canAttack);
-            _timer -= Time.deltaTime;
+            if (!HasBullet()) return;
+            _currentCooldownIndex = index;
+            var newCooldown = bullet.GetComponent<BaseBulletController>().GetBulletAttackCooldown();
+            //Si el cooldown que estamos poniendo es distinto, setupeamos.
+            if (Math.Abs(newCooldown - _cooldowns[index].Cooldown) > 0.005f)
+                _cooldowns[index].Setup(newCooldown);
         }
 
         private void Attack()
         {
             if (!canAttack || !CooldownEnded()) return;
-            _timer = _attackCooldown;
+            _cooldowns[_currentCooldownIndex].Reset();
             //Creación de la bala [TODO: MODIFICAR A OBJECT POOLING]
             if (HasBullet()){ 
                 var tempBullet = Instantiate(_bulletPrefab, attackPoint.position, Quaternion.identity);
@@ -55,9 +80,7 @@ namespace InterOrbital.Player
                 BulletSelector.Instance.SubstractBullet();
             }
             else
-            {
                 AudioManager.Instance.PlaySFX(_bulletSFX);
-            }
         }
         
         private void AttackEffects()
@@ -67,7 +90,7 @@ namespace InterOrbital.Player
         
         private bool CooldownEnded()
         {
-            return _timer <= 0;
+            return _cooldowns[_currentCooldownIndex].Ended();
         }
 
         private bool HasBullet()

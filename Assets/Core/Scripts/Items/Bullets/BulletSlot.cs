@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class BulletSlot : MonoBehaviour
 {
+    public Image BulletImage => _bulletImage;
+    
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private Image _bulletImage;
     [SerializeField] private TextMeshProUGUI _amount;
-
 
     public void SetBackgroundSprite(Sprite sprite)
     {
