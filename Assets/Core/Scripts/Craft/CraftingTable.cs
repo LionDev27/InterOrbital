@@ -81,7 +81,7 @@ namespace InterOrbital.Item
                     {
                         for (int j = 0; j < craftItem.item.amountToCraft; j++)
                         {
-                            PlayerComponents.Instance.Inventory.DropItem(dropPosition.position, transform.position, -1, craftItem.item);
+                            PlayerComponents.Instance.Inventory.DropItem(dropPosition.position, transform.position, -1, craftItem.item, 1.25f);
                         }
                     });
 

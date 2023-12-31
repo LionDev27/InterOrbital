@@ -133,6 +133,10 @@ namespace InterOrbital.Player
 
         protected override void Death()
         {
+            if (!PlayerComponents.Instance.Inventory.isHide)
+            {
+                UIManager.Instance.OpenInventory(false);
+            }
             _playerComponents.InputHandler.DeactivateControls();
             StartCoroutine(DeathSequence());
         }

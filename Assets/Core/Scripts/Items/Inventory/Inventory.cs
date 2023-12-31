@@ -27,7 +27,7 @@ namespace InterOrbital.Player
         
 
         public GameObject dropItemPrefab;
-        public float dropForce;
+        public const float dropForce = 5;
 
         public bool isHide;
 
@@ -272,7 +272,7 @@ namespace InterOrbital.Player
             UpdateActionUI();
         }
 
-        public void DropItem(Vector3 spawnPosition, Vector3 droperPosition, int index=-1, ItemScriptableObject item=null)
+        public void DropItem(Vector3 spawnPosition, Vector3 droperPosition, int index=-1, ItemScriptableObject item=null, float dropForce = dropForce)
         {   
             GameObject p = Instantiate(dropItemPrefab, spawnPosition, Quaternion.identity);
             ItemObject auxItem = p.GetComponent<ItemObject>();
