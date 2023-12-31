@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,14 +5,16 @@ namespace InterOrbital.Combat.IA
 {
     public class WolfAttackState : EnemyStateBase
     {
-        [SerializeField] private float _attackStartTime;
+        [SerializeField] private AudioClip _attackSfx;
         [SerializeField] private float _attackTime;
-        [SerializeField] private float _attackEndTime;
         [Tooltip("Multiplicador para saber a qué distancia del jugador se queda después del ataque.")]
         [Range(1f, 2f)] [SerializeField] private float _attackDistanceMultiplier;
         [SerializeField] private float _minAttackDistance = 8f;
         private WolfAgent _currentAgent;
         private Rigidbody2D _rigidbody;
+        private bool _attacking;
+        
+        private const string AttackingBoolAnim = "Attacking";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -26,26 +27,32 @@ namespace InterOrbital.Combat.IA
         {
             _currentAgent.EnableNavigation(false);
             _rigidbody.WakeUp();
-            StartCoroutine(Attack());
+            _currentAgent.Animator.SetBool(AttackingBoolAnim, true);
         }
 
-        public override void Execute(){}
-
-        private IEnumerator Attack()
+        public override void Execute()
         {
-            yield return new WaitForSeconds(_attackStartTime);
+            if (!_attacking)
+                _currentAgent.FlipSprite();
+        }
+
+        public void Attack()
+        {
+            _attacking = true;
             var currentPos = transform.position;
             var dir = _currentAgent.Target.position - currentPos;
             dir.Normalize();
-            _rigidbody.DOMove(currentPos + (dir * (GetDistance() * _attackDistanceMultiplier)), _attackTime)
-                .OnComplete(() => StartCoroutine(EndAttack()));
+            _rigidbody.DOMove(currentPos + (dir * (GetDistance() * _attackDistanceMultiplier)), _attackTime);
+            _currentAgent.FlipSprite();
+            AudioManager.Instance.PlaySFX(_attackSfx);
             StartCoroutine(_currentAgent.AttackCooldown());
         }
 
-        private IEnumerator EndAttack()
+        public void EndAttack()
         {
-            yield return new WaitForSeconds(_attackEndTime);
+            _attacking = false;
             _rigidbody.Sleep();
+            _currentAgent.Animator.SetBool(AttackingBoolAnim, false);
             _currentAgent.ChangeState(_currentAgent.States[1]);
         }
 

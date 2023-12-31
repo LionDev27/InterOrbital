@@ -10,6 +10,8 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _moveRate;
         private WolfAgent _currentAgent;
         private float _timer;
+        
+        private const string LostBoolAnim = "Lost";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -18,6 +20,7 @@ namespace InterOrbital.Combat.IA
 
         public override void OnStateEnter()
         {
+            _currentAgent.Animator.SetBool(LostBoolAnim, true);
             _currentAgent.EnableNavigation(true);
             _currentAgent.NavMeshAgent.speed = _speed;
             StartCoroutine(MoveEveryRatePassed());
@@ -25,6 +28,7 @@ namespace InterOrbital.Combat.IA
 
         public override void Execute()
         {
+            _currentAgent.FlipSprite();
             if (RunningTimer())
                 _timer -= Time.deltaTime;
             if (!_currentAgent.IsDetectingPlayer()) return;
@@ -40,6 +44,7 @@ namespace InterOrbital.Combat.IA
                 yield return new WaitForSeconds(_moveRate);
                 _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
             }
+            _currentAgent.Animator.SetBool(LostBoolAnim, false);
             _currentAgent.ChangeState(_currentAgent.States[0]);
         }
 

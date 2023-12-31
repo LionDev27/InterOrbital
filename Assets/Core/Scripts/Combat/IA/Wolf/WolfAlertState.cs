@@ -6,6 +6,8 @@ namespace InterOrbital.Combat.IA
     {
         [SerializeField] private float _speed;
         private WolfAgent _currentAgent;
+        
+        private const string PlayerDetectedTriggerAnim = "PlayerDetected";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -17,10 +19,12 @@ namespace InterOrbital.Combat.IA
             _currentAgent.EnableNavigation(true);
             _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
             _currentAgent.NavMeshAgent.speed = _speed;
+            _currentAgent.Animator.SetTrigger(PlayerDetectedTriggerAnim);
         }
 
         public override void Execute()
         {
+            _currentAgent.FlipSprite();
             if (_currentAgent.IsDetectingPlayer())
             {
                 if (_currentAgent.IsTargetInAttackRange() && _currentAgent.CanAttack)

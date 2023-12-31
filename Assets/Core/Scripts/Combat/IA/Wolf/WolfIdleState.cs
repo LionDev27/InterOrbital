@@ -11,7 +11,7 @@ namespace InterOrbital.Combat.IA
         private WolfAgent _currentAgent;
         private bool _moving;
 
-        private const string MovingAnim = "Moving";
+        private const string MovingBoolAnim = "Moving";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -40,13 +40,14 @@ namespace InterOrbital.Combat.IA
 
         private IEnumerator MoveWait()
         {
-            _currentAgent.Animator.SetBool(MovingAnim, false);
+            _currentAgent.Animator.SetBool(MovingBoolAnim, false);
             yield return new WaitForSeconds(_waitTime);
             Move();
         }
 
         private void Move()
         {
+            _currentAgent.Animator.SetBool(MovingBoolAnim, true);
             _moving = true;
             _currentAgent.NavMeshAgent.SetDestination(GetNewRandomPos());
         }

@@ -26,8 +26,8 @@ namespace InterOrbital.Combat.IA
 
         public void FlipSprite()
         {
-            if (Target == null) return;
-            switch (Mathf.Sign(Target.transform.position.x - transform.position.x))
+            if (Vector2.Distance(NavMeshAgent.destination, transform.position) < 0.5f) return;
+            switch (Mathf.Sign(NavMeshAgent.destination.x - transform.position.x))
             {
                 case > 0:
                     SpriteFlipper.FlipX(1);
