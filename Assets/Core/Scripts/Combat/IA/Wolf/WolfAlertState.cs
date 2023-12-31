@@ -7,7 +7,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private float _speed;
         private WolfAgent _currentAgent;
         
-        private const string PlayerDetectedTriggerAnim = "PlayerDetected";
+        private const string PlayerDetectedBoolAnim = "PlayerDetected";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -19,7 +19,7 @@ namespace InterOrbital.Combat.IA
             _currentAgent.EnableNavigation(true);
             _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
             _currentAgent.NavMeshAgent.speed = _speed;
-            _currentAgent.Animator.SetTrigger(PlayerDetectedTriggerAnim);
+            _currentAgent.Animator.SetBool(PlayerDetectedBoolAnim, true);
         }
 
         public override void Execute()
@@ -29,13 +29,17 @@ namespace InterOrbital.Combat.IA
             {
                 if (_currentAgent.IsTargetInAttackRange() && _currentAgent.CanAttack)
                 {
+                    _currentAgent.Animator.SetBool(PlayerDetectedBoolAnim, false);
                     _currentAgent.ChangeState(_currentAgent.States[3]);
                     return;
                 }
                 MoveToTarget();
             }
             else if (_currentAgent.ArrivedDestination())
+            {
+                _currentAgent.Animator.SetBool(PlayerDetectedBoolAnim, false);
                 _currentAgent.ChangeState(_currentAgent.States[2]);
+            }
         }
 
         private void MoveToTarget()

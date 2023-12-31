@@ -32,6 +32,7 @@ namespace InterOrbital.Combat.IA
             if (RunningTimer())
                 _timer -= Time.deltaTime;
             if (!_currentAgent.IsDetectingPlayer()) return;
+            _currentAgent.Animator.SetBool(LostBoolAnim, false);
             StopAllCoroutines();
             _currentAgent.ChangeState(_currentAgent.States[1]);
         }

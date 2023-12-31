@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112519913850856880, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Radius
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856883, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Size.x
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112519913850856883, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Name
       value: Wolf
@@ -21,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 208.75
+      value: 224.75
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856889, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_LocalPosition.z
@@ -219,7 +231,7 @@ MonoBehaviour:
   _hitShaderController: {fileID: 3477616065487360705}
   _hitAnimationTime: 0.4
   _useHitAnimation: 0
-  _attackRange: {x: 17, y: 10}
+  _attackRange: {x: 16, y: 9}
   _attackCooldown: 2.5
 --- !u!114 &2067578835080342650
 MonoBehaviour:
