@@ -12,6 +12,7 @@ namespace InterOrbital.Combat.IA
         private float _timer;
         
         private const string LostBoolAnim = "Lost";
+        private const string LostBlendSpeedAnim = "LostSpeed";
 
         public override void Setup(EnemyAgentBase agent)
         {
@@ -23,6 +24,7 @@ namespace InterOrbital.Combat.IA
             _currentAgent.Animator.SetBool(LostBoolAnim, true);
             _currentAgent.EnableNavigation(true);
             _currentAgent.NavMeshAgent.speed = _speed;
+            _currentAgent.Animator.SetFloat(LostBlendSpeedAnim, 0);
             StartCoroutine(MoveEveryRatePassed());
         }
 
@@ -43,6 +45,8 @@ namespace InterOrbital.Combat.IA
             while (RunningTimer())
             {
                 yield return new WaitForSeconds(_moveRate);
+                if (_currentAgent.Animator.GetFloat(LostBlendSpeedAnim) <= 0)
+                    _currentAgent.Animator.SetFloat(LostBlendSpeedAnim, 1);
                 _currentAgent.NavMeshAgent.SetDestination(_currentAgent.Target.position);
             }
             _currentAgent.Animator.SetBool(LostBoolAnim, false);
