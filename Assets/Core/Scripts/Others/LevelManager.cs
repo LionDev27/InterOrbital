@@ -33,6 +33,7 @@ namespace InterOrbital.Others
 
         private void Start()
         {
+            Screen.SetResolution(1920, 1080, true);
             EnableCanvasGroup(_blackoutCanvasGroup, true);
             EnableCanvasGroup(_loadingCanvasGroup, false);
             EnableCanvasGroup(_endGameCanvasGroup, false);
