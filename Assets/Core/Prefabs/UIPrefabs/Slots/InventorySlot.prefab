@@ -244,6 +244,10 @@ PrefabInstance:
       value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3467757881562569272, guid: 1388e84337a78a9468b216412923b332, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467757881562569272, guid: 1388e84337a78a9468b216412923b332, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
@@ -341,23 +345,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1388e84337a78a9468b216412923b332, type: 3}
---- !u!1 &5189687981923150431 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 945510529589619527, guid: 1388e84337a78a9468b216412923b332, type: 3}
-  m_PrefabInstance: {fileID: 4979390641729437976}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5915321045131024253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5189687981923150431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a91619d460de0469a4a492a82a8fda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8753433499741667720 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4350521271829348496, guid: 1388e84337a78a9468b216412923b332, type: 3}
