@@ -820,7 +820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 228081137}
   _gunSpriteObj: {fileID: 14428868}
-  _attackCooldown: 0.1
   canAttack: 1
 --- !u!114 &730551273
 MonoBehaviour:
@@ -841,6 +840,7 @@ MonoBehaviour:
   _invencibilityTime: 1
   _loseHealthTimerDefaultValue: 10
   _dmgPopup: {fileID: 1230630262122492117, guid: b2c0d17a510b88f4e815326d8248d121, type: 3}
+  _deathBag: {fileID: 3809430222079595221, guid: aaeca6025ced8844bb625eadb7073925, type: 3}
 --- !u!114 &265110465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,7 +952,6 @@ MonoBehaviour:
   _audioSource: {fileID: 1658537254}
   _gunSprite: {fileID: 14428870}
   _usagesText: {fileID: 1041035861693272779}
-  _recollectionAttackDamage: 1
   _recollectionAttackCooldown: 1.5
   _recollectionRange: 2.5
   _recollectionCooldownInSeconds: 0.5
@@ -969,12 +968,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e07c7ef6c4c3240be98174d2628469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _items: []
+  _itemsSlotBackGround: []
+  _itemsSlot: []
+  _textAmount: []
   gridMain: {fileID: 0}
   itemVoid: {fileID: 11400000, guid: 198173a60874433458efda4c32115a0e, type: 2}
   dropItemPrefab: {fileID: 6393653183691490738, guid: 654cb11eb3eb6d04cb274bcc5febf23d, type: 3}
   dropForce: 5
   isHide: 0
   _backgroundSelectedImage: {fileID: -2021092146, guid: d450f95c1c4c5114096cd77971170d56, type: 3}
+  _backgroundClickedImage: {fileID: 1906578987, guid: d450f95c1c4c5114096cd77971170d56, type: 3}
+  _backgroundDefaultChestImage: {fileID: -1134610102, guid: 11e5ec41822843a42b8cdeb7f68733a7, type: 3}
   gridLeftPocket: {fileID: 0}
   gridRightPocket: {fileID: 0}
   gridBullets: {fileID: 0}

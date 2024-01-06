@@ -3,9 +3,14 @@ using System.Collections;
 using UnityEngine;
 using InterOrbital.Player;
 using InterOrbital.Utils;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using UnityEngine.Scripting;
 
 namespace InterOrbital.Item
 {
+    [Serializable]
     public class ItemObject : MonoBehaviour
     {
         public bool DropingItem { get; private set; } = true;
@@ -28,6 +33,35 @@ namespace InterOrbital.Item
        
         private Sequence _sequenceIdleItem;
 
+
+     public ItemObject() { }
+
+        public ItemObject(bool dropingItem, ItemScriptableObject itemSo, Transform playerT, int amount, float minSpeed, float maxSpeed, float accelerationTime, float distanceToBeCollected, float timeToDespawn, 
+            float currentTimeToDespawn, bool blink, Rigidbody2D rigidbody, SpriteRenderer spriteRenderer, Animator animator, Sequence sequenceIdleItem)
+        {
+            DropingItem = dropingItem;
+            this.itemSo = itemSo;
+            this.playerT = playerT;
+            this.amount = amount;
+            this._minSpeed = minSpeed;
+            this._maxSpeed = maxSpeed;
+            this.accelerationTime = accelerationTime;
+            this.distanceToBeCollected = distanceToBeCollected;
+            this._timeToDespawn = timeToDespawn;
+            this._currentTimeToDespawn = currentTimeToDespawn;
+            this._blink = blink;
+            this._rigidbody = rigidbody;
+            this._spriteRenderer = spriteRenderer;
+            this._animator = animator;
+            this._sequenceIdleItem = sequenceIdleItem;
+        }
+
+        public ItemObject Clone()
+        {
+            return new ItemObject(this.DropingItem, this.itemSo, this.playerT, this.amount, this._minSpeed, this._maxSpeed, this.accelerationTime, this.distanceToBeCollected, this._timeToDespawn,
+                 this._currentTimeToDespawn, this._blink, this._rigidbody, this._spriteRenderer, this._animator, this._sequenceIdleItem);
+        }
+
         private void Start()
         {
             StartCoroutine(Despawn());
@@ -41,7 +75,6 @@ namespace InterOrbital.Item
         {
              MoveToPlayer();
         }
-
 
         private void MoveToPlayer()
         {
