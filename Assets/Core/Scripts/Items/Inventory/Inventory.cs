@@ -252,7 +252,7 @@ namespace InterOrbital.Player
 
         public void SwitchItems(int indexA, int indexB, bool fastAsign)
         {
-            Debug.Log("Intercambiamos inventario" + indexB + "por inventario" + indexA);
+            //Debug.Log("Intercambiamos inventario" + indexB + "por inventario" + indexA);
             if (!fastAsign)
             {
                 (_textAmount[indexB], _textAmount[indexA]) = (_textAmount[indexA], _textAmount[indexB]);
@@ -269,12 +269,14 @@ namespace InterOrbital.Player
         public void SwitchItemOnlyChest(int indexChestA, int indexChestB, bool fastAsign)
         {
             //Debug.Log("Intercambiamos cofre" + indexChestA + "por cofre" + indexChestB);
+            //Debug.Log("Antes el indice " + indexChestA + " es " + UIManager.Instance.chestInventory._textAmount[indexChestA].text + " y el de indice " + indexChestB + " es " + UIManager.Instance.chestInventory._textAmount[indexChestB].text);
             if (!fastAsign)
             {
                 (UIManager.Instance.chestInventory._textAmount[indexChestA], UIManager.Instance.chestInventory._textAmount[indexChestB]) = (UIManager.Instance.chestInventory._textAmount[indexChestB], UIManager.Instance.chestInventory._textAmount[indexChestA]);
                 (UIManager.Instance.chestInventory._itemsSlot[indexChestA], UIManager.Instance.chestInventory._itemsSlot[indexChestB]) = (UIManager.Instance.chestInventory._itemsSlot[indexChestB], UIManager.Instance.chestInventory._itemsSlot[indexChestA]);
             }
             (UIManager.Instance.chestInventory._items[indexChestA], UIManager.Instance.chestInventory._items[indexChestB]) = (UIManager.Instance.chestInventory._items[indexChestB], UIManager.Instance.chestInventory._items[indexChestA]);
+            //Debug.Log("Ahora el indice " + indexChestA + " es "+ UIManager.Instance.chestInventory._textAmount[indexChestA].text +" y el de indice "+indexChestB+" es "+ UIManager.Instance.chestInventory._textAmount[indexChestB].text);
         }
 
         public void SwitchItemWithChest(int indexInventory, int indexChest, bool fastAsign)
@@ -324,7 +326,7 @@ namespace InterOrbital.Player
             return _items[index];
         }
 
-        public void ChangeSlots(GameObject dropped, GameObject affectedSlot, bool isFastAssign , bool isOnlyChest= false)
+        public void ChangeSlots(GameObject dropped, GameObject affectedSlot, bool isFastAssign)
         {
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
 
@@ -332,20 +334,30 @@ namespace InterOrbital.Player
 
             if (dropped.GetComponent<Image>().sprite != PlayerComponents.Instance.Inventory.itemVoid.itemSprite || isFastAssign)
             {
-                //Debug.Log(PlayerComponents.Instance.Inventory.GetTypeItemByIndex(draggableItem.inventoryIndex).ToString() + "----------" + switchItem.transform.parent.tag);
-                //Debug.Log(draggableItem.parentAfterDrag.tag + "----------" + PlayerComponents.Instance.Inventory.GetTypeItemByIndex(switchItem.inventoryIndex).ToString());
+                //Debug.Log(PlayerComponents.Instance.Inventory.GetItemObjectByIndex(draggableItem.inventoryIndex).itemSo.type.ToString() + "----------" + switchItem.transform.parent.tag);
+                //Debug.Log(draggableItem.parentAfterDrag.tag + "----------" + PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString());
 
                 bool cantSwitch = false;
 
-                if (switchItem != null && !isFastAssign)
+                if (switchItem != null)
                 {
                     if (PlayerComponents.Instance.Inventory.GetItemObjectByIndex(draggableItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && switchItem.transform.parent.CompareTag("BulletSlot"))
                     {
                         cantSwitch = true;
                     }
-                    else if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet")
+                    if (!isFastAssign)
                     {
-                        cantSwitch = true;
+                        if (draggableItem.parentAfterDrag.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo != itemVoid)
+                        {
+                            cantSwitch = true;
+                        }
+                    }
+                    else 
+                    {
+                        if (draggableItem.transform.parent.CompareTag("BulletSlot") && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo.type.ToString() != "Bullet" && PlayerComponents.Instance.Inventory.GetItemObjectByIndex(switchItem.inventoryIndex).itemSo != itemVoid)
+                        {
+                            cantSwitch = true;
+                        }
                     }
                 }
                 if (affectedSlot.transform.childCount != 0 && !cantSwitch)
@@ -359,11 +371,14 @@ namespace InterOrbital.Player
                         switchItem.transform.SetParent(aux);
                         switchItem.inventoryIndex = auxIndex;
                     }
-                    string auxTag = switchItem.tag;
-                    switchItem.tag = dropped.tag;
-                    dropped.tag = auxTag;
-                    if (dropped.CompareTag("Chest"))
-                    {
+
+                    string auxTag = switchItem.gameObject.tag;
+                    switchItem.gameObject.tag = dropped.gameObject.tag;
+                    dropped.gameObject.tag = auxTag;
+                    bool isOnlyChest = dropped.gameObject.tag == "Chest" && switchItem.gameObject.tag == "Chest";
+                    bool chestToInventory = dropped.gameObject.CompareTag("Inventory") && switchItem.gameObject.CompareTag("Chest");
+                    if (dropped.gameObject.CompareTag("Chest") || chestToInventory)
+                    {  
                         if (isOnlyChest)
                         {
                             if (!isFastAssign)
@@ -373,10 +388,27 @@ namespace InterOrbital.Player
                         }
                         else
                         {
-                            if (!isFastAssign)
-                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                            if (!isFastAssign || chestToInventory)
+                            {
+                                if (!isFastAssign)
+                                {
+                                    if (chestToInventory)
+                                    {
+                                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                                    }
+                                    else
+                                    {
+                                        PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                                    }
+                                }
+                                else
+                                {
+                                    PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
+                                }
+                            }
                             else
                                 PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+                             
                         }
                     }
                     else if (!affectedSlot.gameObject.CompareTag("BulletSlot"))
@@ -391,21 +423,29 @@ namespace InterOrbital.Player
                         else
                         {
                             if (!isFastAssign)
-                            {
-                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
-                            }
+                                PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
                             else
-                                PlayerComponents.Instance.Inventory.SwitchItemWithChest(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
-                        }
+                                PlayerComponents.Instance.Inventory.SwitchItems(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
 
+                            BulletSelector.Instance.UpdateBulletSelectorUI();
+                        }
                     }
                     else
                     {
+
                         if (!isFastAssign)
                             PlayerComponents.Instance.Inventory.SwitchItems(switchItem.inventoryIndex, draggableItem.inventoryIndex, isFastAssign);
                         else
                             PlayerComponents.Instance.Inventory.SwitchItems(draggableItem.inventoryIndex, switchItem.inventoryIndex, isFastAssign);
+
                         BulletSelector.Instance.UpdateBulletSelectorUI();
+                    }
+
+                    if (isFastAssign)
+                    {
+                        auxTag = switchItem.gameObject.tag;
+                        switchItem.gameObject.tag = dropped.gameObject.tag;
+                        dropped.gameObject.tag = auxTag;
                     }
                 }
             }

@@ -439,7 +439,7 @@ namespace InterOrbital.WorldSystem
                     FillTilemapRandom(tilemap, tiles);
                     break;
             }
-            Debug.Log("Tamaño: " + tilemap.size);
+            //Debug.Log("Tamaño: " + tilemap.size);
         }
 
         private void FillTilemapAll(Tilemap tilemap, List<BiomeRuleTile> tiles)
