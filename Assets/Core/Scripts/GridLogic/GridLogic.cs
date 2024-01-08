@@ -175,7 +175,10 @@ namespace InterOrbital.WorldSystem
             GenerateResourcesSpawners();
             PlayerComponents.Instance.GetComponent<PlayerMovement>().ActivateMinimapDetector();
             if (LevelManager.Instance != null)
-                LevelManager.Instance.PlayGame();
+            {
+                LevelManager.Instance.PlayGame(); 
+                SpaceshipComponents.Instance.Animator.SetTrigger("StartAnim");
+            }
         }
 
         private void CreateMapBorders()

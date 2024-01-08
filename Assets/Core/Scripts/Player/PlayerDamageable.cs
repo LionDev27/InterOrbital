@@ -143,10 +143,16 @@ namespace InterOrbital.Player
         
         private IEnumerator DeathSequence()
         {
+            Vector3 deathPos = transform.position;
             yield return new WaitForSeconds(_invencibilityTime);
-            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
-            Instantiate(_deathBag,transform.position,transform.rotation);
+            Instantiate(_deathParticles, deathPos, _deathParticles.transform.rotation).Play();
+            LevelManager.Instance.GameBlackout(true,1.5f);
+            yield return new WaitForSeconds(2f);
+            Instantiate(_deathBag, deathPos, transform.rotation);
             transform.position = SpaceshipComponents.Instance.transform.position;
+            SpaceshipComponents.Instance.Animator.SetTrigger("StartAnim");
+            yield return new WaitForSeconds(1f);
+            LevelManager.Instance.GameBlackout(false, 2f);
             ResetHealth();
             _playerComponents.InputHandler.ActivateControls();
         }

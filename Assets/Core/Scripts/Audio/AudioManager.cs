@@ -93,4 +93,14 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(t);
         }
     }
+
+    public void ModifySFXVolume(float db)
+    {
+        mixer.DOSetFloat("SFXVol", db, 1f);
+    }
+
+    public void ModifyMusicVolume(float db)
+    {
+        mixer.DOSetFloat("MusicVol", db,2f);
+    }
 }

@@ -72,6 +72,18 @@ namespace InterOrbital.Others
             playSequence.Play();
         }
 
+        public void GameBlackout(bool doBlackout, float duration)
+        {
+            if (doBlackout)
+            {
+                _blackoutCanvasGroup.DOFade(1f, duration);
+            }
+            else
+            {
+                _blackoutCanvasGroup.DOFade(0f, duration);
+            }
+        }
+
         public void BackMenu()
         {
             Sequence backSequence = DOTween.Sequence();
