@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace InterOrbital.Others
 {
@@ -9,7 +10,7 @@ namespace InterOrbital.Others
 
         private void Awake()
         {
-            _material = GetComponent<SpriteRenderer>().material;
+            _material = TryGetComponent(out SpriteRenderer rend) ? rend.material : GetComponent<Image>().material;
         }
 
         private void Start()
@@ -19,7 +20,7 @@ namespace InterOrbital.Others
 
         private void Update()
         {
-            _material.mainTextureOffset += (_speed * Time.deltaTime * Vector2.right);
+            _material.mainTextureOffset += (_speed * Time.unscaledDeltaTime * Vector2.right);
         }
 
         private void OnDisable()

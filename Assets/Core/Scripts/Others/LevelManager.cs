@@ -33,6 +33,7 @@ namespace InterOrbital.Others
 
         private void Start()
         {
+            Screen.SetResolution(1920, 1080, true);
             EnableCanvasGroup(_blackoutCanvasGroup, true);
             EnableCanvasGroup(_loadingCanvasGroup, false);
             EnableCanvasGroup(_endGameCanvasGroup, false);
@@ -84,11 +85,16 @@ namespace InterOrbital.Others
             }
         }
 
-        public void BackMenu()
+        public void BackMenu(bool endGame)
         {
             Sequence backSequence = DOTween.Sequence();
-            backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
-            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(3f)
+            var delay = 0f;
+            if (endGame)
+            {
+                backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
+                delay = 3f;
+            }
+            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(delay)
                 .OnComplete(() => LoadScene("Main Screen")));
             _endGameCanvasGroup.alpha = 0f;
             backSequence.Play();

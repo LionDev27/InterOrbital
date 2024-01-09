@@ -43,7 +43,7 @@ namespace InterOrbital.Mission
             else
             {
                 PlayerComponents.Instance.InputHandler.DeactivateControls();
-                LevelManager.Instance.BackMenu();
+                LevelManager.Instance.BackMenu(true);
             }
         }
     }

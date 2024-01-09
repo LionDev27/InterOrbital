@@ -4,7 +4,9 @@ using UnityEngine.UI;
 using TMPro;
 using InterOrbital.Item;
 using InterOrbital.Utils;
+using DG.Tweening;
 using System.Collections.Generic;
+
 
 namespace InterOrbital.Player
 {
@@ -12,7 +14,11 @@ namespace InterOrbital.Player
     {
         private int _level;
         private int _actualItemEquiped;
+        private int _slotClicked1, _slotClicked2; //Para inventario mochila
+        private int _slotChestClicked1, _slotChestClicked2; //Para inventario cofre
         [SerializeField] private Sprite _backgroundSelectedImage;
+        [SerializeField] private Sprite _backgroundClickedImage;
+        [SerializeField] private Sprite _backgroundDefaultChestImage;
 
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
@@ -28,7 +34,12 @@ namespace InterOrbital.Player
             InitSlots();
             StartInventory();
             _sizeInventory += gridBullets.transform.childCount;
+            _slotClicked1 = -1;
+            _slotClicked2 = -1;
+            _slotChestClicked1 = -1;
+            _slotChestClicked2 = -1;
         }
+        
 
         void Update()
         {
@@ -75,6 +86,7 @@ namespace InterOrbital.Player
             }
         }
 
+
         public void UseItem()
         {
             int index = PlayerComponents.Instance.InputHandler.InventoryPositionValue - 1;
@@ -112,20 +124,16 @@ namespace InterOrbital.Player
                     break;
                 case ItemType.Bullet:
 
-                    
-                    ItemObject restItem = PlayerComponents.Instance.Inventory.AddToBulletSelector(_items[index]);
-                    /*if (restItem != null)
-                    {
-                        _items[index].amount = restItem.amount;
-                        _textAmount[index].text = _items[index].amount.ToString();
-                    }
-                    else
-                    {
-                        _items[index].itemSo = itemVoid;
-                        _itemsSlot[index].sprite = itemVoid.itemSprite;
-                        _items[index].amount = 0;
-                        _textAmount[index].text = "";
-                    }*/
+                    int bulletSelectorIndex = PlayerComponents.Instance.Inventory.GetStartIndexBulletSlot() + BulletSelector.Instance.SelectedBulletIndex;
+                    GameObject dropped = _itemsSlot[index].gameObject;
+                    GameObject goal = _itemsSlot[bulletSelectorIndex].transform.parent.gameObject;
+                    PlayerComponents.Instance.Inventory.ChangeSlots(dropped, goal, true);
+
+                    _itemsSlot[index].sprite = _items[index].itemSo.itemSprite;
+                    _textAmount[index].text = "";
+                    _itemsSlot[bulletSelectorIndex].sprite = _items[bulletSelectorIndex].itemSo.itemSprite;
+                    _textAmount[bulletSelectorIndex].text =  _items[bulletSelectorIndex].amount.ToString();
+
                     break;
                 case ItemType.Upgrade:
                     if (itemData.upgradeType == UpgradeType.Elytrum)
@@ -276,6 +284,149 @@ namespace InterOrbital.Player
             return gridMain.transform.childCount;
         }
 
+
+        public void ClickSwapInventory(int index, bool isChest)
+        {
+            if (!isChest)
+            {
+                if (_slotClicked1 == -1 && _slotClicked1 != index && _slotChestClicked1 == -1)
+                {
+                    _slotClicked1 = index;
+                    if (_itemsSlotBackGround[_slotClicked1].sprite == _backgroundDefaultImage || _itemsSlotBackGround[_slotClicked1].sprite == _backgroundSelectedImage)
+                    {
+                        _itemsSlotBackGround[_slotClicked1].sprite = _backgroundClickedImage;
+                    }
+                    else if (_itemsSlotBackGround[_slotClicked1].color.a == 0)
+                    {
+                        _itemsSlotBackGround[_slotClicked1].ChangueAlphaColor(1);
+                    }
+                }
+                else if (_slotClicked1 == index || _slotClicked1 != -1 && (_items[_slotClicked1].itemSo == itemVoid && _items[index].itemSo == itemVoid) || _slotChestClicked1 != -1 && (UIManager.Instance.chestInventory._items[_slotChestClicked1].itemSo == itemVoid && _items[index].itemSo == itemVoid))
+                {
+                    StopClickSelection();
+                }
+                else if(_slotClicked1 != -1 || _slotClicked1 == -1 && _slotChestClicked1 != -1)
+                {
+                    _slotClicked2 = index;
+                    GameObject dropped = null;
+                    if (_slotChestClicked1 != -1)
+                    {
+                        dropped = UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked1].gameObject;
+                    }
+                    else
+                    {
+                        dropped = _itemsSlot[_slotClicked1].gameObject;
+                    }
+
+                    GameObject goal = _itemsSlot[_slotClicked2].transform.parent.gameObject;
+                    PlayerComponents.Instance.Inventory.ChangeSlots(dropped, goal, true);
+
+                    if(_slotChestClicked1 != -1)
+                    {
+                        UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked1].sprite = UIManager.Instance.chestInventory._items[_slotChestClicked1].itemSo.itemSprite;
+                        UIManager.Instance.chestInventory._textAmount[_slotChestClicked1].text = UIManager.Instance.chestInventory._items[_slotChestClicked1].amount == 0 ? "" : UIManager.Instance.chestInventory._items[_slotChestClicked1].amount.ToString();
+                    }
+                    else
+                    {
+                        _itemsSlot[_slotClicked1].sprite = _items[_slotClicked1].itemSo.itemSprite;
+                        _textAmount[_slotClicked1].text = _items[_slotClicked1].amount == 0 ? "" : _items[_slotClicked1].amount.ToString();
+                    }
+                    _itemsSlot[_slotClicked2].sprite = _items[_slotClicked2].itemSo.itemSprite;
+                    _textAmount[_slotClicked2].text = _items[_slotClicked2].amount == 0 ? "" : _items[_slotClicked2].amount.ToString();
+                    StopClickSelection();
+                }
+            }
+            else
+            {
+                if(_slotClicked1 == -1 && _slotChestClicked1 == -1 && _slotChestClicked1 != index)
+                {
+                    _slotChestClicked1 = index;
+                    UIManager.Instance.chestInventory._itemsSlotBackGround[_slotChestClicked1].sprite = _backgroundClickedImage;
+                }
+                else if (_slotChestClicked1 != -1 &&  (_slotChestClicked1 == index || (UIManager.Instance.chestInventory._items[_slotChestClicked1].itemSo == itemVoid && UIManager.Instance.chestInventory._items[index].itemSo == itemVoid)))
+                {
+                    StopClickSelection();
+                }
+                else if (_slotClicked1 != -1 && (_items[_slotClicked1].itemSo == itemVoid && UIManager.Instance.chestInventory._items[index].itemSo == itemVoid))
+                {
+                    StopClickSelection();
+                }
+                else
+                {
+                    _slotChestClicked2 = index;
+                    GameObject dropped = null;
+                    GameObject goal = null;
+
+                    if (_slotChestClicked1 != -1)
+                    {
+                        dropped= UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked1].gameObject;
+                    }
+                    else if(_slotClicked1 != -1)
+                    {
+                        dropped = _itemsSlot[_slotClicked1].gameObject;
+                    }
+
+                    if(_slotChestClicked2 != -1)
+                    {
+                        goal = UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked2].transform.parent.gameObject;
+                    }
+                    else if (_slotClicked2 != -1)
+                    {
+                        goal = _itemsSlot[_slotClicked2].transform.parent.gameObject;
+                    }
+
+                    PlayerComponents.Instance.Inventory.ChangeSlots(dropped, goal, true);
+
+                    if (_slotChestClicked1 != -1)
+                    {
+                        UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked1].sprite = UIManager.Instance.chestInventory._items[_slotChestClicked1].itemSo.itemSprite;
+                        UIManager.Instance.chestInventory._textAmount[_slotChestClicked1].text = UIManager.Instance.chestInventory._items[_slotChestClicked1].amount == 0 ? "" : UIManager.Instance.chestInventory._items[_slotChestClicked1].amount.ToString();
+                    }
+                    else if (_slotClicked1 != -1)
+                    {
+                        _itemsSlot[_slotClicked1].sprite = _items[_slotClicked1].itemSo.itemSprite;
+                        _textAmount[_slotClicked1].text = _items[_slotClicked1].amount == 0 ? "" : _items[_slotClicked1].amount.ToString();
+                    }
+
+                    if (_slotChestClicked2 != -1)
+                    {
+                        UIManager.Instance.chestInventory._itemsSlot[_slotChestClicked2].sprite = UIManager.Instance.chestInventory._items[_slotChestClicked2].itemSo.itemSprite;
+                        UIManager.Instance.chestInventory._textAmount[_slotChestClicked2].text = UIManager.Instance.chestInventory._items[_slotChestClicked2].amount == 0 ? "" : UIManager.Instance.chestInventory._items[_slotChestClicked2].amount.ToString();
+                    }
+                    else if (_slotClicked2 != -1)
+                    {
+                        _itemsSlot[_slotClicked2].sprite = _items[_slotClicked2].itemSo.itemSprite;
+                        _textAmount[_slotClicked2].text = _items[_slotClicked2].amount == 0 ? "" : _items[_slotClicked2].amount.ToString();
+                    }
+                    StopClickSelection();
+                }
+            }
+        }
+
+        public void StopClickSelection()
+        {
+            if(_slotClicked1 != -1)
+            {
+                if (_itemsSlotBackGround[_slotClicked1].sprite == _backgroundClickedImage)
+                {
+                    _itemsSlotBackGround[_slotClicked1].sprite = _slotClicked1 == _actualItemEquiped - 1 ? _backgroundSelectedImage : _backgroundDefaultImage;
+                }
+                else if(_itemsSlotBackGround[_slotClicked1].color.a == 1)
+                {
+                    _itemsSlotBackGround[_slotClicked1].ChangueAlphaColor(0);
+                }
+            }
+            else
+            {
+                UIManager.Instance.chestInventory._itemsSlotBackGround[_slotChestClicked1].sprite = _backgroundDefaultChestImage;
+            }
+            
+            _slotClicked1 = -1;
+            _slotClicked2 = -1;
+            _slotChestClicked1 = -1;
+            _slotChestClicked2 = -1;
+        }
+
         public void FillDeathBag(DeathBag deathBag)
         {
             foreach (var item in _items)
@@ -289,5 +440,6 @@ namespace InterOrbital.Player
                 }
             }
         }
+
     }
 }

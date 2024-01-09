@@ -6,6 +6,8 @@ using InterOrbital.WorldSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using InterOrbital.Utils;
 
 namespace InterOrbital.Events
 {
@@ -13,6 +15,9 @@ namespace InterOrbital.Events
     {
         [SerializeField] private List<EventBase> _eventsPool;
         private int _actualIndex;
+        private bool _isWarning = false;
+
+        //Evento parte de la izquierda
         [SerializeField] private int _timeBetweenEvents;
         [SerializeField] private Transform _endRotation;
         [SerializeField] private Transform _startRotation;
@@ -22,6 +27,15 @@ namespace InterOrbital.Events
         public static EventsManager Instance = null;
         [HideInInspector] public int currentTime;
 
+
+        //Avisador de evento
+        [SerializeField] private Image _warnPlanetImage;
+        [SerializeField] private TextMeshProUGUI _planetName;
+        [SerializeField] private TextMeshProUGUI _eventName;
+        [SerializeField] private TextMeshProUGUI _eventDescription;
+        [SerializeField] private Image _signalImage;
+        [SerializeField] private Light2D _globalLight;
+        [SerializeField] private Light2D _playerLight;
         private void Awake()
         {
             if (Instance == null)
@@ -52,6 +66,11 @@ namespace InterOrbital.Events
                 for (currentTime = _timeBetweenEvents; currentTime >= 0; currentTime--)
                 {
                     UpdateTimeText(currentTime);
+                    if(currentTime <= 30 && !_isWarning)
+                    {
+                        _isWarning = true;
+                        RedLightWarn();
+                    }
                     yield return new WaitForSeconds(1f);
                 }
 
@@ -68,12 +87,65 @@ namespace InterOrbital.Events
                 }
 
                 _eventsPool[_actualIndex].EndEvent();
+                _isWarning = false;
                 _rotationPoint.rotation = _startRotation.rotation;
                 _actualIndex++;
                 GridLogic.Instance.RespawnSpawners();
             }
         }
 
+        private void ModifyLightRadius(bool isWarn)
+        {
+            if (isWarn)
+            {
+                _playerLight.pointLightOuterRadius = 30;
+            }
+            else
+            {
+                _playerLight.pointLightOuterRadius = 6;
+            }
+
+        }
+
+        private void RedLightWarn()
+        {
+            ModifyLightRadius(true);
+
+            DOTween.To(() => _globalLight.color, x => _globalLight.color = x, Color.red, 0.5f).
+                From(Color.white).
+                SetEase(Ease.Linear).
+                SetLoops(8, LoopType.Yoyo).
+                Play().OnComplete(() => {
+                    StartCoroutine(WarnEvent());
+                });
+
+           
+        }
+
+        private IEnumerator WarnEvent()
+        {
+            ModifyLightRadius(false);
+
+            _warnPlanetImage.sprite = _eventsPool[_actualIndex].GetPlanetSprite();
+            _planetName.text = _eventsPool[_actualIndex].PlanetName;
+            _eventDescription.text = _eventsPool[_actualIndex].Description;
+            _eventName.text = _eventsPool[_actualIndex].EventName;
+
+            UIManager.Instance.WarnPanelShowOrHide(true);
+            Tween triangleWarn = _signalImage.DOFade(0, 0.75f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            yield return new WaitForSeconds(2f);
+            _eventName.DOFade(1, 1f).SetEase(Ease.Linear).Play();
+            yield return new WaitForSeconds(4f);
+            _eventName.DOFade(0, 1f).SetEase(Ease.Linear).Play();
+            yield return new WaitForSeconds(1.5f);
+            _eventDescription.DOFade(1, 1f).SetEase(Ease.Linear).Play();
+            yield return new WaitForSeconds(8f);
+            _eventDescription.DOFade(0, 1f).SetEase(Ease.Linear).Play().OnComplete(() => { 
+                triangleWarn.Kill();
+                _signalImage.ChangueAlphaColor(1);
+            });
+            UIManager.Instance.WarnPanelShowOrHide(false);
+        }
 
         private void DisorderList()
         {

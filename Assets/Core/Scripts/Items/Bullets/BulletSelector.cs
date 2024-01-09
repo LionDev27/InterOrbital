@@ -30,6 +30,8 @@ namespace InterOrbital.UI
         private MissionCreator _missionCreator;
         private PlayerAttack _playerAttack;
 
+        public int SelectedBulletIndex => _selectedBulletIndex;
+
         private void Awake()
         {
             if (!Instance)
