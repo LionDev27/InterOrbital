@@ -9,6 +9,7 @@ namespace InterOrbital.Events
     public class EventBase : MonoBehaviour
     {  
         [SerializeField] private string _name;
+        [SerializeField] private string _planetName;
         [SerializeField] private string _description;
         [SerializeField] private Sprite _planetSprite;
         [SerializeField] private int _duration;
@@ -16,6 +17,10 @@ namespace InterOrbital.Events
         [SerializeField] protected float _lightTransitionTime;
 
         public int Duration => _duration;
+        public string EventName => _name;
+        public string Description => _description;
+
+        public string PlanetName => _planetName;
 
         public virtual void StartEvent()
         {

@@ -22,6 +22,8 @@ namespace InterOrbital.UI
         [SerializeField] private GameObject _fastingCraft;
         [SerializeField] private GameObject _bulletSelector;
         [SerializeField] private GameObject _clockTime;
+        [SerializeField] private Transform _warnPanelInitPosition;
+        [SerializeField] private Transform _warnPanelFinalPosition;
         private bool _somethingOpen;
         private GameObject _currentUI;
         
@@ -38,6 +40,7 @@ namespace InterOrbital.UI
         public GameObject storageUI;
         public GameObject tablesBlackout;
         public GameObject inventoryBlackout;
+        public GameObject warnPanel;
 
         private void Awake()
         {
@@ -232,6 +235,18 @@ namespace InterOrbital.UI
         public void ToggleClockTime(bool show)
         {
             _clockTime.SetActive(show);
+        }
+
+        public void WarnPanelShowOrHide(bool show)
+        {
+            if (show)
+            {
+                warnPanel.transform.DOMoveY(_warnPanelFinalPosition.transform.position.y, 1f).Play();
+            }
+            else
+            {
+                warnPanel.transform.DOMoveY(_warnPanelInitPosition.transform.position.y, 1f).Play();
+            }
         }
     }
 }
