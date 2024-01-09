@@ -73,11 +73,16 @@ namespace InterOrbital.Others
             playSequence.Play();
         }
 
-        public void BackMenu()
+        public void BackMenu(bool endGame)
         {
             Sequence backSequence = DOTween.Sequence();
-            backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
-            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(3f)
+            var delay = 0f;
+            if (endGame)
+            {
+                backSequence.Append(_endGameCanvasGroup.DOFade(1f, 1f));
+                delay = 3f;
+            }
+            backSequence.Append(_blackoutCanvasGroup.DOFade(1f, 1f).SetDelay(delay)
                 .OnComplete(() => LoadScene("Main Screen")));
             _endGameCanvasGroup.alpha = 0f;
             backSequence.Play();

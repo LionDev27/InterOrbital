@@ -200,6 +200,12 @@ namespace InterOrbital.Player
             ChangeActionMap();
             _uiOpened = false;
         }
+
+        public void OnPause()
+        {
+            var ui = UIManager.Instance;
+            ui.PauseGame(!ui.pauseUI.activeInHierarchy);
+        }
         
         public InputType CurrentInput()
         {
