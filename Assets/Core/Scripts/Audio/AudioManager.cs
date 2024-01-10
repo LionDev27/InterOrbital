@@ -96,11 +96,11 @@ public class AudioManager : MonoBehaviour
 
     public void ModifySFXVolume(float db)
     {
-        mixer.DOSetFloat("SFXVol", db, 1f);
+        mixer.DOSetFloat("sfxVol", db, 1f);
     }
 
     public void ModifyMusicVolume(float db)
     {
-        mixer.DOSetFloat("MusicVol", db,2f);
+        mixer.DOSetFloat("musicVol", db,2f);
     }
 }
