@@ -145,7 +145,7 @@ namespace InterOrbital.Player
         private IEnumerator DeathSequence()
         {
             Vector3 deathPos = transform.position;
-            PlayerComponents.Instance.DeathAnimation();
+            _playerComponents.DeathAnimation();
             Instantiate(_deathParticles, deathPos, _deathParticles.transform.rotation).Play();
             yield return new WaitForSeconds(_invencibilityTime);
             LevelManager.Instance.GameBlackout(true,1.5f);
@@ -156,6 +156,7 @@ namespace InterOrbital.Player
             yield return new WaitForSeconds(1f);
             LevelManager.Instance.GameBlackout(false, 2f);
             ResetHealth();
+            _playerComponents.GetComponent<PlayerEnergy>().ResetEnergy();
             _playerComponents.InputHandler.ActivateControls();
             _canTakeDamage = true;
         }

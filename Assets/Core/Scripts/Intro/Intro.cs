@@ -67,8 +67,8 @@ public class Intro : MonoBehaviour
     public IEnumerator ThirdSequence()
     {
         float fillDuration = 4f;
-        float shakeDuration = 5f;
-        float shakeStrength = 15f;
+        //float shakeDuration = 5f;
+        //float shakeStrength = 15f;
         RectTransform rectTransform = intro3.GetComponent<RectTransform>();
         Image img3 = intro3.GetComponent<Image>();
         Vector3 originalPosition = rectTransform.localPosition;
@@ -111,8 +111,8 @@ public class Intro : MonoBehaviour
     public IEnumerator FifthSequence()
     {
         float fillDuration = 5f;
-        float shakeDuration = 5f;
-        float shakeStrength = 10f;
+        //float shakeDuration = 5f;
+        //float shakeStrength = 10f;
         RectTransform rectTransform = intro5.GetComponent<RectTransform>();
         Vector3 originalPosition = rectTransform.localPosition;
         Image img5 = intro5.GetComponent<Image>();
