@@ -8,6 +8,7 @@ namespace InterOrbital.Spaceship
 {
     public class SpaceshipComponents : MonoBehaviour
     {
+        public Animator Animator { get; private set; }
         public SpaceshipEnergy SpaceshipEnergy { get; private set; }
 
         public static SpaceshipComponents Instance;
@@ -19,6 +20,7 @@ namespace InterOrbital.Spaceship
                 Instance = this;
 
             SpaceshipEnergy = GetComponent<SpaceshipEnergy>();
+            Animator = GetComponentInChildren<Animator>();
         }
 
         public void MoveTo(Vector3Int pos)

@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 5592048692993710790}
   - component: {fileID: 8584173323414926778}
   - component: {fileID: 7073334415316247017}
+  - component: {fileID: 843804999410407965}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -217,6 +218,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStatic: 1
   _offset: 0
+--- !u!95 &843804999410407965
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729207545939498592}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26c5496cdaebb8b4d9c5bd9f5b23cf6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2973492852322416020
 GameObject:
   m_ObjectHideFlags: 0

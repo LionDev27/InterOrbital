@@ -138,17 +138,27 @@ namespace InterOrbital.Player
                 UIManager.Instance.OpenInventory(false);
             }
             _playerComponents.InputHandler.DeactivateControls();
+            _canTakeDamage = false;
             StartCoroutine(DeathSequence());
         }
         
         private IEnumerator DeathSequence()
         {
+            Vector3 deathPos = transform.position;
+            _playerComponents.DeathAnimation();
+            Instantiate(_deathParticles, deathPos, _deathParticles.transform.rotation).Play();
             yield return new WaitForSeconds(_invencibilityTime);
-            Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation).Play();
-            Instantiate(_deathBag,transform.position,transform.rotation);
+            LevelManager.Instance.GameBlackout(true,1.5f);
+            yield return new WaitForSeconds(2f);
+            Instantiate(_deathBag, deathPos, transform.rotation);
             transform.position = SpaceshipComponents.Instance.transform.position;
+            SpaceshipComponents.Instance.Animator.SetTrigger("StartAnim");
+            yield return new WaitForSeconds(1f);
+            LevelManager.Instance.GameBlackout(false, 2f);
             ResetHealth();
+            _playerComponents.GetComponent<PlayerEnergy>().ResetEnergy();
             _playerComponents.InputHandler.ActivateControls();
+            _canTakeDamage = true;
         }
 
         private IEnumerator HitAnimation()

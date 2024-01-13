@@ -74,6 +74,13 @@ namespace InterOrbital.Player
             ResetTimer();
         }
 
+        public void ResetEnergy()
+        {
+            _currentEnergy = _maxEnergy;
+            UIManager.Instance.UpdateEnergyUI(_maxEnergy, _currentEnergy);
+            ResetTimer();
+        }
+
         private void LoseEnergyOverTime()
         {
             if (!EnergyEmpty && _loseEnegrgyOverTime)

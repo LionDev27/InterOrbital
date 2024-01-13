@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be31923b675df2d49aab61829932d749
+guid: 3134c9e61ef84194db016a96391298bf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,281 +101,257 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spaceship_0
+      name: PlayerDeath_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de52e4501f66b3d41ad765e9935acfab
-      internalID: -700515620
+      spriteID: 55cfd567b49b91c4cbd0932fa308ea93
+      internalID: -1876453460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship_1
+      name: PlayerDeath_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40a0e2c692fd77245bf6a7f46bfb93af
+      internalID: -974114198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b202ebeb6fd9c1d458e456a204af6cf3
+      internalID: 1338648512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_3
       rect:
         serializedVersion: 2
         x: 96
-        y: 192
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99b6db90a0399c049b5ae41fabad5275
-      internalID: -77395128
+      spriteID: a652ae0a3cdc08a48a9d919d4d6cfafc
+      internalID: 1876777237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship_2
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bcb3b327e77924a45b834b7dcb4e4b29
-      internalID: 1633067668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_3
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 192
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 685c93f0afbe23e4382759bdf8f8ee26
-      internalID: -99460364
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_4
+      name: PlayerDeath_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6f1d884f5f27a54eb5b911c36369698
-      internalID: 1803135818
+      spriteID: 1d08a4c4babdd004398dfba52f1a978e
+      internalID: -1233691461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship_5
+      name: PlayerDeath_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d9aefdb63c23a4288a59a47aa1e178
+      internalID: 670842765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6259d55985079834cb8dc30b7fa8ff65
+      internalID: 137436269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_7
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2142caec0f47004fb7597fc03af98e3
-      internalID: 327787068
+      spriteID: 68eff1c49dd093c4c9668419a92bdcf1
+      internalID: -1906311983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aefaf3cf157aa274b91cb3cce82ceb6c
-      internalID: 1407443970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_7
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e518abb04f6c594d89643ef115830c6
-      internalID: 714944328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_8
+      name: PlayerDeath_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9bc917fd75c2cf4ca1a350102f2cf56
-      internalID: -2071108789
+      spriteID: 49a9205dfe73dc94c900b88c0dfe279a
+      internalID: 668531847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship_9
+      name: PlayerDeath_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f09beec22e9e7478459f51c2116f5f
+      internalID: -1338689640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ee0328beb0b424a99a6d3932a8a1e7
+      internalID: -12046248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerDeath_11
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e841e1ca698d0b941864247f3cfd236f
-      internalID: 2118860229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_10
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f19fc91afe76cb428c52e17d562e9c7
-      internalID: 2058158954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spaceship_11
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a67ed151e6c803247995f9cacbb4cccc
-      internalID: -1107956478
+      spriteID: 37ce0c23339690142b5669abe158948a
+      internalID: -1306116752
       vertices: []
       indices: 
       edges: []
@@ -391,18 +367,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Spaceship_0: -700515620
-      Spaceship_1: -77395128
-      Spaceship_10: 2058158954
-      Spaceship_11: -1107956478
-      Spaceship_2: 1633067668
-      Spaceship_3: -99460364
-      Spaceship_4: 1803135818
-      Spaceship_5: 327787068
-      Spaceship_6: 1407443970
-      Spaceship_7: 714944328
-      Spaceship_8: -2071108789
-      Spaceship_9: 2118860229
+      PlayerDeath_0: -1876453460
+      PlayerDeath_1: -974114198
+      PlayerDeath_10: -12046248
+      PlayerDeath_11: -1306116752
+      PlayerDeath_2: 1338648512
+      PlayerDeath_3: 1876777237
+      PlayerDeath_4: -1233691461
+      PlayerDeath_5: 670842765
+      PlayerDeath_6: 137436269
+      PlayerDeath_7: -1906311983
+      PlayerDeath_8: 668531847
+      PlayerDeath_9: -1338689640
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

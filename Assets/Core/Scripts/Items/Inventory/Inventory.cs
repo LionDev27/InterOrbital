@@ -62,6 +62,8 @@ namespace InterOrbital.Player
                 _itemsSlot[i].sprite = _items[i].itemSo.itemSprite;
                 _textAmount[i].text = "";
             }
+            BulletSelector.Instance.UpdateBulletSelectorUI();
+            UpdateActionUI();
         }
 
 
