@@ -21,6 +21,8 @@ namespace InterOrbital.Events.Meredyss
             base.StartEvent();
             Rain();
             Spawn();
+            AudioManager.Instance.ModifyMusicVolume(-10);
+            AudioManager.Instance.PlayMusic("EventMusic1",true);
         }
 
         public override void EndEvent()
@@ -29,6 +31,9 @@ namespace InterOrbital.Events.Meredyss
             Invoke(nameof(DestroyClone), 0.5f);
             _rainEffect.Stop();
             _splashEffect.Stop();
+            AudioManager.Instance.ModifyMusicVolume(10);
+            AudioManager.Instance.StopAmbientSFX();
+            AudioManager.Instance.PlayMusic("MainTheme", true);
         }
 
         private void OnEnable()
