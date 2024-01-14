@@ -24,7 +24,7 @@ namespace InterOrbital.Combat.IA
         public void Attack()
         {
             if (!_agent.CanAttack()) return;
-            var randomIndex = Random.Range(0, _bullets.Count - 1);
+            var randomIndex = Random.Range(0, _bullets.Count);
             var currentBullet = _bullets[randomIndex].bulletPrefab;
             var tempBullet = Instantiate(currentBullet, _agent.AttackPoint.position, Quaternion.identity);
             var bulletController = tempBullet.GetComponent<BaseBulletController>();
