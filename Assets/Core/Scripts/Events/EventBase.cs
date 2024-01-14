@@ -15,6 +15,7 @@ namespace InterOrbital.Events
         [SerializeField] private int _duration;
         [SerializeField] protected Light2D _globalLight;
         [SerializeField] protected float _lightTransitionTime;
+        [SerializeField] private float _lightIntensity = 0.15f;
 
         public int Duration => _duration;
         public string EventName => _name;
@@ -24,7 +25,7 @@ namespace InterOrbital.Events
 
         public virtual void StartEvent()
         {
-            DOTween.To(() => _globalLight.intensity, x => _globalLight.intensity = x, 0.15f, _lightTransitionTime).Play();
+            DOTween.To(() => _globalLight.intensity, x => _globalLight.intensity = x, _lightIntensity, _lightTransitionTime).Play();
         }
         public virtual void EndEvent()
         {

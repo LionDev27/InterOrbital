@@ -2,7 +2,6 @@ using InterOrbital.Events;
 using InterOrbital.Player;
 using InterOrbital.WorldSystem;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TorrentialRains_Event : EventBase
@@ -17,6 +16,7 @@ public class TorrentialRains_Event : EventBase
     private int _numWaterFalls;
     public override void StartEvent()
     {
+        base.StartEvent();
         Rain();
         _eventIsActive = true;
         _numWaterFalls = 1;
@@ -28,6 +28,7 @@ public class TorrentialRains_Event : EventBase
 
     public override void EndEvent()
     {
+        base.EndEvent();
         _rainEffect.Stop();
         _splashEffect.Stop();
         _eventIsActive = false;
