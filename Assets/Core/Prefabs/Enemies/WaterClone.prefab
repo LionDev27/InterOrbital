@@ -215,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _maxHealth
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856890, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: _dropsList.Array.size
@@ -373,7 +373,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5da7e4d56e078264f90fe90a23326ccd, type: 2}
   - {fileID: 11400000, guid: bc3a1fbedee5272438fbba6b1b61ef35, type: 2}
   - {fileID: 11400000, guid: c91b71c8ab7de664385beb8e6d9db9e0, type: 2}
-  _shootRate: 3
+  _shootRate: 2
 --- !u!114 &6704106055862309964
 MonoBehaviour:
   m_ObjectHideFlags: 0

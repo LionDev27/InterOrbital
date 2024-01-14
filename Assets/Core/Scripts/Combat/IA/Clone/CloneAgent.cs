@@ -1,3 +1,4 @@
+using InterOrbital.Events.Meredyss;
 using InterOrbital.Player;
 using UnityEngine;
 
@@ -45,6 +46,12 @@ namespace InterOrbital.Combat.IA
             }
             else
                 _timer -= Time.deltaTime;
+        }
+
+        public override void Death()
+        {
+            CloneEvent.OnCloneDeath?.Invoke();
+            base.Death();
         }
 
         private bool TimerEnded()

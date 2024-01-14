@@ -48,13 +48,6 @@ namespace InterOrbital.Events
            
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                EndEvent();
-            }
-        }
         private void DestroyAllEnemies()
         {
             DarkBall[] darkBalls = FindObjectsOfType<DarkBall>();
