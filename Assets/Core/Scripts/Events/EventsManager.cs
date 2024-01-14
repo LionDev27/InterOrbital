@@ -36,6 +36,8 @@ namespace InterOrbital.Events
         [SerializeField] private Image _signalImage;
         [SerializeField] private Light2D _globalLight;
         [SerializeField] private Light2D _playerLight;
+
+        private float _timeToAlert = 15f;
         private void Awake()
         {
             if (Instance == null)
@@ -66,7 +68,7 @@ namespace InterOrbital.Events
                 for (currentTime = _timeBetweenEvents; currentTime >= 0; currentTime--)
                 {
                     UpdateTimeText(currentTime);
-                    if(currentTime <= 30 && !_isWarning)
+                    if(currentTime <= _timeToAlert && !_isWarning)
                     {
                         _isWarning = true;
                         RedLightWarn();
@@ -111,21 +113,26 @@ namespace InterOrbital.Events
         {
             ModifyLightRadius(true);
 
-            DOTween.To(() => _globalLight.color, x => _globalLight.color = x, Color.red, 0.5f).
+            AudioManager.Instance.PlaySFX("EventAlert");
+            AudioManager.Instance.ModifyMusicVolume(-20);
+            AudioManager.Instance.ModifySFXVolume(10);
+            DOTween.To(() => _globalLight.color, x => _globalLight.color = x, Color.red, 0.8f).
                 From(Color.white).
                 SetEase(Ease.Linear).
                 SetLoops(8, LoopType.Yoyo).
+                OnStepComplete( () => AudioManager.Instance.PlaySFX("EventAlert")).
                 Play().OnComplete(() => {
                     StartCoroutine(WarnEvent());
+                    AudioManager.Instance.ModifyMusicVolume(0);
+                    AudioManager.Instance.ModifySFXVolume(0);
                 });
 
-           
         }
 
         private IEnumerator WarnEvent()
         {
             ModifyLightRadius(false);
-
+            AudioManager.Instance.PlaySFX("EventWarn");
             _warnPlanetImage.sprite = _eventsPool[_actualIndex].GetPlanetSprite();
             _planetName.text = _eventsPool[_actualIndex].PlanetName;
             _eventDescription.text = _eventsPool[_actualIndex].Description;
@@ -145,6 +152,7 @@ namespace InterOrbital.Events
                 _signalImage.ChangueAlphaColor(1);
             });
             UIManager.Instance.WarnPanelShowOrHide(false);
+            AudioManager.Instance.PlaySFX("EventWarn");
         }
 
         private void DisorderList()

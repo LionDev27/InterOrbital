@@ -38,6 +38,7 @@ namespace InterOrbital.Events
                     } while (!(spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 && spawnPosition.y < GridLogic.Instance.height));
 
                     DarkBall _darkBall = Instantiate(_darkBallPrefab, spawnPosition, Quaternion.identity).GetComponent<DarkBall>();
+                    AudioManager.Instance.PlaySFX("DarkullPortal");
                     _darkBall.SetEventSpawner(this);
                     _numEnemies++;
                 }
