@@ -980,6 +980,9 @@ MonoBehaviour:
   _backgroundSelectedImage: {fileID: -2021092146, guid: d450f95c1c4c5114096cd77971170d56, type: 3}
   _backgroundClickedImage: {fileID: 1906578987, guid: d450f95c1c4c5114096cd77971170d56, type: 3}
   _backgroundDefaultChestImage: {fileID: -1134610102, guid: 11e5ec41822843a42b8cdeb7f68733a7, type: 3}
+  _vfxFeedbackPrefab: {fileID: 3645375545253411758, guid: 6fc6521004fe1de46878217a015b8a04, type: 3}
+  _healVfxAnimator: {fileID: 22100000, guid: f1f0c8ed0f4943a4abc6bceae3823338, type: 2}
+  _energyVfxAnimator: {fileID: 22100000, guid: fc64a58d905821c4a8655b38405857b5, type: 2}
   gridLeftPocket: {fileID: 0}
   gridRightPocket: {fileID: 0}
   gridBullets: {fileID: 0}

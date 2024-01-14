@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using InterOrbital.Item;
+using InterOrbital.Others;
 using InterOrbital.Player;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -41,6 +42,7 @@ namespace InterOrbital.UI
         public GameObject tablesBlackout;
         public GameObject inventoryBlackout;
         public GameObject warnPanel;
+        public GameObject pauseUI;
 
         private void Awake()
         {
@@ -240,13 +242,21 @@ namespace InterOrbital.UI
         public void WarnPanelShowOrHide(bool show)
         {
             if (show)
-            {
                 warnPanel.transform.DOMoveY(_warnPanelFinalPosition.transform.position.y, 1f).Play();
-            }
             else
-            {
                 warnPanel.transform.DOMoveY(_warnPanelInitPosition.transform.position.y, 1f).Play();
-            }
+        }
+
+        public void PauseGame(bool value)
+        {
+            pauseUI.SetActive(value);
+            Time.timeScale = value ? 0f : 1f;
+        }
+
+        public void MainMenu()
+        {
+            Time.timeScale = 1f;
+            LevelManager.Instance.BackMenu(false);
         }
     }
 }

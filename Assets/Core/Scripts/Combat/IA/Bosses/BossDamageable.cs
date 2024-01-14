@@ -53,7 +53,7 @@ namespace InterOrbital.Combat.IA
             {
                 var levelManager = LevelManager.Instance;
                 if (levelManager != null)
-                    levelManager.BackMenu();
+                    levelManager.BackMenu(true);
             }
             Destroy(gameObject);
         }

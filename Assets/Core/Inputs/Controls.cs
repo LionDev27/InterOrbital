@@ -143,6 +143,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""39d14227-4928-4cd3-872a-7a5bb45a67a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -363,6 +372,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Minimap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1af15c2-87a0-4171-941d-0dfef3b62545"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -730,6 +750,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_BulletsMenu = m_Player.FindAction("BulletsMenu", throwIfNotFound: true);
         m_Player_Minimap = m_Player.FindAction("Minimap", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -817,6 +838,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_BulletsMenu;
     private readonly InputAction m_Player_Minimap;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -834,6 +856,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @BulletsMenu => m_Wrapper.m_Player_BulletsMenu;
         public InputAction @Minimap => m_Wrapper.m_Player_Minimap;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -882,6 +905,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Minimap.started += instance.OnMinimap;
             @Minimap.performed += instance.OnMinimap;
             @Minimap.canceled += instance.OnMinimap;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -925,6 +951,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Minimap.started -= instance.OnMinimap;
             @Minimap.performed -= instance.OnMinimap;
             @Minimap.canceled -= instance.OnMinimap;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1101,6 +1130,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnBulletsMenu(InputAction.CallbackContext context);
         void OnMinimap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

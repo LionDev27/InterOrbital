@@ -7,10 +7,12 @@ namespace InterOrbital.Combat
     {
         [SerializeField] protected int _maxHealth;
         protected int _currentHealth;
+        protected bool _canTakeDamage;
 
         protected virtual void Start()
         {
             _currentHealth = _maxHealth;
+            _canTakeDamage = true;
         }
 
         public virtual void GetDamage(int damage)
@@ -36,7 +38,7 @@ namespace InterOrbital.Combat
 
         protected virtual void CheckHealth()
         {
-            if (_currentHealth <= 0)
+            if (_currentHealth <= 0 && _canTakeDamage)
             {
                 Death();
             }

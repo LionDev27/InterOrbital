@@ -55,5 +55,10 @@ namespace InterOrbital.Player
         {
             return transform.position;
         }
+
+        public void DeathAnimation()
+        {
+            Animator.SetTrigger("PlayerDeath");
+        }
     }
 }

@@ -20,6 +20,10 @@ namespace InterOrbital.Player
         [SerializeField] private Sprite _backgroundClickedImage;
         [SerializeField] private Sprite _backgroundDefaultChestImage;
 
+        [SerializeField] private VfxFeedback _vfxFeedbackPrefab;
+        [SerializeField] private AnimatorOverrideController _healVfxAnimator;
+        [SerializeField] private AnimatorOverrideController _energyVfxAnimator;
+
         public GameObject gridLeftPocket;
         public GameObject gridRightPocket;
         public GameObject gridBullets;
@@ -106,6 +110,8 @@ namespace InterOrbital.Player
                         PlayerComponents.Instance.GetComponent<PlayerEnergy>()
                             .RestoreEnergy(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
+                        var vfx = Instantiate(_vfxFeedbackPrefab, transform);
+                        vfx.Init(_energyVfxAnimator);
                     }
 
                     if (itemData.consumableValues.consumableType == ConsumableType.Health)
@@ -113,6 +119,8 @@ namespace InterOrbital.Player
                         PlayerComponents.Instance.GetComponent<PlayerDamageable>()
                             .RestoreHealth(itemData.consumableValues.amountToRestore);
                         SubstractUsedItem();
+                        var vfx = Instantiate(_vfxFeedbackPrefab, transform);
+                        vfx.Init(_healVfxAnimator);
                     }
                     
                     if (itemData.consumableValues.consumableType == ConsumableType.Recollector)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace InterOrbital.Others
 {
@@ -6,10 +7,11 @@ namespace InterOrbital.Others
     {
         [SerializeField] private float _speed;
         private Material _material;
+        private static Vector2 _currentOffset;
 
         private void Awake()
         {
-            _material = GetComponent<SpriteRenderer>().material;
+            _material = TryGetComponent(out SpriteRenderer rend) ? rend.material : GetComponent<Image>().material;
         }
 
         private void Start()
@@ -19,7 +21,8 @@ namespace InterOrbital.Others
 
         private void Update()
         {
-            _material.mainTextureOffset += (_speed * Time.deltaTime * Vector2.right);
+            _material.mainTextureOffset += (_speed * Time.unscaledDeltaTime * Vector2.right);
+            _currentOffset = _material.mainTextureOffset;
         }
 
         private void OnDisable()
@@ -30,7 +33,7 @@ namespace InterOrbital.Others
         [ContextMenu("Reset Offset")]
         public void ResetOffset()
         {
-            _material.mainTextureOffset = Vector2.zero;
+            _material.mainTextureOffset = _currentOffset;
         }
     }
 }
