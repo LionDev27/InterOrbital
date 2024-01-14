@@ -16,7 +16,7 @@ namespace InterOrbital.Combat.IA
         [SerializeField] private bool _useHitAnimation;
 
         protected EnemyStateBase _currentState;
-        private Transform _target;
+        protected Transform _target;
         protected Animator _animator;
         private NavMeshAgent _navMeshAgent;
         protected float _hitTimer;
