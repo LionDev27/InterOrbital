@@ -76,6 +76,16 @@ namespace InterOrbital.UI
             }
         }
 
+        public void AddToMinimapSprites(GameObject minimapSprite)
+        {
+            _minimapSprites.Add(minimapSprite);
+        }
+
+        public void RemoveFromMinimapSprites(GameObject minimapSprite)
+        {
+            _minimapSprites.Remove(minimapSprite);
+        }
+
         private void GetMinimapCameraSizes()
         {
             _orthographicOpenSize = GridLogic.Instance.width / 2;

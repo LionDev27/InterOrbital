@@ -21,6 +21,7 @@ namespace InterOrbital.Player
         private float _dashTotalInvulnerabilityTime => _dashTime + _dashInvulnerabilityExtraTime;
         private float _dashTotalTime => _dashTotalInvulnerabilityTime + _dashExtraCooldown;
         private float _dashAnimationSpeed;
+        private bool _isDashing;
 
         protected override void Awake()
         {
@@ -45,11 +46,12 @@ namespace InterOrbital.Player
 
         private void Update()
         {
-            if (_dashTimer <= 0)
+            if (_dashTimer <= 0 && _isDashing)
             {
                 PlayerMovement.EnableMovement(true);
                 PlayerAttack.canAttack = true;
                 PlayerAim.ShowGun(true);
+                _isDashing = false;
             }
             else if (_dashTimer > 0)
                 _dashTimer -= Time.deltaTime;
@@ -69,6 +71,7 @@ namespace InterOrbital.Player
             PlayerMovement.EnableMovement(false);
             PlayerAttack.canAttack = false;
             PlayerAim.ShowGun(false);
+            _isDashing = true;
             AudioManager.Instance.PlaySFX("Dash");
             
             _dashTimer = _dashTime;

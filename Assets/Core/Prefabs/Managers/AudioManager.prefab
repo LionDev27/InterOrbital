@@ -73,6 +73,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0226e1dbf78ba2b469978af62453b694, type: 3}
   - name: Error
     clip: {fileID: 8300000, guid: 4b05e60ce40b4dc43ba3857d29a3a857, type: 3}
+  - name: HealingEnergy
+    clip: {fileID: 8300000, guid: 731f2aff6f643ab4cb0d09f908390f91, type: 3}
+  - name: EventAlert
+    clip: {fileID: 8300000, guid: be83d32b203de58499d7b9ca06f0f991, type: 3}
+  - name: EventWarn
+    clip: {fileID: 8300000, guid: 626302308402fb84ebd21d621e2000cd, type: 3}
+  - name: DarkullPortal
+    clip: {fileID: 8300000, guid: 9543ea1b6cf07cb4b860468949303404, type: 3}
+  - name: DarkullExplosion
+    clip: {fileID: 8300000, guid: 5d567f5ec6d9f1142afb5c5685cf29ef, type: 3}
 --- !u!1 &3019189259760801042
 GameObject:
   m_ObjectHideFlags: 0

@@ -583,6 +583,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
+      propertyPath: sfxSounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 731f2aff6f643ab4cb0d09f908390f91, type: 3}
+    - target: {fileID: 3019189259411764316, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
+      propertyPath: sfxSounds.Array.data[9].name
+      value: HealingEnergy
+      objectReference: {fileID: 0}
     - target: {fileID: 3019189259411764317, guid: 5ae1569b186c2cc45b4dc162a964f036, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6210,7 +6222,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1892012663}
         m_TargetAssemblyTypeName: InterOrbital.UI.MainMenuUI, Assembly-CSharp
-        m_MethodName: ShowLoadingCanvas
+        m_MethodName: ShowIntro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8791,6 +8803,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5652801956628380909, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801956628380909, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801956628380909, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801956628380909, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5652801956854525613, guid: 7d4e841959f4216429770890a865de08, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8859,6 +8887,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5652801957797965018, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801957797965018, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801957797965018, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801957797965018, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5652801958015589206, guid: 7d4e841959f4216429770890a865de08, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8916,6 +8960,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5652801958255185551, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801958501025591, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801958501025591, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801958501025591, guid: 7d4e841959f4216429770890a865de08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652801958501025591, guid: 7d4e841959f4216429770890a865de08, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
