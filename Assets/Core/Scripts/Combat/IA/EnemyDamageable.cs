@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using InterOrbital.Item;
-using InterOrbital.Mission;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;

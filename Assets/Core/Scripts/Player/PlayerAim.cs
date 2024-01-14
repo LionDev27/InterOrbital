@@ -37,7 +37,6 @@ namespace InterOrbital.Player
             if (_aimDir == Vector2.zero) return;
             PlayerAttack.attackPoint.localPosition = _aimDir * _aimOffset;
             HandleSprites();
-            //TODO: COMPROBAR EL RANGO DEL ATAQUE PARA PONER EL CURSOR CON MENOS OPACIDAD.
         }
 
         private void HandleSprites()

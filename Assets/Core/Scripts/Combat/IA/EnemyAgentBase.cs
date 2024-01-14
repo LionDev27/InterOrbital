@@ -70,6 +70,12 @@ namespace InterOrbital.Combat.IA
             _currentState.OnStateEnter();
         }
 
+        public virtual void ChangeState(int stateIndex)
+        {
+            _currentState = _states[stateIndex];
+            _currentState.OnStateEnter();
+        }
+
         public bool ArrivedDestination()
         {
             if (_navMeshAgent == null) return false;
