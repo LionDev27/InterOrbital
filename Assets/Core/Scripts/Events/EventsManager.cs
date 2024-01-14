@@ -106,7 +106,6 @@ namespace InterOrbital.Events
             {
                 _playerLight.pointLightOuterRadius = 6;
             }
-
         }
 
         private void RedLightWarn()
@@ -126,7 +125,6 @@ namespace InterOrbital.Events
                     AudioManager.Instance.ModifyMusicVolume(0);
                     AudioManager.Instance.ModifySFXVolume(0);
                 });
-
         }
 
         private IEnumerator WarnEvent()

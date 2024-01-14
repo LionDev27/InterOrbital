@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112519913516747296, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1112519913850856888, guid: d86503b320fb0d6448729a5030d0d853, type: 3}
       propertyPath: m_Name
       value: Elytrin
@@ -232,9 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c82bb7ff460442ab4a50eed02d05cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event:
-    m_PersistentCalls:
-      m_Calls: []
   _clip: {fileID: 8300000, guid: 4860501d72ec42945ad2a94d0204207f, type: 3}
 --- !u!114 &1939216599894346012 stripped
 MonoBehaviour:
