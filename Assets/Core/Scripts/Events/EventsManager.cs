@@ -104,7 +104,6 @@ namespace InterOrbital.Events
             {
                 _playerLight.pointLightOuterRadius = 6;
             }
-
         }
 
         private void RedLightWarn()
@@ -118,8 +117,6 @@ namespace InterOrbital.Events
                 Play().OnComplete(() => {
                     StartCoroutine(WarnEvent());
                 });
-
-           
         }
 
         private IEnumerator WarnEvent()
