@@ -260,6 +260,7 @@ namespace InterOrbital.UI
         public void PauseGame(bool value)
         {
             pauseUI.SetActive(value);
+            PlayerComponents.Instance.InputHandler.ChangeActionMap();
             Time.timeScale = value ? 0f : 1f;
         }
 
