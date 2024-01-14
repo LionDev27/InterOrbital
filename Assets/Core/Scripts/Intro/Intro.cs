@@ -1,4 +1,5 @@
 using DG.Tweening;
+using InterOrbital.Others;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,13 @@ public class Intro : MonoBehaviour
     [SerializeField] private GameObject intro4;
     [SerializeField] private GameObject intro5;
     [SerializeField] private GameObject intro6;
+
+    private LevelManager _levelManager;
+
+    private void Awake()
+    {
+        _levelManager = LevelManager.Instance;
+    }
 
     private void Start()
     {
@@ -144,9 +152,23 @@ public class Intro : MonoBehaviour
         sixthSequence.OnComplete(() => {
             rectTransform.localPosition = originalPosition;
             AudioManager.Instance.ModifyMusicVolume(0f);
+            DoFadeIntro();
         });
         sixthSequence.Play();
         AudioManager.Instance.PlaySFX("Intro6");
         yield return null;
+    }
+
+    private void DoFadeIntro()
+    {
+        CanvasGroup introCG = GetComponent<CanvasGroup>();
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(introCG.DOFade(0f, 0.5f).OnComplete(() => _levelManager.EnableCanvasGroup(introCG, false)));
+        sequence.Append(_levelManager._loadingCanvasGroup.DOFade(1f, 0.5f).OnComplete(() =>
+        {
+            _levelManager.EnableCanvasGroup(_levelManager._loadingCanvasGroup, true);
+            _levelManager.LoadSceneWithLoading("Game");
+        }));
+        sequence.Play();
     }
 }

@@ -37,6 +37,17 @@ namespace InterOrbital.UI
             Application.Quit();
         }
 
+        public void ShowIntro()
+        {
+            Sequence loadingSequence = DOTween.Sequence();
+            loadingSequence.Append(_mainCanvasGroup.DOFade(0f, 0.5f).OnComplete(() => 
+            {
+                _levelManager.EnableCanvasGroup(_mainCanvasGroup, false);
+                _levelManager.LoadScene("Intro");
+            }));
+            loadingSequence.Play();
+        }
+
         public void ShowLoadingCanvas()
         {
             Sequence loadingSequence = DOTween.Sequence();
