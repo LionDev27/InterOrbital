@@ -111,7 +111,7 @@ public class Intro : MonoBehaviour
             StartCoroutine(FifthSequence());
         });
         fourthSequence.Play();
-        AudioManager.Instance.ModifySFXVolume(0f);
+        AudioManager.Instance.ModifySFXVolume(-20f);
         AudioManager.Instance.PlaySFX("Intro4");
         yield return null;
     }
@@ -151,7 +151,7 @@ public class Intro : MonoBehaviour
         sixthSequence.Join(canvasGroup.DOFade(1f, 3f));
         sixthSequence.OnComplete(() => {
             rectTransform.localPosition = originalPosition;
-            AudioManager.Instance.ModifyMusicVolume(0f);
+            AudioManager.Instance.ModifyMusicVolume(20f);
             DoFadeIntro();
         });
         sixthSequence.Play();

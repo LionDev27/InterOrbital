@@ -60,5 +60,17 @@ namespace InterOrbital.Player
         {
             Animator.SetTrigger("PlayerDeath");
         }
+
+        public void GunVisibility(bool visible)
+        {
+            if (visible)
+            {
+                PlayerAim.ShowGun(true);
+            }
+            else
+            {
+                PlayerAim.ShowGun(false);
+            }
+        }
     }
 }

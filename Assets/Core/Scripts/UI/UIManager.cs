@@ -229,6 +229,16 @@ namespace InterOrbital.UI
             _minimapController.ToggleMinimap();
         }
 
+        public void AddToMinimapSprites(GameObject minimapSprite)
+        {
+            _minimapController.AddToMinimapSprites(minimapSprite);
+        }
+
+        public void RemoveFromMinimapSprites(GameObject minimapSprite)
+        {
+            _minimapController.RemoveFromMinimapSprites(minimapSprite);
+        }
+
         public void ChangeActionUI(ItemScriptableObject item)
         {
             _itemActionController.ChangeActionImage(item);

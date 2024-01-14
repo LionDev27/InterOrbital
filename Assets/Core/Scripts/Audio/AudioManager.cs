@@ -83,6 +83,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayAmbientSFX(string name, bool loop)
+    {
+        Sound sound = Array.Find(sfxSounds, s => s.name == name);
+
+        if (sound != null)
+        {
+            sfxSource.clip = sound.clip;
+            sfxSource.Play();
+            sfxSource.loop = loop;
+        }
+    }
+
+    public void StopAmbientSFX()
+    {
+        if (sfxSource.isPlaying)
+        {
+            sfxSource.Stop();
+        }
+    }
+
     private IEnumerator PlaySoundEvery(string name, float t, int times)
     {
         Sound sound = Array.Find(musicSounds, s => s.name == name);
@@ -96,11 +116,13 @@ public class AudioManager : MonoBehaviour
 
     public void ModifySFXVolume(float db)
     {
-        mixer.DOSetFloat("sfxVol", db, 1f);
+        mixer.GetFloat("sfxVol", out float sfxVol);
+        mixer.DOSetFloat("sfxVol", sfxVol + db, 1f);
     }
 
     public void ModifyMusicVolume(float db)
     {
-        mixer.DOSetFloat("musicVol", db,2f);
+        mixer.GetFloat("musicVol",out float musicVol);
+        mixer.DOSetFloat("musicVol", musicVol + db,2f);
     }
 }

@@ -98,6 +98,7 @@ namespace InterOrbital.Combat.IA
         {
 
             _explosionBall.Explode();
+            AudioManager.Instance.PlaySFX("DarkullExplosion");
             ParticleSystem pt = Instantiate(_deathParticles, transform.position, _deathParticles.transform.rotation);
 
             _spriteRenderer.enabled = false;

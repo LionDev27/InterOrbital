@@ -137,6 +137,7 @@ namespace InterOrbital.Player
             {
                 UIManager.Instance.OpenInventory(false);
             }
+            _playerComponents.GunVisibility(false);
             _playerComponents.InputHandler.DeactivateControls();
             _canTakeDamage = false;
             StartCoroutine(DeathSequence());
@@ -157,6 +158,7 @@ namespace InterOrbital.Player
             LevelManager.Instance.GameBlackout(false, 2f);
             ResetHealth();
             _playerComponents.GetComponent<PlayerEnergy>().ResetEnergy();
+            _playerComponents.GunVisibility(true);
             _playerComponents.InputHandler.ActivateControls();
             _canTakeDamage = true;
         }

@@ -112,6 +112,7 @@ namespace InterOrbital.Player
                         SubstractUsedItem();
                         var vfx = Instantiate(_vfxFeedbackPrefab, transform);
                         vfx.Init(_energyVfxAnimator);
+                        AudioManager.Instance.PlaySFX("HealingEnergy");
                     }
 
                     if (itemData.consumableValues.consumableType == ConsumableType.Health)
@@ -121,8 +122,9 @@ namespace InterOrbital.Player
                         SubstractUsedItem();
                         var vfx = Instantiate(_vfxFeedbackPrefab, transform);
                         vfx.Init(_healVfxAnimator);
+                        AudioManager.Instance.PlaySFX("HealingEnergy");
                     }
-                    
+
                     if (itemData.consumableValues.consumableType == ConsumableType.Recollector)
                     {
                         RecollectorUpgrades.OnUpgradeRecollector?.Invoke(itemData.consumableValues.amountToRestore);

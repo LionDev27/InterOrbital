@@ -38,6 +38,7 @@ namespace InterOrbital.Events
                     } while (!(spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 && spawnPosition.y < GridLogic.Instance.height));
 
                     DarkBall _darkBall = Instantiate(_darkBallPrefab, spawnPosition, Quaternion.identity).GetComponent<DarkBall>();
+                    AudioManager.Instance.PlaySFX("DarkullPortal");
                     _darkBall.SetEventSpawner(this);
                     _numEnemies++;
                 }
@@ -70,6 +71,8 @@ namespace InterOrbital.Events
             _eventIsActive = true;
             _targetToAttack = FindObjectOfType<InterOrbital.Player.PlayerAim>().transform;
             StartCoroutine(SpawnDarkBalls());
+            AudioManager.Instance.ModifyMusicVolume(-10);
+            AudioManager.Instance.PlayMusic("EventMusic2", true);
         }
 
         public override void EndEvent()
@@ -78,7 +81,8 @@ namespace InterOrbital.Events
             _eventIsActive = false;
             StopCoroutine(SpawnDarkBalls());
             DestroyAllEnemies();
-
+            AudioManager.Instance.ModifyMusicVolume(10);
+            AudioManager.Instance.PlayMusic("MainTheme", true);
         }
 
         public void RestEnemy()
