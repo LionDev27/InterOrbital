@@ -22,6 +22,8 @@ public class TorrentialRains_Event : EventBase
         _numWaterFalls = 1;
         _timeToSpawn = _firstTimeToSpawn;
         StartCoroutine(GenerateFalls());
+        AudioManager.Instance.ModifyMusicVolume(-10);
+        AudioManager.Instance.PlayMusic("EventMusic1",true);
     }
 
     public override void EndEvent()
@@ -30,6 +32,9 @@ public class TorrentialRains_Event : EventBase
         _splashEffect.Stop();
         _eventIsActive = false;
         StopCoroutine(GenerateFalls());
+        AudioManager.Instance.ModifyMusicVolume(10);
+        AudioManager.Instance.StopAmbientSFX();
+        AudioManager.Instance.PlayMusic("MainTheme", true);
     }
 
 
@@ -56,6 +61,7 @@ public class TorrentialRains_Event : EventBase
                     } while (!(spawnPosition.x >= 0 && spawnPosition.x < GridLogic.Instance.width && spawnPosition.y >= 0 && spawnPosition.y < GridLogic.Instance.height));
 
                     Instantiate(_waterfall, spawnPosition, Quaternion.identity);
+                    AudioManager.Instance.PlaySFX("Waterfall");
                 }
                 numWaves++;
             }
@@ -88,6 +94,7 @@ public class TorrentialRains_Event : EventBase
         _rainEffect.Simulate(10, true, false);
         _rainEffect.Play();
         _splashEffect.Play();
+        AudioManager.Instance.PlayAmbientSFX("Rain", true);
     }
 
     private void OnDrawGizmos()

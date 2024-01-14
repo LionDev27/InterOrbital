@@ -122,8 +122,8 @@ namespace InterOrbital.Events
                 OnStepComplete( () => AudioManager.Instance.PlaySFX("EventAlert")).
                 Play().OnComplete(() => {
                     StartCoroutine(WarnEvent());
-                    AudioManager.Instance.ModifyMusicVolume(0);
-                    AudioManager.Instance.ModifySFXVolume(0);
+                    AudioManager.Instance.ModifyMusicVolume(20);
+                    AudioManager.Instance.ModifySFXVolume(-10);
                 });
         }
 
